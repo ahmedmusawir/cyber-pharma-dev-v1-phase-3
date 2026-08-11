@@ -238,6 +238,88 @@ neither substitutes for the other.
 
 ---
 
+## 🔴 GIT IS OPERATOR-ONLY (NON-NEGOTIABLE)
+
+**You never touch git. Tony touches git. No exceptions.**
+
+Forbidden — do not run these, ever, for any reason, even when it seems obviously helpful:
+
+```
+git add · git commit · git push · git pull · git checkout · git switch
+git merge · git rebase · git reset · git revert · git stash · git rm
+git branch · git tag · git cherry-pick · gh pr create · gh pr merge
+```
+
+This holds even when: the change is trivially safe · a commit would "protect" the work ·
+the branch is obviously wrong · you just finished a task that would normally be committed ·
+Tony said "approved" for the underlying code work. **Approval to write code is never
+approval to run git.**
+
+### What You MAY Do
+
+| Action | Allowed |
+| ------ | ------- |
+| Read-only inspection (`git status`, `git log`, `git diff`) when it informs the work | ✅ |
+| **Remind** Tony that a commit is due | ✅ — this is your job |
+| Tell him the exact commands to run, so he can paste them | ✅ |
+| Run any mutating git command yourself | ❌ NEVER |
+
+### The Reminder Duty
+
+Reminding is not optional — it is the counterpart to the ban. Surface a reminder when:
+
+- A task completes and the changes are uncommitted
+- Untracked files exist that protocol depends on (e.g. `agent_docs/`)
+- Branch work is about to start on top of uncommitted changes
+
+Format the reminder as a copy-paste block and let him decide:
+
+```
+🔔 GIT REMINDER — uncommitted work:
+  [what changed]
+Suggested: git add -A && git commit -m "..."
+→ Your call. I will not run it.
+```
+
+**Why:** untracked/uncommitted protocol state has already been lost once at a branch cut
+(`agent_docs/KIP_REGISTRY.md`, 2026-08-11). The reminder exists to prevent a repeat. The
+ban exists because repository history is Tony's instrument, not yours.
+
+---
+
+## PROTOCOL DIRECTORY LAYOUT
+
+Every protocol artifact has exactly one home. This table is the authority — if a path
+elsewhere in this file disagrees with this table, the table wins.
+
+```
+project root/
+├── CLAUDE.md                    ← protocols (this file)
+├── RECOVERY.md                  ← 3-second recovery doc — STAYS AT ROOT
+├── CHANGELOG.md                 ← doc/playbook change log
+└── agent_docs/
+    ├── KIP_REGISTRY.md          ← known issues & pitfalls, with trigger conditions
+    ├── SESSIONS/
+    │   └── session_YYYY-MM-DD.md
+    └── RESPONSES/
+        └── response_YYYY-MM-DD_HHMMSS_slug.md
+```
+
+| Artifact          | Path                                             | Written when                      |
+| ----------------- | ------------------------------------------------ | --------------------------------- |
+| Recovery state    | `RECOVERY.md` (root)                             | After every plan completion       |
+| Session log       | `agent_docs/SESSIONS/session_YYYY-MM-DD.md`      | Session start + every transition  |
+| Response artifact | `agent_docs/RESPONSES/response_<ts>_<slug>.md`   | Before printing any artifact      |
+| KIP registry      | `agent_docs/KIP_REGISTRY.md`                     | When a trap is found or retired   |
+
+**Why RECOVERY.md stays at root:** it is the file Tony opens first after a crash. Burying
+it two levels deep defeats the purpose. Everything else consolidates under `agent_docs/`.
+
+**Session logs live in `agent_docs/SESSIONS/` — never the project root.** Historical logs
+found at root should be moved there, not duplicated.
+
+---
+
 ## 🟡 DISASTER RECOVERY PROTOCOL
 
 ### The Problem
@@ -443,7 +525,7 @@ For algorithmic work:
 **MANDATORY — Before doing ANYTHING else:**
 
 1. Check for `RECOVERY.md` → Read it first. It tells you where we are in 3 seconds.
-2. Check for existing session file: `session_YYYY-MM-DD.md`
+2. Check for existing session file: `agent_docs/SESSIONS/session_YYYY-MM-DD.md`
 3. If it exists → Read it. Resume context from where we left off.
 4. If it doesn't exist → Create it immediately using the template below.
 5. Check `agent_docs/KIP_REGISTRY.md` at session start, when touching auth files, or when opening a new module — surface any KIP whose trigger conditions are met.
@@ -508,7 +590,7 @@ For algorithmic work:
 | --------------------------------------------- | ----------------------------- |
 | Write plan to session file BEFORE CLI display | Crash recovery                |
 | Update status at every phase transition       | PENDING → APPROVED → COMPLETE |
-| Keep in project root                          | Visible to all tools          |
+| Keep in `agent_docs/SESSIONS/`                | One home for all session logs |
 | Use ISO date format                           | Sortable, unambiguous         |
 | Update RECOVERY.md after every completion     | 3-second recovery             |
 
@@ -627,6 +709,8 @@ POTENTIAL CONCERNS:
 18. **Not updating RECOVERY.md after task completion**
 19. **Deviating from FILE_TREE.md without flagging it**
 20. **Calling os.getenv() directly instead of via config_service**
+21. **Running ANY mutating git command — git is Operator-only, you remind and nothing more**
+22. **Writing session logs to the project root instead of `agent_docs/SESSIONS/`**
 
 ---
 
