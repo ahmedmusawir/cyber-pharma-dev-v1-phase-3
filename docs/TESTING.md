@@ -7,7 +7,7 @@ RBAC/auth security boundaries (foundation) and the Phase-2 application surfaces 
 OwedBook and the Admin Portal Demo Shell (services, components, and the mock
 seed). A **Playwright** e2e scaffold exists for browser-level flows.
 
-> **Current inventory: 25 test suites, 117 passing tests** (run `npm test`).
+> **Current inventory: 26 test suites, 120 passing tests** (run `npm test`).
 
 The goal is not coverage for its own sake. Foundation tests prove unauthorized
 access fails safely; app tests encode the **intent** behind each surface —
@@ -114,7 +114,7 @@ the Radix-popper guard + theme-pick close), and `ProfileForm`.
 ## How to Run
 
 ```bash
-npm test                    # full Jest suite (117 / 25)
+npm test                    # full Jest suite (120 / 26)
 npm test -- --runInBand     # single-threaded (CI debugging / determinism)
 npm run test:e2e            # Playwright e2e
 npm run test:e2e:ui         # Playwright UI mode

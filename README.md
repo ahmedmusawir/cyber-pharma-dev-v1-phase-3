@@ -5,7 +5,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-Auth%20%2B%20RLS-3FCF8E?style=flat-square&logo=supabase&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4%20%2B%20shadcn-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
-![Tests](https://img.shields.io/badge/Jest-118%20passed%20%2F%2025%20suites-success?style=flat-square&logo=jest&logoColor=white)
+![Tests](https://img.shields.io/badge/Jest-120%20passed%20%2F%2026%20suites-success?style=flat-square&logo=jest&logoColor=white)
 ![Playwright](https://img.shields.io/badge/Playwright-e2e-2EAD33?style=flat-square&logo=playwright&logoColor=white)
 
 A pharmacy reimbursement application — it surfaces what a pharmacy is **owed**
@@ -131,7 +131,7 @@ one). See [docs/DATABASE_SETUP.md](docs/DATABASE_SETUP.md).
 | `npm run build`             | Production build                      |
 | `npm start`                 | Serve the production build            |
 | `npm run lint`              | ESLint (flat config)                  |
-| `npm test`                  | Jest suite (118 tests / 25 suites)    |
+| `npm test`                  | Jest suite (120 tests / 26 suites)    |
 | `npm run test:e2e`          | Playwright end-to-end                 |
 | `npm run test:e2e:ui`       | Playwright in UI mode                 |
 

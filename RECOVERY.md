@@ -4,19 +4,32 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-08-11 19:27
+**Last updated:** 2026-08-14 12:30
 **Branch:** phase-3-1
-**Session log:** `agent_docs/SESSIONS/session_2026-08-11.md`
+**Session log:** `agent_docs/SESSIONS/session_2026-08-14.md`
 
 ---
 
-**Last action:** Created protocol scaffold — `RECOVERY.md`, `agent_docs/RESPONSES/`,
-`agent_docs/SESSIONS/`, `agent_docs/KIP_REGISTRY.md`. Relocated session logs from project
-root to `agent_docs/SESSIONS/`. Amended CLAUDE.md to codify the new location.
+**Last action:** BIM-000 **FINAL CLEANUP** (end of PRE-Q). Deleted 4 temporary QA pilot
+artifacts (qa_bim000 logs + scripts; all were untracked). Verified: zero src/ writes,
+all BIM-000 changes intact, phase2.md RECOVERED at `agent_docs/phase2.md` with
+DB_BASELINE sibling note updated by Coordinator. Regression re-run green: build ✓
+(22 routes), tsc clean, jest 26/120/0, lint 0 errors / 34 legacy warnings. Zero git
+write commands. Earlier (08-13): BIM-000 executed, all gates G1–G8 green.
 
-**Pending:** NONE
+**Pending:** ① Coordinator manual per-concern commits (manifest:
+`agent_docs/RESPONSES/response_2026-08-13_163000_bim000-handoff.md`). ② **BLOCKED:**
+`PHASE_3_CAMPAIGN_JOURNAL.md` — no canonical source exists anywhere in
+`/home/moose/nextjs/CYBER_PHARMA/` (all 4 repos searched + phrase-grep); must be created
+fresh, not restored. ③ STRIPE purge/rotation attestation (P2/R2). ④ Gate Q with Sol.
 
-**Next step:** Awaiting Phase 3 task assignment.
+**Next step:** Coordinator commits → Gate Q verdict → FIX-001 (KIP-2; promotion trigger
+fired per recon).
+
+**⚠️ UNCOMMITTED:** package.json, package-lock.json, .env.example, tsconfig.json,
+README.md, docs/TESTING.md modified; temp/ghl-example.json deleted; agent_docs/ additions
+(ACTIONS/, RECON/, DB_BASELINE.md, new session + responses); CHANGELOG.md, RECOVERY.md.
+Operator commits — agent never does.
 
 ---
 
@@ -28,10 +41,18 @@ root to `agent_docs/SESSIONS/`. Amended CLAUDE.md to codify the new location.
 | Session logs | `agent_docs/SESSIONS/session_YYYY-MM-DD.md` |
 | Response artifacts | `agent_docs/RESPONSES/response_<date>_<time>_<slug>.md` |
 | Known issues / pitfalls | `agent_docs/KIP_REGISTRY.md` |
-| Protocols | `CLAUDE.md` — project root |
+| Recon reports | `agent_docs/RECON/` (Operator renamed from `recon/` 2026-08-11) |
+| Phase-3 DB starting truth | `agent_docs/DB_BASELINE.md` |
+| Module managers | `agent_docs/ACTIONS/<module>/CLAUDE.md` + `ACCEPTANCE_SPEC.md` |
+| Protocols | `CLAUDE.md` — project root (sole authority; `WINDSURF.md` deleted 2026-08-11) |
+
+## Standing Rules
+
+- **Git is Operator-only.** The agent runs no mutating git command — ever. It reminds; you decide.
 
 ## Known Good State
 
-- **HEAD:** `6f6e63d` — "11aug2026 - audit passed, build tested, ready for phase 3"
-- **Working:** Phase 2 complete; audit passed, build verified as of that commit.
+- **HEAD:** `87d39b4` — "11aug2026 - session ready - claude.md updated"
+- **Working:** BIM-000 complete on top of HEAD; triad green (build 22 routes, tsc clean,
+  jest 26/120/0, `npm ci` 0 vulns) verified 2026-08-13 16:28.
 - **Broken:** Nothing known.
