@@ -3,6 +3,11 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-08-14 13:50 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/BIM-000-CYBER-PHARMA/CLAUDE.md` — manager flipped FINAL → CLOSED with deliverables map, per its own close mechanic
+- **Reason:** Gate Q PASS (`agent_docs/QA/GATE_Q_REPORT_BIM-000-CYBER-PHARMA.md`, Sol, 2026-08-14) — BIM-000 independently verified, no rework, approved to advance. Coordinator closeout commit `432cf5a`.
+
 ## 2026-08-13 16:30 UTC — [CC] Claude Code
 
 - **Updated:** `README.md` — test badge + command table: 118/25 → 120/26 (live Jest baseline)

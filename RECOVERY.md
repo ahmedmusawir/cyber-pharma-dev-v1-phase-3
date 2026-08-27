@@ -4,27 +4,26 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-08-14 12:30
+**Last updated:** 2026-08-14 13:50
 **Branch:** phase-3-1
 **Session log:** `agent_docs/SESSIONS/session_2026-08-14.md`
 
 ---
 
-**Last action:** BIM-000 **FINAL CLEANUP** (end of PRE-Q). Deleted 4 temporary QA pilot
-artifacts (qa_bim000 logs + scripts; all were untracked). Verified: zero src/ writes,
-all BIM-000 changes intact, phase2.md RECOVERED at `agent_docs/phase2.md` with
-DB_BASELINE sibling note updated by Coordinator. Regression re-run green: build ✓
-(22 routes), tsc clean, jest 26/120/0, lint 0 errors / 34 legacy warnings. Zero git
-write commands. Earlier (08-13): BIM-000 executed, all gates G1–G8 green.
+**Last action:** **BIM-000-CYBER-PHARMA CLOSED — Gate Q PASS** (Sol, 2026-08-14, report:
+`agent_docs/QA/GATE_Q_REPORT_BIM-000-CYBER-PHARMA.md`). All AC1–AC9 + P1–P3 PASS, no
+rework. Coordinator closeout commit `432cf5a` + push. Manager flipped to CLOSED with
+deliverables map. Campaign Journal now live at `agent_docs/PHASE_3_CAMPAIGN_JOURNAL.md`
+(FLAG-1 resolved). Board certified green: build ✓ (22 routes), tsc ✓, jest 26/120/0,
+lint 0 err / 34 legacy warn.
 
-**Pending:** ① Coordinator manual per-concern commits (manifest:
-`agent_docs/RESPONSES/response_2026-08-13_163000_bim000-handoff.md`). ② **BLOCKED:**
-`PHASE_3_CAMPAIGN_JOURNAL.md` — no canonical source exists anywhere in
-`/home/moose/nextjs/CYBER_PHARMA/` (all 4 repos searched + phrase-grep); must be created
-fresh, not restored. ③ STRIPE purge/rotation attestation (P2/R2). ④ Gate Q with Sol.
+**Pending:** NONE for BIM-000. Untracked at close-out: Gate Q report + this session's
+close bookkeeping (Operator commits when ready).
 
-**Next step:** Coordinator commits → Gate Q verdict → FIX-001 (KIP-2; promotion trigger
-fired per recon).
+**Next step:** Phase 3 advances — next module per campaign map: **FIX-001** (KIP-2
+stale-persist fix; MobileNav/UserMenu read localStorage-persisted role on the live
+landing page — promotion trigger fired per recon). Non-blocking carries: numbered-color
+predicate rebuild, `instrumentation.ts:5` comment fix at first src-writable module.
 
 **⚠️ UNCOMMITTED:** package.json, package-lock.json, .env.example, tsconfig.json,
 README.md, docs/TESTING.md modified; temp/ghl-example.json deleted; agent_docs/ additions

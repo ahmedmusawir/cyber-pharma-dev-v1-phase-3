@@ -48,16 +48,46 @@
 
 ## Module Entries
 
-*(appended at each module close)*
+### BIM-000-CYBER-PHARMA — closed 2026-08-14 (Gate Q PASS; final close-out batch committed 2026-08-27 post-Coordinator-absence)
+
+- **Playbook prescribed:** author FINAL from recon → Coordinator scope approval → Engineer ONE-message Plan Mode → plan-QA → build → spec finalized with evidence → Coordinator commits per concern → Gate Q against committed SHA → verdict → close.
+- **Actually happened:** prescribed path held end-to-end with ONE structural improvisation: Gate Q split into **PRE-Q on the working tree, then certification** (Director ruling — QA/rework before one final commit). Engineer surfaced 4 plan-mode flags instead of resolving; all ruled by Architect/Coordinator. Spec finalized with evidence; Sol built a 23-case plan with declared gaps and ran it with the Director as hands. Verdict: **PASS, zero rework** — first-attempt clean.
+- **Divergence + why:** (1) PRE-Q invention — playbook's commit-then-QA sequence fought the Director's preference for a single clean close commit; ruled live, worked well, v1.1 candidate. (2) Branch drift — spec said `bim-000-cyber-pharma`, disk said `phase-3-1`; disk won; single-branch small-module pattern needs a playbook sentence. (3) QA intake was assembled ad hoc (spec + handoff + baseline + missing catalog paste) — the intake-checklist gap. (4) Coordinator hospitalization froze the machine one commit from close for ~13 days; the freeze was CLEAN — recap + RECOVERY + journal rebuilt full context in one session. Disaster drill passed by accident.
+- **Gate Q cycles:** 1 (PASS). Within the cycle: one QA self-correction (contract-overreach on phase2.md, ruled back to contract-strictness) and one evidence substitution (missing 08-11 catalog paste → fresh read-only catalog, documented not hidden).
+- **Handoff friction:** spec-lifecycle ambiguity (seeded vs finalized perceived as two artifacts — banner fix queued); stale-log/evidence-filename confusion; runner cwd false-failures. All logged with candidate rules.
+- **Coordinator overhead:** 7 per-concern commits + close batch; Stripe key purge/rotation; phase2.md sibling recovery; journal staging (missed pre-launch — P5); PRE-Q adjudications; Gate Q terminal execution as Sol's hands.
+- **Time shape:** authoring <1 session · plan+build 1 session (2026-08-13) · PRE-Q+Gate Q ~1 day (08-13→14) · close-commit latency 13 days (external, hospitalization — not process cost). Est. "light (one session)" held for build; QA end-to-end roughly doubled wall time — expected for the ritual's maiden run.
+- **Keep:** AC-seed pattern (Sol consumed the seeded ACs directly into traceability — zero friction; P2 partially unsupported so far) · plan-mode flag culture (caught a defective instrument pre-build) · PRE-Q · attestation-vs-observation discipline in QA evidence.
+- **Change:** journal staging = campaign-launch prerequisite · QA_INTAKE_CHECKLIST standard · Coordinator source evidence preserved inside the module package · spec lifecycle banner · unique evidence filenames · repo-root fail-closed runners · boundary-aware predicates.
+- **Drop:** nothing yet — no prescribed step proved dead weight on a light module; re-evaluate on BIM-001's heavier run.
+- **Prediction scoreboard after module 1:** P4 CONFIRMED (multiple improvised rulings: PRE-Q, contract-strictness, evidence substitution) · P5 CONFIRMED (staging failure, self-caught) · P2 leaning against (seeds held) · P1/P3 pending (BIM-001/002 not yet run).
+- **New org proposal surfaced (route to Coordinator decision before BIM-001):** "Cody" — dedicated QA execution agent for deterministic scripting/collection; Sol retains adjudication; Director retains git. Origin: runner-cwd + evidence-log pain.
 
 ---
 
 ## Friction Log
 
-*(timestamped one-liners captured hot, any time the process — not the product — fights us)*
+### 2026-08-13 — BIM-000 Plan Mode (pre-build; Architect-logged)
 
-- **2026-08-13 (BIM-000 Plan Mode):** Engineer FLAG-1 — journal file not on disk in the project repo; manager cited it as "live" but pre-flight item 1 (doc-repo staging) hadn't executed. Capture mechanism gap: the journal must be STAGED before the first module launches, or friction notes have no destination. → v1.1 candidate: "journal staging is a launch precondition of module zero."
-- **2026-08-13 (BIM-000 Plan Mode):** Engineer FLAG-2 — the campaign's numbered-color grep predicate is an artifact (substring matches on `translate-`/`slide-` + the banning comment itself); real violation count 0, not 5. Process lesson: verification predicates need word-boundary discipline and must themselves be verified before being written into gates. Ruled: gate stands as written this module; predicate rebuilt at campaign level. First live P4 evidence (improvised ruling, no playbook coverage).
+- **Engineer FLAG-1 — journal not staged:** manager cited the journal as "live"; it wasn't on disk in the project repo (pre-flight item 1 unexecuted). First P5 signal, later confirmed at PRE-Q (see below).
+- **Engineer FLAG-2 — predicate artifact discovered at plan time:** the numbered-color grep's 5 hits are `translate-`/`slide-` substrings + the banning comment itself; real violations 0. Ruled: gate stands frozen for comparability this module; instrument rebuilt at campaign level. First live P4 evidence — caught before a single build line, by the plan-mode verification ritual.
+
+### 2026-08-13–14 — BIM-000 PRE-Q / first live Gate Q friction
+
+- **Acceptance Spec lifecycle ambiguity:** seeded spec vs Engineer-evidence-filled spec was initially perceived as two artifacts. Candidate fix: lifecycle banner `SEEDED → ENGINEER EVIDENCE-FILLED → QA-VERIFIED`.
+- **QA intake incompleteness:** Gate Q needed finalized spec + handoff + DB baseline + Coordinator-owned source evidence. Candidate fix: standard `QA_INTAKE_CHECKLIST`.
+- **Branch-name drift:** Acceptance Spec named `bim-000-cyber-pharma`; disk/handoff branch was `phase-3-1`. Disk truth won; document drift logged.
+- **PRE-Q ruling:** Director prefers QA/rework before one final commit. Pilot split into PRE-Q on working tree, then official Gate Q certification against committed SHA.
+- **Contract overreach caught:** QA began byte-comparing recovered `phase2.md` even though P3 required only recovery into `agent_docs/`. Ruling: adversarial QA must be strict to the contract, not silently stricter.
+- **Historical evidence retention gap:** original 2026-08-11 DB catalog paste was unavailable at Gate Q. Fresh read-only catalog matched baseline, but historical byte-faithful comparison was impossible. Candidate fix: preserve Coordinator-owned source captures inside the module evidence package.
+- **Verification-instrument defect:** frozen numbered-color grep still returns 5 artifacts while true violations are 0. Keep frozen predicate for comparability; design corrected boundary-aware instrument for future modules.
+- **QA runner cwd defect:** first scripted runner assumed repo-root execution and produced false failures when launched from `scripts/`. Candidate rule: resolve repo root, print runner version/root, fail closed on missing anchors.
+- **Predicate semantic-scope defect:** generic greps counted test fixtures/comments as production violations. Candidate rule: QA instruments must encode semantic scope, not just keywords.
+- **Evidence-log confusion:** generic log names caused a stale invalid run to be pasted as current evidence. Candidate rule: unique test-specific evidence filenames.
+- **Execution-agent opportunity:** deterministic QA scripting/collection should move to a dedicated QA execution agent ("Cody"), while Sol retains adjudication and the Director retains commit/push authority.
+- **Pre-commit cleanup handoff:** after QA, Engineering/QA execution agent performs bounded cleanup + regression and returns a clean working-tree report; Director performs git writes manually.
+- **Campaign-journal staging failure:** the canonical journal existed in the Architect workspace but was never staged into the repo, validating prediction P5. Candidate rule: journal presence is a campaign-launch prerequisite, not a module-close memory task.
+
 
 ---
 

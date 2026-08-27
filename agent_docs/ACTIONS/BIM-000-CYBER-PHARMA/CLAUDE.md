@@ -7,9 +7,26 @@
 
 ## 1. Status
 
-**FINAL — stamped 2026-08-11 by JARVIS (Architect), approved by Tony (Coordinator).**
-**Launch condition:** immediately launchable. First module of the Phase 3 campaign (map v1.0).
-**Campaign journal:** PHASE_3_CAMPAIGN_JOURNAL.md is live; process friction gets reported in your handoff notes.
+**🔒 CLOSED — Gate Q PASS, 2026-08-14 (Sol). No rework required. Approved to advance.**
+_(History: FINAL — stamped 2026-08-11 by JARVIS (Architect), approved by Tony (Coordinator);
+executed by Engineering 2026-08-13, all gates G1–G8 green; PRE-Q cleanup 2026-08-14;
+Coordinator closeout commit `432cf5a`.)_
+**Campaign journal:** `agent_docs/PHASE_3_CAMPAIGN_JOURNAL.md` — created at Gate Q (was absent at launch; FLAG-1, resolved).
+
+### Deliverables Map (module close)
+
+| Concern | Deliverables |
+|---|---|
+| Dep removals (R1) | `package.json`, `package-lock.json` — sass + stripe gone, `npm ci` clean |
+| GHL fossil | `temp/ghl-example.json` deleted |
+| Env contract | `.env.example` — exactly the 5 consumed vars; API_BASE_URL + STRIPE_* out, ENABLE_MOOSE_PORTAL in |
+| tsconfig (R6) | `_SKILLS/**` excluded |
+| Doc truth | `README.md` + `docs/TESTING.md` → 120 tests / 26 suites |
+| DB starting truth | `agent_docs/DB_BASELINE.md` (V9 byte-faithful; phase2.md verdict RECOVERED → `agent_docs/phase2.md`) |
+| Module package | `ACCEPTANCE_SPEC.md` (evidence-final), `RETROSPECTIVE.md`, QA package in `agent_docs/QA/` (PLAN, TEST_CASES, PROCESS_JOURNAL, **GATE_Q_REPORT — PASS**) |
+| Handoff records | `agent_docs/RESPONSES/response_2026-08-13_161118_bim000-launch-plan.md`, `…_163000_bim000-handoff.md`, `…_2026-08-14_123000_bim000-final-cleanup.md` |
+
+**Carried forward (non-blocking):** flawed numbered-color predicate (rebuild before use as an SP-close gate) · `src/instrumentation.ts:5` stale comment (needs src-writable module) · process lessons in `agent_docs/QA/BIM-000_QA_PROCESS_JOURNAL.md` + campaign journal.
 
 ## 2. Mission
 
