@@ -25,17 +25,16 @@ lint 0 err / 34 legacy warn.
 **QA-FINDING-001** (dark-mode login branding contrast, minor a11y) → Architect routes to
 findings ledger; NOT fixed in this module.
 
-**Pending:** ONE Coordinator commit — the whole FIX-001 batch (code + close-out docs) in
-a single commit, which becomes the certified SHA of record (Gate Q ran on the working
-tree; flagged in spec, Coordinator-accepted).
+**Pending:** NONE for FIX-001 — committed + pushed as **`70b38ef`** (the certified SHA
+of record). **BIM-001-CYBER-PHARMA manager folder is on disk** (untracked), awaiting the
+Operator launch line next session.
 
-**Next step:** After the commit → Phase 3 advances to the next campaign module.
-Non-blocking carries: numbered-color predicate rebuild · QA-FINDING-001 (Architect's
-routing).
+**Next step:** Read `agent_docs/ACTIONS/BIM-001-CYBER-PHARMA/CLAUDE.md` on launch line →
+Plan Mode. Non-blocking carries: numbered-color predicate rebuild · QA-FINDING-001
+(Architect's routing).
 
-**⚠️ UNCOMMITTED:** Entire FIX-001 batch — src (5 modified + 1 new component + 2 new
-test suites + instrumentation.ts), agent_docs (registry, FIX-001 folder incl. QA report,
-responses, session log), RECOVERY.md, CHANGELOG.md. Operator commits — agent never does.
+**⚠️ UNCOMMITTED:** Only `agent_docs/ACTIONS/BIM-001-CYBER-PHARMA/` (the new manager,
+Operator-dropped) and this RECOVERY.md update. Operator commits — agent never does.
 
 ---
 
