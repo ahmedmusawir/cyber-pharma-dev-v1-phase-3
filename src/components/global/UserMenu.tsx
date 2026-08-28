@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -13,38 +12,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Logout from "../auth/Logout";
 import { User as SupabaseUser } from "@supabase/auth-js";
-import { createClient } from "@/utils/supabase/client";
-import { useAuthStore } from "@/store/useAuthStore";
 import { AppRole } from "@/utils/app-role";
 
-const UserMenu = () => {
-  const [user, setUser] = useState<SupabaseUser | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const role = useAuthStore((s) => s.role);
-  const supabase = createClient();
+// Identity is SERVER-RESOLVED and passed as props (Navbar Law — KIP-2 kill):
+// no client auth fetch, no persisted-store role read, no loading window.
+interface UserMenuProps {
+  user: SupabaseUser | null;
+  role: AppRole | null;
+}
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data } = await supabase.auth.getUser();
-      setUser(data.user);
-      setIsLoading(false);
-    };
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(() => {
-      fetchUser();
-    });
-
-    fetchUser();
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [supabase]);
-
-  if (isLoading) return null;
-
+const UserMenu = ({ user, role }: UserMenuProps) => {
   if (user) {
     const portalHref = role === AppRole.ADMIN ? "/admin-portal" : "/owedbook";
     const portalLabel = role === AppRole.ADMIN ? "Admin portal" : "OwedBook";

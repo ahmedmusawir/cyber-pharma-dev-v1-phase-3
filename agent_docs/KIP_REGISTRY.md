@@ -44,36 +44,25 @@ _Registry created: 2026-08-04. Format: mechanism · risk · triggers · verifica
   cross-surface nav, hard refresh on each surface, logout, re-login — in
   production mode (`npm run build && npm start`), then repeated on staging.
 
-### KIP-2 — `useAuthStore.role` stale-persist (remaining consumers)
-
-- **Files:** `src/components/global/MobileNav.tsx:22`, `src/components/global/UserMenu.tsx:23`
-  (the remaining `useAuthStore((s) => s.role)` readers); root cause in
-  `src/store/useAuthStore.ts` (persisted `auth-store`, `role` written ONLY by `login()`)
-- **Origin:** navbar fix (2026-08-04 staging nav bug — Navbar itself was cured
-  by server-resolved identity props; these consumers were flagged out of scope)
-- **Mechanism:** `role` lives in localStorage-persisted Zustand state and is
-  written only by the login flow. A valid Supabase cookie session with cleared/
-  absent localStorage (new browser, new device, cleared site data) leaves
-  `role: null` while the user is authenticated — any component reading
-  `s.role`/`isAdmin` then renders its role-gated UI wrongly (the exact class of
-  bug that made the Navbar's Admin Portal link vanish "randomly"). Fix shape is
-  known: consume server-resolved identity (protectPage → props) or hydrate the
-  store from a server source, not from persist.
-- **Risk:** LOW-MEDIUM — `MobileNav`/`UserMenu` appear to be kit-era components;
-  whether they are mounted on any live route is unverified. Risk jumps to
-  MEDIUM+ the moment either is wired into a rendered surface.
-- **Triggers:**
-  - Batched auth-hygiene session
-  - FORCED ENTRY when touching `MobileNav.tsx`, `UserMenu.tsx`, or
-    `useAuthStore.ts` for any reason
-  - Symptom promotion: any report of role-gated UI missing/incorrectly shown
-    outside the (already-fixed) primary Navbar
-- **Verification requirement:** manual auth-walk with a stale-persist scenario
-  added — login, clear localStorage (keep cookies), hard refresh, confirm all
-  role-gated UI still correct for ADMIN and MEMBER.
-
 ---
 
 ## Closed
 
-_(none yet)_
+### KIP-2 — `useAuthStore.role` stale-persist (remaining consumers) — CLOSED 2026-08-27
+
+- **Resolution:** FIX-001-CYBER-PHARMA. `(public)/layout.tsx` now server-resolves
+  identity (redirect-free `supabase.auth.getUser()` + `getUserRole`) and passes
+  `user`/`role` as props through `NavbarHome` → `MobileNav` + `UserMenu`; both
+  components' `useAuthStore((s) => s.role)` reads and client identity fetches
+  removed (the only store use left is MobileNav's logout *action*, mirroring the
+  cured Navbar). Cross-tab reactivity preserved via single `NavAuthRefresh`
+  listener. The registry's stale-persist verification walk is FIX-001's Gate G2.
+- **Evidence:** `agent_docs/ACTIONS/FIX-001-CYBER-PHARMA/ACCEPTANCE_SPEC.md`
+  (AC1/AC2) + new suites `src/__tests__/global/MobileNav.test.tsx`,
+  `UserMenu.test.tsx` (props-contract, all three auth states). Board at close:
+  build ✓ · tsc ✓ · jest 28/128/0.
+- **Original entry (verbatim history):** files `MobileNav.tsx:22`,
+  `UserMenu.tsx:23`; origin 2026-08-04 navbar fix (consumers flagged out of
+  scope); mechanism: role in localStorage-persisted Zustand written only by
+  `login()` — valid cookie session + cleared localStorage → wrong role-gated UI;
+  risk was promoted to HOT by recon 2026-08-11 (live mount on `/` via NavbarHome).

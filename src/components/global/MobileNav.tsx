@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { User as SupabaseUser } from "@supabase/auth-js";
-import { createClient } from "@/utils/supabase/client";
 import { useAuthStore } from "@/store/useAuthStore";
 import { AppRole } from "@/utils/app-role";
 
@@ -15,34 +14,18 @@ const marketingLinks = [
   { href: "#pricing", label: "Pricing" },
 ];
 
-const MobileNav = () => {
+// Identity is SERVER-RESOLVED and passed as props (Navbar Law — KIP-2 kill):
+// no client auth fetch, no persisted-store role read, no loading window. The
+// store appears below ONLY as the logout action, mirroring the cured Navbar.
+interface MobileNavProps {
+  user: SupabaseUser | null;
+  role: AppRole | null;
+}
+
+const MobileNav = ({ user, role }: MobileNavProps) => {
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState<SupabaseUser | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const role = useAuthStore((s) => s.role);
-  const supabase = createClient();
   const router = useRouter();
   const close = () => setOpen(false);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data } = await supabase.auth.getUser();
-      setUser(data.user);
-      setIsLoading(false);
-    };
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(() => {
-      fetchUser();
-    });
-
-    fetchUser();
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [supabase]);
 
   const handleLogout = async () => {
     close();
@@ -88,7 +71,7 @@ const MobileNav = () => {
               </Link>
             ))}
 
-            {!isLoading && user && (
+            {user && (
               <>
                 <Link
                   href={portalHref}
@@ -107,7 +90,7 @@ const MobileNav = () => {
               </>
             )}
 
-            {!isLoading && !user && (
+            {!user && (
               <>
                 <Link
                   href="/auth"

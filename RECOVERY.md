@@ -4,9 +4,9 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-08-14 13:50
-**Branch:** phase-3-1
-**Session log:** `agent_docs/SESSIONS/session_2026-08-14.md`
+**Last updated:** 2026-08-27 13:00 (FIX-001 engineering complete)
+**Branch:** phase-3-2 (from phase-3-1 @ `8b260c1`; FIX-001 work uncommitted)
+**Session log:** `agent_docs/SESSIONS/session_2026-08-27.md`
 
 ---
 
@@ -17,18 +17,25 @@ deliverables map. Campaign Journal now live at `agent_docs/PHASE_3_CAMPAIGN_JOUR
 (FLAG-1 resolved). Board certified green: build ✓ (22 routes), tsc ✓, jest 26/120/0,
 lint 0 err / 34 legacy warn.
 
-**Pending:** NONE for BIM-000. Untracked at close-out: Gate Q report + this session's
-close bookkeeping (Operator commits when ready).
+**Last action:** **FIX-001-CYBER-PHARMA CLOSED — Gate Q PASS** (Sol, 2026-08-27:
+"GATE Q: PASS — MOVE FORWARD.", zero rework). KIP-2 independently verified cured
+(stale-localStorage attack, ADMIN/MEMBER/logged-out, desktop + 375px). Report filed at
+`agent_docs/ACTIONS/FIX-001-CYBER-PHARMA/QA/`; spec → QA-VERIFIED with verdict; manager
+→ CLOSED with deliverables map. Board: build ✓ 22 routes · tsc ✓ · jest **28/128/0**.
+**QA-FINDING-001** (dark-mode login branding contrast, minor a11y) → Architect routes to
+findings ledger; NOT fixed in this module.
 
-**Next step:** Phase 3 advances — next module per campaign map: **FIX-001** (KIP-2
-stale-persist fix; MobileNav/UserMenu read localStorage-persisted role on the live
-landing page — promotion trigger fired per recon). Non-blocking carries: numbered-color
-predicate rebuild, `instrumentation.ts:5` comment fix at first src-writable module.
+**Pending:** ONE Coordinator commit — the whole FIX-001 batch (code + close-out docs) in
+a single commit, which becomes the certified SHA of record (Gate Q ran on the working
+tree; flagged in spec, Coordinator-accepted).
 
-**⚠️ UNCOMMITTED:** package.json, package-lock.json, .env.example, tsconfig.json,
-README.md, docs/TESTING.md modified; temp/ghl-example.json deleted; agent_docs/ additions
-(ACTIONS/, RECON/, DB_BASELINE.md, new session + responses); CHANGELOG.md, RECOVERY.md.
-Operator commits — agent never does.
+**Next step:** After the commit → Phase 3 advances to the next campaign module.
+Non-blocking carries: numbered-color predicate rebuild · QA-FINDING-001 (Architect's
+routing).
+
+**⚠️ UNCOMMITTED:** Entire FIX-001 batch — src (5 modified + 1 new component + 2 new
+test suites + instrumentation.ts), agent_docs (registry, FIX-001 folder incl. QA report,
+responses, session log), RECOVERY.md, CHANGELOG.md. Operator commits — agent never does.
 
 ---
 
@@ -51,7 +58,7 @@ Operator commits — agent never does.
 
 ## Known Good State
 
-- **HEAD:** `87d39b4` — "11aug2026 - session ready - claude.md updated"
-- **Working:** BIM-000 complete on top of HEAD; triad green (build 22 routes, tsc clean,
-  jest 26/120/0, `npm ci` 0 vulns) verified 2026-08-13 16:28.
-- **Broken:** Nothing known.
+- **HEAD:** `8b260c1` — "27aug2026 - BIM000 DONE" (BIM-000 fully committed + pushed)
+- **Working:** Everything — Gate Q-certified board (build 22 routes, tsc clean,
+  jest 26/120/0, lint 0 err / 34 legacy warn).
+- **Broken:** Nothing known. KIP-2 defect window remains open by design until FIX-001.

@@ -3,6 +3,20 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-08-27 14:10 UTC — [CC] Claude Code
+
+- **Created:** `agent_docs/ACTIONS/FIX-001-CYBER-PHARMA/QA/GATE_Q_REPORT_FIX-001-CYBER-PHARMA.md` — Sol's Gate Q report filed verbatim (PASS, zero rework; QA-FINDING-001 noted, routed by Architect)
+- **Updated:** `agent_docs/ACTIONS/FIX-001-CYBER-PHARMA/ACCEPTANCE_SPEC.md` — status → QA-VERIFIED; AC2/AC4 evidence → Gate Q live attack; verdict stamped "GATE Q: PASS — MOVE FORWARD."; SHA process note (Gate Q ran on working tree; close-out commit = certified SHA)
+- **Updated:** `agent_docs/ACTIONS/FIX-001-CYBER-PHARMA/CLAUDE.md` — manager flipped FINAL → CLOSED with deliverables map
+- **Reason:** FIX-001 close-out on Gate Q PASS (Sol, 2026-08-27). KIP-2 is cured and closed on the record.
+
+## 2026-08-27 13:00 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/KIP_REGISTRY.md` — KIP-2 moved to Closed (resolution: FIX-001 server-resolved identity props; evidence pointers to spec + new test suites); KIP-1 untouched
+- **Updated:** `agent_docs/ACTIONS/FIX-001-CYBER-PHARMA/ACCEPTANCE_SPEC.md` — Engineer evidence-filled (AC1/AC3/AC5/AC6/AC7; AC2/AC4 pending Coordinator walk)
+- **Created:** `agent_docs/ACTIONS/FIX-001-CYBER-PHARMA/RETROSPECTIVE.md` — engineering close (jsdom/Radix lesson, G1-wording doctrine note)
+- **Reason:** FIX-001-CYBER-PHARMA engineering execution — KIP-2 kill via server-resolved identity on the public nav (+F02 comment fix). Code changes (same module): `(public)/layout.tsx`, NavbarHome/MobileNav/UserMenu props conversion, new NavAuthRefresh, 2 new test suites; board 26/120 → 28/128.
+
 ## 2026-08-14 13:50 UTC — [CC] Claude Code
 
 - **Updated:** `agent_docs/ACTIONS/BIM-000-CYBER-PHARMA/CLAUDE.md` — manager flipped FINAL → CLOSED with deliverables map, per its own close mechanic

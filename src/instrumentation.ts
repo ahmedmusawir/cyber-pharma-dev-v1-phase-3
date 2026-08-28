@@ -2,7 +2,7 @@
 // instrumentation hook. Throw → server refuses to start (fail-closed).
 //
 // Naming convention: Supabase Q4-2025 update — `publishable` replaces `anon`,
-// `secret` replaces `service_role`. See `.env.local.example` for current names.
+// `secret` replaces `service_role`. See `.env.example` for current names.
 //
 // Phase-deferred additions (add when consumed in code, not before):
 //   - Phase 6: GHL_WEBHOOK_SECRET (GoHighLevel webhook signing)
