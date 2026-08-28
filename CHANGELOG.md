@@ -3,6 +3,15 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-08-28 17:05 UTC — [CC] Claude Code
+
+- **Created:** `supabase/migrations/0001–0015` — BIM-001 sixteen-table target schema chain (deny-by-default at birth, assert-then-create baseline acknowledgment)
+- **Created:** `scripts/db-bootstrap-baseline.sql` + `db-reset.mjs` + `db-verify.mjs` — one-command reset + gate-verify runners; npm `db:*` tasks
+- **Updated:** `src/types/supabase.ts` — regenerated from post-chain schema (X6, Director-as-hands)
+- **Updated:** `agent_docs/ACTIONS/BIM-001-CYBER-PHARMA/ACCEPTANCE_SPEC.md` — ENGINEER EVIDENCE-FILLED, AC1–AC15
+- **Created:** BIM-001 `ERRATUM.md` (update_updated_at never deployed; DATA_CONTRACT §3 amendment queued), `RETROSPECTIVE.md`, `X0_CATALOG.sql`, `X0_EVIDENCE.md`, `evidence/` (11 gate logs)
+- **Reason:** BIM-001 engineering execution — all gates X0–X7 green on scratch + replica throwaway projects; live DB untouched (Director applies post-Gate-Q).
+
 ## 2026-08-27 14:10 UTC — [CC] Claude Code
 
 - **Created:** `agent_docs/ACTIONS/FIX-001-CYBER-PHARMA/QA/GATE_Q_REPORT_FIX-001-CYBER-PHARMA.md` — Sol's Gate Q report filed verbatim (PASS, zero rework; QA-FINDING-001 noted, routed by Architect)

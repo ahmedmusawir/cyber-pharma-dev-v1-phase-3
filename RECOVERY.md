@@ -25,16 +25,26 @@ lint 0 err / 34 legacy warn.
 **QA-FINDING-001** (dark-mode login branding contrast, minor a11y) → Architect routes to
 findings ledger; NOT fixed in this module.
 
-**Pending:** NONE for FIX-001 — committed + pushed as **`70b38ef`** (the certified SHA
-of record). **BIM-001-CYBER-PHARMA manager folder is on disk** (untracked), awaiting the
-Operator launch line next session.
+**Last action (2026-08-28):** **BIM-001 ENGINEERING COMPLETE — ALL GATES X0–X7 GREEN.**
+Sixteen-table migration chain (0001–0015) authored from the AUTHORITY package and proven
+on two throwaway projects: X1 from-zero ✓, X2 baseline-replica ✓ (after Director-authorized
+wipe of a not-actually-fresh target), X3 reset×2 identical ✓, X4 deny-by-default + ensure_rls
+✓, X5 type laws ✓, X6 types regenerated (Director-as-hands) + tsc clean ✓, X7 board
+28/128/0 ✓. X0 closed with ruled discrepancy (update_updated_at never deployed → 0001
+creates it; ERRATUM filed). Spec ENGINEER EVIDENCE-FILLED (AC1–AC15). **Live DB untouched.**
 
-**Next step:** Read `agent_docs/ACTIONS/BIM-001-CYBER-PHARMA/CLAUDE.md` on launch line →
-Plan Mode. Non-blocking carries: numbered-color predicate rebuild · QA-FINDING-001
-(Architect's routing).
+**Pending:** Director — ① 4 per-concern commits (manifest:
+`agent_docs/RESPONSES/response_2026-08-28_170129_bim001-handoff.md`; exclude
+`supabase/.temp/`), ② SHA into spec at PRE-Q, ③ DATA_CONTRACT §3 amendment staging
+(ERRATUM E-2), ④ Sol's Gate Q (throwaway projects hold post-chain state; pooler regions
+in handoff), ⑤ post-Gate-Q LIVE apply (Director only), ⑥ rotate throwaway credentials.
 
-**⚠️ UNCOMMITTED:** Only `agent_docs/ACTIONS/BIM-001-CYBER-PHARMA/` (the new manager,
-Operator-dropped) and this RECOVERY.md update. Operator commits — agent never does.
+**Next step:** PRE-Q → Gate Q → BIM-001 close → BIM-002 (RLS policies). Carries:
+numbered-color predicate rebuild · QA-FINDING-001 · report_files fidelity flag.
+
+**⚠️ UNCOMMITTED:** Entire BIM-001 batch — supabase/migrations/ (15 files), 3 scripts,
+package.json+lock, src/types/supabase.ts, module folder (spec/erratum/retro/evidence),
+6 RESPONSES, session log, this file, CHANGELOG. Operator commits — agent never does.
 
 ---
 

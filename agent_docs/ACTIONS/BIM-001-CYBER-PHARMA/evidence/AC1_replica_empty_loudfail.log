@@ -1,0 +1,3 @@
+[db-reset] apply → host=aws-1-ap-south-1.pooler.supabase.com db=postgres
+[db-reset] chain: 15 migrations (0001_baseline_acknowledge.sql … 0015_audit_logs.sql)
+  FAIL 0001_baseline_acknowledge.sql: BIM-001/0001 BASELINE ASSERT FAILED: expected the 3 baseline policies of DB_BASELINE.md; found a different set. Catalog the DB and reconcile before migrating.

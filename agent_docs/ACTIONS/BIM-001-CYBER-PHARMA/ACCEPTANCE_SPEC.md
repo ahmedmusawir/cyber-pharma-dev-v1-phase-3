@@ -1,9 +1,11 @@
 # ACCEPTANCE_SPEC.md — BIM-001-CYBER-PHARMA
 ## Schema Migrations: Sixteen-Table Target Schema
 
-> **Lifecycle:** **SEEDED** → ENGINEER EVIDENCE-FILLED → QA-VERIFIED
+> **Lifecycle:** SEEDED → **ENGINEER EVIDENCE-FILLED (2026-08-28)** → QA-VERIFIED
 > **Owning application:** CYBER-PHARMA (cyber-pharma-dev-v1-phase-3)
 > **Seeded by:** Architect, 2026-08-28, from the approved module contract (manager §5–§7)
+> **Branch + SHA (disk at engineering close):** `phase-3-2`, base `70b38ef`, work uncommitted — pin the close commit here at PRE-Q (BIM-000 lesson)
+> **Evidence root:** `agent_docs/ACTIONS/BIM-001-CYBER-PHARMA/evidence/` (unique filenames per gate)
 > **Ownership law:** criteria below are Architect/Director-defined. The Engineer maintains and finalizes this spec at handoff and may NOT silently add, remove, weaken, or redefine any requirement. Scope changes require Director approval.
 
 ---
@@ -89,6 +91,26 @@ RLS policies beyond deny-by-default · audit triggers/RPCs · seed data · servi
 
 ---
 
-*Engineer evidence section to be appended per requirement at handoff. Lifecycle banner flips only with evidence attached.*
+## Engineer Evidence (per requirement, 2026-08-28)
+
+- **AC1** ✅ — 0001 asserts tables + 3 byte-faithful policies + both live functions + `ensure_rls` by real name, then CREATE-OR-REPLACEs `update_updated_at()` (X0 ruling (i), riders honored; ERRATUM.md cited in-file). **Negative test:** chain vs EMPTY DB → **exit 2**, named `BIM-001/0001 BASELINE ASSERT FAILED` message. *Evidence:* `AC1_replica_empty_loudfail.log`; bootstrap path documented in `scripts/db-reset.mjs` header.
+- **AC2** ✅ — `db:reset` (bootstrap path) on fresh scratch: 15/15 migrations ok, inventory = **exactly 16 tables**. *Evidence:* `X1_scratch_reset_run1.log`.
+- **AC3** ✅ — replica wiped (Director-authorized) → bootstrap = exactly the 2-table baseline → `db:apply` → **exit 0, zero duplicate-object errors**, 16 tables. *Evidence:* `X2_replica_wipe.log`, `X2_replica_bootstrap.log`, `X2_replica_apply.log`.
+- **AC4** ✅ — verify: "AC4 inventory — exactly 16 tables" + "deferred tables absent" on BOTH scratch and replica. *Evidence:* `X4X5_scratch_verify_probes_rerun.log`, `X2_replica_verify_structural.log`.
+- **AC5** ✅ — businesses.account_id NOT NULL FK→accounts; subscriptions.account_id FK→accounts with **NO business_id column**; accounts.owner_user_id FK→auth.users (verified via `pg_constraint` after the instrument's information_schema privilege-blindness false-fail was corrected — first-run FAIL documented, schema was correct throughout). *Evidence:* both verify logs + `X4X5_scratch_verify_probes.log` (the false-fail run, kept).
+- **AC6** ✅ — CHECK definition present AND functional probe: INSERT role='owner' **rejected** (23514), 'member' accepted. *Evidence:* probes rerun log.
+- **AC7** ✅ — RLS enabled on every public table; policy delta from baseline = **0** (the 3 baseline policies only); anon AND authenticated SELECT on all 14 new tables → 14/14 empty/denied; `ensure_rls` event trigger verified firing on a probe table (law §6.1's "verify the net"). *Evidence:* probes rerun log.
+- **AC8** ✅ — zero real/double-precision columns in public schema; declared money list (13 user_data + wac + aac + ful cols) all `numeric`. *Evidence:* probes rerun log.
+- **AC9** ✅ — ndc/drug_ndc, script, bin, pcn, group_field (+ncpdp/npi) TEXT on every table where they appear. *Evidence:* probes rerun log.
+- **AC10** ✅ — CHECK carries exactly the 7 ratified values (Architect ruling 2026-08-28: NULLable, ''→NULL importer mapping documented in 0013 / implemented BIM-004, 'Portal' excluded); functional probe: 'Portal' **rejected** (23514), 'AAC' accepted. *Evidence:* probes rerun log.
+- **AC11** ✅ — 12/12 provenance columns (source_file, imported_at, dataset_version_id) across aac/wac/ful/pbm_info; reference_dataset_versions = dataset_name (UNIQUE) + checksum + row_count + latest_upload_at. *Evidence:* `AC11_provenance_columns.log`.
+- **AC12** ✅ — timestamptz pair + `set_updated_at` trigger on all 14 new tables (baseline 2 acknowledged as-is per manager §5 rows 3–4); functional probe: UPDATE observably bumps updated_at. *Evidence:* probes rerun log.
+- **AC13** ✅ — one documented command (`DB_URL=… DB_RESET_ALLOW=yes npm run db:reset`); run twice consecutively: both exit 0, **inventories byte-identical** (diff = IDENTICAL). *Evidence:* `X1_scratch_reset_run1.log` + `X3_scratch_reset_run2.log`. Director-witnessed re-run per One-Walk Rule remains available to QA on the scratch project.
+- **AC14** ✅ — `src/types/supabase.ts` regenerated from post-chain schema (Director-as-hands: login → `gen types --project-id <scratch>` → logout; credential never entered this session); all 16 table types present, deferred 3 absent, 1,100 lines; `tsc --noEmit` clean against it. *Evidence:* file on disk + board run.
+- **AC15** ✅ — build passes (22 routes), tsc clean, jest **28 suites / 128 tests / 0 failures** (= FIX-001 baseline, no delta); auth flows untouched (`src/` untouched by this module except `types/supabase.ts`).
+
+**Fidelity flag (carried, non-blocking):** `report_files` columns are not enumerated in the FRANK extraction (models.py:826-849 summarized only) — authored as minimal attested shape, flagged in-file; true up against verbatim source when staged (amendment path).
+
+*Lifecycle banner flips to QA-VERIFIED only by Sol.*
 
 🥄

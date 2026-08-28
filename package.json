@@ -9,7 +9,12 @@
     "lint": "eslint .",
     "test": "jest",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "db:reset": "node scripts/db-reset.mjs reset",
+    "db:apply": "node scripts/db-reset.mjs apply",
+    "db:inventory": "node scripts/db-reset.mjs inventory",
+    "db:verify": "node scripts/db-verify.mjs",
+    "db:verify:probes": "node scripts/db-verify.mjs --probes"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
@@ -56,7 +61,9 @@
     "eslint-config-next": "^16.2.9",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
+    "pg": "^8.23.0",
     "postcss": "^8.5.10",
+    "supabase": "^2.116.0",
     "tailwindcss": "^3.4.1",
     "ts-jest": "^29.4.1",
     "typescript": "^5"

@@ -1,0 +1,47 @@
+[db-verify] structural checks + mutation probes
+  ok  AC4 inventory — exactly 16 tables
+  ok  AC4 deferred tables absent
+  ok  X4 RLS enabled on every public table
+  ok  AC7 zero permissive policies added (baseline 3 intact)
+  ok  X4 deny-by-default (anon) — 14 empty / 0 denied of 14
+  ok  X4 deny-by-default (authenticated) — 14 empty / 0 denied of 14
+  ok  X5 zero float/real/double in public schema
+  ok  AC8 money NUMERIC — user_data (13 cols)
+  ok  AC8 money NUMERIC — wac_reference (1 cols)
+  ok  AC8 money NUMERIC — aac_reference (1 cols)
+  ok  AC8 money NUMERIC — ful_reference (1 cols)
+  ok  AC9 TEXT — drug_ndc on user_data
+  ok  AC9 TEXT — ndc on aac_reference/wac_reference/ful_reference
+  ok  AC9 TEXT — script on user_data
+  ok  AC9 TEXT — bin on user_data/pbm_info
+  ok  AC9 TEXT — pcn on user_data/pbm_info
+  ok  AC9 TEXT — group_field on user_data
+  ok  AC9 TEXT — ncpdp on businesses/pending_registrations
+  ok  AC9 TEXT — npi on businesses/pending_registrations
+  ok  AC5 businesses.account_id NOT NULL
+  ok  AC5 FK businesses.account_id → accounts
+  ok  AC5 FK subscriptions.account_id → accounts
+  ok  AC5 FK accounts.owner_user_id → auth.users
+  ok  AC5 subscriptions has NO business_id
+  ok  AC6 junction role CHECK ('admin','member')
+  ok  AC10 medicaid_method CHECK (7 values)
+  ok  AC12 aac_reference — timestamptz pair + trigger
+  ok  AC12 accounts — timestamptz pair + trigger
+  ok  AC12 apa_memberships — timestamptz pair + trigger
+  ok  AC12 audit_logs — timestamptz pair + trigger
+  ok  AC12 businesses — timestamptz pair + trigger
+  ok  AC12 ful_reference — timestamptz pair + trigger
+  ok  AC12 pbm_info — timestamptz pair + trigger
+  ok  AC12 pending_registrations — timestamptz pair + trigger
+  ok  AC12 reference_dataset_versions — timestamptz pair + trigger
+  ok  AC12 report_files — timestamptz pair + trigger
+  ok  AC12 subscriptions — timestamptz pair + trigger
+  ok  AC12 user_businesses — timestamptz pair + trigger
+  ok  AC12 user_data — timestamptz pair + trigger
+  ok  AC12 wac_reference — timestamptz pair + trigger
+[db-verify] mutation probes (scratch-only)
+  ok  AC6 probe — role='owner' rejected, 'member' accepted
+  ok  AC10 probe — 'Portal' rejected, 'AAC' accepted
+  ok  AC12 probe — updated_at bumps on UPDATE
+  ok  ensure_rls probe — event trigger auto-enabled RLS
+[db-verify] ALL GREEN

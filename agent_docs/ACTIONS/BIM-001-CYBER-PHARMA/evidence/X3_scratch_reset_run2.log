@@ -1,0 +1,39 @@
+[db-reset] reset → host=aws-1-us-west-1.pooler.supabase.com db=postgres
+[db-reset] chain: 15 migrations (0001_baseline_acknowledge.sql … 0015_audit_logs.sql)
+  ok  drop event trigger (pre-drop)
+  ok  drop schema public
+  ok  re-grant public schema privileges
+  ok  bootstrap baseline (scratch-only, X0 rider 3)
+  ok  0001_baseline_acknowledge.sql
+  ok  0002_accounts.sql
+  ok  0003_businesses.sql
+  ok  0004_user_businesses.sql
+  ok  0005_pending_registrations.sql
+  ok  0006_subscriptions.sql
+  ok  0007_apa_memberships.sql
+  ok  0008_reference_dataset_versions.sql
+  ok  0009_aac_reference.sql
+  ok  0010_wac_reference.sql
+  ok  0011_ful_reference.sql
+  ok  0012_pbm_info.sql
+  ok  0013_user_data.sql
+  ok  0014_report_files.sql
+  ok  0015_audit_logs.sql
+[inventory] 16 public tables:
+  - aac_reference
+  - accounts
+  - apa_memberships
+  - audit_logs
+  - businesses
+  - ful_reference
+  - pbm_info
+  - pending_registrations
+  - profiles
+  - reference_dataset_versions
+  - report_files
+  - subscriptions
+  - user_businesses
+  - user_data
+  - user_roles
+  - wac_reference
+[db-reset] reset complete — 16 tables on target.

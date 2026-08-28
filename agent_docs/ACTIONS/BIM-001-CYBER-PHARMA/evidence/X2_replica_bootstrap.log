@@ -1,0 +1,6 @@
+[db-reset] bootstrap → host=aws-1-ap-south-1.pooler.supabase.com db=postgres
+[db-reset] chain: 15 migrations (0001_baseline_acknowledge.sql … 0015_audit_logs.sql)
+  ok  bootstrap baseline (replica setup)
+[inventory] 2 public tables:
+  - profiles
+  - user_roles

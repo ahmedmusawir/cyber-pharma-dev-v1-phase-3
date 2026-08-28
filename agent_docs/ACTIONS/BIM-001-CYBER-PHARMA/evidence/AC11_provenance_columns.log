@@ -1,0 +1,14 @@
+provenance columns: [33m12[39m of 12 expected
+   aac_reference.dataset_version_id
+   aac_reference.imported_at
+   aac_reference.source_file
+   ful_reference.dataset_version_id
+   ful_reference.imported_at
+   ful_reference.source_file
+   pbm_info.dataset_version_id
+   pbm_info.imported_at
+   pbm_info.source_file
+   wac_reference.dataset_version_id
+   wac_reference.imported_at
+   wac_reference.source_file
+reference_dataset_versions cols: id, dataset_name, checksum, row_count, latest_upload_at, created_at, updated_at
