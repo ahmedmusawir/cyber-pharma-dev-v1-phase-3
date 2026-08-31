@@ -1,0 +1,35 @@
+{
+  "users": {
+    "ownerTwo": "0d61abc3-e69e-4f1e-92e6-409366138af3",
+    "adminOne": "e5836865-6837-4a9f-9248-1a2dac0571f4",
+    "memberOne": "e2ed94ab-70cf-4a59-b76f-b53f13e7f16c"
+  },
+  "accounts": {
+    "A": "5b1368e8-1862-4232-9cba-66148d3d7b06",
+    "B": "0d965f1d-40e1-4e49-b319-db8454ca151c"
+  },
+  "businesses": {
+    "s1": "50baf034-4b06-4b35-9c9c-9c40e90f8917",
+    "s2": "bb384658-65e2-4b50-bccb-7b8dc787abc4",
+    "s3": "17aca781-5fe1-4d5e-860c-c5936a015e31"
+  },
+  "factSample": {
+    "s1": "66b4e60a-ce7b-4a01-bb08-5e0632729eb5",
+    "s2": "904558f4-c38c-4cc3-aee7-75f0950e0bbc",
+    "s3": "c9c4d97a-34bb-4dda-b596-9c5de5cbb2f3"
+  },
+  "identities": [
+    {
+      "key": "ownerTwo",
+      "email": "rig-ownertwo@proto06.local"
+    },
+    {
+      "key": "adminOne",
+      "email": "rig-adminone@proto06.local"
+    },
+    {
+      "key": "memberOne",
+      "email": "rig-memberone@proto06.local"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[rig-reset] migrate → throwaway (host redacted; PROTO06_DB_URL)
+  ok  p01_accounts.sql
+  ok  p02_businesses.sql
+  ok  p03_user_businesses.sql
+  ok  p04_fact_data.sql
+  ok  p05_ref_data.sql
+[pg_catalog post-migrate] tables=5 functions=0 policies=0 ensure_rls=absent
+  table: accounts
+  table: businesses
+  table: fact_data
+  table: ref_data
+  table: user_businesses
+  rls: accounts=true
+  rls: businesses=true
+  rls: fact_data=true
+  rls: ref_data=true
+  rls: user_businesses=true

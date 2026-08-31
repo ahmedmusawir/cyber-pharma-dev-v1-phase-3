@@ -1,0 +1,14 @@
+{
+  "_comment": "PROTO-06 expectation matrix. R1 edition: ZERO policies exist, so every cell for every identity is DENY. R2 flips cells to ALLOW one policy at a time (red-green). Operations carry the full transferable shape from R1 (Director addition 1): select, insert, update, delete. 'anon' = no session.",
+  "phase": "FINAL-8-policies",
+  "identities": ["anon", "ownerTwo", "adminOne", "memberOne"],
+  "tables": ["accounts", "businesses", "user_businesses", "fact_data", "ref_data"],
+  "operations": ["select", "insert", "update", "delete"],
+  "default": "DENY",
+  "overrides": {
+    "_t3_note": "FINDING-1 fixed: business_select_member landed. All 3 users SELECT their own stores; ownerTwo (admin@S1) UPDATE goes green; adminOne/memberOne have no S1 membership so their businesses cells stay DENY.",
+    "ownerTwo": { "fact_data": { "select": "ALLOW", "insert": "ALLOW", "update": "ALLOW", "delete": "ALLOW" }, "ref_data": { "select": "ALLOW" }, "user_businesses": { "select": "ALLOW" }, "businesses": { "select": "ALLOW", "update": "ALLOW" } },
+    "adminOne": { "fact_data": { "select": "ALLOW" }, "ref_data": { "select": "ALLOW" }, "user_businesses": { "select": "ALLOW" }, "businesses": { "select": "ALLOW" } },
+    "memberOne": { "fact_data": { "select": "ALLOW" }, "ref_data": { "select": "ALLOW" }, "user_businesses": { "select": "ALLOW" }, "businesses": { "select": "ALLOW" } }
+  }
+}

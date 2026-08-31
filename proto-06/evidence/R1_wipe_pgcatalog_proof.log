@@ -1,0 +1,5 @@
+[rig-reset] wipe → throwaway (host redacted; PROTO06_DB_URL)
+  ok  DROP SCHEMA public CASCADE
+  ok  re-grants
+[pg_catalog post-wipe] tables=0 functions=0 policies=0 ensure_rls=absent
+[rig-reset] wipe complete — public schema is BARE (proven).

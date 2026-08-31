@@ -1,0 +1,232 @@
+[rig-prove] R4 full proof from scratch → 2026-08-31T0622
+
+═══ 1/5 WIPE ═══
+[rig-reset] wipe → throwaway (host redacted; PROTO06_DB_URL)
+  ok  DROP SCHEMA public CASCADE
+  ok  re-grants
+[pg_catalog post-wipe] tables=0 functions=0 policies=0 ensure_rls=absent
+[rig-reset] wipe complete — public schema is BARE (proven).
+
+═══ 2/5 SCHEMA ═══
+[rig-reset] migrate → throwaway (host redacted; PROTO06_DB_URL)
+  ok  p01_accounts.sql
+  ok  p02_businesses.sql
+  ok  p03_user_businesses.sql
+  ok  p04_fact_data.sql
+  ok  p05_ref_data.sql
+[pg_catalog post-migrate] tables=5 functions=0 policies=0 ensure_rls=absent
+  table: accounts
+  table: businesses
+  table: fact_data
+  table: ref_data
+  table: user_businesses
+  rls: accounts=true
+  rls: businesses=true
+  rls: fact_data=true
+  rls: ref_data=true
+  rls: user_businesses=true
+
+═══ 3/5 POLICY 1/9 — h0_helpers.sql ═══
+  ok  applied h0_helpers.sql
+
+═══ 3/5 POLICY 2/9 — t1_fact_select.sql ═══
+  ok  applied t1_fact_select.sql
+  policy-map: fact_data SELECT × 1 (fact_select_member)
+
+═══ 3/5 POLICY 3/9 — t2a_fact_insert.sql ═══
+  ok  applied t2a_fact_insert.sql
+  policy-map: fact_data INSERT × 1 (fact_insert_member)
+  policy-map: fact_data SELECT × 1 (fact_select_member)
+
+═══ 3/5 POLICY 4/9 — t2b_fact_update.sql ═══
+  ok  applied t2b_fact_update.sql
+  policy-map: fact_data INSERT × 1 (fact_insert_member)
+  policy-map: fact_data SELECT × 1 (fact_select_member)
+  policy-map: fact_data UPDATE × 1 (fact_update_member)
+
+═══ 3/5 POLICY 5/9 — t2c_fact_delete.sql ═══
+  ok  applied t2c_fact_delete.sql
+  policy-map: fact_data DELETE × 1 (fact_delete_member)
+  policy-map: fact_data INSERT × 1 (fact_insert_member)
+  policy-map: fact_data SELECT × 1 (fact_select_member)
+  policy-map: fact_data UPDATE × 1 (fact_update_member)
+
+═══ 3/5 POLICY 6/9 — t3b_business_select.sql ═══
+  ok  applied t3b_business_select.sql
+  policy-map: businesses SELECT × 1 (business_select_member)
+  policy-map: fact_data DELETE × 1 (fact_delete_member)
+  policy-map: fact_data INSERT × 1 (fact_insert_member)
+  policy-map: fact_data SELECT × 1 (fact_select_member)
+  policy-map: fact_data UPDATE × 1 (fact_update_member)
+
+═══ 3/5 POLICY 7/9 — t3_business_update_admin.sql ═══
+  ok  applied t3_business_update_admin.sql
+  policy-map: businesses SELECT × 1 (business_select_member)
+  policy-map: businesses UPDATE × 1 (business_update_admin)
+  policy-map: fact_data DELETE × 1 (fact_delete_member)
+  policy-map: fact_data INSERT × 1 (fact_insert_member)
+  policy-map: fact_data SELECT × 1 (fact_select_member)
+  policy-map: fact_data UPDATE × 1 (fact_update_member)
+
+═══ 3/5 POLICY 8/9 — t4_ref_select.sql ═══
+  ok  applied t4_ref_select.sql
+  policy-map: businesses SELECT × 1 (business_select_member)
+  policy-map: businesses UPDATE × 1 (business_update_admin)
+  policy-map: fact_data DELETE × 1 (fact_delete_member)
+  policy-map: fact_data INSERT × 1 (fact_insert_member)
+  policy-map: fact_data SELECT × 1 (fact_select_member)
+  policy-map: fact_data UPDATE × 1 (fact_update_member)
+  policy-map: ref_data SELECT × 1 (ref_select_authenticated)
+
+═══ 3/5 POLICY 9/9 — t5_junction_self_select.sql ═══
+  ok  applied t5_junction_self_select.sql
+  policy-map: businesses SELECT × 1 (business_select_member)
+  policy-map: businesses UPDATE × 1 (business_update_admin)
+  policy-map: fact_data DELETE × 1 (fact_delete_member)
+  policy-map: fact_data INSERT × 1 (fact_insert_member)
+  policy-map: fact_data SELECT × 1 (fact_select_member)
+  policy-map: fact_data UPDATE × 1 (fact_update_member)
+  policy-map: ref_data SELECT × 1 (ref_select_authenticated)
+  policy-map: user_businesses SELECT × 1 (ub_select_self)
+
+═══ 4/5 SEED ═══
+  ok  ownerTwo (existing)
+  ok  adminOne (existing)
+  ok  memberOne (existing)
+  ok  2 accounts, 3 stores
+  ok  4 junction rows (OwnerTwo admin@S1+S2 · AdminOne admin@S3 · MemberOne member@S3)
+  ok  seeded fact_data=6000 ref_data=50
+[rig-seed] complete — seed-map.json written (ids only).
+
+═══ 5/5a MATRIX (80 cells) ═══
+[rig-harness] phase=FINAL-8-policies matrix=4×5×4
+  ok   anon × accounts × select → DENY (0 rows) expected=DENY
+  ok   anon × accounts × insert → DENY (error: 42501) expected=DENY
+  ok   anon × accounts × update → DENY (0 affected) expected=DENY
+  ok   anon × accounts × delete → DENY (0 affected) expected=DENY
+  ok   anon × businesses × select → DENY (0 rows) expected=DENY
+  ok   anon × businesses × insert → DENY (error: 42501) expected=DENY
+  ok   anon × businesses × update → DENY (0 affected) expected=DENY
+  ok   anon × businesses × delete → DENY (0 affected) expected=DENY
+  ok   anon × user_businesses × select → DENY (0 rows) expected=DENY
+  ok   anon × user_businesses × insert → DENY (error: 42501) expected=DENY
+  ok   anon × user_businesses × update → DENY (0 affected) expected=DENY
+  ok   anon × user_businesses × delete → DENY (0 affected) expected=DENY
+  ok   anon × fact_data × select → DENY (0 rows) expected=DENY
+  ok   anon × fact_data × insert → DENY (error: 42501) expected=DENY
+  ok   anon × fact_data × update → DENY (0 affected) expected=DENY
+  ok   anon × fact_data × delete → DENY (0 affected) expected=DENY
+  ok   anon × ref_data × select → DENY (0 rows) expected=DENY
+  ok   anon × ref_data × insert → DENY (error: 42501) expected=DENY
+  ok   anon × ref_data × update → DENY (0 affected) expected=DENY
+  ok   anon × ref_data × delete → DENY (0 affected) expected=DENY
+  ok   ownerTwo × accounts × select → DENY (0 rows) expected=DENY
+  ok   ownerTwo × accounts × insert → DENY (error: 42501) expected=DENY
+  ok   ownerTwo × accounts × update → DENY (0 affected) expected=DENY
+  ok   ownerTwo × accounts × delete → DENY (0 affected) expected=DENY
+  ok   ownerTwo × businesses × select → ALLOW (2 rows VISIBLE) expected=ALLOW
+  ok   ownerTwo × businesses × insert → DENY (error: 42501) expected=DENY
+  ok   ownerTwo × businesses × update → ALLOW (1 UPDATED) expected=ALLOW
+  ok   ownerTwo × businesses × delete → DENY (0 affected) expected=DENY
+  ok   ownerTwo × user_businesses × select → ALLOW (2 rows VISIBLE) expected=ALLOW
+  ok   ownerTwo × user_businesses × insert → DENY (error: 42501) expected=DENY
+  ok   ownerTwo × user_businesses × update → DENY (0 affected) expected=DENY
+  ok   ownerTwo × user_businesses × delete → DENY (0 affected) expected=DENY
+  ok   ownerTwo × fact_data × select → ALLOW (5 rows VISIBLE) expected=ALLOW
+  ok   ownerTwo × fact_data × insert → ALLOW (row INSERTED) expected=ALLOW
+  ok   ownerTwo × fact_data × update → ALLOW (1 UPDATED) expected=ALLOW
+  ok   ownerTwo × fact_data × delete → ALLOW (1 DELETED) expected=ALLOW
+  ok   ownerTwo × ref_data × select → ALLOW (5 rows VISIBLE) expected=ALLOW
+  ok   ownerTwo × ref_data × insert → DENY (error: 42501) expected=DENY
+  ok   ownerTwo × ref_data × update → DENY (0 affected) expected=DENY
+  ok   ownerTwo × ref_data × delete → DENY (0 affected) expected=DENY
+  ok   adminOne × accounts × select → DENY (0 rows) expected=DENY
+  ok   adminOne × accounts × insert → DENY (error: 42501) expected=DENY
+  ok   adminOne × accounts × update → DENY (0 affected) expected=DENY
+  ok   adminOne × accounts × delete → DENY (0 affected) expected=DENY
+  ok   adminOne × businesses × select → ALLOW (1 rows VISIBLE) expected=ALLOW
+  ok   adminOne × businesses × insert → DENY (error: 42501) expected=DENY
+  ok   adminOne × businesses × update → DENY (0 affected) expected=DENY
+  ok   adminOne × businesses × delete → DENY (0 affected) expected=DENY
+  ok   adminOne × user_businesses × select → ALLOW (1 rows VISIBLE) expected=ALLOW
+  ok   adminOne × user_businesses × insert → DENY (error: 42501) expected=DENY
+  ok   adminOne × user_businesses × update → DENY (0 affected) expected=DENY
+  ok   adminOne × user_businesses × delete → DENY (0 affected) expected=DENY
+  ok   adminOne × fact_data × select → ALLOW (5 rows VISIBLE) expected=ALLOW
+  ok   adminOne × fact_data × insert → DENY (error: 42501) expected=DENY
+  ok   adminOne × fact_data × update → DENY (0 affected) expected=DENY
+  ok   adminOne × fact_data × delete → DENY (0 affected) expected=DENY
+  ok   adminOne × ref_data × select → ALLOW (5 rows VISIBLE) expected=ALLOW
+  ok   adminOne × ref_data × insert → DENY (error: 42501) expected=DENY
+  ok   adminOne × ref_data × update → DENY (0 affected) expected=DENY
+  ok   adminOne × ref_data × delete → DENY (0 affected) expected=DENY
+  ok   memberOne × accounts × select → DENY (0 rows) expected=DENY
+  ok   memberOne × accounts × insert → DENY (error: 42501) expected=DENY
+  ok   memberOne × accounts × update → DENY (0 affected) expected=DENY
+  ok   memberOne × accounts × delete → DENY (0 affected) expected=DENY
+  ok   memberOne × businesses × select → ALLOW (1 rows VISIBLE) expected=ALLOW
+  ok   memberOne × businesses × insert → DENY (error: 42501) expected=DENY
+  ok   memberOne × businesses × update → DENY (0 affected) expected=DENY
+  ok   memberOne × businesses × delete → DENY (0 affected) expected=DENY
+  ok   memberOne × user_businesses × select → ALLOW (1 rows VISIBLE) expected=ALLOW
+  ok   memberOne × user_businesses × insert → DENY (error: 42501) expected=DENY
+  ok   memberOne × user_businesses × update → DENY (0 affected) expected=DENY
+  ok   memberOne × user_businesses × delete → DENY (0 affected) expected=DENY
+  ok   memberOne × fact_data × select → ALLOW (5 rows VISIBLE) expected=ALLOW
+  ok   memberOne × fact_data × insert → DENY (error: 42501) expected=DENY
+  ok   memberOne × fact_data × update → DENY (0 affected) expected=DENY
+  ok   memberOne × fact_data × delete → DENY (0 affected) expected=DENY
+  ok   memberOne × ref_data × select → ALLOW (5 rows VISIBLE) expected=ALLOW
+  ok   memberOne × ref_data × insert → DENY (error: 42501) expected=DENY
+  ok   memberOne × ref_data × update → DENY (0 affected) expected=DENY
+  ok   memberOne × ref_data × delete → DENY (0 affected) expected=DENY
+[rig-harness] 80 cells · 0 mismatches → MATRIX GREEN
+[rig-harness] evidence → /home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/proto-06/evidence/FINAL-8-policies_2026-08-31T0622.log
+
+═══ 5/5b ATTACK BATTERY (32 cases) ═══
+[R3] attack battery — all cases expected DENIED
+
+Attack 1 — cross-account write with foreign business_id (adminOne@S3 → S1/accountA):
+  ok(denied) A1.insert fact_data business_id=S1 → error 42501
+  ok(denied) A1.update fact S1 row by id → 0 rows/affected
+  ok(denied) A1.delete fact S1 row by id → 0 rows/affected
+  ok(denied) A1.select fact S1 row by direct id → 0 rows/affected
+
+Attack 2 — junction role tampering (memberOne self-promote on S3):
+  ok(denied) A2.update own junction role→admin → 0 rows/affected
+  ok(denied) A2.insert self admin membership on S1 → error 42501
+  ok(denied) A2.delete own junction row → 0 rows/affected
+
+Attack 3 — cross-account read by direct id (ownerTwo/accountA → accountB objects):
+  ok(denied) A3.select business S3 by id → 0 rows/affected
+  ok(denied) A3.select account B by id → 0 rows/affected
+  ok(denied) A3.select fact S3 row by id → 0 rows/affected
+  ok(denied) A3.update business S3 by id → 0 rows/affected
+  ok(denied) A3.select memberOne junction row → 0 rows/affected
+
+Attack 4 — anonymous sweep (no session), every table × every op:
+  ok(denied) A4.accounts.select → 0 rows/affected
+  ok(denied) A4.accounts.insert → error 42501
+  ok(denied) A4.accounts.update → 0 rows/affected
+  ok(denied) A4.accounts.delete → 0 rows/affected
+  ok(denied) A4.businesses.select → 0 rows/affected
+  ok(denied) A4.businesses.insert → error 42501
+  ok(denied) A4.businesses.update → 0 rows/affected
+  ok(denied) A4.businesses.delete → 0 rows/affected
+  ok(denied) A4.user_businesses.select → 0 rows/affected
+  ok(denied) A4.user_businesses.insert → error 42501
+  ok(denied) A4.user_businesses.update → 0 rows/affected
+  ok(denied) A4.user_businesses.delete → 0 rows/affected
+  ok(denied) A4.fact_data.select → 0 rows/affected
+  ok(denied) A4.fact_data.insert → error 42501
+  ok(denied) A4.fact_data.update → 0 rows/affected
+  ok(denied) A4.fact_data.delete → 0 rows/affected
+  ok(denied) A4.ref_data.select → 0 rows/affected
+  ok(denied) A4.ref_data.insert → error 42501
+  ok(denied) A4.ref_data.update → 0 rows/affected
+  ok(denied) A4.ref_data.delete → 0 rows/affected
+
+[R3] 32 attack cases · 0 breaches → ALL DENIED — ISOLATION HOLDS
+[R3] evidence → proto-06/evidence/R3_attack_battery_2026-08-31T0623.log
+
+[rig-prove] ✓ FULL PROOF GREEN — schema + 8 policies + 80-cell matrix + 32 attacks, from an empty database.

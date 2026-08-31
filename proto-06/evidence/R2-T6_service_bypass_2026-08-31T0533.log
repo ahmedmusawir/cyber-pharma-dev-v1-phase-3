@@ -1,0 +1,8 @@
+[T-6] service-role bypass demonstration (the fenced MissionControl path)
+  service-role sees accounts: 2 rows (cross-tenant, policies bypassed)
+  service-role sees businesses: 3 rows (cross-tenant, policies bypassed)
+  service-role sees user_businesses: 4 rows (cross-tenant, policies bypassed)
+  service-role sees fact_data: 6004 rows (cross-tenant, policies bypassed)
+  service-role sees ref_data: 50 rows (cross-tenant, policies bypassed)
+  cross-tenant proof: fact_data rows span 1 distinct businesses in one unauthenticated-context read
+[T-6] CONFIRMED — bypass works as designed; fencing rule recorded for TRANSFERS: service key server-side only, every use audited, never a substitute for a policy.

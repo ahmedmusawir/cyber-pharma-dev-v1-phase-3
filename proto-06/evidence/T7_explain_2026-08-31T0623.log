@@ -1,0 +1,42 @@
+[T-7] EXPLAIN evidence — policy-filtered paths at 6,000-row seed (informational)
+
+seed shape: fact_data=6000 rows across 3 businesses; indexes: fact_data(business_id), user_businesses(user_id,business_id)
+
+── A. SELECT all visible fact_data (policy predicate only)
+   Seq Scan on fact_data  (cost=0.00..1622.00 rows=2000 width=52) (actual time=1.367..124.880 rows=4000 loops=1)
+     Filter: is_member_of(business_id)
+     Rows Removed by Filter: 2000
+     Buffers: shared hit=10256
+   Planning:
+     Buffers: shared hit=79
+   Planning Time: 0.423 ms
+   Execution Time: 125.627 ms
+
+── B. SELECT one business's rows (policy + explicit filter)
+   Index Scan using idx_fact_business on fact_data  (cost=0.28..601.55 rows=667 width=52) (actual time=0.307..41.848 rows=2000 loops=1)
+     Index Cond: (business_id = '50baf034-4b06-4b35-9c9c-9c40e90f8917'::uuid)
+     Filter: is_member_of(business_id)
+     Buffers: shared hit=4024
+   Planning:
+     Buffers: shared hit=4
+   Planning Time: 0.116 ms
+   Execution Time: 42.071 ms
+
+── C. UPDATE path (policy USING + WITH CHECK)
+   Update on fact_data  (cost=0.28..2.75 rows=0 width=0) (actual time=0.636..0.637 rows=0 loops=1)
+     Buffers: shared hit=24
+     ->  Index Scan using fact_data_pkey on fact_data  (cost=0.28..2.75 rows=1 width=38) (actual time=0.287..0.288 rows=1 loops=1)
+           Index Cond: (id = '66b4e60a-ce7b-4a01-bb08-5e0632729eb5'::uuid)
+           Filter: is_member_of(business_id)
+           Buffers: shared hit=5
+   Planning:
+     Buffers: shared hit=3
+   Planning Time: 0.096 ms
+   Execution Time: 0.812 ms
+
+── D. helper in isolation
+   Result  (cost=0.00..0.26 rows=1 width=1) (actual time=0.300..0.300 rows=1 loops=1)
+     Buffers: shared hit=2
+   Planning Time: 0.026 ms
+   Execution Time: 0.322 ms
+

@@ -1,0 +1,7 @@
+  ok  ownerTwo created
+  ok  adminOne created
+  ok  memberOne created
+  ok  2 accounts, 3 stores
+  ok  4 junction rows (OwnerTwo admin@S1+S2 · AdminOne admin@S3 · MemberOne member@S3)
+  ok  seeded fact_data=6000 ref_data=50
+[rig-seed] complete — seed-map.json written (ids only).

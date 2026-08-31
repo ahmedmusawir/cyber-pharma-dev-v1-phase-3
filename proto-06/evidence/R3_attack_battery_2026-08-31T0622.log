@@ -1,0 +1,43 @@
+[R3] attack battery — all cases expected DENIED
+
+Attack 1 — cross-account write with foreign business_id (adminOne@S3 → S1/accountA):
+  ok(denied) A1.insert fact_data business_id=S1 → error 42501
+  ok(denied) A1.update fact S1 row by id → 0 rows/affected
+  ok(denied) A1.delete fact S1 row by id → 0 rows/affected
+  ok(denied) A1.select fact S1 row by direct id → 0 rows/affected
+
+Attack 2 — junction role tampering (memberOne self-promote on S3):
+  ok(denied) A2.update own junction role→admin → 0 rows/affected
+  ok(denied) A2.insert self admin membership on S1 → error 42501
+  ok(denied) A2.delete own junction row → 0 rows/affected
+
+Attack 3 — cross-account read by direct id (ownerTwo/accountA → accountB objects):
+  ok(denied) A3.select business S3 by id → 0 rows/affected
+  ok(denied) A3.select account B by id → 0 rows/affected
+  ok(denied) A3.select fact S3 row by id → 0 rows/affected
+  ok(denied) A3.update business S3 by id → 0 rows/affected
+  ok(denied) A3.select memberOne junction row → 0 rows/affected
+
+Attack 4 — anonymous sweep (no session), every table × every op:
+  ok(denied) A4.accounts.select → 0 rows/affected
+  ok(denied) A4.accounts.insert → error 42501
+  ok(denied) A4.accounts.update → 0 rows/affected
+  ok(denied) A4.accounts.delete → 0 rows/affected
+  ok(denied) A4.businesses.select → 0 rows/affected
+  ok(denied) A4.businesses.insert → error 42501
+  ok(denied) A4.businesses.update → 0 rows/affected
+  ok(denied) A4.businesses.delete → 0 rows/affected
+  ok(denied) A4.user_businesses.select → 0 rows/affected
+  ok(denied) A4.user_businesses.insert → error 42501
+  ok(denied) A4.user_businesses.update → 0 rows/affected
+  ok(denied) A4.user_businesses.delete → 0 rows/affected
+  ok(denied) A4.fact_data.select → 0 rows/affected
+  ok(denied) A4.fact_data.insert → error 42501
+  ok(denied) A4.fact_data.update → 0 rows/affected
+  ok(denied) A4.fact_data.delete → 0 rows/affected
+  ok(denied) A4.ref_data.select → 0 rows/affected
+  ok(denied) A4.ref_data.insert → error 42501
+  ok(denied) A4.ref_data.update → 0 rows/affected
+  ok(denied) A4.ref_data.delete → 0 rows/affected
+
+[R3] 32 attack cases · 0 breaches → ALL DENIED — ISOLATION HOLDS
