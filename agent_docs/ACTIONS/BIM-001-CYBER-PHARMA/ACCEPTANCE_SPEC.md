@@ -1,11 +1,12 @@
 # ACCEPTANCE_SPEC.md — BIM-001-CYBER-PHARMA
 ## Schema Migrations: Sixteen-Table Target Schema
 
-> **Lifecycle:** SEEDED → **ENGINEER EVIDENCE-FILLED (2026-08-28)** → QA-VERIFIED
+> **Lifecycle:** SEEDED → ENGINEER EVIDENCE-FILLED (2026-08-28) → **QA-VERIFIED (2026-08-31, Sol — GATE Q: PASS, zero rework)**
 > **Owning application:** CYBER-PHARMA (cyber-pharma-dev-v1-phase-3)
 > **Seeded by:** Architect, 2026-08-28, from the approved module contract (manager §5–§7)
-> **Branch + SHA (disk at engineering close):** `phase-3-2`, base `70b38ef`, work uncommitted — pin the close commit here at PRE-Q (BIM-000 lesson)
-> **Evidence root:** `agent_docs/ACTIONS/BIM-001-CYBER-PHARMA/evidence/` (unique filenames per gate)
+> **Certified SHA:** `9f8c80d45da1cefe10eeca6ba15011745a5dc7fd` (branch `phase-3-2`) — pinned per Gate Q report
+> **Evidence root:** `agent_docs/ACTIONS/BIM-001-CYBER-PHARMA/evidence/` (Engineering) + `QA/` (Sol/Cody package incl. `GATE_Q_REPORT_BIM-001-CYBER-PHARMA_FINAL_PASS.md`)
+> **Errata:** AC3/AC12 wording patched per ratified ERRATUM-Q1/Q2 (wording-only; implementation stood)
 > **Ownership law:** criteria below are Architect/Director-defined. The Engineer maintains and finalizes this spec at handoff and may NOT silently add, remove, weaken, or redefine any requirement. Scope changes require Director approval.
 
 ---
@@ -39,7 +40,7 @@ RLS policies beyond deny-by-default · audit triggers/RPCs · seed data · servi
 
 **AC2 — Chain applies from zero.** The full chain (via the reset script's bootstrap path) applies to a fresh database, exit 0, producing exactly sixteen target tables plus baseline objects. Observable: `select count(*) from information_schema.tables where table_schema='public'` matches the declared inventory.
 
-**AC3 — Chain applies on baseline replica.** Against a replica containing only baseline (2 tables, 3 policies, 3 functions), the chain applies with exit 0 and no duplicate-object errors.
+**AC3 — Chain applies on baseline replica.** Against a replica containing only baseline (2 tables, 3 policies, and the two frozen contract functions `handle_new_user` + `rls_auto_enable`), the chain applies with exit 0 and no duplicate-object errors. Migration 0001 introduces/replaces `update_updated_at()`, after which three contract functions exist. *(Wording patched per ratified ERRATUM-Q1, Gate Q 2026-08-31 — spec wording defect; implementation stood.)*
 
 **AC4 — Sixteen-table inventory.** Post-chain, these tables exist with declared PK/FK/UNIQUE constraints: accounts, businesses, user_roles, profiles, user_businesses, pending_registrations, subscriptions, apa_memberships, user_data, report_files, aac_reference, wac_reference, ful_reference, pbm_info, audit_logs, reference_dataset_versions. Deferred tables (desktop_client_versions, local_desktop_users, password_reset_tokens) do NOT exist.
 
@@ -57,7 +58,7 @@ RLS policies beyond deny-by-default · audit triggers/RPCs · seed data · servi
 
 **AC11 — Reference provenance.** aac_reference, wac_reference, ful_reference, pbm_info each carry provenance columns (source file, imported-at, dataset-version linkage) per manager §6.4, and `reference_dataset_versions` carries checksum + row_count + per-dataset identity.
 
-**AC12 — Timestamps everywhere.** All sixteen tables carry `created_at`/`updated_at TIMESTAMPTZ` with the `update_updated_at()` trigger attached; an UPDATE observably bumps `updated_at`.
+**AC12 — Timestamps everywhere (new tables).** All **fourteen new BIM-001 tables** carry `created_at`/`updated_at TIMESTAMPTZ` with the `update_updated_at()` trigger attached; an UPDATE observably bumps `updated_at`. Frozen baseline tables `profiles` and `user_roles` remain structurally unchanged per Manager law (§5 rows 3–4). *(Wording patched per ratified ERRATUM-Q2, Gate Q 2026-08-31 — spec wording defect; implementation stood.)*
 
 **AC13 — One-command reset.** A single documented command rebuilds the full chain on a scratch database; running it twice consecutively both exit 0 with identical final inventory.
 
@@ -111,6 +112,6 @@ RLS policies beyond deny-by-default · audit triggers/RPCs · seed data · servi
 
 **Fidelity flag (carried, non-blocking):** `report_files` columns are not enumerated in the FRANK extraction (models.py:826-849 summarized only) — authored as minimal attested shape, flagged in-file; true up against verbatim source when staged (amendment path).
 
-*Lifecycle banner flips to QA-VERIFIED only by Sol.*
+*Lifecycle banner flipped to QA-VERIFIED per Sol's Gate Q PASS, 2026-08-31 (report in `QA/`). AC13's Director One-Walk: PASS (witnessed scratch reset, exit 0, 16-table inventory).*
 
 🥄

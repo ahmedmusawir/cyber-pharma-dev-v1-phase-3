@@ -1,7 +1,20 @@
 # BIM-001-CYBER-PHARMA — THE MANAGER
 ## Schema Migrations: The Sixteen-Table Target Schema
 
-> **Status:** FINAL — 2026-08-28 · Launch condition: FIX-001 close-out committed (VERIFIED 2026-08-28 by Director)
+> **Status:** 🔒 **CLOSED — 2026-08-31 · GATE Q: PASS (Sol) — "BIM-001-CYBER-PHARMA: CLEARED FOR CLOSE-OUT · ENGINEERING REWORK: ZERO"**
+> **Certified SHA:** `9f8c80d45da1cefe10eeca6ba15011745a5dc7fd` · Ratified errata Q1/Q2 (spec wording only; implementation stood)
+>
+> ### Deliverables Map (module close)
+> | Concern | Deliverables |
+> |---|---|
+> | Migration chain | `supabase/migrations/0001–0015` — baseline assert-then-create + 14 new tables, deny-by-default at birth, every divergence authority-commented |
+> | Tooling | `scripts/db-bootstrap-baseline.sql` · `db-reset.mjs` (reset/bootstrap/apply/inventory, guarded) · `db-verify.mjs` (X4/X5/AC battery, pg_catalog-based) · npm `db:*` tasks |
+> | Types (X6/AC14) | `src/types/supabase.ts` — 16 table types, tsc clean |
+> | Module package | `ACCEPTANCE_SPEC.md` (QA-VERIFIED, SHA pinned, errata patched) · `ERRATUM.md` (E-1 function truth, E-2 DATA_CONTRACT amendment, E-3 trigger name) · `RETROSPECTIVE.md` · `X0_CATALOG.sql` + `X0_EVIDENCE.md` · `evidence/` (11 engineering gate logs) · `AUTHORITY/` (staged package) |
+> | QA package | `QA/` — Sol's `GATE_Q_REPORT_BIM-001-CYBER-PHARMA_FINAL_PASS.md` + Cody's execution report, attack matrix, runners + per-AC logs |
+> | Post-close duties (Director) | LIVE apply post-close (db:apply path, Director only) · DATA_CONTRACT §3 amendment staging (E-2) · throwaway-credential rotation · carried flags: report_files fidelity · numbered-color predicate · QA-FINDING-001 |
+>
+> _(History: FINAL 2026-08-28 · Launch condition: FIX-001 close-out committed — VERIFIED 2026-08-28 by Director)_
 > **Module type:** BIM (Backend Integration Module) · **Campaign:** Phase 3 BIM Campaign, module 3 of 7
 > **Governed by:** BIM_PLAYBOOK v1.0 · SOFTWARE_FACTORY_PLAYBOOK › Module Identity & QA Handoff
 > **Branch:** identity resolved from disk at PRE-Q per doctrine — never pre-named here

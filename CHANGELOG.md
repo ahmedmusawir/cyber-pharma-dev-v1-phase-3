@@ -3,6 +3,13 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-08-31 11:15 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/BIM-001-CYBER-PHARMA/ACCEPTANCE_SPEC.md` — AC3/AC12 wording patched per ratified ERRATUM-Q1/Q2 (wording-only); lifecycle → **QA-VERIFIED**; certified SHA `9f8c80d` pinned
+- **Updated:** `agent_docs/ACTIONS/BIM-001-CYBER-PHARMA/CLAUDE.md` — manager flipped to CLOSED with deliverables map + Sol's verdict
+- **Updated:** `agent_docs/ACTIONS/BIM-001-CYBER-PHARMA/RETROSPECTIVE.md` — FLAG-C completeness note + Gate Q outcome addendum (incl. spec-wording-vs-erratum process lesson)
+- **Reason:** BIM-001 close-out on Gate Q PASS (Sol, 2026-08-31, zero rework). QA package verified in module QA/ (Sol's report + Cody's full battery). Zero product/schema changes per Gate Q handoff §6.
+
 ## 2026-08-28 17:05 UTC — [CC] Claude Code
 
 - **Created:** `supabase/migrations/0001–0015` — BIM-001 sixteen-table target schema chain (deny-by-default at birth, assert-then-create baseline acknowledgment)

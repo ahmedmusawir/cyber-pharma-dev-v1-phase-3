@@ -4,47 +4,36 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-08-27 13:00 (FIX-001 engineering complete)
-**Branch:** phase-3-2 (from phase-3-1 @ `8b260c1`; FIX-001 work uncommitted)
-**Session log:** `agent_docs/SESSIONS/session_2026-08-27.md`
+**Last updated:** 2026-08-31 (BIM-001 CLOSED)
+**Branch:** phase-3-2 @ `9f8c80d` (BIM-001 certified SHA)
+**Session log:** `agent_docs/SESSIONS/session_2026-08-31.md`
 
 ---
 
-**Last action:** **BIM-000-CYBER-PHARMA CLOSED — Gate Q PASS** (Sol, 2026-08-14, report:
-`agent_docs/QA/GATE_Q_REPORT_BIM-000-CYBER-PHARMA.md`). All AC1–AC9 + P1–P3 PASS, no
-rework. Coordinator closeout commit `432cf5a` + push. Manager flipped to CLOSED with
-deliverables map. Campaign Journal now live at `agent_docs/PHASE_3_CAMPAIGN_JOURNAL.md`
-(FLAG-1 resolved). Board certified green: build ✓ (22 routes), tsc ✓, jest 26/120/0,
-lint 0 err / 34 legacy warn.
+**Last action:** **BIM-001-CYBER-PHARMA CLOSED — GATE Q PASS** (Sol, 2026-08-31:
+"CLEARED FOR CLOSE-OUT · ENGINEERING REWORK: ZERO", certified SHA `9f8c80d`). Close-out
+batch executed: spec AC3/AC12 wording patched per ratified ERRATUM-Q1/Q2 → lifecycle
+**QA-VERIFIED** with SHA pinned; manager → **CLOSED** with deliverables map + verdict;
+retrospective completed (FLAG-C note + Gate Q addendum + spec-wording process lesson);
+QA/ verified holding Sol's report + Cody's full battery (first live QA-execution-agent
+run). Board certified green at close: build 22 · tsc · jest 28/128/0. **Live DB still
+untouched — live apply is the Director's, post-close.**
 
-**Last action:** **FIX-001-CYBER-PHARMA CLOSED — Gate Q PASS** (Sol, 2026-08-27:
-"GATE Q: PASS — MOVE FORWARD.", zero rework). KIP-2 independently verified cured
-(stale-localStorage attack, ADMIN/MEMBER/logged-out, desktop + 375px). Report filed at
-`agent_docs/ACTIONS/FIX-001-CYBER-PHARMA/QA/`; spec → QA-VERIFIED with verdict; manager
-→ CLOSED with deliverables map. Board: build ✓ 22 routes · tsc ✓ · jest **28/128/0**.
-**QA-FINDING-001** (dark-mode login branding contrast, minor a11y) → Architect routes to
-findings ledger; NOT fixed in this module.
+**Module history:** BIM-000 CLOSED (`432cf5a`) · FIX-001 CLOSED (`70b38ef`, KIP-2 dead) ·
+BIM-001 CLOSED (`9f8c80d`, 16-table schema).
 
-**Last action (2026-08-28):** **BIM-001 ENGINEERING COMPLETE — ALL GATES X0–X7 GREEN.**
-Sixteen-table migration chain (0001–0015) authored from the AUTHORITY package and proven
-on two throwaway projects: X1 from-zero ✓, X2 baseline-replica ✓ (after Director-authorized
-wipe of a not-actually-fresh target), X3 reset×2 identical ✓, X4 deny-by-default + ensure_rls
-✓, X5 type laws ✓, X6 types regenerated (Director-as-hands) + tsc clean ✓, X7 board
-28/128/0 ✓. X0 closed with ruled discrepancy (update_updated_at never deployed → 0001
-creates it; ERRATUM filed). Spec ENGINEER EVIDENCE-FILLED (AC1–AC15). **Live DB untouched.**
+**Pending:** ONE Director close-out commit (batch in
+`agent_docs/RESPONSES/response_2026-08-31_bim001-closeout.md`). Post-commit Director
+duties: **LIVE apply of the chain** (db:apply path, Director only) · DATA_CONTRACT §3
+amendment staging (ERRATUM E-2) · throwaway-credential rotation.
 
-**Pending:** Director — ① 4 per-concern commits (manifest:
-`agent_docs/RESPONSES/response_2026-08-28_170129_bim001-handoff.md`; exclude
-`supabase/.temp/`), ② SHA into spec at PRE-Q, ③ DATA_CONTRACT §3 amendment staging
-(ERRATUM E-2), ④ Sol's Gate Q (throwaway projects hold post-chain state; pooler regions
-in handoff), ⑤ post-Gate-Q LIVE apply (Director only), ⑥ rotate throwaway credentials.
+**Next step:** BIM-002 (RLS policies) — the campaign's next module; junction-only
+membership law (R-3) already pre-loaded in the BIM-001 manager. Carries: numbered-color
+predicate rebuild · QA-FINDING-001 · report_files fidelity flag.
 
-**Next step:** PRE-Q → Gate Q → BIM-001 close → BIM-002 (RLS policies). Carries:
-numbered-color predicate rebuild · QA-FINDING-001 · report_files fidelity flag.
-
-**⚠️ UNCOMMITTED:** Entire BIM-001 batch — supabase/migrations/ (15 files), 3 scripts,
-package.json+lock, src/types/supabase.ts, module folder (spec/erratum/retro/evidence),
-6 RESPONSES, session log, this file, CHANGELOG. Operator commits — agent never does.
+**⚠️ UNCOMMITTED:** BIM-001 close-out batch only — Gate Q FINAL PASS report (untracked),
+spec/manager/retrospective patches, session_2026-08-31.md, this file, CHANGELOG,
+close-out response. Operator commits — agent never does.
 
 ---
 

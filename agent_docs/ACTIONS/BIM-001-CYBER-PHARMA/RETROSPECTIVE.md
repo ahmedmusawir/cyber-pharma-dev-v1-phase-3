@@ -16,6 +16,11 @@
 7. **The "factory-fresh" replica wasn't.** It carried a foreign deployment (StarkReads-shape user-scoped `subscriptions` + 4 policies, a `keepalive` table, a different policy-name lineage). STOPPED per no-silent-fixes; Director authorized the wipe explicitly; only then rebuilt. **Lesson:** target-state assertion before destructive prep is not paranoia — it caught a mischaracterized target on its first live use. (AC1's negative test banked a bonus: the loud-fail fired against that foreign state too.)
 8. **`supabase gen types --db-url` hard-requires Docker** in CLI 2.116.0. Resolved by modified option (a): Director-as-hands ran login → gen types → logout, credential never entering the session. **Pattern worth naming:** the X0-catalog "Director's hands" move generalizes to any credentialed one-shot.
 
+*(Completeness note, close-out 2026-08-31: the plan carried a third launch flag —
+FLAG-C, the junction-role vocabulary conflict (catalog `'admin'|'user'` vs R-3's
+`'admin'|'member'`). Pre-resolved by R-3 at plan time, kept visible so the "verbatim"
+override stayed on the record; it never fought back at build or QA.)*
+
 ## Ambiguities that needed rulings (P1 scoreboard: 4 — prediction CONFIRMED)
 
 medicaid_method vocabulary + NULL-vs-'' (ruled (a)) · update_updated_at absence (ruled (i)) · replica wipe (ruled: authorized) · X6 auth path (ruled: Director-as-hands). None required requirement changes — all were reality-vs-doc gaps, which is exactly what the flag culture is for.
@@ -32,3 +37,16 @@ medicaid_method vocabulary + NULL-vs-'' (ruled (a)) · update_updated_at absence
 - `report_files` fidelity flag (minimal attested shape — true up when models.py verbatim is staged).
 - ERRATUM.md → DATA_CONTRACT §3 amendment for the doc repo (Director).
 - Throwaway projects hold post-chain state for Sol's independent replay (scratch = full chain, replica = baseline→chain path).
+
+## Gate Q outcome (close-out addendum, 2026-08-31)
+
+**PASS, zero rework** — certified SHA `9f8c80d`. Sol's independent battery (executed by
+Cody, first live run of the QA-execution-agent org proposal from BIM-000) confirmed every
+gate and surfaced only two SPEC WORDING defects (ratified ERRATUM-Q1/Q2: AC3's
+three-function baseline claim — the X0 phantom-function reality, wording lagged; AC12's
+"all sixteen" vs manager law freezing profiles/user_roles). Both patched wording-only at
+close-out; implementation stood untouched. AC13 One-Walk: Director-witnessed, exit 0,
+16-table inventory. QA branch `qa/bim-001-cody-01` correctly discarded unmerged.
+**Process note for the journal:** spec wording should be re-read against ERRATUM findings
+at engineering close, not left for QA to catch — both Q1/Q2 were knowable from
+X0_EVIDENCE/manager law at evidence-fill time.
