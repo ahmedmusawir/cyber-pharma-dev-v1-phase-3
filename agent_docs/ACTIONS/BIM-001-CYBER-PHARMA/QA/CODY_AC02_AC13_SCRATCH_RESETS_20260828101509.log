@@ -1,0 +1,110 @@
+CODY QA EVIDENCE — CODY_AC02_AC13_SCRATCH_RESETS
+timestamp=2026-08-28T10:15:45.521Z
+branch=qa/bim-001-cody-01
+tested_head=fefde109fe50eb55839dee4dd29129b2ea3de90c
+target_class=SCRATCH
+credentials=NOT_RECORDED
+CODY QA EVIDENCE — CODY-AC02-AC13-SCRATCH-RESET
+timestamp=2026-08-28T10:15:24.119Z
+branch=qa/bim-001-cody-01
+tested_head=fefde109fe50eb55839dee4dd29129b2ea3de90c
+target_class=SCRATCH
+credentials=NOT_RECORDED
+sanitized_target=project_ref:jmzwhgnyunwssamrqyhp pooler:aws-1-us-west-1.pooler.supabase.com db:postgres
+procedure=execute documented reset command twice consecutively; independently snapshot sorted inventory after each run
+command=DB_URL=[REDACTED] DB_RESET_ALLOW=yes npm run db:reset
+run1_exit=0
+run1_stdout_begin
+[db-reset] reset → host=aws-1-us-west-1.pooler.supabase.com db=postgres
+[db-reset] chain: 15 migrations (0001_baseline_acknowledge.sql … 0015_audit_logs.sql)
+  ok  drop event trigger (pre-drop)
+  ok  drop schema public
+  ok  re-grant public schema privileges
+  ok  bootstrap baseline (scratch-only, X0 rider 3)
+  ok  0001_baseline_acknowledge.sql
+  ok  0002_accounts.sql
+  ok  0003_businesses.sql
+  ok  0004_user_businesses.sql
+  ok  0005_pending_registrations.sql
+  ok  0006_subscriptions.sql
+  ok  0007_apa_memberships.sql
+  ok  0008_reference_dataset_versions.sql
+  ok  0009_aac_reference.sql
+  ok  0010_wac_reference.sql
+  ok  0011_ful_reference.sql
+  ok  0012_pbm_info.sql
+  ok  0013_user_data.sql
+  ok  0014_report_files.sql
+  ok  0015_audit_logs.sql
+[inventory] 16 public tables:
+  - aac_reference
+  - accounts
+  - apa_memberships
+  - audit_logs
+  - businesses
+  - ful_reference
+  - pbm_info
+  - pending_registrations
+  - profiles
+  - reference_dataset_versions
+  - report_files
+  - subscriptions
+  - user_businesses
+  - user_data
+  - user_roles
+  - wac_reference
+[db-reset] reset complete — 16 tables on target.
+run1_stdout_end
+run1_stderr=<empty>
+run1_inventory=["aac_reference","accounts","apa_memberships","audit_logs","businesses","ful_reference","pbm_info","pending_registrations","profiles","reference_dataset_versions","report_files","subscriptions","user_businesses","user_data","user_roles","wac_reference"]
+run1_inventory_sha256=39bb58134752830c9b5ff3f91cb3d13d607fef800daec1a296d146a4cb94f947
+run2_exit=0
+run2_stdout_begin
+[db-reset] reset → host=aws-1-us-west-1.pooler.supabase.com db=postgres
+[db-reset] chain: 15 migrations (0001_baseline_acknowledge.sql … 0015_audit_logs.sql)
+  ok  drop event trigger (pre-drop)
+  ok  drop schema public
+  ok  re-grant public schema privileges
+  ok  bootstrap baseline (scratch-only, X0 rider 3)
+  ok  0001_baseline_acknowledge.sql
+  ok  0002_accounts.sql
+  ok  0003_businesses.sql
+  ok  0004_user_businesses.sql
+  ok  0005_pending_registrations.sql
+  ok  0006_subscriptions.sql
+  ok  0007_apa_memberships.sql
+  ok  0008_reference_dataset_versions.sql
+  ok  0009_aac_reference.sql
+  ok  0010_wac_reference.sql
+  ok  0011_ful_reference.sql
+  ok  0012_pbm_info.sql
+  ok  0013_user_data.sql
+  ok  0014_report_files.sql
+  ok  0015_audit_logs.sql
+[inventory] 16 public tables:
+  - aac_reference
+  - accounts
+  - apa_memberships
+  - audit_logs
+  - businesses
+  - ful_reference
+  - pbm_info
+  - pending_registrations
+  - profiles
+  - reference_dataset_versions
+  - report_files
+  - subscriptions
+  - user_businesses
+  - user_data
+  - user_roles
+  - wac_reference
+[db-reset] reset complete — 16 tables on target.
+run2_stdout_end
+run2_stderr=<empty>
+run2_inventory=["aac_reference","accounts","apa_memberships","audit_logs","businesses","ful_reference","pbm_info","pending_registrations","profiles","reference_dataset_versions","report_files","subscriptions","user_businesses","user_data","user_roles","wac_reference"]
+run2_inventory_sha256=39bb58134752830c9b5ff3f91cb3d13d607fef800daec1a296d146a4cb94f947
+inventories_identical=true
+inventory_exact=true
+deferred_absent=true
+manual_director_witness=NOT_PERFORMED_BY_CODY
+result=SCRATCH_TWO_DETERMINISTIC_RESETS_COMPLETE

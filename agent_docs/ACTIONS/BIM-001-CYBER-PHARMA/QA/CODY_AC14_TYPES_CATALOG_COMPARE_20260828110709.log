@@ -1,0 +1,11 @@
+CODY QA EVIDENCE — AC14 TYPES/CATALOG COMPARISON
+timestamp=2026-08-28T11:07:09.613Z
+branch=qa/bim-001-cody-01
+tested_head=fefde109fe50eb55839dee4dd29129b2ea3de90c
+target_class=local types vs preserved SCRATCH post-chain pg_catalog evidence
+procedure=parse all generated Row fields/types/nullability and public relationships; compare to actual catalog snapshot
+result_detail={"catalogTables":["aac_reference","accounts","apa_memberships","audit_logs","businesses","ful_reference","pbm_info","pending_registrations","profiles","reference_dataset_versions","report_files","subscriptions","user_businesses","user_data","user_roles","wac_reference"],"generatedTables":["aac_reference","accounts","apa_memberships","audit_logs","businesses","ful_reference","pbm_info","pending_registrations","profiles","reference_dataset_versions","report_files","subscriptions","user_businesses","user_data","user_roles","wac_reference"],"missingTables":[],"deferredPresent":[],"columnMismatches":[],"publicFkNames":["aac_reference_dataset_version_id_fkey","businesses_account_id_fkey","ful_reference_dataset_version_id_fkey","pbm_info_dataset_version_id_fkey","pending_registrations_business_id_fkey","report_files_business_id_fkey","subscriptions_account_id_fkey","user_businesses_business_id_fkey","user_data_business_id_fkey","wac_reference_dataset_version_id_fkey"],"generatedRelationshipNames":["aac_reference_dataset_version_id_fkey","businesses_account_id_fkey","ful_reference_dataset_version_id_fkey","pbm_info_dataset_version_id_fkey","pending_registrations_business_id_fkey","report_files_business_id_fkey","subscriptions_account_id_fkey","user_businesses_business_id_fkey","user_data_business_id_fkey","wac_reference_dataset_version_id_fkey"],"missingPublicRelationships":[],"unexpectedPublicRelationships":[]}
+sixteen_expected_types_present=true
+deferred_types_absent=true
+obvious_catalog_type_drift_absent=true
+result=AC14_CATALOG_TYPES_MATCH

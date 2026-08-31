@@ -1,0 +1,26 @@
+CODY QA EVIDENCE — JEST
+timestamp=2026-08-28T11:08:06.755Z
+branch=qa/bim-001-cody-01
+tested_head=fefde109fe50eb55839dee4dd29129b2ea3de90c
+target_class=local non-destructive regression
+command=npm test -- --runInBand
+exit_code=0
+parsed_suite_failures=0
+parsed_suite_passes=28
+parsed_suite_total=28
+parsed_test_failures=0
+parsed_test_passes=128
+parsed_test_total=128
+stdout_begin
+
+> cyber-pharma@0.1.0 test
+> jest --runInBand
+stdout_end
+stderr_begin
+
+Test Suites: 28 passed, 28 total
+Tests:       128 passed, 128 total
+Snapshots:   0 total
+Time:        5.957 s, estimated 9 s
+Ran all test suites.
+stderr_end

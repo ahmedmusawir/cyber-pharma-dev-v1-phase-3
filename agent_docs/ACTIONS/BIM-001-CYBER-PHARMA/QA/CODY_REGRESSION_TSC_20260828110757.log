@@ -1,0 +1,13 @@
+CODY QA EVIDENCE — TYPESCRIPT
+timestamp=2026-08-28T11:08:00.269Z
+branch=qa/bim-001-cody-01
+tested_head=fefde109fe50eb55839dee4dd29129b2ea3de90c
+target_class=local non-destructive regression
+command=npx tsc --noEmit
+exit_code=0
+stdout_begin
+
+stdout_end
+stderr_begin
+
+stderr_end

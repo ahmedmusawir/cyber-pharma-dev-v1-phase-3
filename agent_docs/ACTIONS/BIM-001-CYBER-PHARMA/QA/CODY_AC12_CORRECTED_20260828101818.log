@@ -1,0 +1,13 @@
+CODY QA EVIDENCE — AC12 CORRECTED CATALOG PROBE
+timestamp=2026-08-28T10:18:18.848Z
+branch=qa/bim-001-cody-01
+tested_head=fefde109fe50eb55839dee4dd29129b2ea3de90c
+target_class=SCRATCH project_ref:jmzwhgnyunwssamrqyhp pooler:aws-1-us-west-1.pooler.supabase.com db:postgres
+credentials=NOT_RECORDED
+correction=first-run query multiplied column counts by trigger joins; this rerun uses independent correlated aggregates
+all16_catalog=[{"table_name":"aac_reference","timestamptz_pair_count":2,"triggers":"{set_updated_at}"},{"table_name":"accounts","timestamptz_pair_count":2,"triggers":"{set_updated_at}"},{"table_name":"apa_memberships","timestamptz_pair_count":2,"triggers":"{set_updated_at}"},{"table_name":"audit_logs","timestamptz_pair_count":2,"triggers":"{set_updated_at}"},{"table_name":"businesses","timestamptz_pair_count":2,"triggers":"{set_updated_at}"},{"table_name":"ful_reference","timestamptz_pair_count":2,"triggers":"{set_updated_at}"},{"table_name":"pbm_info","timestamptz_pair_count":2,"triggers":"{set_updated_at}"},{"table_name":"pending_registrations","timestamptz_pair_count":2,"triggers":"{set_updated_at}"},{"table_name":"profiles","timestamptz_pair_count":1,"triggers":"{}"},{"table_name":"reference_dataset_versions","timestamptz_pair_count":2,"triggers":"{set_updated_at}"},{"table_name":"report_files","timestamptz_pair_count":2,"triggers":"{set_updated_at}"},{"table_name":"subscriptions","timestamptz_pair_count":2,"triggers":"{set_updated_at}"},{"table_name":"user_businesses","timestamptz_pair_count":2,"triggers":"{set_updated_at}"},{"table_name":"user_data","timestamptz_pair_count":2,"triggers":"{set_updated_at}"},{"table_name":"user_roles","timestamptz_pair_count":1,"triggers":"{}"},{"table_name":"wac_reference","timestamptz_pair_count":2,"triggers":"{set_updated_at}"}]
+fourteen_new_literal=true
+baseline_catalog=[{"table_name":"profiles","timestamptz_pair_count":1,"triggers":"{}"},{"table_name":"user_roles","timestamptz_pair_count":1,"triggers":"{}"}]
+all16_literal=false
+functional_bump_cross_reference=CODY_AC04_AC12_STRUCTURAL_NEGATIVE (all fourteen new tables true)
+result=CORRECTED_AC12_CATALOG_COMPLETE

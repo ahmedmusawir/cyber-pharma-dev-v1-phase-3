@@ -1,0 +1,64 @@
+CODY QA EVIDENCE — BUILD
+timestamp=2026-08-28T11:08:20.344Z
+branch=qa/bim-001-cody-01
+tested_head=fefde109fe50eb55839dee4dd29129b2ea3de90c
+target_class=local non-destructive regression
+command=npm run build
+exit_code=0
+parsed_route_count=22
+parsed_routes=["┌ ƒ /","├ ○ /_not-found","├ ƒ /access-denied","├ ƒ /admin-portal","├ ƒ /admin-portal/audit","├ ƒ /admin-portal/billing","├ ƒ /admin-portal/settings","├ ƒ /admin-portal/stores/[id]","├ ƒ /admin-portal/stores/[id]/invite","├ ƒ /api/auth/confirm","├ ƒ /api/auth/login","├ ƒ /api/auth/logout","├ ƒ /api/auth/signup","├ ○ /auth","├ ○ /error","├ ○ /icon.png","├ ƒ /moose-portal","├ ƒ /moose-portal/users","├ ƒ /moose-portal/users/add-member","├ ƒ /moose-portal/users/edit/[id]","├ ƒ /owedbook","└ ƒ /profile"]
+stdout_begin
+
+> cyber-pharma@0.1.0 build
+> next build
+
+▲ Next.js 16.2.12 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 7.8s
+  Running TypeScript ...
+  Finished TypeScript in 3.4s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/16) ...
+  Generating static pages using 3 workers (4/16) 
+  Generating static pages using 3 workers (8/16) 
+  Generating static pages using 3 workers (12/16) 
+✓ Generating static pages using 3 workers (16/16) in 410ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /access-denied
+├ ƒ /admin-portal
+├ ƒ /admin-portal/audit
+├ ƒ /admin-portal/billing
+├ ƒ /admin-portal/settings
+├ ƒ /admin-portal/stores/[id]
+├ ƒ /admin-portal/stores/[id]/invite
+├ ƒ /api/auth/confirm
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/signup
+├ ○ /auth
+├ ○ /error
+├ ○ /icon.png
+├ ƒ /moose-portal
+├ ƒ /moose-portal/users
+├ ƒ /moose-portal/users/add-member
+├ ƒ /moose-portal/users/edit/[id]
+├ ƒ /owedbook
+└ ƒ /profile
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+stdout_end
+stderr_begin
+Browserslist: browsers data (caniuse-lite) is 12 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+stderr_end

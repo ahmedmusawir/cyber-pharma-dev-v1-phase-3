@@ -1,0 +1,45 @@
+CODY QA EVIDENCE — CODY_AC01_AC03_REPLICA_REPLAY
+timestamp=2026-08-28T10:15:24.118Z
+branch=qa/bim-001-cody-01
+tested_head=fefde109fe50eb55839dee4dd29129b2ea3de90c
+target_class=REPLICA
+credentials=NOT_RECORDED
+CODY QA EVIDENCE — CODY-AC01-AC03-REPLICA-REPLAY
+timestamp=2026-08-28T10:15:19.353Z
+branch=qa/bim-001-cody-01
+tested_head=fefde109fe50eb55839dee4dd29129b2ea3de90c
+target_class=REPLICA
+credentials=NOT_RECORDED
+sanitized_target=project_ref:ihgcsrypblqkwommrkgj pooler:aws-1-ap-south-1.pooler.supabase.com db:postgres
+procedure=wipe throwaway replica; attack 0001 on empty; bootstrap frozen baseline; catalog pre-chain; apply 0001-0015; catalog post-chain
+wipe=exit_0
+empty_inventory=[]
+ac1_empty_0001={"rejected":true,"code":"P0001","named_error":true,"message":"BIM-001/0001 BASELINE ASSERT FAILED: table public.user_roles missing. This chain applies on the DB_BASELINE.md baseline (or after the reset script's bootstrap path). Refusing to continue."}
+prechain_tables=["profiles","user_roles"]
+prechain_policies=[{"tablename":"profiles","policyname":"Profiles are updatable by owner or superadmins","permissive":"PERMISSIVE","roles":"{authenticated}","cmd":"UPDATE","qual":"((auth.uid() = id) OR (( SELECT user_roles.role\n   FROM user_roles\n  WHERE (user_roles.user_id = auth.uid())) = 'superadmin'::app_role))","with_check":null},{"tablename":"profiles","policyname":"Profiles are viewable by owner or superadmins","permissive":"PERMISSIVE","roles":"{authenticated}","cmd":"SELECT","qual":"((auth.uid() = id) OR (( SELECT user_roles.role\n   FROM user_roles\n  WHERE (user_roles.user_id = auth.uid())) = 'superadmin'::app_role))","with_check":null},{"tablename":"user_roles","policyname":"Users can read their own role","permissive":"PERMISSIVE","roles":"{authenticated}","cmd":"SELECT","qual":"(auth.uid() = user_id)","with_check":null}]
+prechain_contract_functions=["handle_new_user","rls_auto_enable"]
+prechain_baseline_shape_sha256=82a9e38f9235e8331faed71d4dcb1733fc4c5db57cb0e90d3a05f570e2f7e76e
+prechain_baseline_shape={"columns":[{"table_name":"profiles","ordinal":1,"column_name":"id","data_type":"uuid","attnotnull":true,"default_expr":null},{"table_name":"profiles","ordinal":2,"column_name":"full_name","data_type":"text","attnotnull":false,"default_expr":null},{"table_name":"profiles","ordinal":3,"column_name":"email","data_type":"text","attnotnull":false,"default_expr":null},{"table_name":"profiles","ordinal":4,"column_name":"created_at","data_type":"timestamp with time zone","attnotnull":false,"default_expr":"now()"},{"table_name":"user_roles","ordinal":1,"column_name":"id","data_type":"bigint","attnotnull":true,"default_expr":null},{"table_name":"user_roles","ordinal":2,"column_name":"user_id","data_type":"uuid","attnotnull":true,"default_expr":null},{"table_name":"user_roles","ordinal":3,"column_name":"role","data_type":"app_role","attnotnull":true,"default_expr":"'member'::app_role"},{"table_name":"user_roles","ordinal":4,"column_name":"created_at","data_type":"timestamp with time zone","attnotnull":false,"default_expr":"now()"}],"constraints":[{"table_name":"profiles","conname":"profiles_id_fkey","contype":"f","definition":"FOREIGN KEY (id) REFERENCES auth.users(id) ON DELETE CASCADE"},{"table_name":"profiles","conname":"profiles_pkey","contype":"p","definition":"PRIMARY KEY (id)"},{"table_name":"user_roles","conname":"user_roles_pkey","contype":"p","definition":"PRIMARY KEY (id)"},{"table_name":"user_roles","conname":"user_roles_user_id_fkey","contype":"f","definition":"FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"},{"table_name":"user_roles","conname":"user_roles_user_id_key","contype":"u","definition":"UNIQUE (user_id)"}],"policies":[{"tablename":"profiles","policyname":"Profiles are updatable by owner or superadmins","permissive":"PERMISSIVE","roles":"{authenticated}","cmd":"UPDATE","qual":"((auth.uid() = id) OR (( SELECT user_roles.role\n   FROM user_roles\n  WHERE (user_roles.user_id = auth.uid())) = 'superadmin'::app_role))","with_check":null},{"tablename":"profiles","policyname":"Profiles are viewable by owner or superadmins","permissive":"PERMISSIVE","roles":"{authenticated}","cmd":"SELECT","qual":"((auth.uid() = id) OR (( SELECT user_roles.role\n   FROM user_roles\n  WHERE (user_roles.user_id = auth.uid())) = 'superadmin'::app_role))","with_check":null},{"tablename":"user_roles","policyname":"Users can read their own role","permissive":"PERMISSIVE","roles":"{authenticated}","cmd":"SELECT","qual":"(auth.uid() = user_id)","with_check":null}]}
+migration=0001_baseline_acknowledge.sql exit=0
+migration=0002_accounts.sql exit=0
+migration=0003_businesses.sql exit=0
+migration=0004_user_businesses.sql exit=0
+migration=0005_pending_registrations.sql exit=0
+migration=0006_subscriptions.sql exit=0
+migration=0007_apa_memberships.sql exit=0
+migration=0008_reference_dataset_versions.sql exit=0
+migration=0009_aac_reference.sql exit=0
+migration=0010_wac_reference.sql exit=0
+migration=0011_ful_reference.sql exit=0
+migration=0012_pbm_info.sql exit=0
+migration=0013_user_data.sql exit=0
+migration=0014_report_files.sql exit=0
+migration=0015_audit_logs.sql exit=0
+postchain_tables=["aac_reference","accounts","apa_memberships","audit_logs","businesses","ful_reference","pbm_info","pending_registrations","profiles","reference_dataset_versions","report_files","subscriptions","user_businesses","user_data","user_roles","wac_reference"]
+postchain_policies=[{"tablename":"profiles","policyname":"Profiles are updatable by owner or superadmins","permissive":"PERMISSIVE","roles":"{authenticated}","cmd":"UPDATE","qual":"((auth.uid() = id) OR (( SELECT user_roles.role\n   FROM user_roles\n  WHERE (user_roles.user_id = auth.uid())) = 'superadmin'::app_role))","with_check":null},{"tablename":"profiles","policyname":"Profiles are viewable by owner or superadmins","permissive":"PERMISSIVE","roles":"{authenticated}","cmd":"SELECT","qual":"((auth.uid() = id) OR (( SELECT user_roles.role\n   FROM user_roles\n  WHERE (user_roles.user_id = auth.uid())) = 'superadmin'::app_role))","with_check":null},{"tablename":"user_roles","policyname":"Users can read their own role","permissive":"PERMISSIVE","roles":"{authenticated}","cmd":"SELECT","qual":"(auth.uid() = user_id)","with_check":null}]
+postchain_contract_functions=["handle_new_user","rls_auto_enable","update_updated_at"]
+postchain_baseline_shape_sha256=82a9e38f9235e8331faed71d4dcb1733fc4c5db57cb0e90d3a05f570e2f7e76e
+baseline_shape_identical=true
+inventory_exact=true
+deferred_absent=true
+result=REPLICA_REPLAY_COMPLETE
