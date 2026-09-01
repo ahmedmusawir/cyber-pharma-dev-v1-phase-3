@@ -1,0 +1,16 @@
+measurement residue cleared; all helpers dropped for a clean fresh-create test
+
+=== X1 RE-VERIFY: 0016 with FOUR helpers, FRESH CREATE, AC8 ===
+helpers: 4/4
+  ok   is_account_member  secdef=true vol=s acl={postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+  ok   is_admin_of        secdef=true vol=s acl={postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+  ok   is_member_of       secdef=true vol=s acl={postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+  ok   my_business_ids    secdef=true vol=s acl={postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+  ok   is_member_of(uuid)         anon=false auth=true svc=true
+  ok   is_admin_of(uuid)          anon=false auth=true svc=true
+  ok   is_account_member(uuid)    anon=false auth=true svc=true
+  ok   my_business_ids()          anon=false auth=true svc=true
+  ok   anon DENIED on my_business_ids (42501)
+  scratch state: policies=3 user_data=0 accounts=0
+
+=== X1 (4 helpers) VERDICT: GREEN ===

@@ -198,6 +198,18 @@ Per-concern commit lists Claudy prepares: (1) helpers + templates doc · (2) pol
 
 ---
 
+## 10a. CARRIED FLAGS — routed out of BIM-002 (Engineer close, 2026-09-01)
+
+| # | Flag | Owner / destination |
+|---|---|---|
+| **CF-1** | `accounts.owner_user_id` has **no `ON DELETE` behaviour**: deleting an account owner's auth identity is blocked until the account is reassigned or removed (`auth.admin.deleteUser` → "Database error deleting user"). A real production constraint, discovered when it broke the seed's reset. BIM-002 does not touch schema. | **BIM-004 / Phase 4 onboarding** — deliberate ruling required |
+| **CF-2** | **ERRATUM E-4's premise must be re-verified on the dev backend.** The `pg_default_acl` grant of function EXECUTE to `anon` was observed on throwaways whose defaults come partly from `db-reset.mjs`'s bootstrap. Supabase ships comparable defaults, but the helper grants must be re-asserted from scratch on the real target. | **Phase 3 APPLY SESSION** |
+| **CF-3** | `report_files` fidelity flag — its columns were never enumerated in the FRANK catalog; BIM-001 shipped a minimal attested shape. Untouched here. | **BIM-004 / BIM-005** — verify vs `models.py:826-849` |
+| **CF-4** | **Credential rotation owed** on every throwaway whose values transited chat: BIM-002 scratch (`jmzwhgnyunwssamrqyhp`), BIM-002/BIM-001 replica (`ihgcsrypblqkwommrkgj`), the BIM-001 throwaways, and the Proto 06 rig project. | **Director** |
+| **CF-5** | `proto-06/` landing zone on `main` and branch `phase-3-proto-6` are deleted once this harness port is certified (R-D). The port is complete; `proto-06/` was **not modified** by this module and remains valid review-by-diff evidence until then. | **Director**, post-Gate Q |
+| **CF-6** | **CI wiring deferred** — AC13 struck (E-3). No `.github/` exists in this repo; the harness ships as the `rls:prove` npm task only. | **Deferred Ledger** |
+| **CF-7** | Harness `--compare-behaviour` mode shipped this module (strips env banners, **never** the pooler host). Cross-target diffs should use it; same-target diffs use the `.normalised.log` twin. | informational |
+
 ## 11. DEFINITION OF DONE
 
 - [ ] X0–X7 green with evidence in `evidence/`

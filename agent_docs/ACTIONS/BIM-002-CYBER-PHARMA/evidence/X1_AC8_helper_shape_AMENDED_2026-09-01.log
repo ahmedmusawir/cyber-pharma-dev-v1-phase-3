@@ -1,0 +1,23 @@
+  ok  0016_rls_helpers.sql (amended, E-2) applied
+
+=== X1/AC8 (AMENDED) — helper shape ===
+  ok   is_account_member secdef=true volatile=s config={"search_path=\"\""}
+  ok   is_admin_of secdef=true volatile=s config={"search_path=\"\""}
+  ok   is_member_of secdef=true volatile=s config={"search_path=\"\""}
+
+=== X1/AC8 (AMENDED) — PUBLIC is the mechanism: raw ACL must show NO bare =X/ entry ===
+  ok   is_account_member acl={postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+  ok   is_admin_of acl={postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+  ok   is_member_of acl={postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+
+=== X1/AC8 (AMENDED) — privilege matrix ===
+  ok   is_member_of: PUBLIC/anon=false authenticated=true service_role=true
+  ok   is_admin_of: PUBLIC/anon=false authenticated=true service_role=true
+  ok   is_account_member: PUBLIC/anon=false authenticated=true service_role=true
+
+=== X1 — live probes ===
+  ok   anon DENIED (42501)
+  ok   authenticated executed all three → m=false a=false ac=false
+  ok   policies=3 (3 baseline, 0 new — helpers create none)
+
+=== X1 VERDICT: GREEN ===

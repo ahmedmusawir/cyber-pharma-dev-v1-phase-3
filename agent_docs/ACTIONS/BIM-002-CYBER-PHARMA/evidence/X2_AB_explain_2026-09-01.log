@@ -1,0 +1,89 @@
+
+══════ FORMULATION A  helper: public.is_member_of(business_id) ══════
+
+── shape: unqualified  (cold 1674.641ms discarded; warm 1655.922ms, 1662.671ms; MEDIAN 1655.922ms)
+   Seq Scan on user_data  (cost=0.00..27640.00 rows=33333 width=1206) (actual time=0.287..1649.132 rows=66667 loops=1)
+     Filter: is_member_of(business_id)
+     Rows Removed by Filter: 33333
+     Buffers: shared hit=101640
+   Planning Time: 0.079 ms
+   Execution Time: 1655.922 ms
+
+── shape: qualified  (cold 559.77ms discarded; warm 559.044ms, 562.211ms; MEDIAN 559.044ms)
+   Index Scan using idx_user_data_business_id on user_data  (cost=0.29..10564.66 rows=11056 width=1206) (actual time=0.281..555.847 rows=33333 loops=1)
+     Index Cond: (business_id = 'd5550b69-b0dc-48ab-bfbd-3aec9a75c63f'::uuid)
+     Filter: is_member_of(business_id)
+     Buffers: shared hit=35001
+   Planning Time: 0.104 ms
+   Execution Time: 559.044 ms
+
+══════ FORMULATION B  inline: business_id in (select ... from user_businesses where user_id = auth.uid()) ══════
+
+── shape: unqualified  (cold 10.718ms discarded; warm 10.6ms, 10.634ms; MEDIAN 10.6ms)
+   Seq Scan on user_data  (cost=0.00..2890.00 rows=50000 width=1206) (actual time=10.591..10.592 rows=0 loops=1)
+     Filter: (ANY (business_id = (hashed SubPlan 1).col1))
+     Rows Removed by Filter: 100000
+     Buffers: shared hit=1640
+     SubPlan 1
+       ->  Result  (cost=0.00..0.00 rows=0 width=0) (actual time=0.000..0.001 rows=0 loops=1)
+             One-Time Filter: false
+
+── shape: qualified  (cold 9.671ms discarded; warm 9.529ms, 9.651ms; MEDIAN 9.529ms)
+   Index Scan using idx_user_data_business_id on user_data  (cost=0.29..2355.83 rows=16583 width=1206) (actual time=9.608..9.609 rows=0 loops=1)
+     Index Cond: (business_id = 'd5550b69-b0dc-48ab-bfbd-3aec9a75c63f'::uuid)
+     Filter: (ANY (business_id = (hashed SubPlan 1).col1))
+     Rows Removed by Filter: 33333
+     Buffers: shared hit=1668
+     SubPlan 1
+       ->  Result  (cost=0.00..0.00 rows=0 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+
+══════ SUMMARY (warm median, ms) ══════
+  shape          |  A (helper)  |  B (inline)  | delta
+  unqualified    |  1655.922   |  10.6       | B is -99.4% vs A
+  qualified      |  559.044    |  9.529      | B is -98.3% vs A
+
+  residue check: policies=3 (expect 3 baseline — ab_probe dropped)
+
+=== FULL PLANS ===
+{
+  "A": {
+    "unqualified": {
+      "cold": 1674.641,
+      "warm": [
+        1655.922,
+        1662.671
+      ],
+      "median": 1655.922,
+      "plan": "Seq Scan on user_data  (cost=0.00..27640.00 rows=33333 width=1206) (actual time=0.287..1649.132 rows=66667 loops=1)\n  Filter: is_member_of(business_id)\n  Rows Removed by Filter: 33333\n  Buffers: shared hit=101640\nPlanning Time: 0.079 ms\nExecution Time: 1655.922 ms"
+    },
+    "qualified": {
+      "cold": 559.77,
+      "warm": [
+        559.044,
+        562.211
+      ],
+      "median": 559.044,
+      "plan": "Index Scan using idx_user_data_business_id on user_data  (cost=0.29..10564.66 rows=11056 width=1206) (actual time=0.281..555.847 rows=33333 loops=1)\n  Index Cond: (business_id = 'd5550b69-b0dc-48ab-bfbd-3aec9a75c63f'::uuid)\n  Filter: is_member_of(business_id)\n  Buffers: shared hit=35001\nPlanning Time: 0.104 ms\nExecution Time: 559.044 ms"
+    }
+  },
+  "B": {
+    "unqualified": {
+      "cold": 10.718,
+      "warm": [
+        10.6,
+        10.634
+      ],
+      "median": 10.6,
+      "plan": "Seq Scan on user_data  (cost=0.00..2890.00 rows=50000 width=1206) (actual time=10.591..10.592 rows=0 loops=1)\n  Filter: (ANY (business_id = (hashed SubPlan 1).col1))\n  Rows Removed by Filter: 100000\n  Buffers: shared hit=1640\n  SubPlan 1\n    ->  Result  (cost=0.00..0.00 rows=0 width=0) (actual time=0.000..0.001 rows=0 loops=1)\n          One-Time Filter: false\nPlanning Time: 0.200 ms\nExecution Time: 10.634 ms"
+    },
+    "qualified": {
+      "cold": 9.671,
+      "warm": [
+        9.529,
+        9.651
+      ],
+      "median": 9.529,
+      "plan": "Index Scan using idx_user_data_business_id on user_data  (cost=0.29..2355.83 rows=16583 width=1206) (actual time=9.608..9.609 rows=0 loops=1)\n  Index Cond: (business_id = 'd5550b69-b0dc-48ab-bfbd-3aec9a75c63f'::uuid)\n  Filter: (ANY (business_id = (hashed SubPlan 1).col1))\n  Rows Removed by Filter: 33333\n  Buffers: shared hit=1668\n  SubPlan 1\n    ->  Result  (cost=0.00..0.00 rows=0 width=0) (actual time=0.001..0.001 rows=0 loops=1)\n          One-Time Filter: false\nPlanning Time: 0.212 ms\nExecution Time: 9.651 ms"
+    }
+  }
+}

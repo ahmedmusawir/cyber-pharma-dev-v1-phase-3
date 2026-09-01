@@ -1,0 +1,15 @@
+=== X1/AC8 — helper shape (pg_proc) ===
+helpers found: 3/3
+  ok   is_account_member(acct uuid) secdef=true volatile=s config={"search_path=\"\""}
+  ok   is_admin_of(biz uuid) secdef=true volatile=s config={"search_path=\"\""}
+  ok   is_member_of(biz uuid) secdef=true volatile=s config={"search_path=\"\""}
+=== X1/AC8 — EXECUTE grants (anon must NOT hold it) ===
+  FAIL is_member_of: anon=true authenticated=true
+  FAIL is_admin_of: anon=true authenticated=true
+  FAIL is_account_member: anon=true authenticated=true
+=== X1 — live grant probe (impersonated roles) ===
+  FAIL anon EXECUTED the helper
+  ok   authenticated executed all three; no-membership result m=false a=false ac=false (all false expected)
+=== X1 — policy count unchanged (helpers create no policies) ===
+  policies=3 (expect 3 baseline)
+=== X1 VERDICT: RED ===

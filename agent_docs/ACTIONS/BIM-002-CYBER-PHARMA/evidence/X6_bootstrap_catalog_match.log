@@ -1,0 +1,12 @@
+X6 — post-bootstrap catalog vs agent_docs/DB_BASELINE.md (BEFORE the chain)
+  ok   tables = exactly [profiles, user_roles]
+  ok   policies = the 3 baseline names, byte-faithful
+        · Profiles are updatable by owner or superadmins
+        · Profiles are viewable by owner or superadmins
+        · Users can read their own role
+  ok   RLS enabled on both baseline tables
+  ok   functions = [handle_new_user, rls_auto_enable] — update_updated_at correctly ABSENT pre-chain (ERRATUM E-1)
+  ok   ensure_rls event trigger present
+  ok   app_role enum = superadmin/admin/member
+  ok   on_auth_user_created trigger on auth.users
+X6 BOOTSTRAP CATALOG: MATCHES DB_BASELINE.md — chain may proceed

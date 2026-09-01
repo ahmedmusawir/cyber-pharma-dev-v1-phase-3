@@ -1,0 +1,25 @@
+  ok   L1 one permissive policy per operation per table (18 table×op groups)
+  ok   L2 SELECT-before-write holds (catalog + migration file order)
+  ok   L3 junction-first: no inline-junction predicates in use (formulation C adopted)
+  ok   L4 Gap-6: no policy or helper reads user_roles / profiles / metadata / owner_user_id
+  ── policy inventory ──
+     aac_reference                SELECT × 1  aac_reference_select_authenticated
+     accounts                     SELECT × 1  account_select_member
+     businesses                   SELECT × 1  business_select_member
+     businesses                   UPDATE × 1  business_update_admin
+     ful_reference                SELECT × 1  ful_reference_select_authenticated
+     pbm_info                     SELECT × 1  pbm_info_select_authenticated
+     profiles                     SELECT × 1  Profiles are viewable by owner or superadmins
+     profiles                     UPDATE × 1  Profiles are updatable by owner or superadmins
+     reference_dataset_versions   SELECT × 1  reference_dataset_versions_select_authenticated
+     report_files                 SELECT × 1  report_files_select_member
+     subscriptions                SELECT × 1  subscription_select_account_member
+     user_businesses              SELECT × 1  ub_select_self
+     user_data                    DELETE × 1  user_data_delete_admin
+     user_data                    INSERT × 1  user_data_insert_member
+     user_data                    SELECT × 1  user_data_select_member
+     user_data                    UPDATE × 1  user_data_update_member
+     user_roles                   SELECT × 1  Users can read their own role
+     wac_reference                SELECT × 1  wac_reference_select_authenticated
+  total policies in public: 18
+[policy-check] ALL LAWS HOLD

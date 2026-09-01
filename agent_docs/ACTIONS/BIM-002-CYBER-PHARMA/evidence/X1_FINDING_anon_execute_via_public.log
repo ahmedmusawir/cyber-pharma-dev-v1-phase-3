@@ -1,0 +1,14 @@
+=== diagnosis: raw ACL on the helpers ===
+  is_account_member → {=X/postgres,postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+  is_admin_of → {=X/postgres,postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+  is_member_of → {=X/postgres,postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+  (=X/postgres entry means PUBLIC holds EXECUTE; anon inherits it, so REVOKE FROM anon is a no-op)
+
+=== remedy test — REVOKE FROM PUBLIC, inside a transaction, ROLLED BACK ===
+  is_member_of: anon=false authenticated=true service_role=true
+  is_admin_of: anon=false authenticated=true service_role=true
+  is_account_member: anon=false authenticated=true service_role=true
+  anon probe: DENIED (42501) — remedy works
+
+=== post-rollback state (unchanged, deviation NOT applied) ===
+  anon EXECUTE on is_member_of = true (still true — nothing persisted)

@@ -1,0 +1,17 @@
+[revocation] R-C — junction revocation against a LIVE session (no token refresh)
+
+  signed in as multiStore once; access token captured (fingerprint IR_YWPw9H47A)
+  step 1 — before revocation: A1=200 rows · B1=200 rows · stores=[Store A1, Store B1]
+  ok   sees both stores' rows (200 + 200)
+  step 2 — service role deleted (multiStore, B1). Ground truth: multiStore now holds 1 junction row(s)
+  ok   junction ground truth: A1 only
+  ok   access token is byte-identical — no refresh occurred between the queries
+  step 3 — after revocation, SAME session: A1=200 rows · B1=0 rows · stores=[Store A1]
+  ok   B1 rows are gone IMMEDIATELY (0) — revocation is not deferred to token refresh
+  ok   A1 rows remain (200) — revocation was surgical, not a blanket lockout
+  ok   store list narrowed to A1 only
+  step 4 — membership restored (junction back to 6 rows); same session now sees B1=200 rows again
+  ok   junction restored to its seeded shape
+  ok   re-granting membership is ALSO immediate on the same session
+
+[revocation] R-C PROVEN — revocation and re-grant both take effect immediately, with no token refresh

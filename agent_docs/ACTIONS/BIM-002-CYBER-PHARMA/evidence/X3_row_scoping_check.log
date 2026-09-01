@@ -1,0 +1,8 @@
+X3 row-scoping — WHICH rows each identity sees, after TWO full matrix runs (idempotence proof)
+seed: 200 user_data rows per store; A1+A2 = Account A; B1 = Account B
+  ok  ownerA      rows=400  stores=[Store A1, Store A2] accounts=[Account A]
+  ok  staffA      rows=200  stores=[Store A1] accounts=[Account A]
+  ok  ownerB      rows=200  stores=[Store B1] accounts=[Account B]
+  ok  multiStore  rows=400  stores=[Store A1, Store B1] accounts=[Account A, Account B]
+  ok  anon        rows=0
+VERDICT: row scoping exact, zero drift across two runs

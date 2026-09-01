@@ -1,0 +1,101 @@
+CORRECTED RUN — junction SELECT policy present (the real production state).
+First run invalidated: with zero policies on user_businesses, B's inline subquery
+was blinded by the junction's own RLS and returned 0 rows for every query.
+temp junction policy landed (exact text 0019 will carry).
+
+══════ A  helper (SECURITY DEFINER) ══════
+
+── unqualified: MEDIAN 1660.545ms · rows returned=66667 (cold 1651.112ms discarded)
+   Seq Scan on user_data  (cost=0.00..27640.00 rows=33333 width=1206) (actual time=0.292..1659.835 rows=66667 loops=1)
+     Filter: is_member_of(business_id)
+     Rows Removed by Filter: 33333
+     Buffers: shared hit=101640
+   Planning Time: 0.080 ms
+   Execution Time: 1666.503 ms
+
+── qualified: MEDIAN 562.766ms · rows returned=33333 (cold 566.758ms discarded)
+   Index Scan using idx_user_data_business_id on user_data  (cost=0.29..10564.66 rows=11056 width=1206) (actual time=0.280..558.470 rows=33333 loops=1)
+     Index Cond: (business_id = 'd5550b69-b0dc-48ab-bfbd-3aec9a75c63f'::uuid)
+     Filter: is_member_of(business_id)
+     Buffers: shared hit=35001
+   Planning Time: 0.101 ms
+   Execution Time: 562.766 ms
+
+══════ B  inline subquery (invoker-evaluated) ══════
+
+── unqualified: MEDIAN 30.884ms · rows returned=66667 (cold 30.759ms discarded)
+   Seq Scan on user_data  (cost=1.18..2891.18 rows=50000 width=1206) (actual time=0.042..26.875 rows=66667 loops=1)
+     Filter: (ANY (business_id = (hashed SubPlan 1).col1))
+     Rows Removed by Filter: 33333
+     Buffers: shared hit=1641
+     SubPlan 1
+       ->  Seq Scan on user_businesses ub  (cost=0.00..1.18 rows=1 width=16) (actual time=0.015..0.023 rows=2 loops=1)
+
+── qualified: MEDIAN 18.548ms · rows returned=33333 (cold 18.799ms discarded)
+   Index Scan using idx_user_data_business_id on user_data  (cost=1.47..2357.01 rows=16583 width=1206) (actual time=0.051..16.544 rows=33333 loops=1)
+     Index Cond: (business_id = 'd5550b69-b0dc-48ab-bfbd-3aec9a75c63f'::uuid)
+     Filter: (ANY (business_id = (hashed SubPlan 1).col1))
+     Buffers: shared hit=1669
+     SubPlan 1
+       ->  Seq Scan on user_businesses ub  (cost=0.00..1.18 rows=1 width=16) (actual time=0.018..0.026 rows=2 loops=1)
+
+══════ FAIR SUMMARY (warm median) ══════
+  shape         | A helper        | B inline        | winner
+  unqualified   | 1660.545ms r=66667| 30.884ms r=66667| B by 53.8x
+  qualified     | 562.766ms r=33333| 18.548ms r=33333| B by 30.3x
+
+  correctness parity (same rows returned): YES — comparison is valid
+  residue check: policies=3 (expect 3 baseline — all temps dropped)
+
+=== FULL PLANS ===
+{
+  "A": {
+    "unqualified": {
+      "median": 1660.545,
+      "rows": "66667",
+      "plan": "Seq Scan on user_data  (cost=0.00..27640.00 rows=33333 width=1206) (actual time=0.292..1659.835 rows=66667 loops=1)\n  Filter: is_member_of(business_id)\n  Rows Removed by Filter: 33333\n  Buffers: shared hit=101640\nPlanning Time: 0.080 ms\nExecution Time: 1666.503 ms"
+    },
+    "qualified": {
+      "median": 562.766,
+      "rows": "33333",
+      "plan": "Index Scan using idx_user_data_business_id on user_data  (cost=0.29..10564.66 rows=11056 width=1206) (actual time=0.280..558.470 rows=33333 loops=1)\n  Index Cond: (business_id = 'd5550b69-b0dc-48ab-bfbd-3aec9a75c63f'::uuid)\n  Filter: is_member_of(business_id)\n  Buffers: shared hit=35001\nPlanning Time: 0.101 ms\nExecution Time: 562.766 ms"
+    }
+  },
+  "B": {
+    "unqualified": {
+      "median": 30.884,
+      "rows": "66667",
+      "plan": "Seq Scan on user_data  (cost=1.18..2891.18 rows=50000 width=1206) (actual time=0.042..26.875 rows=66667 loops=1)\n  Filter: (ANY (business_id = (hashed SubPlan 1).col1))\n  Rows Removed by Filter: 33333\n  Buffers: shared hit=1641\n  SubPlan 1\n    ->  Seq Scan on user_businesses ub  (cost=0.00..1.18 rows=1 width=16) (actual time=0.015..0.023 rows=2 loops=1)\n          Filter: ((user_id = (COALESCE(NULLIF(current_setting('request.jwt.claim.sub'::text, true), ''::text), ((NULLIF(current_setting('request.jwt.claims'::text, true), ''::text))::jsonb ->> 'sub'::text)))::uuid) AND (user_id = (COALESCE(NULLIF(current_setting('request.jwt.claim.sub'::text, true), ''::text), ((NULLIF(current_setting('request.jwt.claims'::text, true), ''::text))::jsonb ->> 'sub'::text)))::uuid))\n          Rows Removed by Filter: 1\n          Buffers: shared hit=1\nPlanning Time: 0.316 ms\nExecution Time: 30.884 ms"
+    },
+    "qualified": {
+      "median": 18.548,
+      "rows": "33333",
+      "plan": "Index Scan using idx_user_data_business_id on user_data  (cost=1.47..2357.01 rows=16583 width=1206) (actual time=0.051..16.544 rows=33333 loops=1)\n  Index Cond: (business_id = 'd5550b69-b0dc-48ab-bfbd-3aec9a75c63f'::uuid)\n  Filter: (ANY (business_id = (hashed SubPlan 1).col1))\n  Buffers: shared hit=1669\n  SubPlan 1\n    ->  Seq Scan on user_businesses ub  (cost=0.00..1.18 rows=1 width=16) (actual time=0.018..0.026 rows=2 loops=1)\n          Filter: ((user_id = (COALESCE(NULLIF(current_setting('request.jwt.claim.sub'::text, true), ''::text), ((NULLIF(current_setting('request.jwt.claims'::text, true), ''::text))::jsonb ->> 'sub'::text)))::uuid) AND (user_id = (COALESCE(NULLIF(current_setting('request.jwt.claim.sub'::text, true), ''::text), ((NULLIF(current_setting('request.jwt.claims'::text, true), ''::text))::jsonb ->> 'sub'::text)))::uuid))\n          Rows Removed by Filter: 1\n          Buffers: shared hit=1\nPlanning Time: 0.321 ms\nExecution Time: 18.548 ms"
+    }
+  }
+}
+
+########## C QUALIFIED + SHIELD TEST ##########
+══════ C — qualified shape ══════
+  MEDIAN 18.274ms · rows=33333 · buffers=1669 (cold 84.021ms discarded)
+   Index Scan using idx_user_data_business_id on user_data  (cost=8.06..2398.07 rows=16592 width=1206) (actual time=0.264..16.903 rows=33333 loops=1)
+     Index Cond: (business_id = '43193f97-5e05-44d5-96f0-71a2dedc2511'::uuid)
+     Filter: (ANY (business_id = (hashed SubPlan 1).col1))
+     Buffers: shared hit=1669
+     SubPlan 1
+       ->  ProjectSet  (cost=0.00..5.27 rows=1000 width=16) (actual time=0.219..0.233 rows=2 loops=1)
+
+══════ SHIELD TEST — junction SELECT policy DROPPED ══════
+  A: rows visible with NO junction policy = 66667   SHIELDED (correct)
+  B: rows visible with NO junction policy = 0   BLINDED — silent total deny
+  C: rows visible with NO junction policy = 66667   SHIELDED (correct)
+
+══════ FINAL THREE-WAY ══════
+  metric        | A helper     | B inline      | C my_business_ids
+  unqualified   | 1685.1ms     | 29.363ms      | 29.589ms  (+0.8% vs B)
+  qualified     | 572.7ms      | 18.154ms      | 18.274ms  (+0.7% vs B)
+  buffers (unq) | 101,640      | 1,641         | 1,641
+  plan shape    | per-row fn   | hashed SubPlan| hashed SubPlan (ProjectSet)
+  shield        | YES (66667)  | NO (0)       | YES (66667)
+  within 20% of B on both shapes: YES → C ADOPTED
+  residue: policies=3 (expect 3)

@@ -1,0 +1,49 @@
+[attacks] every case expected DENIED; every mutation confirmed against service-role ground truth
+
+A1 — cross-account reads by direct id (ownerB is account B only):
+  ok(denied) A1.1 ownerB reads ACCOUNT A by id → DENY (0 rows/affected)
+  ok(denied) A1.2 ownerB reads SUBSCRIPTION A by id → DENY (0 rows/affected)
+  ok(denied) A1.3 ownerB reads user_data A1 row by id → DENY (0 rows/affected)
+  ok(denied) A1.4 ownerB reads business A1 by id → DENY (0 rows/affected)
+  ok(denied) A1.5 ownerB reads report_files A1 by id → DENY (0 rows/affected)
+
+A2 — client-supplied foreign business_id (the 'never from the client' law, enforced by the DB):
+  ok(denied) A2.1 ownerB INSERTs user_data with business_id = A1 → DENY (error 42501) · ground truth: 200 UNCHANGED ✓
+  ok(denied) A2.2 ownerB UPDATEs an A1 row by id → DENY (0 rows/affected) · ground truth: "Drug A1 1" UNCHANGED ✓
+  ok(denied) A2.3 ownerB DELETEs an A1 row by id → DENY (0 rows/affected) · ground truth: 200 UNCHANGED ✓
+
+A3 — RE-HOME: staffA (legitimate A1 member) tries to move an A1 row into B1 (WITH CHECK):
+  ok(denied) A3.1 staffA UPDATEs own-tenant row setting business_id = B1 → DENY (error 42501) · ground truth: "cd5edbef-a903-4db7-8b99-9b6d58f21cb2" UNCHANGED ✓
+
+A4 — DELETE by a member (role gate: DELETE is is_admin_of, not is_member_of):
+  ok(denied) A4.1 staffA (member of A1) DELETEs an A1 row → DENY (0 rows/affected) · ground truth: 200 UNCHANGED ✓
+  ok(denied) A4.2 multiStore (member of A1) DELETEs an A1 row → DENY (0 rows/affected) · ground truth: 200 UNCHANGED ✓
+
+A5 — junction role tampering (privilege escalation — structurally impossible: no write policy):
+  ok(denied) A5.1 staffA promotes own junction role to admin → DENY (0 rows/affected) · ground truth: "member" UNCHANGED ✓
+  ok(denied) A5.2 staffA INSERTs a new admin membership on B1 → DENY (error 42501) · ground truth: 6 UNCHANGED ✓
+  ok(denied) A5.3 staffA DELETEs own junction row (self-offboard) → DENY (0 rows/affected) · ground truth: 6 UNCHANGED ✓
+  ok(denied) A5.4 staffA reads ANOTHER user's junction row → DENY (0 rows/affected)
+
+A6 — accounts are read-only for every app role (R-A):
+  ok(denied) A6.1 ownerA INSERTs an account → DENY (error 42501) · ground truth: 1 UNCHANGED ✓
+  ok(denied) A6.2 ownerA UPDATEs own account (owner_user_id must NOT grant writes) → DENY (0 rows/affected) · ground truth: "Account A" UNCHANGED ✓
+  ok(denied) A6.3 ownerA DELETEs own account → DENY (0 rows/affected) · ground truth: 1 UNCHANGED ✓
+
+A7 — reference tables are read-only for authenticated (locked by omission):
+  ok(denied) A7.1 ownerA INSERTs into aac_reference → DENY (error 42501)
+  ok(denied) A7.2 ownerA UPDATEs pbm_info → DENY (0 rows/affected) · ground truth: "Seed PBM" UNCHANGED ✓
+
+A8 — deny-all tables stay dark to everyone (rows EXIST — a 0 here means refused, not empty):
+  ok(denied) A8.1 ownerA reads apa_memberships (service role sees 1 row(s)) → DENY (0 rows/affected)
+  ok(denied) A8.2 ownerA reads pending_registrations (service role sees 1 row(s)) → DENY (0 rows/affected)
+  ok(denied) A8.3 ownerA reads audit_logs (service role sees 1 row(s)) → DENY (0 rows/affected)
+
+A9 — anonymous, no session:
+  ok(denied) A9.1 anon reads accounts → DENY (0 rows/affected)
+  ok(denied) A9.2 anon reads businesses → DENY (0 rows/affected)
+  ok(denied) A9.3 anon reads user_businesses → DENY (0 rows/affected)
+  ok(denied) A9.4 anon reads user_data → DENY (0 rows/affected)
+  ok(denied) A9.5 anon reads subscriptions → DENY (0 rows/affected)
+
+[attacks] 28 cases · 0 breach(es) · 0 ground-truth mismatch(es) → ALL DENIED, NOTHING PERSISTED

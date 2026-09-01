@@ -1,0 +1,41 @@
+{
+  "users": {
+    "ownerA": "0db391ab-9f48-4bae-8a32-6e8dcfc6771d",
+    "staffA": "81b50f37-0e84-4f13-b997-9e980916f5ae",
+    "ownerB": "b4dc4346-e8fb-4630-8acd-2083e8dd8906",
+    "multiStore": "dac14ebc-86f5-4a8a-a382-8988f7ab7991"
+  },
+  "cast": [
+    {
+      "key": "ownerA",
+      "email": "bim002-ownera@rls.local"
+    },
+    {
+      "key": "staffA",
+      "email": "bim002-staffa@rls.local"
+    },
+    {
+      "key": "ownerB",
+      "email": "bim002-ownerb@rls.local"
+    },
+    {
+      "key": "multiStore",
+      "email": "bim002-multistore@rls.local"
+    }
+  ],
+  "accounts": {
+    "A": "c6c15205-6be9-41ad-aec2-1ccdf5490a66",
+    "B": "65e20bb9-8cd7-40b4-ab47-835b56e00b77"
+  },
+  "businesses": {
+    "a1": "09b063fb-0fc9-4f91-baf6-3f63ba533d65",
+    "a2": "c9f68849-04c7-4979-8f34-b2fa5d003ca2",
+    "b1": "2351bfd2-839c-4175-be48-6bb086a6358e"
+  },
+  "samples": {
+    "factA1": "69d549b7-82b1-41ab-bdcd-38b23e789089",
+    "factB1": "70dffb95-b482-446d-803e-6f37750a42e3",
+    "reportA1": "c7a64acf-e2cf-410b-9006-e9e3f2252e42",
+    "subscriptionA": "e37ef0ac-c34b-4516-876f-77ee2ac34770"
+  }
+}

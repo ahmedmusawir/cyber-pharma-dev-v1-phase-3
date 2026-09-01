@@ -1,0 +1,214 @@
+{
+  "_comment": "BIM-002 expectation matrix. default DENY; every ALLOW is an explicit override earned by a landed policy. Baseline notes: user_roles.select and profiles.select/update are ALLOWED by the three PRE-EXISTING baseline policies (own row) — not by this module. Tenant payloads target store A1, so ownerB's DENY on A1 rows is the cross-tenant proof.",
+  "phase": "X3-FINAL-all-policies",
+  "identities": [
+    "anon",
+    "ownerA",
+    "staffA",
+    "ownerB",
+    "multiStore"
+  ],
+  "tables": [
+    "accounts",
+    "businesses",
+    "user_roles",
+    "profiles",
+    "user_businesses",
+    "pending_registrations",
+    "subscriptions",
+    "apa_memberships",
+    "user_data",
+    "report_files",
+    "aac_reference",
+    "wac_reference",
+    "ful_reference",
+    "pbm_info",
+    "audit_logs",
+    "reference_dataset_versions"
+  ],
+  "operations": [
+    "select",
+    "insert",
+    "update",
+    "delete"
+  ],
+  "default": "DENY",
+  "overrides": {
+    "ownerA": {
+      "user_roles": {
+        "select": "ALLOW"
+      },
+      "profiles": {
+        "select": "ALLOW",
+        "update": "ALLOW"
+      },
+      "user_businesses": {
+        "select": "ALLOW"
+      },
+      "accounts": {
+        "select": "ALLOW"
+      },
+      "businesses": {
+        "select": "ALLOW",
+        "update": "ALLOW"
+      },
+      "subscriptions": {
+        "select": "ALLOW"
+      },
+      "user_data": {
+        "select": "ALLOW",
+        "insert": "ALLOW",
+        "update": "ALLOW",
+        "delete": "ALLOW"
+      },
+      "report_files": {
+        "select": "ALLOW"
+      },
+      "aac_reference": {
+        "select": "ALLOW"
+      },
+      "wac_reference": {
+        "select": "ALLOW"
+      },
+      "ful_reference": {
+        "select": "ALLOW"
+      },
+      "pbm_info": {
+        "select": "ALLOW"
+      },
+      "reference_dataset_versions": {
+        "select": "ALLOW"
+      }
+    },
+    "staffA": {
+      "user_roles": {
+        "select": "ALLOW"
+      },
+      "profiles": {
+        "select": "ALLOW",
+        "update": "ALLOW"
+      },
+      "user_businesses": {
+        "select": "ALLOW"
+      },
+      "accounts": {
+        "select": "ALLOW"
+      },
+      "businesses": {
+        "select": "ALLOW"
+      },
+      "subscriptions": {
+        "select": "ALLOW"
+      },
+      "user_data": {
+        "select": "ALLOW",
+        "insert": "ALLOW",
+        "update": "ALLOW"
+      },
+      "report_files": {
+        "select": "ALLOW"
+      },
+      "aac_reference": {
+        "select": "ALLOW"
+      },
+      "wac_reference": {
+        "select": "ALLOW"
+      },
+      "ful_reference": {
+        "select": "ALLOW"
+      },
+      "pbm_info": {
+        "select": "ALLOW"
+      },
+      "reference_dataset_versions": {
+        "select": "ALLOW"
+      }
+    },
+    "ownerB": {
+      "user_roles": {
+        "select": "ALLOW"
+      },
+      "profiles": {
+        "select": "ALLOW",
+        "update": "ALLOW"
+      },
+      "user_businesses": {
+        "select": "ALLOW"
+      },
+      "accounts": {
+        "select": "ALLOW"
+      },
+      "businesses": {
+        "select": "ALLOW"
+      },
+      "subscriptions": {
+        "select": "ALLOW"
+      },
+      "user_data": {
+        "select": "ALLOW"
+      },
+      "report_files": {
+        "select": "ALLOW"
+      },
+      "aac_reference": {
+        "select": "ALLOW"
+      },
+      "wac_reference": {
+        "select": "ALLOW"
+      },
+      "ful_reference": {
+        "select": "ALLOW"
+      },
+      "pbm_info": {
+        "select": "ALLOW"
+      },
+      "reference_dataset_versions": {
+        "select": "ALLOW"
+      }
+    },
+    "multiStore": {
+      "user_roles": {
+        "select": "ALLOW"
+      },
+      "profiles": {
+        "select": "ALLOW",
+        "update": "ALLOW"
+      },
+      "user_businesses": {
+        "select": "ALLOW"
+      },
+      "accounts": {
+        "select": "ALLOW"
+      },
+      "businesses": {
+        "select": "ALLOW"
+      },
+      "subscriptions": {
+        "select": "ALLOW"
+      },
+      "user_data": {
+        "select": "ALLOW",
+        "insert": "ALLOW",
+        "update": "ALLOW"
+      },
+      "report_files": {
+        "select": "ALLOW"
+      },
+      "aac_reference": {
+        "select": "ALLOW"
+      },
+      "wac_reference": {
+        "select": "ALLOW"
+      },
+      "ful_reference": {
+        "select": "ALLOW"
+      },
+      "pbm_info": {
+        "select": "ALLOW"
+      },
+      "reference_dataset_versions": {
+        "select": "ALLOW"
+      }
+    }
+  }
+}

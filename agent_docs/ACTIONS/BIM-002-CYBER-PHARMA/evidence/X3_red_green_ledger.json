@@ -1,0 +1,79 @@
+[
+  {
+    "step": "01",
+    "file": "0017_rls_user_businesses.sql",
+    "red": "X3-01-0017_rls_user_businesses-RED_2026-09-01T0625.log",
+    "green": "X3-01-0017_rls_user_businesses-GREEN_2026-09-01T0625.log",
+    "why": "T-5 self-visibility: each identity sees only their own junction rows"
+  },
+  {
+    "step": "02",
+    "file": "0018_rls_accounts.sql",
+    "red": "X3-02-0018_rls_accounts-RED_2026-09-01T0626.log",
+    "green": "X3-02-0018_rls_accounts-GREEN_2026-09-01T0626.log",
+    "why": "R-A: each identity reads the account above a store they belong to"
+  },
+  {
+    "step": "03",
+    "file": "0019_rls_businesses.sql",
+    "red": "X3-03-0019_rls_businesses-RED_2026-09-01T0626.log",
+    "green": "X3-03-0019_rls_businesses-GREEN_2026-09-01T0626.log",
+    "why": "T-1 read for all four; T-3 write only for ownerA (admin of A1, the probe target)"
+  },
+  {
+    "step": "04",
+    "file": "0020_rls_subscriptions.sql",
+    "red": "X3-04-0020_rls_subscriptions-RED_2026-09-01T0626.log",
+    "green": "X3-04-0020_rls_subscriptions-GREEN_2026-09-01T0627.log",
+    "why": "R-A mirror: account-scoped subscription read"
+  },
+  {
+    "step": "05",
+    "file": "0021_rls_user_data.sql",
+    "red": "X3-05-0021_rls_user_data-RED_2026-09-01T0627.log",
+    "green": "X3-05-0021_rls_user_data-GREEN_2026-09-01T0627.log",
+    "why": "SELECT all four; INSERT/UPDATE only A1 members; DELETE only the A1 admin (ownerB denied throughout = cross-tenant proof)"
+  },
+  {
+    "step": "06",
+    "file": "0022_rls_report_files.sql",
+    "red": "X3-06-0022_rls_report_files-RED_2026-09-01T0628.log",
+    "green": "X3-06-0022_rls_report_files-GREEN_2026-09-01T0628.log",
+    "why": "T-1 read"
+  },
+  {
+    "step": "07",
+    "file": "0023_rls_aac_reference.sql",
+    "red": "X3-07-0023_rls_aac_reference-RED_2026-09-01T0628.log",
+    "green": "X3-07-0023_rls_aac_reference-GREEN_2026-09-01T0628.log",
+    "why": "T-4 platform read"
+  },
+  {
+    "step": "08",
+    "file": "0024_rls_wac_reference.sql",
+    "red": "X3-08-0024_rls_wac_reference-RED_2026-09-01T0628.log",
+    "green": "X3-08-0024_rls_wac_reference-GREEN_2026-09-01T0628.log",
+    "why": "T-4 platform read"
+  },
+  {
+    "step": "09",
+    "file": "0025_rls_ful_reference.sql",
+    "red": "X3-09-0025_rls_ful_reference-RED_2026-09-01T0629.log",
+    "green": "X3-09-0025_rls_ful_reference-GREEN_2026-09-01T0629.log",
+    "why": "T-4 platform read"
+  },
+  {
+    "step": "10",
+    "file": "0026_rls_pbm_info.sql",
+    "red": "X3-10-0026_rls_pbm_info-RED_2026-09-01T0629.log",
+    "green": "X3-10-0026_rls_pbm_info-GREEN_2026-09-01T0629.log",
+    "why": "T-4 platform read"
+  },
+  {
+    "step": "11",
+    "file": "0027_rls_reference_dataset_versions.sql",
+    "red": "X3-11-0027_rls_reference_dataset_versions-RED_2026-09-01T0629.log",
+    "green": "X3-11-0027_rls_reference_dataset_versions-GREEN_2026-09-01T0630.log",
+    "why": "T-4 platform read"
+  }
+]

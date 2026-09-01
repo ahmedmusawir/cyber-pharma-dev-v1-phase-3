@@ -34,15 +34,33 @@ of the BIM-001 chain** (`db:apply` path, Director only) · DATA_CONTRACT §3 ame
 staging (ERRATUM E-2) · throwaway-credential rotation (BIM-001 replay projects + the
 Proto-06 rig project) · delete `phase-3-proto-6` after BIM-002's harness re-point.
 
-**Next step:** **BIM-002 (RLS policies)** — module staged at
-`agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/` (manager + spec + own AUTHORITY, unread until
-the launch line → Plan Mode). Junction-only membership law (Gap-6 / R-3) pre-loaded, and
-PROTO 06's proven patterns + harness are the starting material. Open design gap it
-inherits: **N-6 — no policy pattern exists for `accounts`-level access.** Older carries:
-numbered-color predicate rebuild · QA-FINDING-001 · report_files fidelity flag.
+**Last action (2026-09-01):** **BIM-002 ENGINEERING COMPLETE — all gates X0–X7 GREEN.**
+15 RLS policies across 11 tables + 4 helpers (`0016–0027`), isolation harness at
+`scripts/rls-harness/` with `npm run rls:prove`. Proven three times from empty on two
+throwaway projects: 320-cell matrix, exact row-scoping, 28-case attack battery with every
+mutation ground-truthed, and **live-session revocation proven with a byte-identical
+token**. Board 28/128/0, types diff vs certified `9f8c80d` EMPTY, zero `src/**` writes.
+Errata E-1…E-5; new findings F-10…F-13 in `ACTIONS/PROTO06/TRANSFERS_ADDENDUM_BIM-002.md`.
+Templates at `AUTHORITY/RLS_TEMPLATES.md`. Spec ENGINEER EVIDENCE-FILLED (AC13 struck).
 
-**⚠️ UNCOMMITTED:** Only today's session file and this RECOVERY refresh. Tree was clean
-at session open. Operator commits — agent never does.
+**Pending:** Director — 4 per-concern commits (blocks in
+`agent_docs/RESPONSES/response_2026-09-01_161500_bim002-X7-handoff.md`) → SHA pin →
+PRE-Q → Sol's Gate Q. Then carried flags **CF-1…CF-6** (manager §10a): notably
+**credential rotation on all four throwaway projects** and deletion of `proto-06/` +
+branch `phase-3-proto-6` now that the harness port is certified.
+
+**Session state:** BIM-002 handed to QA 2026-09-01. **Engineer is standing by** — no
+further work in this lane until the QA report returns. On return: file report in `QA/` →
+spec → QA-VERIFIED + SHA pinned → manager → CLOSED with deliverables map → CHANGELOG /
+RECOVERY / session log → tombstone → route CF-1…CF-6.
+
+**Next step:** Gate Q → BIM-002 close → **BIM-003 (audit)**. Dev backend remains at the
+2-table baseline through BIM-004 (LIVE APPLY DEFERRED). Older carries: numbered-color
+predicate rebuild · QA-FINDING-001 · report_files fidelity (CF-3).
+
+**⚠️ UNCOMMITTED:** the entire BIM-002 batch — 12 migrations, `scripts/rls-harness/`,
+`package.json`, templates, addendum, spec/manager/erratum/retrospective, 60+ evidence
+logs, 8 responses, session log, this file. Operator commits — agent never does.
 
 ---
 
