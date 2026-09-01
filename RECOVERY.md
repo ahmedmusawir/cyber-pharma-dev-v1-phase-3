@@ -4,9 +4,10 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-08-31 (BIM-001 CLOSED)
-**Branch:** phase-3-2 @ `9f8c80d` (BIM-001 certified SHA)
-**Session log:** `agent_docs/SESSIONS/session_2026-08-31.md`
+**Last updated:** 2026-09-01 (session open; BIM-002 staged)
+**Branch:** `phase-3-bim002` @ `aca3d05` ("1sep2026 - bim002 has begun") — clean tree
+**Session log:** `agent_docs/SESSIONS/session_2026-09-01.md`
+_(prior: BIM-001 certified `9f8c80d` on phase-3-2 · PROTO 06 rig lane closed, branch `phase-3-proto-6` pending deletion)_
 
 ---
 
@@ -22,18 +23,26 @@ untouched — live apply is the Director's, post-close.**
 **Module history:** BIM-000 CLOSED (`432cf5a`) · FIX-001 CLOSED (`70b38ef`, KIP-2 dead) ·
 BIM-001 CLOSED (`9f8c80d`, 16-table schema).
 
-**Pending:** ONE Director close-out commit (batch in
-`agent_docs/RESPONSES/response_2026-08-31_bim001-closeout.md`). Post-commit Director
-duties: **LIVE apply of the chain** (db:apply path, Director only) · DATA_CONTRACT §3
-amendment staging (ERRATUM E-2) · throwaway-credential rotation.
+**Also closed since:** **PROTO 06 rig lane** (R1–R5 green: 8 policies, 80-cell matrix,
+32-case attack battery, reproducible from empty DB ×2). TRANSFERS.md + FINDINGS.md
+consumed by the Architect and copied forward to `agent_docs/ACTIONS/PROTO06/`; policies
+and harness on main. Headline: **F-1 — a write policy without a paired SELECT policy
+silently no-ops** (binding on BIM-002).
 
-**Next step:** BIM-002 (RLS policies) — the campaign's next module; junction-only
-membership law (R-3) already pre-loaded in the BIM-001 manager. Carries: numbered-color
-predicate rebuild · QA-FINDING-001 · report_files fidelity flag.
+**Pending (Director, carried — status unconfirmed at this session's open):** **LIVE apply
+of the BIM-001 chain** (`db:apply` path, Director only) · DATA_CONTRACT §3 amendment
+staging (ERRATUM E-2) · throwaway-credential rotation (BIM-001 replay projects + the
+Proto-06 rig project) · delete `phase-3-proto-6` after BIM-002's harness re-point.
 
-**⚠️ UNCOMMITTED:** BIM-001 close-out batch only — Gate Q FINAL PASS report (untracked),
-spec/manager/retrospective patches, session_2026-08-31.md, this file, CHANGELOG,
-close-out response. Operator commits — agent never does.
+**Next step:** **BIM-002 (RLS policies)** — module staged at
+`agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/` (manager + spec + own AUTHORITY, unread until
+the launch line → Plan Mode). Junction-only membership law (Gap-6 / R-3) pre-loaded, and
+PROTO 06's proven patterns + harness are the starting material. Open design gap it
+inherits: **N-6 — no policy pattern exists for `accounts`-level access.** Older carries:
+numbered-color predicate rebuild · QA-FINDING-001 · report_files fidelity flag.
+
+**⚠️ UNCOMMITTED:** Only today's session file and this RECOVERY refresh. Tree was clean
+at session open. Operator commits — agent never does.
 
 ---
 

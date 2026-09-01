@@ -1,0 +1,54 @@
+=== [1] RLS flags (expect 16 tables, all true) ===
+tables=16  all_rls_true=true
+=== [2] policy inventory (expect exactly 3, baseline tables only) ===
+total_policies=3
+  profiles | Profiles are updatable by owner or superadmins | UPDATE | {authenticated}
+  profiles | Profiles are viewable by owner or superadmins | SELECT | {authenticated}
+  user_roles | Users can read their own role | SELECT | {authenticated}
+policies_on_14_new_tables=0 (correct)
+=== [3] tenant-key columns (manager 5.2) ===
+  accounts.owner_user_id (uuid, nullable=NO)
+  apa_memberships.discount_redeemed_business_id (uuid, nullable=YES)
+  audit_logs.user_id (uuid, nullable=YES)
+  businesses.account_id (uuid, nullable=NO)
+  pending_registrations.business_id (uuid, nullable=YES)
+  report_files.business_id (uuid, nullable=NO)
+  subscriptions.account_id (uuid, nullable=NO)
+  user_businesses.business_id (uuid, nullable=NO)
+  user_businesses.user_id (uuid, nullable=NO)
+  user_data.business_id (uuid, nullable=NO)
+  user_roles.user_id (uuid, nullable=NO)
+=== [4] tables WITHOUT any tenant key ===
+  aac_reference, accounts, apa_memberships, audit_logs, ful_reference, pbm_info, profiles, reference_dataset_versions, user_roles, wac_reference
+=== [5] indexes on tenant keys + junction ===
+  audit_logs | idx_audit_logs_user_id
+  report_files | idx_report_files_business_id
+  user_businesses | idx_user_businesses_business_id
+  user_businesses | idx_user_businesses_user_id
+  user_businesses | uq_user_business
+  user_data | idx_user_data_business_id
+  user_roles | user_roles_user_id_key
+=== [6] functions + event trigger ===
+  handle_new_user secdef=true vol=v cfg={search_path=public}
+  rls_auto_enable secdef=false vol=v cfg=null
+  update_updated_at secdef=false vol=v cfg=null
+  ensure_rls event trigger: PRESENT
+=== [7] storage.objects policy baseline (AC11 reference) ===
+  storage.objects policies=0
+=== all indexes by table ===
+  aac_reference: aac_reference_pkey, uq_aac_reference_ndc_date
+  accounts: accounts_pkey
+  apa_memberships: apa_memberships_license_number_key, apa_memberships_pkey
+  audit_logs: audit_logs_pkey, idx_audit_logs_created_at, idx_audit_logs_table_record, idx_audit_logs_user_id
+  businesses: businesses_activation_key_key, businesses_pharmacy_slug_key, businesses_pkey, idx_businesses_account_id, uq_businesses_ncpdp_npi
+  ful_reference: ful_reference_pkey, uq_ful_reference_ndc_year_month
+  pbm_info: pbm_info_pkey
+  pending_registrations: idx_pending_registrations_email, idx_pending_registrations_status, pending_registrations_activation_token_key, pending_registrations_pkey, uq_pending_reg_email_business
+  profiles: profiles_pkey
+  reference_dataset_versions: reference_dataset_versions_dataset_name_key, reference_dataset_versions_pkey
+  report_files: idx_report_files_business_id, report_files_pkey
+  subscriptions: idx_subscriptions_account_id, subscriptions_pkey, subscriptions_stripe_subscription_id_key
+  user_businesses: idx_user_businesses_business_id, idx_user_businesses_user_id, uq_user_business, user_businesses_pkey
+  user_data: idx_user_data_business_id, user_data_pkey
+  user_roles: user_roles_pkey, user_roles_user_id_key
+  wac_reference: uq_wac_reference_ndc_date, wac_reference_pkey
