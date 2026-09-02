@@ -91,6 +91,21 @@ This holds because membership is looked up live in the junction and nothing is s
 
 ---
 
+## F-14 — denial shape depends on **which clause** denies
+
+**Surfaced by independent QA at BIM-002 PRE-Q, 2026-09-02.**
+
+F-4 established that denial looks different per *operation*. PRE-Q sharpened it: denial also looks different depending on **which policy clause does the denying**, within the same operation on the same table.
+
+| Denying clause | Shape | Example (BIM-002 X4) |
+|---|---|---|
+| **`USING`** — the row is unreachable to this caller | **0 affected, NO error** | `A2.2` ownerB updates an A1 row it has no membership for |
+| **`WITH CHECK`** — the row is reachable, but the proposed new row is illegal | **`42501`** | `A3.1` staffA re-homes an A1 row it *can* reach into B1 |
+
+Both leave ground truth unchanged, and both are correct. An UPDATE policy carrying both clauses can therefore produce **either** shape depending on the case, and a spec or harness that names only one will misdescribe the other — which is exactly what happened to BIM-002's AC3(b) (ERRATUM E-6).
+
+**Rule for any denial-shape classifier:** assert the **expected shape per case**, never accept any non-ALLOW outcome as a generic DENY. "Not allowed" is not a verdict; *"denied by `USING` with 0 affected"* and *"denied by `WITH CHECK` with 42501"* are different assertions, and collapsing them hides the case where a policy denies for the wrong reason — or where a `WITH CHECK` clause is missing entirely and a re-home silently succeeds under a permissive `USING`.
+
 ## Notes for BIM-005 (CRV), which inherits this harness
 
 - The harness now lives at `scripts/rls-harness/` with `loadEnv(prefix)`; point it at another project by adding a prefixed key set and running `RLS_HARNESS_PREFIX=<PREFIX>_ npm run rls:prove`. No code change.

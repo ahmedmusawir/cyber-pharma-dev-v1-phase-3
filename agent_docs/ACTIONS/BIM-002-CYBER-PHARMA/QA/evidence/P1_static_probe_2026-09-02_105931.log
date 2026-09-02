@@ -1,0 +1,132 @@
+P1 STATIC SPECIMEN & INSTRUMENT ATTACK
+local timestamp: 2026-09-02 10:59:31 +0800
+phase: PRE-Q Phase 1 only
+database contact: none
+git commands: none
+
+=== SPECIMEN METADATA (read directly, not via git) ===
+.git/HEAD: ref: refs/heads/qa/bim002
+.git/refs/heads/qa/bim002: 53f1ac0004f40e4df9e403188382b16afb92899f
+pinned specimen: 53f1ac0004f40e4df9e403188382b16afb92899f
+match: yes
+
+QA index/worktree reader (Git index v2; .env.local excluded):
+ M RECOVERY.md
+?? agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/QA/BIM-002_PRE-Q_TEST_PLAN.md
+?? agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/QA/QA_RECON_REPORT.md
+?? agent_docs/RESPONSES/response_2026-09-02_bim002-qa-target-map.md
+?? agent_docs/SESSIONS/session_2026-09-02.md
+?? next-env.d.ts
+?? tsconfig.tsbuildinfo
+Note: this is a read-only hash/index status equivalent, used because Phase 1 forbids Git operations.
+
+=== MIGRATION STATIC PROBE (comments stripped before boundary checks) ===
+migration files: 12 (0016 through 0027)
+helpers: 4 (is_member_of, is_admin_of, my_business_ids, is_account_member)
+all four: SECURITY DEFINER = yes; STABLE = yes; empty search_path = yes
+helper table references: public.user_businesses; is_account_member also public.businesses
+helper identity reference: auth.uid() on all four
+all four ACL blocks: revoke PUBLIC = yes; revoke anon = yes; grant authenticated = yes
+new policies parsed: 15
+junction self-SELECT file: 0017_rls_user_businesses.sql
+C predicates: businesses SELECT, user_data SELECT, report_files SELECT
+inline formulation B in executable policy predicates: 0
+user_data INSERT WITH CHECK: yes
+user_data UPDATE USING + WITH CHECK: yes
+user_data DELETE is_admin_of: yes
+accounts uses is_account_member(id): yes
+subscriptions uses is_account_member(account_id): yes
+five reference tables: exactly one authenticated SELECT USING(true) each
+policies targeting pending_registrations/apa_memberships/audit_logs: 0/0/0
+policies targeting user_roles/profiles: 0/0
+Storage policy statements: 0
+forbidden executable references after comments stripped:
+  user_roles=0; user_metadata=0; raw_user_meta_data=0; profiles=0; owner_user_id=0
+table/column/index structural DDL in 0016-0027: 0
+
+=== AC20 STATIC COMPARISON ===
+Function bodies byte-equal between RLS_TEMPLATES.md and migrations:
+  is_member_of=yes; is_admin_of=yes; my_business_ids=yes; is_account_member=yes
+Every named shipped policy statement shown by RLS_TEMPLATES.md has an exact migration-text match.
+The template's create-policy name "..." is the explicitly marked formulation-B anti-pattern and is intentionally absent from migrations.
+
+=== HARNESS SOURCE ATTACK ===
+Identity checks:
+  harness.mjs: sign-in error is fatal; returned session.user.id is NOT compared to seed-map.
+  attacks.mjs: sign-in error fatal; returned user id compared; mismatch fatal.
+  scoping.mjs: sign-in error recorded as failure; returned user id compared; mismatch recorded as failure.
+  revocation.mjs: sign-in error fatal; returned user id compared; mismatch fatal.
+
+DENY classifier:
+  verdictFromResult() maps ANY API error to DENY; it does not require 42501 for denied INSERT.
+  zero returned/affected rows also maps to DENY.
+
+Matrix mutation ground truth:
+  320-cell matrix performs no service-role before/after ground truth for denied mutations.
+  dedicated attacks ground-truth selected user_data, junction, account, and pbm_info mutations.
+  attacks A7.1 reference INSERT has no service-role truth callback.
+  attacks also accept any non-ALLOW outcome rather than requiring an operation-specific denial shape.
+
+Missing-row mechanism:
+  harness update/delete target = inserted row, per-identity target, static target, or sentinel dead UUID.
+  payloads with null targets include user_roles, user_businesses, pending_registrations,
+  apa_memberships, all five reference tables, audit_logs (profiles has a targetFor override).
+  For expected-DENY UPDATE/DELETE cells on these tables, a missing target can yield zero affected
+  even if a policy is over-permissive.
+
+Non-vacuity and cleanup:
+  seed.mjs seeds all sixteen matrix tables (baseline rows arise from the Auth trigger).
+  matrix SELECT uses limit(5): presence/absence only, not exhaustive scope.
+  scoping exact-checks user_data counts plus business/account name lists.
+  matrix cleanup/restoration uses service role but does not fail the run on cleanup/restore errors;
+  it counts only successful operations and does not ground-truth final shape for every table.
+
+Volume and Auth cleanup:
+  explicit volume claims use exact head counts in scoping/revocation/ground-truth paths.
+  seed Auth cleanup calls listUsers({perPage:1000}) once; it does not paginate beyond 1,000.
+
+Target selection:
+  env loader chooses requested prefixed keys, then Amendment A-1 fallbacks.
+  publishable==secret is rejected.
+  prove.mjs supplies DB_RESET_ALLOW=yes automatically after env selection.
+  db-reset requires DB_URL and the allow flag, but has no independent project/host allowlist.
+
+AC8 direct execution:
+  catalog privilege checks cover all four helpers.
+  live anon execution probe calls only my_business_ids().
+
+Seed-map/evidence coupling:
+  seed.mjs rewrites tracked seed-map.json with current run ids.
+  direct harness invocation can consume a stale map; prove.mjs stops if seed exits nonzero.
+
+Normalization and labels:
+  normalizer masks every UUID, timestamp, timing, token-fingerprint text, and duration.
+  outcomes/counts and pooler host remain visible.
+  UUID masking can conceal wrong-identity/tenant-id drift if a log relies only on identifiers.
+  current prove.mjs accepts a phase label, but existing X6 consolidated evidence points to an X5-matrix sub-log.
+
+Service role:
+  centralized in lib/db.mjs; used by seed, matrix cleanup/restoration, attacks ground truth,
+  and revocation mutation/truth. Matrix cells use publishable-key clients, not service role.
+
+Additional instrument observations:
+  policy-check L1 detects duplicates but does not prove the singleton policy is authorized by the plan.
+  policy-check L3 inline-junction detector matches "from user_businesses" but not necessarily
+  a schema-qualified "from public.user_businesses" future predicate.
+  db-reset final table inventory uses information_schema.tables despite the campaign's stated
+  pg_catalog-only verification rule; policy/helper checks use catalog sources.
+
+=== ENGINEERING EVIDENCE CHALLENGE ===
+AC18: no raw X7 build/tsc/Jest/type-diff file found under BIM-002 evidence; X7 handoff is summary-only.
+AC20: Engineering provided no standalone diff, but this Phase-1 static probe independently found exact
+      equality for all four function bodies and every named shipped template policy statement.
+Storage: X0 contains direct initial count=0; final/two-target count appears only as X7 summary in searched sources.
+X6: consolidated X6 log points to X5-matrix_2026-09-01T0725.log; spec calls it X6-matrix.
+X2: section 4 says B adopted; section 7 expressly supersedes section 4 with C. Erratum E-5,
+    RLS_TEMPLATES.md, and migrations implement C.
+Stale wording: Manager still says awaiting launch, three helpers, 17 policies, and CI in DoD;
+               original AC8 body names three helpers; original AC13 body says CI wired.
+               Errata/evidence table expressly govern these as corrected/struck state.
+
+=== NO-LATER-PHASE CONFIRMATION ===
+No DB client, reset, npm rls:prove, service-role mutation, product change, or Git command was executed.

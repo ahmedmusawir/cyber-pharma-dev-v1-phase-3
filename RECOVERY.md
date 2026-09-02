@@ -4,10 +4,16 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-09-01 (session open; BIM-002 staged)
-**Branch:** `phase-3-bim002` @ `aca3d05` ("1sep2026 - bim002 has begun") — clean tree
-**Session log:** `agent_docs/SESSIONS/session_2026-09-01.md`
-_(prior: BIM-001 certified `9f8c80d` on phase-3-2 · PROTO 06 rig lane closed, branch `phase-3-proto-6` pending deletion)_
+**Last updated:** 2026-09-02 (PRE-Q complete; BIM-002 awaiting certification)
+**Authoritative module branch:** **`phase-3-bim002`** — the branch of record for BIM-002
+close-out.
+**Implementation specimen base SHA:** **`53f1ac0`** ("bim002 done waiting for qa and close
+out") — the BIM-002 implementation batch, committed.
+**`qa/bim002`:** disposable **PRE-Q execution branch only. Never merged.** QA's artifacts
+were **copied** from it onto `phase-3-bim002` for permanent close-out (copy-not-merge,
+the same rule used for the Proto 06 transfers).
+**Session log:** `agent_docs/SESSIONS/session_2026-09-02.md`
+_(prior: BIM-001 certified `9f8c80d` · PROTO 06 rig lane closed, `phase-3-proto-6` pending deletion)_
 
 ---
 
@@ -29,10 +35,11 @@ consumed by the Architect and copied forward to `agent_docs/ACTIONS/PROTO06/`; p
 and harness on main. Headline: **F-1 — a write policy without a paired SELECT policy
 silently no-ops** (binding on BIM-002).
 
-**Pending (Director, carried — status unconfirmed at this session's open):** **LIVE apply
-of the BIM-001 chain** (`db:apply` path, Director only) · DATA_CONTRACT §3 amendment
-staging (ERRATUM E-2) · throwaway-credential rotation (BIM-001 replay projects + the
-Proto-06 rig project) · delete `phase-3-proto-6` after BIM-002's harness re-point.
+**Pending (Director, carried — status unconfirmed):** **LIVE apply of the BIM-001 chain**
+(`db:apply` path, Director only, at the Phase 3 APPLY SESSION) · DATA_CONTRACT §3
+amendment staging (**BIM-001's** ERRATUM E-2 — not to be confused with BIM-002's E-2,
+which concerns helper grants) · throwaway-credential rotation · delete `phase-3-proto-6`
+and `proto-06/` now that BIM-002's harness port is complete.
 
 **Last action (2026-09-01):** **BIM-002 ENGINEERING COMPLETE — all gates X0–X7 GREEN.**
 15 RLS policies across 11 tables + 4 helpers (`0016–0027`), isolation harness at
@@ -43,24 +50,34 @@ token**. Board 28/128/0, types diff vs certified `9f8c80d` EMPTY, zero `src/**` 
 Errata E-1…E-5; new findings F-10…F-13 in `ACTIONS/PROTO06/TRANSFERS_ADDENDUM_BIM-002.md`.
 Templates at `AUTHORITY/RLS_TEMPLATES.md`. Spec ENGINEER EVIDENCE-FILLED (AC13 struck).
 
-**Pending:** Director — 4 per-concern commits (blocks in
-`agent_docs/RESPONSES/response_2026-09-01_161500_bim002-X7-handoff.md`) → SHA pin →
-PRE-Q → Sol's Gate Q. Then carried flags **CF-1…CF-6** (manager §10a): notably
-**credential rotation on all four throwaway projects** and deletion of `proto-06/` +
-branch `phase-3-proto-6` now that the harness port is certified.
+**Current state (2026-09-02): PRE-Q COMPLETE — ZERO IMPLEMENTATION DEFECTS, ZERO REWORK.**
+Independent QA executed PRE-Q on the disposable `qa/bim002` branch against the throwaway
+targets; the specimen cleared with **one spec-prose defect and one generalised finding,
+no implementation or harness change**. One-Walk proven on attempt 3 with a byte-identical
+token and **no `TOKEN_REFRESHED` event**.
 
-**Session state:** BIM-002 handed to QA 2026-09-01. **Engineer is standing by** — no
-further work in this lane until the QA report returns. On return: file report in `QA/` →
-spec → QA-VERIFIED + SHA pinned → manager → CLOSED with deliverables map → CHANGELOG /
-RECOVERY / session log → tombstone → route CF-1…CF-6.
+Doc-only bookkeeping applied on this branch: **ERRATUM E-6** (AC3(b) denial-shape wording)
+· **F-14** (denial shape depends on which clause denies) · **CF-8** (six QA harness
+candidates, owner BIM-005, recorded not executed) · retrospective § PRE-Q. Spec lifecycle
+deliberately remains **ENGINEER EVIDENCE-FILLED** — the QA-VERIFIED flip belongs to
+certification.
+
+**Awaiting, in order:** Director commit of the staged close-out package → **certified SHA
+pinned** into the spec → Sol's certification / Gate Q verdict → module close (spec →
+QA-VERIFIED, manager → CLOSED with deliverables map, CHANGELOG / RECOVERY / session log,
+tombstone) → route carried flags **CF-1…CF-8** (manager §10a), notably credential rotation
+on all four throwaway projects and deletion of `proto-06/` + branch `phase-3-proto-6`.
 
 **Next step:** Gate Q → BIM-002 close → **BIM-003 (audit)**. Dev backend remains at the
 2-table baseline through BIM-004 (LIVE APPLY DEFERRED). Older carries: numbered-color
 predicate rebuild · QA-FINDING-001 · report_files fidelity (CF-3).
 
-**⚠️ UNCOMMITTED:** the entire BIM-002 batch — 12 migrations, `scripts/rls-harness/`,
-`package.json`, templates, addendum, spec/manager/erratum/retrospective, 60+ evidence
-logs, 8 responses, session log, this file. Operator commits — agent never does.
+**⚠️ UNCOMMITTED (staged on `phase-3-bim002`, documents only):** the PRE-Q bookkeeping
+package — spec / manager / erratum / retrospective edits, the transfers addendum, QA's
+copied-forward artifacts under `ACTIONS/BIM-002-CYBER-PHARMA/QA/`, today's responses,
+session log, and this file. **The BIM-002 implementation batch itself is already
+committed at `53f1ac0`** — migrations, harness, `package.json` and templates are in
+history and were NOT touched by the bookkeeping pass. Operator commits — agent never does.
 
 ---
 
@@ -83,7 +100,11 @@ logs, 8 responses, session log, this file. Operator commits — agent never does
 
 ## Known Good State
 
-- **HEAD:** `8b260c1` — "27aug2026 - BIM000 DONE" (BIM-000 fully committed + pushed)
-- **Working:** Everything — Gate Q-certified board (build 22 routes, tsc clean,
-  jest 26/120/0, lint 0 err / 34 legacy warn).
-- **Broken:** Nothing known. KIP-2 defect window remains open by design until FIX-001.
+- **HEAD:** `53f1ac0` on **`phase-3-bim002`** — "bim002 done waiting for qa and close out"
+  (BIM-002 implementation batch committed; this is the specimen PRE-Q ran against).
+- **Working:** Everything — board **build 22 routes · tsc clean · jest 28 suites / 128
+  tests / 0 failures**; sixteen-table chain `0001–0027` with 18 RLS policies; isolation
+  harness at `scripts/rls-harness/` (`npm run rls:prove`).
+- **Broken:** Nothing known. KIP-2 is CLOSED (FIX-001). KIP-1 remains parked.
+- **Dev backend:** untouched, still at the 2-table baseline (LIVE APPLY DEFERRED through
+  BIM-004).

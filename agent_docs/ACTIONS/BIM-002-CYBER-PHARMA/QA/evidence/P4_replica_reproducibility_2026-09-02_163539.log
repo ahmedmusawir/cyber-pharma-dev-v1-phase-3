@@ -1,0 +1,120 @@
+INTENDED TARGET: REPLICA
+prefix_exact=true
+replica_logical_keys_present=4/4
+a1_fallback_used=false
+credential_or_connection_value_printed=false
+resolver_complete=true
+resolver_source=RLS_REPLICA_* only; Amendment A-1 inactive
+
+=== A. REPLICA RESET + EXACT BASELINE + CHAIN 0001-0027 ===
+[db-reset] reset → target=REPLICA (host/db redacted)
+[db-reset] chain: 27 migrations (0001_baseline_acknowledge.sql … 0027_rls_reference_dataset_versions.sql)
+  ok  drop event trigger (pre-drop)
+  ok  drop schema public
+  ok  re-grant public schema privileges
+  ok  bootstrap baseline (scratch-only, X0 rider 3)
+  ok  0001_baseline_acknowledge.sql
+  ok  0002_accounts.sql
+  ok  0003_businesses.sql
+  ok  0004_user_businesses.sql
+  ok  0005_pending_registrations.sql
+  ok  0006_subscriptions.sql
+  ok  0007_apa_memberships.sql
+  ok  0008_reference_dataset_versions.sql
+  ok  0009_aac_reference.sql
+  ok  0010_wac_reference.sql
+  ok  0011_ful_reference.sql
+  ok  0012_pbm_info.sql
+  ok  0013_user_data.sql
+  ok  0014_report_files.sql
+  ok  0015_audit_logs.sql
+  ok  0016_rls_helpers.sql
+  ok  0017_rls_user_businesses.sql
+  ok  0018_rls_accounts.sql
+  ok  0019_rls_businesses.sql
+  ok  0020_rls_subscriptions.sql
+  ok  0021_rls_user_data.sql
+  ok  0022_rls_report_files.sql
+  ok  0023_rls_aac_reference.sql
+  ok  0024_rls_wac_reference.sql
+  ok  0025_rls_ful_reference.sql
+  ok  0026_rls_pbm_info.sql
+  ok  0027_rls_reference_dataset_versions.sql
+[inventory] 16 public tables:
+  - aac_reference
+  - accounts
+  - apa_memberships
+  - audit_logs
+  - businesses
+  - ful_reference
+  - pbm_info
+  - pending_registrations
+  - profiles
+  - reference_dataset_versions
+  - report_files
+  - subscriptions
+  - user_businesses
+  - user_data
+  - user_roles
+  - wac_reference
+[db-reset] reset complete — 16 tables on target.
+MATCH RESET-APPLY-EXIT | expected=0 | observed=0
+MATCH CHAIN-THROUGH-0027 | expected=last=0027,apply-clean | observed=last0027=true,complete16=true
+
+=== C0. MINIMAL REPLICA SEED ===
+AUTH-PURGE count=4;identifiers_recorded=false
+MINIMAL-SEED identities=1,accounts=1,businesses=2,junctions=1,user_data=2;generated_ids_recorded=false
+
+=== B. LIVE REPLICA CATALOG ===
+MATCH PUBLIC-TABLES | expected=16 exact SCRATCH names | observed=count=16,names_exact=true
+MATCH HELPER-COUNT-NAMES | expected=4 exact SCRATCH names | observed=count=4,names_exact=true
+MATCH HELPER-is_account_member | expected=owner=postgres,secdef=true,stable=true,empty-search-path,PUBLIC=false,anon=false,authenticated=true | observed=owner=postgres,secdef=true,volatile=s,empty_search=true,PUBLIC=false,anon=false,authenticated=true
+MATCH HELPER-is_admin_of | expected=owner=postgres,secdef=true,stable=true,empty-search-path,PUBLIC=false,anon=false,authenticated=true | observed=owner=postgres,secdef=true,volatile=s,empty_search=true,PUBLIC=false,anon=false,authenticated=true
+MATCH HELPER-is_member_of | expected=owner=postgres,secdef=true,stable=true,empty-search-path,PUBLIC=false,anon=false,authenticated=true | observed=owner=postgres,secdef=true,volatile=s,empty_search=true,PUBLIC=false,anon=false,authenticated=true
+MATCH HELPER-my_business_ids | expected=owner=postgres,secdef=true,stable=true,empty-search-path,PUBLIC=false,anon=false,authenticated=true | observed=owner=postgres,secdef=true,volatile=s,empty_search=true,PUBLIC=false,anon=false,authenticated=true
+MATCH POLICY-INVENTORY | expected=18 exact SCRATCH names/table/commands | observed=count=18,keys_exact=true
+MATCH BASELINE-POLICIES | expected=3 and SCRATCH semantics | observed=count=3,semantics=true
+MATCH BIM-POLICY-COUNT | expected=15 | observed=15
+MATCH POLICY-ROLES | expected=all 18 roles={authenticated} | observed=nonmatching=0
+MATCH DENY-ALL-pending_registrations | expected=0 policies | observed=0
+MATCH DENY-ALL-apa_memberships | expected=0 policies | observed=0
+MATCH DENY-ALL-audit_logs | expected=0 policies | observed=0
+MATCH STORAGE-POLICIES | expected=0 matching SCRATCH | observed=0
+MATCH FORMULATION-C | expected=3 businesses/report_files/user_data SELECT policies | observed=count=3,tables=businesses,report_files,user_data
+MATCH INLINE-FORMULATION-B | expected=0 | observed=0
+MATCH FORBIDDEN-SOURCES | expected=policy=0,helper=0 | observed=policy=0,helper=0
+MATCH BIM-PREDICATES-VS-SCRATCH | expected=0 normalized differences | observed=0
+CATALOG policy=aac_reference.SELECT.aac_reference_select_authenticated roles={authenticated} qual=true with_check=null
+CATALOG policy=accounts.SELECT.account_select_member roles={authenticated} qual=is_account_member(id) with_check=null
+CATALOG policy=businesses.SELECT.business_select_member roles={authenticated} qual=(idIN(SELECTmy_business_ids()ASmy_business_ids)) with_check=null
+CATALOG policy=businesses.UPDATE.business_update_admin roles={authenticated} qual=is_admin_of(id) with_check=is_admin_of(id)
+CATALOG policy=ful_reference.SELECT.ful_reference_select_authenticated roles={authenticated} qual=true with_check=null
+CATALOG policy=pbm_info.SELECT.pbm_info_select_authenticated roles={authenticated} qual=true with_check=null
+CATALOG policy=profiles.SELECT.Profiles are viewable by owner or superadmins roles={authenticated} qual=((auth.uid()=id)OR((SELECTuser_roles.roleFROMuser_rolesWHERE(user_roles.user_id=auth.uid()))='superadmin'::app_role)) with_check=null
+CATALOG policy=profiles.UPDATE.Profiles are updatable by owner or superadmins roles={authenticated} qual=((auth.uid()=id)OR((SELECTuser_roles.roleFROMuser_rolesWHERE(user_roles.user_id=auth.uid()))='superadmin'::app_role)) with_check=null
+CATALOG policy=reference_dataset_versions.SELECT.reference_dataset_versions_select_authenticated roles={authenticated} qual=true with_check=null
+CATALOG policy=report_files.SELECT.report_files_select_member roles={authenticated} qual=(business_idIN(SELECTmy_business_ids()ASmy_business_ids)) with_check=null
+CATALOG policy=subscriptions.SELECT.subscription_select_account_member roles={authenticated} qual=is_account_member(account_id) with_check=null
+CATALOG policy=user_businesses.SELECT.ub_select_self roles={authenticated} qual=(user_id=auth.uid()) with_check=null
+CATALOG policy=user_data.DELETE.user_data_delete_admin roles={authenticated} qual=is_admin_of(business_id) with_check=null
+CATALOG policy=user_data.INSERT.user_data_insert_member roles={authenticated} qual=null with_check=is_member_of(business_id)
+CATALOG policy=user_data.SELECT.user_data_select_member roles={authenticated} qual=(business_idIN(SELECTmy_business_ids()ASmy_business_ids)) with_check=null
+CATALOG policy=user_data.UPDATE.user_data_update_member roles={authenticated} qual=is_member_of(business_id) with_check=is_member_of(business_id)
+CATALOG policy=user_roles.SELECT.Users can read their own role roles={authenticated} qual=(auth.uid()=user_id) with_check=null
+CATALOG policy=wac_reference.SELECT.wac_reference_select_authenticated roles={authenticated} qual=true with_check=null
+
+=== C. MINIMAL BEHAVIORAL SMOKE ===
+MATCH ANON-MY-BUSINESS-IDS | expected=code=42501 | observed=code=42501
+MATCH EXACT-SESSION-IDENTITY | expected=sign-in no error,exact-seeded-id=true | observed=code=none,exact-seeded-id=true
+MATCH OWN-TENANT-DIRECT-ID | expected=code=none,rows=1 | observed=code=none,rows=1
+MATCH FOREIGN-TENANT-DIRECT-ID | expected=code=none,rows=0 | observed=code=none,rows=0
+MISMATCH AUTH-MY-BUSINESS-IDS | expected=code=none,count=1,set=A1 | observed=code=none,count=1,set=unexpected
+
+=== D. SCRATCH-vs-REPLICA SECURITY SHAPE ===
+SCRATCH_REFERENCE=QA/evidence/P2_scratch_attack_2026-09-02_111045.log lines 69-73,158-188;generated IDs/timestamps/timings ignored
+MISMATCH SECURITY-SHAPE-DIFFERENCES | expected=0 | observed=1
+discrepancies=2
+declared_gaps=full Red Team replay and One-Walk intentionally not repeated; exact remote JWT/settings outside requested shape
+product_file_modifications=none; QA evidence/response only
+module_verdict=NOT_ISSUED
+STOP=PHASE_4_COMPLETE_AWAIT_SOL

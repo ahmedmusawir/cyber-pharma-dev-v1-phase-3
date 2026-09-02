@@ -34,6 +34,23 @@ That is the rig doing its job one level up: BIM-002 became the harness for Proto
 - **Deny-all tables seeded with rows.** A refusal against an empty table proves nothing. Logging the service-role row count beside each `0` turns a vacuous pass into a real one.
 - **The Architect's formulation C.** Asked for a measurement before adopting B, and the answer was better than either option: B's plan shape with A's shield. 30–54× faster than A, and immune to the blindness that makes B unsafe. That ruling is the single highest-value decision in the module.
 
+## PRE-Q (2026-09-02) — what independent QA found
+
+**Outcome: zero implementation defects, zero rework.** One spec-prose defect (AC3(b) denial shape → ERRATUM E-6) and one generalised finding (F-14). The One-Walk was proven on **attempt 3**, with a byte-identical token and **no `TOKEN_REFRESHED` event** — the revocation result holds under an independent operator's hands, not just Engineering's.
+
+The more useful output was QA's critique of the *instruments*. Recorded below as **harness-improvement candidates for BIM-005/CRV — deliberately NOT executed in this module**, since PRE-Q ordered a bookkeeping pass and changing harness code now would invalidate the specimen QA just certified.
+
+| # | QA lesson | Why it matters |
+|---|---|---|
+| 1 | **Assert the exact session ID**, not merely that sign-in succeeded | Engineering added identity assertion after instrument defect #4; QA sharpened it to exact-ID equality at every call site, including places that only checked for an error |
+| 2 | **Classify denial shape per case** (F-14) | "Any non-ALLOW is DENY" hides a policy denying for the wrong reason, and hides a missing `WITH CHECK` |
+| 3 | **No missing-row targets for DENY mutation cells** | A probe aimed at a non-existent id returns 0 affected and scores as a policy denial when nothing was ever tested. BIM-002's matrix used a dead-uuid fallback for tables without a seeded target — sound for ALLOW cells, weak evidence for DENY ones |
+| 4 | **Ground-truth every denied mutation**, not just the named attack cases | The battery did this for its 28 cases; the 320-cell matrix did not. A denied UPDATE cell in the matrix is currently trusted on "0 affected" alone |
+| 5 | **Token-refresh and timing guards in the walk** | Assert no `TOKEN_REFRESHED` event fires between the before/after queries, not only that the token string is unchanged — a refresh that returns an identical token would otherwise pass silently |
+| 6 | **The RPC decoder assumption** | The harness reads PostgREST error codes as the denial signal; that couples the evidence to one client's error surface. A decoder-independent assertion (catalog or direct SQL confirmation) is stronger |
+
+**Honest note on 3 and 4:** both are real weaknesses in evidence *strength*, not in the policies. Every DENY that mattered was independently ground-truthed in the attack battery, and the matrix's job is coverage rather than depth. But QA is right that a matrix cell reading "0 affected" is a weaker claim than it looks, and BIM-005 inherits the instrument.
+
 ## Process notes for the campaign journal
 
 - **Five gate stops worked.** Every stop surfaced something the next gate would have inherited. X1's stop found E-2; X2's found E-4 and C; X3's found two harness defects; X6's found the diff-honesty question.

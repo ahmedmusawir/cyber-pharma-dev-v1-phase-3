@@ -45,6 +45,20 @@ E-2 diagnosed PUBLIC as *the* mechanism. It is **one of two**. `pg_default_acl` 
 
 Architect ruling 2026-09-01 ordered formulation C measured before adopting B. C proved out (+0.8% / +0.7% vs B, identical plan shape and buffers, and **shielded** where B is blinded). **C is adopted for tenant SELECT predicates**; `my_business_ids()` joins `0016` under all AC8 assertions. Manager §5.2's SELECT column for `user_data`, `report_files`, and `businesses` now reads `business_id in (select public.my_business_ids())` rather than `is_member_of(...)`. Full evidence: `evidence/X2_AB_DECISION.md` §7.
 
+## E-6 — AC3(b) denial-shape wording defect (RULED 2026-09-02, PRE-Q)
+
+**Surfaced by:** independent QA at PRE-Q, 2026-09-02. **Spec prose only — the implementation stood; zero rework ordered.**
+
+AC3(b) as seeded read *"UPDATE re-homing a `user_data` row to a foreign `business_id` → **0 affected**, ground truth unchanged"*. That describes one of two distinct denials and mislabels the other.
+
+**Mechanism:** an **accessible-row** re-home is rejected by **`WITH CHECK` → `42501`**; an **unreachable-row** UPDATE is denied by **`USING` → 0 affected, no error**. Ground truth is unchanged in both.
+
+Both behaviours were already evidenced at X4 — `A3.1` (staffA re-homing an A1 row it *can* reach) returned `42501`, while `A2.2` (ownerB updating an A1 row it cannot reach) returned 0 affected. The spec's single-shape wording could not describe both, so a strict reading of AC3(b) contradicted correct behaviour.
+
+**Ruling:** apply the ratified two-clause wording to AC3(b), annotated as E-6. **Implementation, migrations and harness unchanged.** Lifecycle stays **ENGINEER EVIDENCE-FILLED**; the QA-VERIFIED flip happens at certification, not at this bookkeeping pass.
+
+**Generalised as finding F-14** in `ACTIONS/PROTO06/TRANSFERS_ADDENDUM_BIM-002.md`: denial shape depends on which clause denies, so a classifier must assert the expected shape per case rather than accepting any non-ALLOW as DENY.
+
 ## E-3 — AC13 (CI wiring) STRUCK (RULED 2026-09-01)
 
 **Ruling (Director, FLAG-4):** no CI in this module. No `.github/` directory, no workflow file. **AC13 is struck from the spec**; CI wiring routes to the Deferred Ledger. The harness ships as the `rls:prove` npm task only, and commit grouping 3 becomes "Harness port + task" (no CI).

@@ -1,0 +1,63 @@
+BIM-002 PRE-Q PHASE 3 — CONTROLLED ONE-WALK RERUN
+INTENDED TARGET: SCRATCH
+resolver_signal=[env] A-1 fallback in use
+credential_or_token_value_recorded=false
+AUTH_OPTIONS autoRefreshToken=false persistSession=false detectSessionInUrl=false
+AUTH_REFRESH_MARGIN_SECONDS=90
+MINIMUM_ARM_LIFETIME_SECONDS=990
+POST_WINDOW_RULE=min(600s,remaining_at_arm-900s-90s)
+MATCH PRE-IDENTITY-ROW | expected=1 | observed=1
+MATCH PRE-BUSINESS-ROWS | expected=A1,B1 | observed=A1,B1
+AUTH_STOP_AUTO_REFRESH_CALLED=true
+AUTH_EVENT_LISTENER_REGISTERED_BEFORE_SIGN_IN=true
+AUTH_EVENT=INITIAL_SESSION
+AUTH_EVENT=SIGNED_IN
+MATCH PRE-SIGN-IN | expected=code=none | observed=code=none
+MATCH PRE-SESSION-IDENTITY | expected=exact-seeded-id=true | observed=exact-seeded-id=true
+MATCH PRE-NO-TOKEN-REFRESH | expected=false | observed=false
+TOKEN_CAPTURED_IN_MEMORY_ONLY=true
+MATCH PRE-VISIBLE-BUSINESSES | expected=Store A1,Store B1 | observed=Store A1,Store B1
+MATCH PRE-USER-DATA | expected=A1=200,B1=200 | observed=A1=200,B1=200
+MATCH PRE-JUNCTION-TRUTH | expected=A1=1,B1=1 | observed=A1=1,B1=1
+MATCH PRE-QUERY-NO-TOKEN-REFRESH | expected=false | observed=false
+TOKEN_LIFETIME_AT_ARM_SECONDS=3595
+TOKEN_LIFETIME_AT_ARM_MINUTES=59
+MATCH PRE-LIFETIME-ARM-GUARD | expected=>=990s | observed=3595s
+ALLOWED_POST_WINDOW_SECONDS=600
+MATCH PRE-ALLOWED-POST-WINDOW-GUARD | expected=>=300s | observed=600s
+PRE_STATE_CAPTURED=true
+POST_WINDOW_ARMED=true
+STOP_POINT_BEFORE_REVOCATION=true
+WAITING_FOR_TONY=run guarded revoke in Terminal B; then type POST here within 600 seconds
+
+=== PRE-POST CONTINUITY GUARDS ===
+MATCH POST-DEADLINE | expected=<=600s | observed=80.614s
+MATCH POST-OUTSIDE-REFRESH-MARGIN | expected=>90s | observed=3515s
+MATCH POST-PRECHECK-NO-TOKEN-REFRESH | expected=false | observed=false
+MATCH POST-SAME-CLIENT-OBJECT | expected=true | observed=true
+
+=== SAME SESSION AFTER TONY REVOCATION ===
+MATCH POST-GETSESSION-NO-TOKEN-REFRESH | expected=false | observed=false
+MATCH POST-TOKEN-CONTINUITY | expected=byte-identical=true | observed=byte-identical=true
+MATCH POST-SESSION-IDENTITY | expected=exact-seeded-id=true | observed=exact-seeded-id=true
+MATCH POST-VISIBLE-BUSINESSES | expected=Store A1 | observed=Store A1
+MATCH POST-USER-DATA | expected=A1=200,B1=0 | observed=A1=200,B1=0
+MATCH POST-JUNCTION-TRUTH | expected=A1=1,B1=0 | observed=A1=1,B1=0
+MATCH POST-QUERY-NO-TOKEN-REFRESH | expected=false | observed=false
+POST_REVOCATION_SAME_SESSION_CAPTURED=true
+WAITING_FOR_TONY_RESTORE=run guarded restore in Terminal B; then type RESTORED here before the token refresh margin
+
+=== SAME SESSION AFTER TONY RESTORE ===
+MATCH RESTORE-OUTSIDE-REFRESH-MARGIN | expected=>90s | observed=3369s
+MATCH RESTORE-PRECHECK-NO-TOKEN-REFRESH | expected=false | observed=false
+MATCH RESTORE-SAME-CLIENT-OBJECT | expected=true | observed=true
+MATCH RESTORE-GETSESSION-NO-TOKEN-REFRESH | expected=false | observed=false
+MATCH RESTORE-TOKEN-CONTINUITY | expected=byte-identical=true | observed=byte-identical=true
+MATCH RESTORE-SESSION-IDENTITY | expected=exact-seeded-id=true | observed=exact-seeded-id=true
+MATCH RESTORE-VISIBLE-BUSINESSES | expected=Store A1,Store B1 | observed=Store A1,Store B1
+MATCH RESTORE-USER-DATA | expected=A1=200,B1=200 | observed=A1=200,B1=200
+MATCH RESTORE-JUNCTION-TRUTH | expected=A1=1,B1=1 | observed=A1=1,B1=1
+MATCH RESTORE-QUERY-NO-TOKEN-REFRESH | expected=false | observed=false
+RESTORATION_SAME_SESSION_CAPTURED=true
+ONE_WALK_OBSERVATIONS_COMPLETE=true
+module_verdict=NOT_ISSUED

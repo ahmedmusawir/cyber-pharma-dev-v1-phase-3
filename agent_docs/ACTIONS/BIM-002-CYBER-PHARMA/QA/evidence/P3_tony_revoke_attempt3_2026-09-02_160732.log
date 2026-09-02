@@ -1,0 +1,15 @@
+BIM-002 PHASE 3 TONY ACTION=revoke
+INTENDED TARGET: SCRATCH
+resolver_signal=[env] A-1 fallback in use
+credential_or_token_value_recorded=false
+MATCH identity-row-count expected=1 observed=1
+MATCH business-row-count expected=2 observed=2
+MATCH pre-revoke-A1 expected=1 observed=1
+MATCH pre-revoke-B1 expected=1 observed=1
+MATCH pre-revoke-B1-role expected=member observed=member
+MATCH pre-revoke-B1-primary expected=false observed=false
+MUTATION_SCOPE=delete exactly multiStore -> Store B1; A1 predicate absent from mutation
+MATCH deleted-row-count expected=1 observed=1
+MATCH post-revoke-A1 expected=1 observed=1
+MATCH post-revoke-B1 expected=0 observed=0
+TONY_ACTION_COMPLETE=REVOKE_EXACT_B1_ONLY

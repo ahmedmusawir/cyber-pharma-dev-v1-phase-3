@@ -1,0 +1,200 @@
+BIM-002 PRE-Q PHASE 2 — SCRATCH DESTRUCTIVE RLS ATTACK
+local_start=2026-09-02 11:15:52 +0800
+INTENDED TARGET: SCRATCH
+target_selection=no replica prefix; default RLS_HARNESS_* absent; Amendment A-1 fallback selected
+credential_values_recorded=false
+resolver_signal=[env] A-1 fallback in use
+
+=== FRESH SCRATCH RESET + 0001-0027 APPLY ===
+[db-reset] reset → A-1 SCRATCH target (host/db redacted)
+[db-reset] chain: 27 migrations (0001_baseline_acknowledge.sql … 0027_rls_reference_dataset_versions.sql)
+  ok  drop event trigger (pre-drop)
+  ok  drop schema public
+  ok  re-grant public schema privileges
+  ok  bootstrap baseline (scratch-only, X0 rider 3)
+  ok  0001_baseline_acknowledge.sql
+  ok  0002_accounts.sql
+  ok  0003_businesses.sql
+  ok  0004_user_businesses.sql
+  ok  0005_pending_registrations.sql
+  ok  0006_subscriptions.sql
+  ok  0007_apa_memberships.sql
+  ok  0008_reference_dataset_versions.sql
+  ok  0009_aac_reference.sql
+  ok  0010_wac_reference.sql
+  ok  0011_ful_reference.sql
+  ok  0012_pbm_info.sql
+  ok  0013_user_data.sql
+  ok  0014_report_files.sql
+  ok  0015_audit_logs.sql
+  ok  0016_rls_helpers.sql
+  ok  0017_rls_user_businesses.sql
+  ok  0018_rls_accounts.sql
+  ok  0019_rls_businesses.sql
+  ok  0020_rls_subscriptions.sql
+  ok  0021_rls_user_data.sql
+  ok  0022_rls_report_files.sql
+  ok  0023_rls_aac_reference.sql
+  ok  0024_rls_wac_reference.sql
+  ok  0025_rls_ful_reference.sql
+  ok  0026_rls_pbm_info.sql
+  ok  0027_rls_reference_dataset_versions.sql
+[inventory] 16 public tables:
+  - aac_reference
+  - accounts
+  - apa_memberships
+  - audit_logs
+  - businesses
+  - ful_reference
+  - pbm_info
+  - pending_registrations
+  - profiles
+  - reference_dataset_versions
+  - report_files
+  - subscriptions
+  - user_businesses
+  - user_data
+  - user_roles
+  - wac_reference
+[db-reset] reset complete — 16 tables on target.
+MATCH RESET | expected=exit=0 | observed=exit=0
+
+=== INDEPENDENT PAGINATED AUTH CLEANUP + NON-VACUOUS SEED ===
+MATCH AUTH-PURGE | expected=remaining=0 | observed=purged=4, remaining=0
+MATCH AUTH-CAST | expected=created=4 | observed=created=4
+seed_relationships=AccountA->[A1,A2]; AccountB->[B1]; ownerA=A1+A2 admin; staffA=A1 member; ownerB=B1 admin; multiStore=A1+B1 member
+MATCH SEED-USER-DATA | expected=A1=200,A2=200,B1=200 | observed=A1=200,A2=200,B1=200
+
+=== A. FRESH HELPER SECURITY ===
+MATCH HELPER-COUNT | expected=4 | observed=4
+MATCH HELPER-is_account_member | expected=owner=postgres,secdef=true,stable=true,empty-search-path,public=false,anon=false,authenticated=true | observed=owner=postgres,secdef=true,volatile=s,config={"search_path=\"\""},public=false,anon=false,authenticated=true,service=true
+MATCH HELPER-is_admin_of | expected=owner=postgres,secdef=true,stable=true,empty-search-path,public=false,anon=false,authenticated=true | observed=owner=postgres,secdef=true,volatile=s,config={"search_path=\"\""},public=false,anon=false,authenticated=true,service=true
+MATCH HELPER-is_member_of | expected=owner=postgres,secdef=true,stable=true,empty-search-path,public=false,anon=false,authenticated=true | observed=owner=postgres,secdef=true,volatile=s,config={"search_path=\"\""},public=false,anon=false,authenticated=true,service=true
+MATCH HELPER-my_business_ids | expected=owner=postgres,secdef=true,stable=true,empty-search-path,public=false,anon=false,authenticated=true | observed=owner=postgres,secdef=true,volatile=s,config={"search_path=\"\""},public=false,anon=false,authenticated=true,service=true
+MATCH ANON-EXEC-is_member_of | expected=permission-denied code=42501 | observed=code=42501
+MATCH ANON-EXEC-is_admin_of | expected=permission-denied code=42501 | observed=code=42501
+MATCH ANON-EXEC-is_account_member | expected=permission-denied code=42501 | observed=code=42501
+MATCH ANON-EXEC-my_business_ids | expected=permission-denied code=42501 | observed=code=42501
+MATCH AUTH-EXEC-is_member_of | expected=own=true,foreign=false | observed=own=true,foreign=false
+MATCH AUTH-EXEC-is_admin_of | expected=own=true | observed=own=true
+MATCH AUTH-EXEC-is_account_member | expected=own=true | observed=own=true
+MATCH AUTH-EXEC-my_business_ids | expected=stores=[A1,A2] | observed=stores=["A1","A2"]
+
+=== B. EXACT SESSION IDENTITY ===
+MATCH SESSION-ownerA | expected=sign-in=no-error,exact-seeded-id=true | observed=code=none,exact-seeded-id=true
+MATCH SESSION-staffA | expected=sign-in=no-error,exact-seeded-id=true | observed=code=none,exact-seeded-id=true
+MATCH SESSION-ownerB | expected=sign-in=no-error,exact-seeded-id=true | observed=code=none,exact-seeded-id=true
+MATCH SESSION-multiStore | expected=sign-in=no-error,exact-seeded-id=true | observed=code=none,exact-seeded-id=true
+
+=== E/F. TENANT ISOLATION + FORMULATION C RESULT SETS ===
+MATCH COUNT-ownerA-businesses | expected=2 | observed=2
+MATCH COUNT-ownerA-user_businesses | expected=2 | observed=2
+MATCH COUNT-ownerA-user_data | expected=400 | observed=400
+MATCH COUNT-ownerA-report_files | expected=2 | observed=2
+MATCH COUNT-ownerA-accounts | expected=1 | observed=1
+MATCH COUNT-ownerA-subscriptions | expected=1 | observed=1
+MATCH COUNT-staffA-businesses | expected=1 | observed=1
+MATCH COUNT-staffA-user_businesses | expected=1 | observed=1
+MATCH COUNT-staffA-user_data | expected=200 | observed=200
+MATCH COUNT-staffA-report_files | expected=1 | observed=1
+MATCH COUNT-staffA-accounts | expected=1 | observed=1
+MATCH COUNT-staffA-subscriptions | expected=1 | observed=1
+MATCH COUNT-ownerB-businesses | expected=1 | observed=1
+MATCH COUNT-ownerB-user_businesses | expected=1 | observed=1
+MATCH COUNT-ownerB-user_data | expected=200 | observed=200
+MATCH COUNT-ownerB-report_files | expected=1 | observed=1
+MATCH COUNT-ownerB-accounts | expected=1 | observed=1
+MATCH COUNT-ownerB-subscriptions | expected=1 | observed=1
+MATCH COUNT-multiStore-businesses | expected=2 | observed=2
+MATCH COUNT-multiStore-user_businesses | expected=2 | observed=2
+MATCH COUNT-multiStore-user_data | expected=400 | observed=400
+MATCH COUNT-multiStore-report_files | expected=2 | observed=2
+MATCH COUNT-multiStore-accounts | expected=2 | observed=2
+MATCH COUNT-multiStore-subscriptions | expected=2 | observed=2
+MATCH FOREIGN-ownerA-business | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-ownerA-user_data | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-ownerA-report | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-ownerA-junction-other-user | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-ownerA-account | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-ownerA-subscription | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-staffA-business | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-staffA-user_data | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-staffA-report | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-staffA-junction-other-user | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-staffA-account | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-staffA-subscription | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-ownerB-business | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-ownerB-user_data | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-ownerB-report | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-ownerB-junction-other-user | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-ownerB-account | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-ownerB-subscription | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-multiStore-business | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-multiStore-user_data | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-multiStore-report | expected=code=none,rows=0 | observed=code=none, rows=0
+MATCH FOREIGN-multiStore-junction-other-user | expected=code=none,rows=0 | observed=code=none, rows=0
+N/A FOREIGN-multiStore-account/subscription | multiStore intentionally belongs to both seeded accounts
+MATCH RPC-C-ownerA | expected=code=none,stores=["A1","A2"] | observed=code=none,stores=["A1","A2"]
+MATCH RPC-C-staffA | expected=code=none,stores=["A1"] | observed=code=none,stores=["A1"]
+MATCH RPC-C-ownerB | expected=code=none,stores=["B1"] | observed=code=none,stores=["B1"]
+MATCH RPC-C-multiStore | expected=code=none,stores=["A1","B1"] | observed=code=none,stores=["A1","B1"]
+MATCH RPC-C-anon | expected=permission-denied code=42501 | observed=code=42501, rows=0, message=permission denied for function my_business_ids
+
+=== C/D/H. EXISTING-ROW MUTATIONS + EXACT DENIAL SHAPES + GROUND TRUTH ===
+MATCH MUT-FOREIGN-INSERT | expected=code=42501;ground-truth-unchanged | observed=code=42501, rows=0, message=new row violates row-level security policy for table "user_data";before=200;after=200
+MISMATCH MUT-REHOME | expected=code=none,rows=0;ground-truth=A1->A1 | observed=code=42501, rows=0, message=new row violates row-level security policy for table "user_data";before=A1;after=A1
+MATCH MUT-MEMBER-DELETE | expected=code=none,rows=0;existing-row-unchanged | observed=code=none, rows=0;before=1;after=1
+MATCH MUT-ADMIN-DELETE | expected=code=none,rows=1;ground-truth 1->0 | observed=code=none, rows=1;before=1;after=0
+MATCH MUT-JUNCTION-PROMOTE | expected=code=none,rows=0;role member->member | observed=code=none, rows=0;before=member;after=member
+MATCH MUT-ACCOUNT-UPDATE | expected=code=none,rows=0;name unchanged | observed=code=none, rows=0;before=Account A;after=Account A
+MATCH MUT-REFERENCE-UPDATE | expected=code=none,rows=0;value unchanged | observed=code=none, rows=0;before=Seed PBM;after=Seed PBM
+
+=== H. DENY-ALL NON-VACUITY ===
+MATCH DENY-ALL-pending_registrations | expected=service_rows>0;user code=none,rows=0 | observed=service_rows=1;code=none, rows=0
+MATCH DENY-ALL-apa_memberships | expected=service_rows>0;user code=none,rows=0 | observed=service_rows=1;code=none, rows=0
+MATCH DENY-ALL-audit_logs | expected=service_rows>0;user code=none,rows=0 | observed=service_rows=1;code=none, rows=0
+
+=== G. LIVE POLICY / BASELINE / STORAGE CATALOG (pg_catalog) ===
+MATCH POLICY-ALLOWLIST | expected=18 exact entries | observed=18 entries,exact=true
+MATCH BASELINE-POLICIES | expected=3 expected names/commands and baseline predicate semantics | observed=count=3,semantics=true
+MATCH BIM-POLICY-COUNT | expected=15 | observed=15
+MATCH POLICY-DENY-ALL-pending_registrations | expected=0 | observed=0
+MATCH POLICY-DENY-ALL-apa_memberships | expected=0 | observed=0
+MATCH POLICY-DENY-ALL-audit_logs | expected=0 | observed=0
+MATCH STORAGE-POLICY-COUNT | expected=0 | observed=0
+MATCH LIVE-C-POLICIES | expected=3 names=business,user_data,report_files | observed=count=3,names=business_select_member,report_files_select_member,user_data_select_member
+MATCH LIVE-INLINE-B | expected=0 | observed=0
+MATCH LIVE-FORBIDDEN-SOURCES | expected=policy=0,helper=0 | observed=policy=0,helper=0
+CATALOG policy=aac_reference.SELECT.aac_reference_select_authenticated roles="{authenticated}" qual=true with_check=null
+CATALOG policy=accounts.SELECT.account_select_member roles="{authenticated}" qual=is_account_member(id) with_check=null
+CATALOG policy=businesses.SELECT.business_select_member roles="{authenticated}" qual=(id IN ( SELECT my_business_ids() AS my_business_ids)) with_check=null
+CATALOG policy=businesses.UPDATE.business_update_admin roles="{authenticated}" qual=is_admin_of(id) with_check=is_admin_of(id)
+CATALOG policy=ful_reference.SELECT.ful_reference_select_authenticated roles="{authenticated}" qual=true with_check=null
+CATALOG policy=pbm_info.SELECT.pbm_info_select_authenticated roles="{authenticated}" qual=true with_check=null
+CATALOG policy=profiles.SELECT.Profiles are viewable by owner or superadmins roles="{authenticated}" qual=((auth.uid() = id) OR (( SELECT user_roles.role
+   FROM user_roles
+  WHERE (user_roles.user_id = auth.uid())) = 'superadmin'::app_role)) with_check=null
+CATALOG policy=profiles.UPDATE.Profiles are updatable by owner or superadmins roles="{authenticated}" qual=((auth.uid() = id) OR (( SELECT user_roles.role
+   FROM user_roles
+  WHERE (user_roles.user_id = auth.uid())) = 'superadmin'::app_role)) with_check=null
+CATALOG policy=reference_dataset_versions.SELECT.reference_dataset_versions_select_authenticated roles="{authenticated}" qual=true with_check=null
+CATALOG policy=report_files.SELECT.report_files_select_member roles="{authenticated}" qual=(business_id IN ( SELECT my_business_ids() AS my_business_ids)) with_check=null
+CATALOG policy=subscriptions.SELECT.subscription_select_account_member roles="{authenticated}" qual=is_account_member(account_id) with_check=null
+CATALOG policy=user_businesses.SELECT.ub_select_self roles="{authenticated}" qual=(user_id = auth.uid()) with_check=null
+CATALOG policy=user_data.DELETE.user_data_delete_admin roles="{authenticated}" qual=is_admin_of(business_id) with_check=null
+CATALOG policy=user_data.INSERT.user_data_insert_member roles="{authenticated}" qual=null with_check=is_member_of(business_id)
+CATALOG policy=user_data.SELECT.user_data_select_member roles="{authenticated}" qual=(business_id IN ( SELECT my_business_ids() AS my_business_ids)) with_check=null
+CATALOG policy=user_data.UPDATE.user_data_update_member roles="{authenticated}" qual=is_member_of(business_id) with_check=is_member_of(business_id)
+CATALOG policy=user_roles.SELECT.Users can read their own role roles="{authenticated}" qual=(auth.uid() = user_id) with_check=null
+CATALOG policy=wac_reference.SELECT.wac_reference_select_authenticated roles="{authenticated}" qual=true with_check=null
+
+=== CLEANUP AFTER CAPTURED GROUND TRUTH ===
+cleanup=session-signout-only; database seed retained; no revocation performed
+
+=== PHASE 2 OBSERVATION SUMMARY ===
+observation_mismatches=1
+module_verdict=NOT_ISSUED
+phase3_one_walk=NOT_EXECUTED
+replica=NOT_TOUCHED
+dev_backend=NOT_TOUCHED
+STOP=PHASE_2_COMPLETE_AWAIT_SOL

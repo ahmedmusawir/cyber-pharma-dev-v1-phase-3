@@ -1,0 +1,13 @@
+BIM-002 PHASE 4 — NON-MUTATING RPC RESPONSE-SHAPE CORRECTION
+INTENDED TARGET: REPLICA
+RLS_HARNESS_PREFIX=RLS_REPLICA_
+credential_or_token_value_recorded=false
+database_mutation=false
+MATCH CORRECTION-PRESTATE | expected=identity=1,A1=1,junction=1 | observed=identity=1,A1=1,junction=1
+MATCH EXACT-SESSION-IDENTITY | expected=code=none,exact=true | observed=code=none,exact=true
+RPC_RESPONSE_SHAPE=string;values_recorded=false
+MATCH AUTH-MY-BUSINESS-IDS-NORMALIZED | expected=code=none,count=1,set=A1 | observed=code=none,count=1,set=A1
+instrument_finding=original probe assumed object row; replica returned scalar UUID row
+security_significant_difference=false
+module_verdict=NOT_ISSUED
+STOP=CORRECTION_COMPLETE

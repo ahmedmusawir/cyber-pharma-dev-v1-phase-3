@@ -1,0 +1,15 @@
+BIM-002 PHASE 3 TONY ACTION=restore
+INTENDED TARGET: SCRATCH
+resolver_signal=[env] A-1 fallback in use
+credential_or_token_value_recorded=false
+MATCH identity-row-count expected=1 observed=1
+MATCH business-row-count expected=2 observed=2
+MATCH pre-restore-A1 expected=1 observed=1
+MATCH pre-restore-B1 expected=0 observed=0
+MUTATION_SCOPE=insert exactly multiStore -> Store B1 role=member is_primary=false
+MATCH inserted-row-count expected=1 observed=1
+MATCH restored-role expected=member observed=member
+MATCH restored-primary expected=false observed=false
+MATCH post-restore-A1 expected=1 observed=1
+MATCH post-restore-B1 expected=1 observed=1
+TONY_ACTION_COMPLETE=RESTORE_EXACT_B1_ONLY

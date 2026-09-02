@@ -1,0 +1,50 @@
+PRE-Q PHASE 3 ONE-WALK PREPARATION READINESS
+local timestamp: 2026-09-02 12:44:47 +0800
+mode: non-destructive preparation only
+revocation executed: false
+restore executed: false
+replica touched: false
+dev backend touched: false
+
+SPECIMEN
+branch=qa/bim002
+HEAD=53f1ac0004f40e4df9e403188382b16afb92899f
+pinned specimen match=true
+
+TARGET
+INTENDED TARGET: SCRATCH
+process prefix active=false
+replica prefix active=false
+replica process key names=0
+default RLS_HARNESS_* key names=0/4
+Amendment A-1 fallback key names=4/4
+selection=A1_SCRATCH_UNAMBIGUOUS
+resolver signal=[env] A-1 fallback in use
+credential values recorded=false
+
+CURRENT SCRATCH READINESS
+auth multiStore rows=1
+required businesses=2 labels=Store A1,Store B1
+service junction rows=2
+service junction relations=Store A1:member:primary=true,Store B1:member:primary=false
+service user_data counts=A1:200,B1:200
+preparation sign-in error=none
+preparation exact session identity=true
+preparation visible businesses=Store A1,Store B1
+preparation session user_data counts=A1:200,B1:200
+service junction truth=A1:1,B1:1
+overall readiness=READY
+
+AUTHORITY DISK CHECK
+Architect ruling received in launch: Option A ratified; P2-D1 classified CONTRACT/SPEC DEFECT ONLY;
+accessible-row re-home WITH CHECK => 42501; unreachable-row USING denial => zero/no error;
+implementation defect count remains zero; E-6/F-14 named as governing certification.
+Repository search result at preparation timestamp: no E-6 or F-14 text found under agent_docs;
+ACCEPTANCE_SPEC.md AC3 still contains the stale zero-affected wording for accessible-row re-home.
+Classification: governing launch ruling is clear for preparation, but E-6/F-14 disk artifacts are a declared documentation gap.
+
+PREPARED SCRIPTS (syntax checked only; not executed)
+agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/QA/probes/phase3-one-walk-session.mjs
+agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/QA/probes/phase3-tony-membership-action.mjs
+
+STOP_POINT=IMMEDIATELY_BEFORE_FIRST_REVOCATION_MUTATION

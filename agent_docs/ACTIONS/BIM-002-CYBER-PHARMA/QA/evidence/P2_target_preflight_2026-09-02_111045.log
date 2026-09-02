@@ -1,0 +1,23 @@
+PHASE 2 TARGET PREFLIGHT
+local timestamp: 2026-09-02 11:10:45 +0800
+INTENDED TARGET: SCRATCH
+branch: qa/bim002
+HEAD: 53f1ac0004f40e4df9e403188382b16afb92899f
+pinned HEAD match: yes
+
+Key-name / resolver-only observations (no values read into evidence):
+process RLS_HARNESS_PREFIX active: false
+process replica prefix active: false
+process RLS_REPLICA_* key names present: 0
+default RLS_HARNESS_* key names present in .env.local: 0 of 4
+Amendment A-1 fallback key names present in .env.local: 4 of 4
+selection expectation: A1_FALLBACK_UNAMBIGUOUS
+
+Expected resolver signal observed exactly:
+[env] A-1 fallback in use for: DB_URL, SUPABASE_URL, PUBLISHABLE_KEY, SECRET_KEY (rename to RLS_HARNESS_* when the Director adds them)
+
+Resolver completed without printing values: true
+TARGET SELECTION ATTESTATION: SCRATCH selected through the default/unprefixed Amendment A-1 fallback path. No replica prefix is active. No default RLS_HARNESS_* key set overrides the fallback. Target selection is unambiguous under Sol's released plan.
+
+This attestation was persisted before the first destructive database operation.
+No credential value, URL, key, password, token, or connection string is recorded.

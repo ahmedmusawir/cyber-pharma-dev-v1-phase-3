@@ -1,0 +1,20 @@
+BIM-002 PRE-Q PHASE 3 — ONE-WALK SAME-SESSION REVOCATION
+INTENDED TARGET: SCRATCH
+resolver_signal=[env] A-1 fallback in use
+credential_or_token_value_recorded=false
+MATCH PRE-IDENTITY-ROW | expected=1 | observed=1
+MATCH PRE-BUSINESS-ROWS | expected=A1,B1 | observed=A1,B1
+MATCH PRE-SIGN-IN | expected=code=none | observed=code=none
+MATCH PRE-SESSION-IDENTITY | expected=exact-seeded-id=true | observed=exact-seeded-id=true
+TOKEN continuity_anchor=fingerprint:6974c5ac6d86 value_recorded=false
+MATCH PRE-VISIBLE-BUSINESSES | expected=Store A1,Store B1 | observed=Store A1,Store B1
+MATCH PRE-USER-DATA | expected=A1=200,B1=200 | observed=A1=200,B1=200
+MATCH PRE-JUNCTION-TRUTH | expected=A1=1,B1=1 | observed=A1=1,B1=1
+PRE_STATE_CAPTURED=true
+STOP_POINT_BEFORE_REVOCATION=true
+WAITING_FOR_TONY=run guarded revoke in Terminal B; then type POST here
+
+=== SAME SESSION AFTER TONY REVOCATION ===
+MISMATCH POST-TOKEN-CONTINUITY | expected=byte-identical=true | observed=byte-identical=false;fingerprint:611e197c186d
+ABORT=One-Walk assertion failed: POST-TOKEN-CONTINUITY
+module_verdict=NOT_ISSUED
