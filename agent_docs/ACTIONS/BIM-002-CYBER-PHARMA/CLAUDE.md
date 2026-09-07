@@ -1,8 +1,27 @@
 # BIM-002-CYBER-PHARMA — THE MANAGER
 ## RLS Policy Campaign: Isolation Becomes Database Law
 
-> **Status:** 📋 **FINAL — 2026-08-31 · Awaiting Director review → Claudy launch**
-> **Launch condition:** launch-line prerequisite (§9) mechanically confirmed by the Director on branch `phase-3-bim002`.
+> **Status:** 🔒 **CLOSED — 2026-09-02 · GATE Q: PASS (Sol) — zero implementation defects, zero engineering rework.**
+> **Certified SHA:** **`dfc8a6a4644081bef5a5142c27f2c77e4a6be3d9`** (on `main`) · **PRE-Q attacked specimen:** `53f1ac0` on `phase-3-bim002`, byte-identical across all protected paths (verified empty diff)
+> **Branch of record:** `phase-3-bim002`, merged to `main`. `qa/bim002` was disposable PRE-Q execution only — never merged; QA artifacts copied forward.
+>
+> ### Deliverables Map (module close)
+> | Concern | Deliverables |
+> |---|---|
+> | Helpers + policies | `supabase/migrations/0016_rls_helpers.sql` (4 helpers, E-4 grant form) + `0017–0027` — **15 policies across 11 tables**, junction-first, SELECT-before-write, assert-then-create |
+> | Harness | `scripts/rls-harness/` (13 files) + npm task **`rls:prove`** — 320-cell matrix · row-scoping assertion set · 28-case attack battery · R-C revocation · `policy-check` L1–L4 · `ac8-check` · one-command proof with normalised + behaviour twins |
+> | Templates | `agent_docs/AUTHORITY/RLS_TEMPLATES.md` — four helpers, T-1 (formulation C), T-2, T-3, T-4, T-5, R-A, deny-all, **B as documented anti-pattern**, six structural laws |
+> | Transfers back | `agent_docs/ACTIONS/PROTO06/TRANSFERS_ADDENDUM_BIM-002.md` — **F-10…F-14** (TRANSFERS.md / FINDINGS.md untouched) |
+> | Spec | `ACCEPTANCE_SPEC.md` — **QA-VERIFIED**, certified SHA pinned, AC1–AC20 evidenced, AC13 struck |
+> | Errata | `ERRATUM.md` — **E-1…E-6**, all ruled and applied |
+> | Retrospective | `RETROSPECTIVE.md` — engineering + § PRE-Q |
+> | QA package | `QA/` — Gate Q report (PASS), PRE-Q test plan, recon report, 8 phase responses, 16 evidence logs, 4 probes |
+> | Evidence | `evidence/` — X0–X7, 60+ logs, unique filenames |
+>
+> **Post-close Director duties:** credential rotation on **four** throwaway projects (BIM-002 scratch, replica, BIM-001 throwaways, Proto 06 rig) · delete `proto-06/`, branch `phase-3-proto-6`, and branch `qa/bim002` · **APPLY SESSION: re-verify E-4's premise on the dev backend** (CF-2) · carried flags **CF-1…CF-8** below.
+>
+> _(History: FINAL — stamped 2026-08-31 by JARVIS; launched on `phase-3-bim002`; engineering complete 2026-09-01 with all gates X0–X7 green; PRE-Q 2026-09-02; docs-only close 2026-09-02.)_
+> **Launch condition (historical):** launch-line prerequisite (§9) mechanically confirmed by the Director on branch `phase-3-bim002`.
 > **Module type:** BIM (Backend Integration Module) · **Campaign:** Phase 3 BIM Campaign, module 4 of 7
 > **Governed by:** BIM_PLAYBOOK v1.0 · PHASE_3_BIM_CAMPAIGN_MAP v1.1 (§4 + patch header) · SOFTWARE_FACTORY_PLAYBOOK › Module Identity & QA Handoff
 > **Authority home:** `agent_docs/AUTHORITY/` (precedence README governs) · Proto 06 transfers at `agent_docs/ACTIONS/PROTO06/TRANSFERS.md` + `FINDINGS.md`

@@ -9,7 +9,7 @@
 **Disk/plan truth:** the manager's own row-by-row breakdown sums to **15** new policies with `apa_memberships` deny-all (accounts 1 · businesses 2 · user_businesses 1 · subscriptions 1 · apa 0 · user_data 4 · report_files 1 · reference ×5).
 **Ruling (Director/Architect, 2026-09-01):** count = **15 new policies, 18 rows in `pg_policies` at close** (15 + 3 untouched baseline). The manager's 17 was an Architect arithmetic error. AC9's "matches the plan as confirmed at X0" wording absorbs it — no spec rewrite needed.
 
-## E-2 — Proto 06 helper template: `revoke … from anon` is ineffective (PENDING RATIFICATION)
+## E-2 — Proto 06 helper template: `revoke … from anon` is ineffective (RATIFIED + APPLIED 2026-09-01 · **superseded by E-4**)
 
 **Discovered:** BIM-002 X1, 2026-09-01. Evidence: `evidence/X1_AC8_helper_shape_2026-09-01.log`, `evidence/X1_FINDING_anon_execute_via_public.log`.
 
@@ -21,11 +21,11 @@ TRANSFERS §1.0's helper template ends with `revoke execute on function … from
 
 **Remedy (proven in a rolled-back transaction, NOT applied):** `revoke execute on function public.<fn>(uuid) from public;` before the grant to `authenticated`. Post-remedy: anon=false, authenticated=true, service_role=true; impersonated anon denied with `42501`.
 
-**Status: RATIFIED and APPLIED 2026-09-01** (Architect, Director-ratified). `0016_rls_helpers.sql` now uses `revoke execute … from public` for all three helpers, each carrying a one-line divergence comment citing this erratum. **AC8 amended by the same ruling:** the check asserts PUBLIC lacks EXECUTE (raw ACL shows no bare `=X/` entry) — an anon-only assertion is insufficient, because PUBLIC is the mechanism. X1 re-run in full: **GREEN** (`evidence/X1_AC8_helper_shape_AMENDED_2026-09-01.log`).
+**Status: RATIFIED and APPLIED 2026-09-01** (Architect, Director-ratified). **Superseded by E-4:** `from public` alone proved necessary but not sufficient — the shipped form carries BOTH revokes. `0016_rls_helpers.sql` now uses `revoke execute … from public` for all three helpers, each carrying a one-line divergence comment citing this erratum. **AC8 amended by the same ruling:** the check asserts PUBLIC lacks EXECUTE (raw ACL shows no bare `=X/` entry) — an anon-only assertion is insufficient, because PUBLIC is the mechanism. X1 re-run in full: **GREEN** (`evidence/X1_AC8_helper_shape_AMENDED_2026-09-01.log`).
 **Onward (at close, not now):** TRANSFERS §1.0 erratum + FINDINGS **F-10 — "revoke from anon is a no-op; revoke from public"**, noting that the rig's table-level denial masked it. BIM-005 inherits the same template.
 **Port source untouched by ruling:** `proto-06/policies/` and `proto-06/scripts/` keep the defective text — they are port source and review-by-diff evidence. Corrected text lives only in `0016` and `RLS_TEMPLATES.md`.
 
-## E-4 — `revoke … from public` is necessary but NOT sufficient (APPLIED, ratification requested)
+## E-4 — `revoke … from public` is necessary but NOT sufficient (RATIFIED + APPLIED 2026-09-01)
 
 **Discovered:** BIM-002 X2, 2026-09-01, while creating the formulation-C helper. Evidence: `evidence/X2_FINDING_fresh_create_anon_grant.log`.
 
@@ -36,6 +36,8 @@ E-2 diagnosed PUBLIC as *the* mechanism. It is **one of two**. `pg_default_acl` 
 **Remedy (APPLIED):** every helper carries BOTH `revoke … from public` and `revoke … from anon`, then the grant to `authenticated`. Verified on a fresh create of all four helpers: ACL `{postgres=X, authenticated=X, service_role=X}`, `anon=false`, impersonated anon denied `42501` (`X1_AC8_four_helpers_FINAL_2026-09-01.log`).
 
 **Why applied rather than held:** the ratified AC8 requirement ("anon lacks EXECUTE") was unmeetable from scratch without it. This adds no requirement and weakens none — it is a strictly-more-restrictive grant that makes the file satisfy an already-ratified criterion. **Ratification of the wording change requested** (E-2's literal instruction was `from public` *in place of* `from anon`; evidence says both).
+
+**Status: RATIFIED 2026-09-01** (Architect, Director-ratified). Every helper carries **BOTH** `revoke execute … from public` **and** `revoke execute … from anon`, then `grant … to authenticated`; E-2's "in place of" wording is superseded by this erratum, and divergence comments cite E-4. AC8 amended by the same ruling (E-5): the evidence is taken **after a from-scratch drop-and-apply**, never after `create or replace`. Proven green on three from-scratch runs across two targets.
 
 **Method lesson (F-12, drafted at close):** privilege assertions must be made after a **from-scratch** apply. An incremental re-apply can mask a defect because `create or replace` preserves ACLs. Applies to any AC that inspects grants.
 

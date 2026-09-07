@@ -3,6 +3,23 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-02 18:00 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/ERRATUM.md` — D-1: E-2 heading → RATIFIED/APPLIED, superseded by E-4; D-2: E-4 status records its 2026-09-01 ratification (both revokes). Status lines only, no wording changes
+- **Updated:** `agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/ACCEPTANCE_SPEC.md` — lifecycle → **QA-VERIFIED** (Sol, Gate Q PASS); certified SHA `dfc8a6a` pinned; PRE-Q specimen `53f1ac0` recorded with its empty protected-path diff
+- **Updated:** `agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/CLAUDE.md` — Status → **CLOSED** with Gate Q PASS line, certified SHA, deliverables map, post-close Director duties
+- **Updated:** `RECOVERY.md` — final state: `main` @ `dfc8a6a`, Gate Q PASS, module CLOSED, branch-recovery incident RESOLVED, `qa/bim002` unmerged and slated for deletion
+- **Created:** `agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/QA/GATE_Q_REPORT_BIM-002-CYBER-PHARMA_PASS.md` — Sol's Gate Q report, filed verbatim
+- **Updated:** `agent_docs/PHASE_3_CAMPAIGN_JOURNAL.md` — appended verbatim, append-only, two-seat rule observed: Architect's BIM-002 module-close entry · Sol's QA-logged entries for BIM-001 and BIM-002 · the 2026-09-02 branch-recovery friction entry with its new Factory doctrine
+- **Reason:** BIM-002-CYBER-PHARMA documentation-close on **Gate Q PASS** (Sol, 2026-09-02) — zero implementation defects, zero engineering rework. Docs only; no implementation, migration, harness or `src/` file touched.
+
+## 2026-09-01 16:15 UTC — [CC] Claude Code
+
+- **Created:** `agent_docs/AUTHORITY/RLS_TEMPLATES.md` — blessed policy templates: four helpers (E-4 grant form), T-1 (formulation C), T-2, T-3, T-4, T-5, R-A, deny-all section, formulation B as documented anti-pattern, six structural laws
+- **Created:** `agent_docs/ACTIONS/PROTO06/TRANSFERS_ADDENDUM_BIM-002.md` — findings **F-10…F-13** (TRANSFERS.md and FINDINGS.md deliberately untouched)
+- **Created:** `agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/{ERRATUM,RETROSPECTIVE}.md` + `evidence/` (60+ gate logs); **Updated:** `ACCEPTANCE_SPEC.md` → ENGINEER EVIDENCE-FILLED (AC1–AC20), manager §10a carried flags CF-1…CF-7
+- **Reason:** BIM-002 engineering execution — all gates X0–X7 green. Code-side deliverables in the same module (listed for completeness): `supabase/migrations/0016–0027` (4 helpers + 15 policies), `scripts/rls-harness/` + `npm run rls:prove`. *(Entry backfilled at module close — it was missed on the day.)*
+
 ## 2026-08-31 11:15 UTC — [CC] Claude Code
 
 - **Updated:** `agent_docs/ACTIONS/BIM-001-CYBER-PHARMA/ACCEPTANCE_SPEC.md` — AC3/AC12 wording patched per ratified ERRATUM-Q1/Q2 (wording-only); lifecycle → **QA-VERIFIED**; certified SHA `9f8c80d` pinned

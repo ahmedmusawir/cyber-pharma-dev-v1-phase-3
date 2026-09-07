@@ -4,14 +4,18 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-09-02 (PRE-Q complete; BIM-002 awaiting certification)
-**Authoritative module branch:** **`phase-3-bim002`** — the branch of record for BIM-002
-close-out.
-**Implementation specimen base SHA:** **`53f1ac0`** ("bim002 done waiting for qa and close
-out") — the BIM-002 implementation batch, committed.
-**`qa/bim002`:** disposable **PRE-Q execution branch only. Never merged.** QA's artifacts
-were **copied** from it onto `phase-3-bim002` for permanent close-out (copy-not-merge,
-the same rule used for the Proto 06 transfers).
+**Last updated:** 2026-09-02 — **BIM-002 CLOSED · GATE Q PASS**
+**Branch:** **`main`** @ **`dfc8a6a4644081bef5a5142c27f2c77e4a6be3d9`** — the **certified
+SHA** (Sol, 2026-09-02: zero implementation defects, zero engineering rework).
+**Module history for BIM-002:** PRE-Q attacked specimen **`53f1ac0`** on
+`phase-3-bim002` (branch of record, merged to `main`) — **byte-identical to the certified
+SHA** across `supabase/migrations/`, `scripts/rls-harness/`, `scripts/db-reset.mjs`,
+`src/`, `package.json` (verified empty diff). **`qa/bim002` was a disposable PRE-Q
+execution branch, never merged and slated for deletion** — QA's artifacts were *copied*
+onto `phase-3-bim002` (copy-not-merge, the Proto 06 rule).
+**Branch-recovery incident: RESOLVED.** Close-out work briefly proceeded in a `qa/bim002`
+context; artifacts were restored onto `phase-3-bim002`, RECOVERY's branch identity was
+corrected, and the empty protected-path diff proves nothing was lost or altered.
 **Session log:** `agent_docs/SESSIONS/session_2026-09-02.md`
 _(prior: BIM-001 certified `9f8c80d` · PROTO 06 rig lane closed, `phase-3-proto-6` pending deletion)_
 
@@ -62,22 +66,25 @@ candidates, owner BIM-005, recorded not executed) · retrospective § PRE-Q. Spe
 deliberately remains **ENGINEER EVIDENCE-FILLED** — the QA-VERIFIED flip belongs to
 certification.
 
-**Awaiting, in order:** Director commit of the staged close-out package → **certified SHA
-pinned** into the spec → Sol's certification / Gate Q verdict → module close (spec →
-QA-VERIFIED, manager → CLOSED with deliverables map, CHANGELOG / RECOVERY / session log,
-tombstone) → route carried flags **CF-1…CF-8** (manager §10a), notably credential rotation
-on all four throwaway projects and deletion of `proto-06/` + branch `phase-3-proto-6`.
+**BIM-002 CLOSED — GATE Q PASS** (Sol, 2026-09-02), certified at **`dfc8a6a`**. Spec
+**QA-VERIFIED** with the SHA pinned; manager **CLOSED** with deliverables map; Gate Q
+report filed in `ACTIONS/BIM-002-CYBER-PHARMA/QA/`; errata **E-1…E-6** all ruled and
+applied; findings **F-10…F-14** in the PROTO06 addendum.
+Campaign board: BIM-000 ✅ · FIX-001 ✅ · BIM-001 ✅ · PROTO 06 ✅ · **BIM-002 ✅** →
+next: **BIM-003 (audit)**.
+
+**Post-close Director duties (carried, CF-1…CF-8):** credential rotation on **four**
+throwaway projects · delete `proto-06/`, `phase-3-proto-6`, and `qa/bim002` · **APPLY
+SESSION: re-verify E-4's premise on the dev backend** (CF-2) · CF-1 `owner_user_id`
+delete behaviour → BIM-004/Phase 4 · CF-8 harness candidates → BIM-005.
 
 **Next step:** Gate Q → BIM-002 close → **BIM-003 (audit)**. Dev backend remains at the
 2-table baseline through BIM-004 (LIVE APPLY DEFERRED). Older carries: numbered-color
 predicate rebuild · QA-FINDING-001 · report_files fidelity (CF-3).
 
-**⚠️ UNCOMMITTED (staged on `phase-3-bim002`, documents only):** the PRE-Q bookkeeping
-package — spec / manager / erratum / retrospective edits, the transfers addendum, QA's
-copied-forward artifacts under `ACTIONS/BIM-002-CYBER-PHARMA/QA/`, today's responses,
-session log, and this file. **The BIM-002 implementation batch itself is already
-committed at `53f1ac0`** — migrations, harness, `package.json` and templates are in
-history and were NOT touched by the bookkeeping pass. Operator commits — agent never does.
+**⚠️ UNCOMMITTED:** only this end-of-day RECOVERY/session-log update. Everything else —
+implementation, harness, QA package, close-out docs — is committed and merged at
+`dfc8a6a`. Operator commits — agent never does.
 
 ---
 
@@ -100,8 +107,8 @@ history and were NOT touched by the bookkeeping pass. Operator commits — agent
 
 ## Known Good State
 
-- **HEAD:** `53f1ac0` on **`phase-3-bim002`** — "bim002 done waiting for qa and close out"
-  (BIM-002 implementation batch committed; this is the specimen PRE-Q ran against).
+- **HEAD:** `dfc8a6a` on **`main`** — "2sep2026 - BIM002 done and closed out after QA"
+  (BIM-002 merged; the certified specimen was `53f1ac0` on `phase-3-bim002`).
 - **Working:** Everything — board **build 22 routes · tsc clean · jest 28 suites / 128
   tests / 0 failures**; sixteen-table chain `0001–0027` with 18 RLS policies; isolation
   harness at `scripts/rls-harness/` (`npm run rls:prove`).

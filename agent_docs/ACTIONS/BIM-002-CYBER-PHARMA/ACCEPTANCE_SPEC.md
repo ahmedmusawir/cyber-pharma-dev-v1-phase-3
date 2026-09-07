@@ -1,8 +1,9 @@
 # BIM-002-CYBER-PHARMA — ACCEPTANCE SPEC
 
-> **Lifecycle:** SEEDED (Architect, 2026-08-31) → **ENGINEER EVIDENCE-FILLED (2026-09-01)** → QA-VERIFIED
-> **Certified SHA:** _(pinned by the Director after per-concern commits; certification runs against it)_
-> **Branch (disk at engineering close):** `phase-3-bim002`
+> **Lifecycle:** SEEDED (Architect, 2026-08-31) → ENGINEER EVIDENCE-FILLED (2026-09-01) → **QA-VERIFIED (Sol, 2026-09-02 — GATE Q PASS)**
+> **Certified SHA:** **`dfc8a6a4644081bef5a5142c27f2c77e4a6be3d9`** (on `main`)
+> **PRE-Q attacked specimen:** `53f1ac0004f40e4df9e403188382b16afb92899f` on `phase-3-bim002` — byte-identical to the certified SHA across `supabase/migrations/`, `scripts/rls-harness/`, `scripts/db-reset.mjs`, `src/` and `package.json` (verified empty diff, 2026-09-02)
+> **Branch of record:** `phase-3-bim002`, merged to `main`. `qa/bim002` was disposable PRE-Q execution only — never merged, QA artifacts copied forward.
 > **Errata governing this spec:** `ERRATUM.md` **E-6** AC3(b) denial-shape wording, applied 2026-09-02 at PRE-Q (spec prose only; implementation stood) · **E-1** policy count = 15 new / 18 total · **E-2 + E-4** helper grants revoke from BOTH `public` and `anon`; **AC8 amended** to assert PUBLIC and anon separately · **E-3 AC13 STRUCK** · **E-5** AC8 evidence valid only after a from-scratch apply; formulation **C** adopted for tenant SELECT and `my_business_ids()` is a fourth helper under AC8.
 > **Prose re-read against E-1…E-5 before handoff:** done. Every AC below reflects the ruled state; nothing was weakened, and no requirement was added or removed.
 > **All evidence:** `agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/evidence/`
@@ -102,7 +103,7 @@ Unless stated, every result below appears in **both** X5 runs (scratch, twice fr
 | **AC19** admin-client fence | ✅ BIM-002 introduced **exactly one** service-role construction site: `scripts/rls-harness/lib/db.mjs`. Pre-existing app-side sites (`src/utils/supabase/admin.ts`, `src/app/moose-portal/**`) are **inherited and untouched** — `git diff HEAD` on them is empty. **Zero `src/**` writes in this module** | X7 grep + `git status --short` |
 | **AC20** templates on disk | ✅ `agent_docs/AUTHORITY/RLS_TEMPLATES.md` — four helpers (E-4 form), T-1 (C form), T-2, T-3, T-4, T-5, R-A, deny-all section, and B documented as the anti-pattern with its shield-test table. SQL bodies byte-identical to the migrations | `RLS_TEMPLATES.md` vs `supabase/migrations/0016–0027` |
 
-**Engineer self-assessment is not a verdict.** Sol's five-word vocabulary decides.
+**Engineer self-assessment is not a verdict.** Sol's five-word vocabulary decides — and it did: **GATE Q PASS, 2026-09-02**, certified at `dfc8a6a`, with **zero implementation defects and zero engineering rework**. PRE-Q produced one spec-prose defect (E-6, applied above) and one generalised finding (F-14); harness-improvement candidates were recorded as CF-8 for BIM-005, deliberately not executed. Report: `QA/GATE_Q_REPORT_BIM-002-CYBER-PHARMA_PASS.md`.
 
 ## Out of contract (do not test, do not fail on)
 
