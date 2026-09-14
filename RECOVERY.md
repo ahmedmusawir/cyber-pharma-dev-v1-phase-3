@@ -4,18 +4,20 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-09-14 — **BIM-003 · STAGE 1 COMPLETE (uncommitted)**
-**Branch:** **`phase-3-bim003`** @ base **`0e4e17e`** ("14sep2026 - beginning bim003", pack committed) — S1 work is on top, **uncommitted**.
+**Last updated:** 2026-09-14 — **BIM-003 · STAGE 2 COMPLETE (uncommitted)** · S1 committed `011eada`
+**Branch:** **`phase-3-bim003`** @ **`011eada`** (S1) — S2 work is on top, **uncommitted**.
 **Session log:** `agent_docs/SESSIONS/session_2026-09-14.md`
 
-**Last action:** **BIM-003 S1** — `0028` audit_logs reshape (drop 0015 shape, Brief §3, guard, FORCE RLS, RF-3 revokes) · `0029` one SELECT policy · `0030` `audit_write()` · `0031–0043` thirteen stamps (E-0). From-scratch apply 43/43 ok · catalog GREEN (`evidence/S1_catalog.md`) · **`rls:prove` GREEN** with the trail live (19 policies, 320 cells, 28 attacks, revocation). RF-7 harness edits + E-3 db-verify line applied. RISK-1 (BYPASSRLS) GREEN. Report: `agent_docs/RESPONSES/BIM003_S1_2026-09-14.md`.
+**Last action:** **BIM-003 S2** — wrappers `0044_owedbook_kpis` · `0045_owedbook_rows` · `0046_owedbook_summary` · `0047_owedbook_pbm_options` (E-0 N = 4, mapping A-3). Chain 47/47 from scratch · S2 catalog GREEN (AC-201…203) · session probes GREEN (AC-204…208) · `WRAPPER_CONTRACT.md` (AC-209) · src diff empty (AC-210). Mid-stage fix: 0045 now logs before any read (Brief §5). Report: `agent_docs/RESPONSES/BIM003_S2_2026-09-14.md`.
 
-**Pending:** Director commit of S1 → S2 prompt (wrappers `0044_owedbook_kpis` · `0045_owedbook_rows` · `0046_owedbook_summary` · `0047_owedbook_pbm_options`, N = 4, mapping A-3 approved) → S3 (`audit:prove`, symbolic golden E-2, `multiAdmin` E-4, RUN_NOTES.md, README, triad, types regen by Director).
-**Open flags from S1:** BEFORE TRUNCATE guard added (say the word to remove) · `db:verify` AC7 red predates BIM-003 (asserts zero non-baseline policies) · E-3 cites :177, line is 178.
+**S1 (committed `011eada`):** `0028` audit_logs reshape (drop 0015 shape, Brief §3, guard, FORCE RLS, RF-3 revokes) · `0029` one SELECT policy · `0030` `audit_write()` · `0031–0043` thirteen stamps (E-0). From-scratch apply 43/43 ok · catalog GREEN (`evidence/S1_catalog.md`) · **`rls:prove` GREEN** with the trail live (19 policies, 320 cells, 28 attacks, revocation). RF-7 harness edits + E-3 db-verify line applied. RISK-1 (BYPASSRLS) GREEN. Report: `agent_docs/RESPONSES/BIM003_S1_2026-09-14.md`.
 
-**Next step:** wait for "S2 go". Plan of record: `agent_docs/RESPONSES/response_2026-09-14_125225_bim003-plan.md`; rulings in the spec's erratum lane E-0…E-5.
+**Pending:** Director commit of S2 → S3 prompt (`audit:prove`, symbolic golden E-2, `multiAdmin` E-4, RUN_NOTES.md, README, triad, types regen by Director).
+**Rulings after S1:** TRUNCATE guard kept (R-6 amendment) · db:verify AC7 = **CF-9** (QA Cleanup) · **E-6** corrects E-3 to line 178. **Open from S2:** seed writes no insurance/new_paid/status — S3 golden session must seed those · CF-9 and R-6 amendment not yet written into the pack on disk.
 
-**⚠️ UNCOMMITTED:** all of S1 (16 migrations, 5 harness files + `audit-catalog.mjs`, `db-verify.mjs` one line, spec evidence cells, evidence/, reports, this file, session log, CHANGELOG). Operator commits — agent never does.
+**Next step:** wait for "S3 go". Plan of record: `agent_docs/RESPONSES/response_2026-09-14_125225_bim003-plan.md`; rulings in the spec's erratum lane E-0…E-5.
+
+**⚠️ UNCOMMITTED:** all of S2 (4 migrations, `audit-catalog.mjs` + `audit-wrappers.mjs`, `seed-map.json`, spec evidence cells AC-201…210, `evidence/WRAPPER_CONTRACT.md` + S2_*, reports, this file, session log, CHANGELOG). Operator commits — agent never does.
 
 _(prior state — BIM-002 CLOSED · Gate Q PASS @ `dfc8a6a`, close batch `6171c54`, proto-06 landing zone removed `5c51fff` — preserved below)_
 ---
@@ -107,7 +109,7 @@ implementation, harness, QA package, close-out docs — is committed and merged 
 ## Known Good State
 
 - **HEAD:** `0e4e17e` on **`phase-3-bim003`** (= `main` `5c51fff` + the BIM-003 pack). Last certified: `dfc8a6a` (BIM-002).
-- **Working:** Everything — board last certified **22 routes · tsc clean · jest 28/128/0** (BIM-002; S3 re-runs the triad); chain now `0001–0043` (16 tables, **19** RLS policies, 4 helpers, `audit_write()` on 13 tables, immutable `audit_logs`); `npm run rls:prove` GREEN on 2026-09-14 with the audit chain.
+- **Working:** Everything — board last certified **22 routes · tsc clean · jest 28/128/0** (BIM-002; S3 re-runs the triad); chain now `0001–0047` (16 tables, **19** RLS policies, 4 helpers, `audit_write()` on 13 tables, immutable `audit_logs`, 4 `owedbook_*` read wrappers); `npm run rls:prove` GREEN on 2026-09-14 with the audit chain.
 - **Broken:** Nothing known. KIP-2 is CLOSED (FIX-001). KIP-1 remains parked.
 - **Dev backend:** untouched, still at the 2-table baseline (LIVE APPLY DEFERRED through
   BIM-004).

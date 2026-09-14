@@ -3,6 +3,14 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-14 06:54 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md` — Stage 2 evidence cells filled (AC-201…210); AC wording untouched
+- **Created:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/WRAPPER_CONTRACT.md` (AC-209), `S2_catalog.md`, `S2_wrappers.md`, `S2_files.md`, `S2_apply_*.log` — Stage 2 evidence
+- **Created:** `agent_docs/RESPONSES/BIM003_S2_2026-09-14.md` (+ `response_` copy) — Stage 2 report
+- **Updated:** `RECOVERY.md` — BIM-003 S2 state, pending S3
+- **Reason:** BIM-003 Stage 2 executed and closed (four owedbook_* wrappers, Director prompt of 2026-09-14)
+
 ## 2026-09-14 05:54 UTC — [CC] Claude Code
 
 - **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md` — Stage 1 evidence cells filled (AC-101…105, 107, 108, 113, 114, 115, 120, 121, 305, 905); AC wording untouched

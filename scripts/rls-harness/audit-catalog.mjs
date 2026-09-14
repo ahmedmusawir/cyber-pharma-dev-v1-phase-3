@@ -4,7 +4,8 @@
 // Reads pg_catalog (never information_schema for privilege questions — F-3). Every write
 // happens inside a transaction that is rolled back; the target's data is untouched.
 // Output: agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/S1_catalog.md
-//   node scripts/rls-harness/audit-catalog.mjs
+//   node scripts/rls-harness/audit-catalog.mjs [S1|S2]   (default S1)
+// S2 adds the wrapper checks (AC-201…203) and writes S2_catalog.md instead.
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { loadEnv, repoRoot } from "./lib/env.mjs";
@@ -14,6 +15,8 @@ const STAMPED = ["businesses", "user_businesses", "pending_registrations", "user
   "accounts", "subscriptions", "apa_memberships", "reference_dataset_versions",
   "aac_reference", "wac_reference", "ful_reference", "pbm_info"]; // E-0, thirteen
 
+const STAGE = process.argv[2] ?? "S1";
+const WRAPPERS = ["owedbook_kpis", "owedbook_rows", "owedbook_summary", "owedbook_pbm_options"]; // E-0, N = 4
 const env = loadEnv();
 const db = await pgClient(env);
 const q = async (s, p) => (await db.query(s, p)).rows;
@@ -29,7 +32,7 @@ const expectError = async (label, sql, wantCode) => {
   catch (e) { await db.query("rollback to savepoint s"); check(!wantCode || e.code === wantCode, label, `${e.code} ${e.message.split("\n")[0]}`); return e; }
 };
 
-say(`# S1 catalog evidence — BIM-003-CYBER-PHARMA`);
+say(`# ${STAGE} catalog evidence — BIM-003-CYBER-PHARMA`);
 say(`Generated ${new Date().toISOString()} by \`scripts/rls-harness/audit-catalog.mjs\` against host \`${new URL(env.DB_URL).hostname}\` (scratch throwaway, ENV_NOTE.md). Every mutation below ran inside a rolled-back transaction.`);
 say();
 
@@ -39,6 +42,56 @@ table([who], ["current_user", "rolbypassrls", "rolsuper"]);
 check(who.rolbypassrls === true, "RISK-1 GREEN: migration role has BYPASSRLS, so SECURITY DEFINER inserts into the FORCED, policy-less audit_logs succeed", `(first observed read-only 2026-09-14 13:1x before S1; re-confirmed here)`);
 say();
 
+if (STAGE === "S2") {
+  say(`## AC-201 — exactly N = 4 functions in public whose names begin with owedbook_`);
+  const fns = await q(`select p.oid::int oid, p.proname, pg_get_function_identity_arguments(p.oid) args, pg_get_function_result(p.oid) result,
+      p.prosecdef, p.proconfig::text cfg, p.proacl::text acl, p.proargnames[1] first_arg, (p.proargtypes[0])::regtype first_type, p.prolang::regclass lang
+    from pg_proc p where p.pronamespace = 'public'::regnamespace and p.proname like 'owedbook\\_%' order by p.proname`);
+  table(fns, ["proname", "args", "result"]);
+  check(fns.length === 4, `pg_proc count = ${fns.length}`);
+  check(JSON.stringify(fns.map((f) => f.proname)) === JSON.stringify([...WRAPPERS].sort()), "the four names match E-0 exactly");
+  say();
+  say(`## AC-202 — every wrapper: SECURITY DEFINER, search_path pinned, EXECUTE to authenticated, revoked from public and anon`);
+  table(fns, ["proname", "prosecdef", "cfg", "acl"]);
+  for (const f of fns) {
+    // by oid: has_function_privilege's text form wants type-only signatures, identity_arguments carries names
+    const g = (await q(`select has_function_privilege('anon', $1::oid, 'EXECUTE') a, has_function_privilege('authenticated', $1::oid, 'EXECUTE') b, has_function_privilege('service_role', $1::oid, 'EXECUTE') s`, [f.oid]))[0];
+    const noPublic = !/(^|\{|,)=X\//.test(f.acl || ""), noAnon = !/anon=X/.test(f.acl || "");
+    check(f.prosecdef === true && /search_path=/.test(f.cfg || "") && noPublic && noAnon && g.a === false && g.b === true,
+      `${f.proname}: secdef=${f.prosecdef} cfg=${f.cfg} anon=${g.a} authenticated=${g.b} service_role=${g.s} PUBLIC-entry=${!noPublic}`);
+  }
+  // live: anon must be refused at execution time, not merely by catalog (ac8-check pattern)
+  await db.query("begin"); await db.query("set local role anon");
+  for (const w of WRAPPERS) await expectError(`anon EXECUTE ${w} refused at run time`, `select * from public.${w}('00000000-0000-4000-8000-000000000000'::uuid${w === "owedbook_rows" ? ", 'commercial_dollars'" : ""})`, "42501");
+  await db.query("rollback");
+  say();
+  say(`## AC-203 — first parameter is p_business_id uuid on all four`);
+  table(fns, ["proname", "first_arg", "first_type"]);
+  check(fns.every((f) => f.first_arg === "p_business_id" && String(f.first_type) === "uuid"), "proargnames[1] = 'p_business_id', proargtypes[0] = uuid, all four");
+  say();
+  say(`## Body shape (Brief §5) — membership check, then ONE read_page insert, then the read`);
+  const bodies = await q(`select proname, prosrc from pg_proc where pronamespace = 'public'::regnamespace and proname like 'owedbook\\_%' order by proname`);
+  for (const b of bodies) {
+    const src = b.prosrc;
+    const iMember = src.search(/in \(select public\.my_business_ids\(\)\)/);
+    const iRaise = src.indexOf("raise exception 'not a member of business'");
+    const iInsert = src.indexOf("insert into public.audit_logs");
+    const iRead = src.search(/from public\.user_data ud/);
+    const inserts = (src.match(/insert into public\.audit_logs/g) || []).length;
+    const fence = (src.match(/where ud\.business_id = p_business_id/g) || []).length;
+    check(iMember > -1 && iRaise > iMember && iInsert > iRaise && iRead > iInsert && inserts === 1 && fence >= 1,
+      `${b.proname}: membership@${iMember} < raise@${iRaise} < insert@${iInsert} < read@${iRead}; audit inserts = ${inserts}; explicit business_id fence × ${fence}`);
+    check(/'read_page'/.test(src) && new RegExp(`'fn',\\s*'${b.proname}'`).test(src), `${b.proname}: action 'read_page' and context.fn = '${b.proname}'`);
+  }
+  say();
+  say(`## Prior-stage invariants still hold`);
+  const pol = await q(`select count(*)::int n from pg_policies where schemaname = 'public' and tablename = 'audit_logs'`);
+  const stamps = await q(`select count(*)::int n from pg_trigger where tgfoid = 'public.audit_write'::regproc and not tgisinternal`);
+  const rls = (await q(`select relrowsecurity, relforcerowsecurity from pg_class where oid = 'public.audit_logs'::regclass`))[0];
+  check(pol[0].n === 1 && stamps[0].n === 13 && rls.relrowsecurity && rls.relforcerowsecurity, `audit_logs: 1 policy, RLS enabled+forced; audit_write stamps = ${stamps[0].n}`);
+  say();
+}
+if (STAGE === "S1") {
 say(`## AC-102 — audit_logs columns, in order`);
 const cols = await q(`select a.attnum, a.attname, format_type(a.atttypid, a.atttypmod) type, a.attnotnull notnull, pg_get_expr(d.adbin, d.adrelid) dflt
   from pg_attribute a left join pg_attrdef d on d.adrelid = a.attrelid and d.adnum = a.attnum
@@ -157,8 +210,9 @@ else {
 await db.query("rollback");
 say();
 
+}
 say(`## Verdict`);
-say(fails === 0 ? "**S1 CATALOG GREEN** — every assertion above holds." : `**${fails} ASSERTION(S) FAILED** — see ❌ above.`);
-writeFileSync(join(repoRoot, "agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/S1_catalog.md"), out.join("\n") + "\n");
+say(fails === 0 ? `**${STAGE} CATALOG GREEN** — every assertion above holds.` : `**${fails} ASSERTION(S) FAILED** — see ❌ above.`);
+writeFileSync(join(repoRoot, `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/${STAGE}_catalog.md`), out.join("\n") + "\n");
 await db.end();
 process.exit(fails === 0 ? 0 : 3);

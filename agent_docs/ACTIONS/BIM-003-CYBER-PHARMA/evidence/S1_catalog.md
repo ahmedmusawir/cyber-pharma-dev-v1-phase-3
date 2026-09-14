@@ -1,5 +1,5 @@
 # S1 catalog evidence — BIM-003-CYBER-PHARMA
-Generated 2026-09-14T05:50:11.768Z by `scripts/rls-harness/audit-catalog.mjs` against host `aws-1-us-west-1.pooler.supabase.com` (scratch throwaway, ENV_NOTE.md). Every mutation below ran inside a rolled-back transaction.
+Generated 2026-09-14T06:50:44.307Z by `scripts/rls-harness/audit-catalog.mjs` against host `aws-1-us-west-1.pooler.supabase.com` (scratch throwaway, ENV_NOTE.md). Every mutation below ran inside a rolled-back transaction.
 
 ## RISK-1 — definer owner can insert through FORCE RLS
 | current_user | rolbypassrls | rolsuper |
@@ -110,11 +110,11 @@ Not stamped (by ruling): audit_logs, profiles, user_roles
 ## Smoke walk (rolled back) — the trigger writes what R-2/R-8 say, and the guard holds for the owner
 | table_name | action | actor_role | actor_user_id | business_id | row_id | context | has_old | has_new |
 |---|---|---|---|---|---|---|---|---|
-| accounts | insert | postgres | null | null | d08cf9f5-2537-4554-bba4-a35f6ef97de3 | [object Object] | false | true |
-| businesses | insert | postgres | null | 9c07a0f1-f2ca-46c3-972a-dae9ce857206 | 9c07a0f1-f2ca-46c3-972a-dae9ce857206 | null | false | true |
-| user_data | insert | postgres | null | 9c07a0f1-f2ca-46c3-972a-dae9ce857206 | bc53c4e8-fcad-4590-a80f-f22b8d2ebc80 | null | false | true |
-| user_data | update | postgres | null | 9c07a0f1-f2ca-46c3-972a-dae9ce857206 | bc53c4e8-fcad-4590-a80f-f22b8d2ebc80 | null | true | true |
-| user_data | delete | postgres | null | 9c07a0f1-f2ca-46c3-972a-dae9ce857206 | bc53c4e8-fcad-4590-a80f-f22b8d2ebc80 | null | true | false |
+| accounts | insert | postgres | null | null | 26fef845-a034-433d-b941-dbba5ab433e0 | [object Object] | false | true |
+| businesses | insert | postgres | null | 5bde6b2a-458c-4b6c-a570-f5452b4dc16e | 5bde6b2a-458c-4b6c-a570-f5452b4dc16e | null | false | true |
+| user_data | insert | postgres | null | 5bde6b2a-458c-4b6c-a570-f5452b4dc16e | 0921c7d8-1f77-4f79-b113-810f9f4d3e2d | null | false | true |
+| user_data | update | postgres | null | 5bde6b2a-458c-4b6c-a570-f5452b4dc16e | 0921c7d8-1f77-4f79-b113-810f9f4d3e2d | null | true | true |
+| user_data | delete | postgres | null | 5bde6b2a-458c-4b6c-a570-f5452b4dc16e | 0921c7d8-1f77-4f79-b113-810f9f4d3e2d | null | true | false |
 - ✅ accounts (R-8): business_id NULL, context carries {id}
 - ✅ businesses special-case: business_id = the row's own id
 - ✅ user_data insert: business_id from row, row_id = pk, new_data only
