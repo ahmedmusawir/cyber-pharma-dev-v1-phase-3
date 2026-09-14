@@ -3,6 +3,17 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-14 07:42 UTC — [CC] Claude Code
+
+- **Created:** `RUN_NOTES.md` (root) — the two proof commands, env re-pointing, reading a result, stage-by-stage (AC-308)
+- **Updated:** `README.md` — script table gains `npm run rls:prove` and `npm run audit:prove` (AC-308)
+- **Created:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RETROSPECTIVE.md` — Keep / Change / Drop + Deferred Ledger (AC-309)
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md` — remaining evidence cells filled (every AC now points at evidence; AC-307 marked PENDING Director paste); AC wording untouched
+- **Created:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/S3_*` (+ `rls-prove/S3_*`) — audit:prove logs, failure path, triad, types-regen instructions, AC-301…906 evidence
+- **Created:** `agent_docs/RESPONSES/BIM003_S3_2026-09-14.md` (+ `response_` copy) — Stage 3 report
+- **Updated:** `RECOVERY.md` — BIM-003 ENGINEERING COMPLETE, AC-307 verified (E-7), ready for QA
+- **Reason:** BIM-003 Stage 3 executed (Director prompt of 2026-09-14, RULINGS_ADDENDUM R-6a/R-8a/R-10)
+
 ## 2026-09-14 06:54 UTC — [CC] Claude Code
 
 - **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md` — Stage 2 evidence cells filled (AC-201…210); AC wording untouched

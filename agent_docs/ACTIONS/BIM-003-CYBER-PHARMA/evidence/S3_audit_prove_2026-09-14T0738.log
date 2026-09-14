@@ -1,0 +1,148 @@
+[audit:prove] audit-trail proof from an empty scratch — 2026-09-14T0738
+
+═══ 1/4 WIPE + CHAIN 0001-0047 ═══
+[db-reset] reset → host=aws-1-us-west-1.pooler.supabase.com db=postgres
+[db-reset] chain: 47 migrations (0001_baseline_acknowledge.sql … 0047_owedbook_pbm_options.sql)
+  ok  drop event trigger (pre-drop)
+  ok  drop schema public
+  ok  re-grant public schema privileges
+  ok  bootstrap baseline (scratch-only, X0 rider 3)
+  ok  0001_baseline_acknowledge.sql
+  ok  0002_accounts.sql
+  ok  0003_businesses.sql
+  ok  0004_user_businesses.sql
+  ok  0005_pending_registrations.sql
+  ok  0006_subscriptions.sql
+  ok  0007_apa_memberships.sql
+  ok  0008_reference_dataset_versions.sql
+  ok  0009_aac_reference.sql
+  ok  0010_wac_reference.sql
+  ok  0011_ful_reference.sql
+  ok  0012_pbm_info.sql
+  ok  0013_user_data.sql
+  ok  0014_report_files.sql
+  ok  0015_audit_logs.sql
+  ok  0016_rls_helpers.sql
+  ok  0017_rls_user_businesses.sql
+  ok  0018_rls_accounts.sql
+  ok  0019_rls_businesses.sql
+  ok  0020_rls_subscriptions.sql
+  ok  0021_rls_user_data.sql
+  ok  0022_rls_report_files.sql
+  ok  0023_rls_aac_reference.sql
+  ok  0024_rls_wac_reference.sql
+  ok  0025_rls_ful_reference.sql
+  ok  0026_rls_pbm_info.sql
+  ok  0027_rls_reference_dataset_versions.sql
+  ok  0028_audit_logs_reshape.sql
+  ok  0029_rls_audit_logs.sql
+  ok  0030_audit_write.sql
+  ok  0031_audit_stamp_businesses.sql
+  ok  0032_audit_stamp_user_businesses.sql
+  ok  0033_audit_stamp_pending_registrations.sql
+  ok  0034_audit_stamp_user_data.sql
+  ok  0035_audit_stamp_report_files.sql
+  ok  0036_audit_stamp_accounts.sql
+  ok  0037_audit_stamp_subscriptions.sql
+  ok  0038_audit_stamp_apa_memberships.sql
+  ok  0039_audit_stamp_reference_dataset_versions.sql
+  ok  0040_audit_stamp_aac_reference.sql
+  ok  0041_audit_stamp_wac_reference.sql
+  ok  0042_audit_stamp_ful_reference.sql
+  ok  0043_audit_stamp_pbm_info.sql
+  ok  0044_owedbook_kpis.sql
+  ok  0045_owedbook_rows.sql
+  ok  0046_owedbook_summary.sql
+  ok  0047_owedbook_pbm_options.sql
+[inventory] 16 public tables:
+  - aac_reference
+  - accounts
+  - apa_memberships
+  - audit_logs
+  - businesses
+  - ful_reference
+  - pbm_info
+  - pending_registrations
+  - profiles
+  - reference_dataset_versions
+  - report_files
+  - subscriptions
+  - user_businesses
+  - user_data
+  - user_roles
+  - wac_reference
+[db-reset] reset complete — 16 tables on target.
+
+═══ 2/4 SEED (BIM-002 cast + FK-safe reset) ═══
+[env] A-1 fallback in use for: DB_URL, SUPABASE_URL, PUBLISHABLE_KEY, SECRET_KEY (rename to RLS_HARNESS_* when the Director adds them)
+  reset: thirteen public tables emptied (before the auth purge — FK order matters; audit_logs is append-only)
+  reset: purged 4 pre-existing auth.users
+  cast: 4 identities created (handle_new_user seeds their user_roles + profiles rows)
+  tenants: 2 accounts, 3 stores, 6 junction rows
+  rows: user_data=600 report_files=3 subscriptions=2 user_roles=4 profiles=4 (+1 in each remaining table)
+[seed] complete — seed-map.json written (ids only, no secrets).
+
+═══ 3/4 AUDIT-SEED (multi + R-10 rows) ═══
+[env] A-1 fallback in use for: DB_URL, SUPABASE_URL, PUBLISHABLE_KEY, SECRET_KEY (rename to RLS_HARNESS_* when the Director adds them)
+  multi: multiAdmin created — junction ADMIN of A1 + B1 (E-4)
+  r10: 4 user_data rows on A1 with insurance/new_paid/status populated (R-10)
+[audit-seed] complete — audit-seed-map.json written (ids only, no secrets).
+
+═══ 4/4 SESSION + PROBES + GOLDEN DIFF ═══
+[env] A-1 fallback in use for: DB_URL, SUPABASE_URL, PUBLISHABLE_KEY, SECRET_KEY (rename to RLS_HARNESS_* when the Director adds them)
+[audit-session] BIM-003 scripted two-tenant session — 2026-09-14T07:39:21.065Z — host jmzwhgnyunwssamrqyhp.supabase.co
+  watermark: audit_logs.id = 629 (629 rows on the trail before the session)
+
+AC-106 — tampering: UPDATE and DELETE on audit_logs as svc, admin-A, anon (six probes)
+  ok   svc UPDATE raises — P0001 "audit_logs is append-only" · ground truth actor_role=postgres
+  ok   svc DELETE raises — P0001 "audit_logs is append-only" · ground truth count=629
+  ok   admin-A UPDATE raises — 42501 "permission denied for table audit_logs" · ground truth actor_role=postgres
+  ok   admin-A DELETE raises — 42501 "permission denied for table audit_logs" · ground truth count=629
+  ok   anon UPDATE raises — 42501 "permission denied for table audit_logs" · ground truth actor_role=postgres
+  ok   anon DELETE raises — 42501 "permission denied for table audit_logs" · ground truth count=629
+
+AC-116/117 — admin-A INSERT → UPDATE → DELETE on user_data (A1)
+  ok   insert — id 750373e9-e7c5-449e-b1fe-1eaa4c9828dd
+  ok   update — 1 row
+  ok   delete — 1 row
+  ok   three trail rows for row <session-row> — insert,update,delete
+  ok   insert: new_data only, business_id A1, table user_data, row_id = pk
+  ok   update: old_data AND new_data
+  ok   delete: old_data only
+  ok   AC-119: actor_user_id = admin-A, actor_role = authenticated
+  ok   payload key set carries id + business_id (E-2 stable keys)
+
+AC-118 — svc INSERT on apa_memberships (R-8: no business_id)
+  ok   svc insert — 1 row
+  ok   R-8 row: business_id NULL, context non-null carrying the identifying key — {"id":"03dc6010-3fb7-4bbf-a7fb-6d6960df3b5f"}
+  ok   AC-119: svc write → actor_user_id NULL, actor_role service_role
+
+AC-302 — wrapper calls (log-then-return, R-10 shapes non-empty)
+  ok   owedbook_kpis(A1): 204 scripts · 20119.50 underpaid · 6.00 updated_difference (200 seed + 4 R-10) — {"commercial_underpaid":20119.5,"commercial_scripts":204,"updated_difference":6,"owed":20119.5}
+  ok   owedbook_rows(A1, commercial): total 204, 25 rows, 9 pages — 204/25/9
+  ok   owedbook_rows(A1, updated): total 2, every row has new_paid (R-10) — 2
+  ok   owedbook_summary(A1): [OptumRx 10.00, Caremark 9.50] desc (R-10) — [{"pbm":"OptumRx","commercial_dollars":10,"federal_dollars":0},{"pbm":"Caremark","commercial_dollars":9.5,"federal_dollars":0}]
+  ok   owedbook_pbm_options(A1): [Caremark, OptumRx] (R-10) — ["Caremark","OptumRx"]
+  ok   multi → owedbook_kpis(B1): 200 scripts (second tenant in the trail) — {"commercial_underpaid":20100,"commercial_scripts":200,"updated_difference":0,"owed":20100}
+  ok   exactly six read_page rows for six wrapper calls (R-7)
+
+AC-206 — admin-A → owedbook_kpis(B1)
+  ok   raises 'not a member of business', zero rows inserted — P0001 "not a member of business"
+
+AC-113 — admin-A INSERT into audit_logs
+  ok   denied by RLS (42501), count unchanged — 42501 "new row violates row-level security policy for table "audit_logs""
+
+AC-109…112 — audit_logs SELECT scoping (junction ADMIN of the row's business only)
+  ok   AC-109 admin-A: 421 rows = expected A-count 421 (A1+A2, ownerA is admin of both); outside A = 0; NULL-business = 0
+  ok   AC-110 member-A: 0 rows (expected 0)
+  ok   AC-111 admin-B: 206 rows = expected B-count 206; outside B = 0
+  ok   AC-111 multi: 424 rows = expected A1+B1 count 424; outside = 0
+  ok   AC-112 anon: 0 rows
+
+AC-303 — golden diff (rows after the watermark, ordered by id, id/occurred_at excluded, symbolised per E-2)
+  ok   row count: produced 10, golden 10
+  ok   0 differing row(s) against golden/audit_trail_expected.json
+
+[audit-session] TRAIL EXACT — every probe green and the produced trail matches the golden row-for-row
+
+[audit:prove] ✓ TRAIL PROVEN — chain 0001-0047 + immutability (6 probes) + write trail + R-8 + six wrapper reads + cross-tenant deny + admin-only visibility + golden match, from an empty database.

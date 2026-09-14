@@ -134,6 +134,8 @@ one). See [docs/DATABASE_SETUP.md](docs/DATABASE_SETUP.md).
 | `npm test`                  | Jest suite (120 tests / 26 suites)    |
 | `npm run test:e2e`          | Playwright end-to-end                 |
 | `npm run test:e2e:ui`       | Playwright in UI mode                 |
+| `npm run rls:prove`         | BIM-002 RLS isolation proof — wipes the throwaway, replays the chain, 320-cell matrix + attacks (see `RUN_NOTES.md`) |
+| `npm run audit:prove`       | BIM-003 audit-trail proof — wipes the throwaway, replays the chain, scripted session vs golden trail (see `RUN_NOTES.md`) |
 
 ---
 

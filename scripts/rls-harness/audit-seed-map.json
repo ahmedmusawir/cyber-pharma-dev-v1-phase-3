@@ -1,0 +1,17 @@
+{
+  "users": {
+    "multiAdmin": "9fb1eb83-5063-4d57-9b05-1d43356ab69f"
+  },
+  "cast": [
+    {
+      "key": "multiAdmin",
+      "email": "bim003-multiadmin@rls.local"
+    }
+  ],
+  "r10": [
+    "47991d8b-e921-4395-9e69-08c41fe79848",
+    "0edcf218-de7c-400f-9a49-d792b933d3e8",
+    "08e15e5b-c74f-4be5-8fcc-b6cf554c898e",
+    "fc4277e2-52f5-4ee2-9665-f2c743d77395"
+  ]
+}
