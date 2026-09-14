@@ -38,12 +38,14 @@ const CAST = [
 // error deleting user" and a naive purge dies half-way, leaving orphaned
 // identities whose sign-in then fails silently. Public rows go first; the
 // junction's own ON DELETE CASCADE handles the rest.
+// audit_logs is NOT in this list: since BIM-003 (R-6) it is append-only for every role and
+// a DELETE here would raise. Its only reset is prove.mjs stage 1's schema drop.
 for (const t of ["user_data", "report_files", "subscriptions", "user_businesses", "businesses",
-                 "accounts", "apa_memberships", "pending_registrations", "audit_logs",
+                 "accounts", "apa_memberships", "pending_registrations",
                  "aac_reference", "wac_reference", "ful_reference", "pbm_info", "reference_dataset_versions"]) {
   await db.query(`delete from public.${t}`);
 }
-console.log("  reset: fourteen public tables emptied (before the auth purge — FK order matters)");
+console.log("  reset: thirteen public tables emptied (before the auth purge — FK order matters; audit_logs is append-only)");
 
 // ── reset: purge ALL pre-existing auth users (explicit, never assumed absent) ──
 // X4 carry note (Architect, 2026-09-01): the auth schema SURVIVES a public-schema
@@ -94,7 +96,7 @@ for (const [biz, tag] of [[a1.id, "A1"], [a2.id, "A2"], [b1.id, "B1"]]) {
 }
 await db.query(`insert into public.apa_memberships (license_number, membership, first_name, last_name) values ('LIC-0001','APA','Ada','Lovelace')`);
 await db.query(`insert into public.pending_registrations (ncpdp, npi, email, pharmacy_name) values ('0900001','1090000001','pending@rls.local','Pending Pharmacy')`);
-await db.query(`insert into public.audit_logs (username, table_name, action) values ('system_seed','user_data','create')`);
+// audit_logs seeds itself: every insert above fired BIM-003's audit_write trigger (0030-0043).
 await db.query(`insert into public.reference_dataset_versions (dataset_name, checksum, row_count) values ('aac','seed-checksum',3)`);
 await db.query(`insert into public.aac_reference (ndc, aac_date, aac, drug_name) values ('00000000001', current_date, 12.34, 'Ref Drug')`);
 await db.query(`insert into public.wac_reference (ndc, effective_date, wac, pkg_size, pkg_size_mult, generic_indicator) values ('00000000001', current_date, 56.78, 30, 1, 'G')`);

@@ -1,5 +1,5 @@
 {
-  "_comment": "BIM-002 expectation matrix. default DENY; every ALLOW is an explicit override earned by a landed policy. Baseline notes: user_roles.select and profiles.select/update are ALLOWED by the three PRE-EXISTING baseline policies (own row) — not by this module. Tenant payloads target store A1, so ownerB's DENY on A1 rows is the cross-tenant proof.",
+  "_comment": "BIM-002 expectation matrix. default DENY; every ALLOW is an explicit override earned by a landed policy. Baseline notes: user_roles.select and profiles.select/update are ALLOWED by the three PRE-EXISTING baseline policies (own row) \u2014 not by this module. Tenant payloads target store A1, so ownerB's DENY on A1 rows is the cross-tenant proof. BIM-003 (R-1): audit_logs.select is ALLOWED for junction ADMINS of a business whose rows were written (ownerA, ownerB); members (staffA, multiStore) stay DENY; every audit_logs write stays DENY.",
   "phase": "X3-FINAL-all-policies",
   "identities": [
     "anon",
@@ -77,6 +77,9 @@
         "select": "ALLOW"
       },
       "reference_dataset_versions": {
+        "select": "ALLOW"
+      },
+      "audit_logs": {
         "select": "ALLOW"
       }
     },
@@ -163,6 +166,9 @@
         "select": "ALLOW"
       },
       "reference_dataset_versions": {
+        "select": "ALLOW"
+      },
+      "audit_logs": {
         "select": "ALLOW"
       }
     },

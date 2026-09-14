@@ -123,10 +123,10 @@ await attack({ id: "A7.2", desc: "ownerA UPDATEs pbm_info", identity: "ownerA",
   run: (c) => c.from("pbm_info").update({ pbm_name: "attacked" }).eq("bin", "004146").select(),
   truth: async () => (await svc.from("pbm_info").select("pbm_name").eq("bin", "004146").single()).data?.pbm_name, truthWant: "Seed PBM" });
 
-log("\nA8 — deny-all tables stay dark to everyone (rows EXIST — a 0 here means refused, not empty):");
-for (const [i, t] of ["apa_memberships", "pending_registrations", "audit_logs"].entries()) {
+log("\nA8 — deny-all tables stay dark (rows EXIST — a 0 here means refused, not empty). audit_logs is admin-readable since BIM-003 (R-1), so its probe runs as a MEMBER:");
+for (const [i, [t, who]] of [["apa_memberships", "ownerA"], ["pending_registrations", "ownerA"], ["audit_logs", "staffA"]].entries()) {
   const n = (await svc.from(t).select("*", { count: "exact", head: true })).count;
-  await attack({ id: `A8.${i + 1}`, desc: `ownerA reads ${t} (service role sees ${n} row(s))`, identity: "ownerA",
+  await attack({ id: `A8.${i + 1}`, desc: `${who} reads ${t} (service role sees ${n} row(s))`, identity: who,
     run: (c) => c.from(t).select("*") });
 }
 

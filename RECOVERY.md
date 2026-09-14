@@ -4,21 +4,20 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-09-02 — **BIM-002 CLOSED · GATE Q PASS**
-**Branch:** **`main`** @ **`dfc8a6a4644081bef5a5142c27f2c77e4a6be3d9`** — the **certified
-SHA** (Sol, 2026-09-02: zero implementation defects, zero engineering rework).
-**Module history for BIM-002:** PRE-Q attacked specimen **`53f1ac0`** on
-`phase-3-bim002` (branch of record, merged to `main`) — **byte-identical to the certified
-SHA** across `supabase/migrations/`, `scripts/rls-harness/`, `scripts/db-reset.mjs`,
-`src/`, `package.json` (verified empty diff). **`qa/bim002` was a disposable PRE-Q
-execution branch, never merged and slated for deletion** — QA's artifacts were *copied*
-onto `phase-3-bim002` (copy-not-merge, the Proto 06 rule).
-**Branch-recovery incident: RESOLVED.** Close-out work briefly proceeded in a `qa/bim002`
-context; artifacts were restored onto `phase-3-bim002`, RECOVERY's branch identity was
-corrected, and the empty protected-path diff proves nothing was lost or altered.
-**Session log:** `agent_docs/SESSIONS/session_2026-09-02.md`
-_(prior: BIM-001 certified `9f8c80d` · PROTO 06 rig lane closed, `phase-3-proto-6` pending deletion)_
+**Last updated:** 2026-09-14 — **BIM-003 · STAGE 1 COMPLETE (uncommitted)**
+**Branch:** **`phase-3-bim003`** @ base **`0e4e17e`** ("14sep2026 - beginning bim003", pack committed) — S1 work is on top, **uncommitted**.
+**Session log:** `agent_docs/SESSIONS/session_2026-09-14.md`
 
+**Last action:** **BIM-003 S1** — `0028` audit_logs reshape (drop 0015 shape, Brief §3, guard, FORCE RLS, RF-3 revokes) · `0029` one SELECT policy · `0030` `audit_write()` · `0031–0043` thirteen stamps (E-0). From-scratch apply 43/43 ok · catalog GREEN (`evidence/S1_catalog.md`) · **`rls:prove` GREEN** with the trail live (19 policies, 320 cells, 28 attacks, revocation). RF-7 harness edits + E-3 db-verify line applied. RISK-1 (BYPASSRLS) GREEN. Report: `agent_docs/RESPONSES/BIM003_S1_2026-09-14.md`.
+
+**Pending:** Director commit of S1 → S2 prompt (wrappers `0044_owedbook_kpis` · `0045_owedbook_rows` · `0046_owedbook_summary` · `0047_owedbook_pbm_options`, N = 4, mapping A-3 approved) → S3 (`audit:prove`, symbolic golden E-2, `multiAdmin` E-4, RUN_NOTES.md, README, triad, types regen by Director).
+**Open flags from S1:** BEFORE TRUNCATE guard added (say the word to remove) · `db:verify` AC7 red predates BIM-003 (asserts zero non-baseline policies) · E-3 cites :177, line is 178.
+
+**Next step:** wait for "S2 go". Plan of record: `agent_docs/RESPONSES/response_2026-09-14_125225_bim003-plan.md`; rulings in the spec's erratum lane E-0…E-5.
+
+**⚠️ UNCOMMITTED:** all of S1 (16 migrations, 5 harness files + `audit-catalog.mjs`, `db-verify.mjs` one line, spec evidence cells, evidence/, reports, this file, session log, CHANGELOG). Operator commits — agent never does.
+
+_(prior state — BIM-002 CLOSED · Gate Q PASS @ `dfc8a6a`, close batch `6171c54`, proto-06 landing zone removed `5c51fff` — preserved below)_
 ---
 
 **Last action:** **BIM-001-CYBER-PHARMA CLOSED — GATE Q PASS** (Sol, 2026-08-31:
@@ -107,11 +106,8 @@ implementation, harness, QA package, close-out docs — is committed and merged 
 
 ## Known Good State
 
-- **HEAD:** `dfc8a6a` on **`main`** — "2sep2026 - BIM002 done and closed out after QA"
-  (BIM-002 merged; the certified specimen was `53f1ac0` on `phase-3-bim002`).
-- **Working:** Everything — board **build 22 routes · tsc clean · jest 28 suites / 128
-  tests / 0 failures**; sixteen-table chain `0001–0027` with 18 RLS policies; isolation
-  harness at `scripts/rls-harness/` (`npm run rls:prove`).
+- **HEAD:** `0e4e17e` on **`phase-3-bim003`** (= `main` `5c51fff` + the BIM-003 pack). Last certified: `dfc8a6a` (BIM-002).
+- **Working:** Everything — board last certified **22 routes · tsc clean · jest 28/128/0** (BIM-002; S3 re-runs the triad); chain now `0001–0043` (16 tables, **19** RLS policies, 4 helpers, `audit_write()` on 13 tables, immutable `audit_logs`); `npm run rls:prove` GREEN on 2026-09-14 with the audit chain.
 - **Broken:** Nothing known. KIP-2 is CLOSED (FIX-001). KIP-1 remains parked.
 - **Dev backend:** untouched, still at the 2-table baseline (LIVE APPLY DEFERRED through
   BIM-004).

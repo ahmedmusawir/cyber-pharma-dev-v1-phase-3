@@ -3,6 +3,14 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-14 05:54 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md` — Stage 1 evidence cells filled (AC-101…105, 107, 108, 113, 114, 115, 120, 121, 305, 905); AC wording untouched
+- **Created:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/S1_catalog.md`, `S1_files.md`, `S1_apply_*.log`, `S1_db-verify.log`, `rls-prove/*` — Stage 1 evidence
+- **Created:** `agent_docs/RESPONSES/BIM003_S1_2026-09-14.md` (+ `response_` copy) — Stage 1 report; `response_2026-09-14_125225_bim003-plan.md` — approved plan; two earlier session-open / block records
+- **Updated:** `RECOVERY.md` — BIM-003 S1 state, pending S2, open flags
+- **Reason:** BIM-003 Stage 1 executed and closed (Director-approved plan, errata E-0…E-5)
+
 ## 2026-09-02 18:00 UTC — [CC] Claude Code
 
 - **Updated:** `agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/ERRATUM.md` — D-1: E-2 heading → RATIFIED/APPLIED, superseded by E-4; D-2: E-4 status records its 2026-09-01 ratification (both revokes). Status lines only, no wording changes

@@ -25,7 +25,9 @@ export function payloadsFor(m) {
     wac_reference:              { insert: { ndc: "00000000999", effective_date: "2026-09-01", wac: 1.23 }, patch: { wac: 9.99 }, target: null },
     ful_reference:              { insert: { ndc: "00000000999", year: 2026, month: 9, aca_ful: 1.234567 }, patch: { aca_ful: 9.999999 }, target: null },
     pbm_info:                   { insert: { bin: "999999", matching_type: "bin_only" }, patch: { pbm_name: "probe-upd" }, target: null },
-    audit_logs:                 { insert: { username: "probe", table_name: "user_data", action: "create" }, patch: { action: "update" }, target: null },
+    // BIM-003 shape (0028): bigint id, so the mutation target is 0, not the dead uuid. Every
+    // cell is DENY by design — INSERT by RLS (no policy), UPDATE/DELETE by revoked privilege.
+    audit_logs:                 { insert: { table_name: "user_data", action: "insert", actor_role: "authenticated" }, patch: { action: "update" }, target: 0 },
     reference_dataset_versions: { insert: { dataset_name: "probe-dataset" }, patch: { row_count: 42 }, target: null },
   };
 }
