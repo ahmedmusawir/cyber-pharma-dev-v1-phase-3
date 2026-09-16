@@ -1,0 +1,6 @@
+[stage F — OBSERVATION] svc.rpc owedbook_kpis(A1): allowed=false
+  error: P0001 "not a member of business"
+  read_page written: +0 · last row: actor_user_id=e14e2b90-b72b-4000-abc3-641c3233c75a actor_role=authenticated business_id=A1 fn=owedbook_kpis
+  svc cross-tenant probe owedbook_kpis(B1) via svc (svc IS not a junction member): P0001 "not a member of business"
+
+[qa-probes F] ALL CHECKS AS RECORDED — see log for allowed/denied facts

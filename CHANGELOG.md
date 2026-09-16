@@ -3,6 +3,24 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-16 04:20 UTC — [CC] Claude Code
+
+- **BIM-003-CYBER-PHARMA CLOSED** — Sol Gate Q PASS 2026-09-15, QA Cleanup PASS, MERGE-READY, certified `c45949e`, zero implementation defects. Delivered: `audit_logs` reshape (0028: Brief §3 shape, immutability guard incl. R-6a TRUNCATE, FORCE RLS, RF-3 revokes) · one admin SELECT policy (0029) · `audit_write()` (0030) · 13 write stamps (0031–0043) · 4 `owedbook_*` read wrappers (0044–0047) · `npm run audit:prove` with symbolic golden · migrations 0028–0047 · regenerated types · README/RUN_NOTES · retrospective.
+- **Updated:** `RECOVERY.md` — BIM-003 status CLOSED, certified `c45949e`, Gate Q 2026-09-15; next module BIM-004; LIVE APPLY still deferred to the named APPLY SESSION
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RULINGS_ADDENDUM.md` — CF-10 ratified text of record (Sol D-1, Architect) appended; E-8 note (`supabase/.temp/cli-latest`, generator artifact)
+- **Created:** `agent_docs/SESSIONS/session_2026-09-16.md` — closeout entry
+- **Created:** `agent_docs/RESPONSES/response_2026-09-16_*_bim003-closeout.md` — closeout report incl. the proposed map v1.1 status-line text and the Director's merge sequence
+- **Reason:** Director closeout instruction 2026-09-16 (J-19: `qa/phase-3-bim003` merges to `main`). Docs only; implementation diff vs `c45949e` EMPTY.
+
+## 2026-09-15 09:32 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RULINGS_ADDENDUM.md` — CF-10 (QA D-1 contract/threat-model gap, routed) + CF-8 QA corroboration (audit-prove evidence path)
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RETROSPECTIVE.md` — Deferred Ledger row for D-1 / CF-10
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md` — Erratum Lane E-8 (D-3, `supabase/.temp/cli-latest` vs AC-901); AC text untouched
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/` — QA Cleanup (J-19): 22 disposable files removed (20 duplicate Stage-B runner sets + 2 ABORTED partials); durable package = README + recon + journal + helpers ×3 + evidence ×26 + rls-prove ×14; `QA_WORK_JOURNAL.md` row 15
+- **Restored:** `scripts/rls-harness/seed-map.json`, `audit-seed-map.json` — to certified `c45949e` bytes (QA runtime regen, not candidate changes)
+- **Reason:** SOL Gate Q PASS for BIM-003 (certified `c45949e`, zero implementation defects) → QA Cleanup per SOL + Director release 2026-09-15. RECOVERY.md / SESSIONS untouched (Director-protected).
+
 ## 2026-09-14 07:42 UTC — [CC] Claude Code
 
 - **Created:** `RUN_NOTES.md` (root) — the two proof commands, env re-pointing, reading a result, stage-by-stage (AC-308)

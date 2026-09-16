@@ -1,0 +1,12 @@
+  ok   member-A → owedbook_kpis(B1): refused, no PHI, +0 read_page — P0001 "not a member of business"
+  ok   member-A → owedbook_rows(B1): refused, no PHI, +0 read_page — P0001 "not a member of business"
+  ok   admin-A → owedbook_kpis(B1): refused, no PHI, +0 read_page — P0001 "not a member of business"
+  ok   admin-A → owedbook_rows(B1): refused, no PHI, +0 read_page — P0001 "not a member of business"
+  ok   admin-B → owedbook_kpis(A1): refused, no PHI, +0 read_page — P0001 "not a member of business"
+  ok   admin-B → owedbook_rows(A1): refused, no PHI, +0 read_page — P0001 "not a member of business"
+  ok   multi → owedbook_kpis(A2): refused, no PHI, +0 read_page — P0001 "not a member of business"
+  ok   multi → owedbook_rows(A2): refused, no PHI, +0 read_page — P0001 "not a member of business"
+  ok   control: member-A → owedbook_kpis(A1) still succeeds — {"commercial_underpaid":20119.5,"commercial_scripts":204,"updated_difference":6,"owed":20119.5}
+  ok   control call audited exactly one read_page row
+
+[qa-probes E] ALL CHECKS AS RECORDED — see log for allowed/denied facts

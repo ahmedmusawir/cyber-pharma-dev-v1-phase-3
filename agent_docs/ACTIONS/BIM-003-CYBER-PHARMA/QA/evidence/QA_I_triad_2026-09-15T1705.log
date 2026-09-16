@@ -1,0 +1,67 @@
+[QA Stage I triad — 2026-09-15T17:05:01+08:00 — Cody, qa/phase-3-bim003 @ c45949ece1a17f1a3fbb299f5551f911f869c21e]
+
+===== next build =====
+
+> cyber-pharma@0.1.0 build
+> next build
+
+▲ Next.js 16.2.12 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+Browserslist: browsers data (caniuse-lite) is 13 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ Compiled successfully in 7.2s
+  Running TypeScript ...
+  Finished TypeScript in 3.1s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/16) ...
+  Generating static pages using 3 workers (4/16) 
+  Generating static pages using 3 workers (8/16) 
+  Generating static pages using 3 workers (12/16) 
+✓ Generating static pages using 3 workers (16/16) in 382ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /access-denied
+├ ƒ /admin-portal
+├ ƒ /admin-portal/audit
+├ ƒ /admin-portal/billing
+├ ƒ /admin-portal/settings
+├ ƒ /admin-portal/stores/[id]
+├ ƒ /admin-portal/stores/[id]/invite
+├ ƒ /api/auth/confirm
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/signup
+├ ○ /auth
+├ ○ /error
+├ ○ /icon.png
+├ ƒ /moose-portal
+├ ƒ /moose-portal/users
+├ ƒ /moose-portal/users/add-member
+├ ƒ /moose-portal/users/edit/[id]
+├ ƒ /owedbook
+└ ƒ /profile
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+build exit: 0
+
+===== tsc --noEmit =====
+tsc exit: 0
+
+===== jest =====
+Test Suites: 28 passed, 28 total
+Tests:       128 passed, 128 total
+Snapshots:   0 total
+Time:        3.675 s
+Ran all test suites.
+jest exit: 0

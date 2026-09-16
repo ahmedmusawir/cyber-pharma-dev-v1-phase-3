@@ -37,5 +37,6 @@
 | Harness evidence path by module + `prove.mjs` "18 policies" verdict text + real env prefix for scratch | CF-8 additions | BIM-005 |
 | Federal tab / `aac`, `federal_expected`, `federal_diff`, `report_file` population (NULL by A-3) | wrappers mirror the shape, not the math | Phase 5 / Phase 6 |
 | `pending_registrations` rows with NULL `business_id` log NULL + NULL context (row_id still carries the key) | R-8 split at TV-2 | note for BIM-004 onboarding |
+| Direct member SELECT on `user_data` is unaudited at the DB layer (read audit = wrapper reads only) | QA D-1 / CF-10 — BIM-002's certified member SELECT policy vs Brief §1 prose (SOL Gate Q 2026-09-15) | BIM-005 (app-layer routing) · permissions-v2 (DB-layer closure, if ever) |
 
 🥄 *The camera did not blink. Whether it saw everything is QA's call.*

@@ -4,24 +4,24 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-09-14 — **BIM-003 · ENGINEERING COMPLETE (S3 uncommitted) — ready for qa/phase-3-bim003** · S1 `011eada` · S2 `c2d9348`
-**Branch:** **`phase-3-bim003`** @ **`c2d9348`** (S2) — S3 work is on top, **uncommitted**.
-**Session log:** `agent_docs/SESSIONS/session_2026-09-14.md`
+**Last updated:** 2026-09-16 — **BIM-003-CYBER-PHARMA · CLOSED — GATE Q PASS (Sol, 2026-09-15) · QA CLEANUP PASS · MERGE-READY**
+**Certified SHA:** **`c45949ece1a17f1a3fbb299f5551f911f869c21e`** (`c45949e`) — zero implementation defects across QA Stages A–I; engineering S1 `011eada` · S2 `c2d9348` · S3 `c45949e`.
+**Branch:** **`qa/phase-3-bim003`** @ `c45949e` + the uncommitted QA package and closeout docs. **Merges to `main` per J-19** — Director commits on this branch, pushes, `merge --no-ff` into `main` (sequence in `agent_docs/RESPONSES/response_2026-09-16_*_bim003-closeout.md`). `main` is at `5c51fff` until then.
+**Session log:** `agent_docs/SESSIONS/session_2026-09-16.md` (QA day: `session_2026-09-15.md` · engineering: `session_2026-09-14.md`)
 
-**Last action:** **BIM-003 S3** — `npm run audit:prove` (audit-prove/seed/session + symbolic golden, E-2/E-4/R-10) **TRAIL PROVEN** first run · failure path proven (exit 8, DIFF at row 1, golden restored) · `rls:prove` green after the 47-file chain · triad 22 routes / tsc 0 / jest 28-128-0 · README + `RUN_NOTES.md` · `RETROSPECTIVE.md` · every AC cell filled; **AC-307 verified** (Director regen, E-7; tsc 0). Report: `agent_docs/RESPONSES/BIM003_S3_2026-09-14.md`.
+**Last action:** **BIM-003 repository closeout** (docs only, 2026-09-16): RECOVERY final · session entry · CHANGELOG close entry · `RULINGS_ADDENDUM.md` + ratified CF-10 (Sol D-1) and E-8 note. Implementation diff vs `c45949e` re-verified **EMPTY** after the edits. No standalone Gate Q report file exists in `QA/` — verdict recorded in `QA/QA_WORK_JOURNAL.md` row 15 + campaign position; Director may paste Sol's text for verbatim filing.
 
-**S2 (committed `c2d9348`):** wrappers `0044_owedbook_kpis` · `0045_owedbook_rows` · `0046_owedbook_summary` · `0047_owedbook_pbm_options` (E-0 N = 4, mapping A-3). Chain 47/47 from scratch · S2 catalog GREEN (AC-201…203) · session probes GREEN (AC-204…208) · `WRAPPER_CONTRACT.md` (AC-209) · src diff empty (AC-210). Mid-stage fix: 0045 now logs before any read (Brief §5). Report: `agent_docs/RESPONSES/BIM003_S2_2026-09-14.md`.
+**Module delivered:** `audit_logs` reshaped to Brief §3 (0028; immutability guard incl. R-6a TRUNCATE; FORCE RLS; UPDATE/DELETE revoked from anon+authenticated) · one admin SELECT policy (0029) · `audit_write()` SECURITY DEFINER trigger fn (0030) · thirteen write stamps (0031–0043, E-0) · four `owedbook_*` read wrappers (0044–0047, A-3 mapping) · `npm run audit:prove` (audit-prove/seed/session + symbolic golden, E-2/E-4/R-10) · README + `RUN_NOTES.md` · `RETROSPECTIVE.md` · `src/types/supabase.ts` regenerated (E-7). Errata E-0…E-8 in the spec lane; rulings R-6a/R-8a/R-10 + CF-8/9/10 in `RULINGS_ADDENDUM.md`.
 
-**S1 (committed `011eada`):** `0028` audit_logs reshape (drop 0015 shape, Brief §3, guard, FORCE RLS, RF-3 revokes) · `0029` one SELECT policy · `0030` `audit_write()` · `0031–0043` thirteen stamps (E-0). From-scratch apply 43/43 ok · catalog GREEN (`evidence/S1_catalog.md`) · **`rls:prove` GREEN** with the trail live (19 policies, 320 cells, 28 attacks, revocation). RF-7 harness edits + E-3 db-verify line applied. RISK-1 (BYPASSRLS) GREEN. Report: `agent_docs/RESPONSES/BIM003_S1_2026-09-14.md`.
+**Campaign board:** BIM-000 ✅ · FIX-001 ✅ · BIM-001 ✅ · PROTO 06 ✅ · BIM-002 ✅ · **BIM-003 ✅** → **next: BIM-004 (seed factory)** → **Phase 3 APPLY SESSION** (Director applies chains 001→002→003→004 to the dev backend with `db:apply`, catalog check after each, harness run after 002) → BIM-005 (CRV).
 
-**Pending:** Director commits S3 and opens `qa/phase-3-bim003` → Cody executes, Sol adjudicates → repairs, if any, on the QA branch by ruling package only → Gate Q → closeout instruction (`audit:prove`, symbolic golden E-2, `multiAdmin` E-4, RUN_NOTES.md, README, triad, types regen by Director).
-**Rulings after S1:** TRUNCATE guard kept (R-6 amendment) · db:verify AC7 = **CF-9** (QA Cleanup) · **E-6** corrects E-3 to line 178. **Open from S2:** seed writes no insurance/new_paid/status — S3 golden session must seed those · CF-9 and R-6 amendment not yet written into the pack on disk.
+**Carried flags (owners):** **CF-10** direct member SELECT on `user_data` is unaudited at the DB layer → BIM-005 routes every app read through `owedbook_*`; DB-layer closure = later permissions ruling · **CF-9** `db-verify.mjs` AC7 red since BIM-002 → QA Cleanup re-baseline · **CF-8** (+ additions) harness evidence root by module, `prove.mjs` "18 policies" text, real env prefix for scratch → BIM-005 · **CF-1…CF-7** as recorded in BIM-002's manager §10a · E-8 hygiene: add `supabase/.temp/` to `.gitignore` in a later module · Director: credential rotation on throwaways, `qa/bim002` / `phase-3-proto-6` deletion.
 
-**Next step:** QA (Cody executes, Sol adjudicates); repairs, if any, on `qa/phase-3-bim003` by ruling package only. Plan of record: `agent_docs/RESPONSES/response_2026-09-14_125225_bim003-plan.md`; rulings in the spec's erratum lane E-0…E-5.
+**LIVE APPLY: STILL DEFERRED.** Dev backend remains at the 2-table baseline; the BIM-001→003 chain (`0001–0047`) has been proven from scratch only on throwaways. Applied to the dev backend only in the named Phase 3 APPLY SESSION, after BIM-004.
 
-**⚠️ UNCOMMITTED:** all of S3 (`package.json` script, README, `RUN_NOTES.md`, `audit-prove/seed/session.mjs`, golden, seed maps, `RETROSPECTIVE.md`, spec evidence cells, `evidence/S3_*` + `rls-prove/S3_*`, reports, this file, session log, CHANGELOG). Operator commits — agent never does.
+**⚠️ UNCOMMITTED (2026-09-16):** the entire QA lane from 2026-09-15 (`QA/` package, six 09-15 RESPONSES, `session_2026-09-15.md`) + the 09-15 J-19 cleanup edits (spec E-8, retrospective row, 09-15 CHANGELOG entry) + today's closeout (this file, `session_2026-09-16.md`, CHANGELOG close entry, `RULINGS_ADDENDUM.md`, closeout report). One commit on `qa/phase-3-bim003`, then merge — Director only.
 
-_(prior state — BIM-002 CLOSED · Gate Q PASS @ `dfc8a6a`, close batch `6171c54`, proto-06 landing zone removed `5c51fff` — preserved below)_
+_(prior module: BIM-002 CLOSED · Gate Q PASS @ `dfc8a6a`, close batch `6171c54`, proto-06 landing zone removed `5c51fff` — preserved below)_
 ---
 
 **Last action:** **BIM-001-CYBER-PHARMA CLOSED — GATE Q PASS** (Sol, 2026-08-31:
@@ -110,8 +110,8 @@ implementation, harness, QA package, close-out docs — is committed and merged 
 
 ## Known Good State
 
-- **HEAD:** `0e4e17e` on **`phase-3-bim003`** (= `main` `5c51fff` + the BIM-003 pack). Last certified: `dfc8a6a` (BIM-002).
+- **HEAD:** `c45949e` on **`qa/phase-3-bim003`** — the BIM-003 certified SHA (Gate Q PASS 2026-09-15). `main` = `5c51fff` until the J-19 merge. Prior certified: `dfc8a6a` (BIM-002), `9f8c80d` (BIM-001).
 - **Working:** Everything — board last certified **22 routes · tsc clean · jest 28/128/0** (BIM-002; S3 re-runs the triad); chain now `0001–0047` (16 tables, **19** RLS policies, 4 helpers, `audit_write()` on 13 tables, immutable `audit_logs`, 4 `owedbook_*` read wrappers); `npm run rls:prove` and `npm run audit:prove` both GREEN on 2026-09-14 after the 47-file chain; board re-certified 22 routes · tsc clean · jest 28/128/0.
-- **Broken:** Nothing known. KIP-2 is CLOSED (FIX-001). KIP-1 remains parked.
+- **Broken:** Nothing known. KIP-2 is CLOSED (FIX-001). KIP-1 remains parked. CF-9/CF-10 are carried flags, not breaks.
 - **Dev backend:** untouched, still at the 2-table baseline (LIVE APPLY DEFERRED through
   BIM-004).

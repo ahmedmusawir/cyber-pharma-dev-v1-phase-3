@@ -91,6 +91,8 @@
 
 | E-7 | AC-307 | Director types regen, Route B (project-id, CLI 2.116) | Diff vs 011eada carries three non-module hunk classes: PostgrestVersion string, BIM-002 helpers (is*account_member, is_admin_of, is_member_of, my_business_ids) now listed under Functions, and generic-constraint parenthesization from the CLI version | AC-307 graded on schema content only: audit_logs under Tables + four owedbook*\* under Functions are the module's changes; the three hunk classes are generator artifacts, not schema changes; no removals. | S3_files.md AC-307 block | Director-approved |
 
+| E-8 | AC-901 | QA recon D-3, SOL Gate Q 2026-09-15 | `git diff 0e4e17e..c45949e` touches `supabase/.temp/cli-latest` (2.116.0 → 2.117.0), a path outside AC-901's list | Supabase CLI cache file written by the Director-run types regen (AC-307, E-7 class); generator artifact, not a module change. AC-901 graded PASS WITH NOTE. Hygiene: add `supabase/.temp/` to `.gitignore` in a later module (product-tree change, not now). | QA/CODY_QA_RECON.md §7 D-3 · `git diff 0e4e17e..c45949e -- supabase/.temp/cli-latest` | SOL-ruled · Director-approved (cleanup release 2026-09-15) |
+
 ---
 
 🥄 _Grade it as written. Fix the code or file the erratum. Never touch the words. — JARVIS_

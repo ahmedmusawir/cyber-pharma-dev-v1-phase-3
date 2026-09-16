@@ -1,0 +1,9 @@
+[stage G] one audited write + one wrapper read by admin-A, then a real session refresh
+  ok   write succeeded
+  ok   write attribution: actor_user_id=admin-A(true) actor_role=authenticated business=A1 action=insert row_id=pk
+  ok   wrapper call 1 (pre-refresh)
+  ok   session refreshed (supabase-js refreshSession)
+  ok   wrapper call 2 (post-refresh) succeeded
+  ok   both read_page rows carry the SAME identity across the refresh (admin-A, admin-A)
+
+[qa-probes G] ALL CHECKS AS RECORDED — see log for allowed/denied facts

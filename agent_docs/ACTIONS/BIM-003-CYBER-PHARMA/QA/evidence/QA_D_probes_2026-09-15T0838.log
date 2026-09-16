@@ -1,0 +1,26 @@
+[stage D — AUTHENTICATED attacks]
+  INSERT forged row: 42501 "new row violates row-level security policy for table "audit_logs""
+  ok   forged INSERT denied (42501), trail count unchanged
+  UPDATE row 1: 42501 "permission denied for table audit_logs"
+  ok   authenticated UPDATE denied (privilege revoked, RF-3)
+  ok   ground truth: actor_role unchanged
+  DELETE row 1: 42501 "permission denied for table audit_logs"
+  ok   authenticated DELETE denied (42501), count unchanged
+  RPC audit_write() as authenticated: PGRST202 "Could not find the function public.audit_write without parameters in the schema cache"
+  ok   direct invocation refused, count unchanged
+[stage D — SERVICE ROLE]
+  svc UPDATE actor_role: P0001 "audit_logs is append-only" · persistent state UNCHANGED
+  ok   svc UPDATE actor_role rejected below RLS, state unchanged
+  svc UPDATE old_data: P0001 "audit_logs is append-only" · persistent state UNCHANGED
+  ok   svc UPDATE old_data rejected below RLS, state unchanged
+  svc UPDATE new_data: P0001 "audit_logs is append-only" · persistent state UNCHANGED
+  ok   svc UPDATE new_data rejected below RLS, state unchanged
+  svc UPDATE context: P0001 "audit_logs is append-only" · persistent state UNCHANGED
+  ok   svc UPDATE context rejected below RLS, state unchanged
+  svc DELETE row 1: P0001 "audit_logs is append-only" · count after=640
+  ok   svc DELETE rejected by the R-6 guard (P0001), count unchanged
+  owner-channel TRUNCATE: P0001 "audit_logs is append-only" · count after=640
+  ok   TRUNCATE rejected by the statement guard (R-6a), even for the BYPASSRLS owner
+  ok   final ground truth: the tamper target row is byte-for-byte what it was
+
+[qa-probes D] ALL CHECKS AS RECORDED — see log for allowed/denied facts

@@ -1,0 +1,7 @@
+[scoping] row-level tenant scoping — which rows, not just allow/deny
+  ok   ownerA      rows=400  stores=[Store A1, Store A2] accounts=[Account A]  expected rows=400 stores=[Store A1, Store A2] accounts=[Account A]
+  ok   staffA      rows=200  stores=[Store A1] accounts=[Account A]  expected rows=200 stores=[Store A1] accounts=[Account A]
+  ok   ownerB      rows=200  stores=[Store B1] accounts=[Account B]  expected rows=200 stores=[Store B1] accounts=[Account B]
+  ok   multiStore  rows=400  stores=[Store A1, Store B1] accounts=[Account A, Account B]  expected rows=400 stores=[Store A1, Store B1] accounts=[Account A, Account B]
+  ok   anon        rows=0 (expected 0)
+[scoping] SCOPING EXACT
