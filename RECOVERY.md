@@ -4,9 +4,9 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-09-16 — **BIM-003-CYBER-PHARMA · CLOSED — GATE Q PASS (Sol, 2026-09-15) · QA CLEANUP PASS · MERGE-READY**
+**Last updated:** 2026-09-16 — **BIM-003-CYBER-PHARMA · CLOSED — GATE Q PASS (Sol, 2026-09-15) · MERGED TO `main`**
 **Certified SHA:** **`c45949ece1a17f1a3fbb299f5551f911f869c21e`** (`c45949e`) — zero implementation defects across QA Stages A–I; engineering S1 `011eada` · S2 `c2d9348` · S3 `c45949e`.
-**Branch:** **`qa/phase-3-bim003`** @ `c45949e` + the uncommitted QA package and closeout docs. **Merges to `main` per J-19** — Director commits on this branch, pushes, `merge --no-ff` into `main` (sequence in `agent_docs/RESPONSES/response_2026-09-16_*_bim003-closeout.md`). `main` is at `5c51fff` until then.
+**Branch:** **`main`** @ **`f7a1d4c`** — the J-19 merge commit ("16sep2026 - merge qa/phase-3-bim003 - BIM-003 CLOSED (Gate Q PASS @ c45949e)"), pushed. **Close batch `60ce6bd`** on `qa/phase-3-bim003` (QA package + closeout docs), pushed. Certified specimen `c45949e` is an ancestor of both. `qa/phase-3-bim003` retirement is the Director's call (as `qa/bim002`).
 **Session log:** `agent_docs/SESSIONS/session_2026-09-16.md` (QA day: `session_2026-09-15.md` · engineering: `session_2026-09-14.md`)
 
 **Last action:** **BIM-003 repository closeout** (docs only, 2026-09-16): RECOVERY final · session entry · CHANGELOG close entry · `RULINGS_ADDENDUM.md` + ratified CF-10 (Sol D-1) and E-8 note. Implementation diff vs `c45949e` re-verified **EMPTY** after the edits. No standalone Gate Q report file exists in `QA/` — verdict recorded in `QA/QA_WORK_JOURNAL.md` row 15 + campaign position; Director may paste Sol's text for verbatim filing.
@@ -19,7 +19,7 @@
 
 **LIVE APPLY: STILL DEFERRED.** Dev backend remains at the 2-table baseline; the BIM-001→003 chain (`0001–0047`) has been proven from scratch only on throwaways. Applied to the dev backend only in the named Phase 3 APPLY SESSION, after BIM-004.
 
-**⚠️ UNCOMMITTED (2026-09-16):** the entire QA lane from 2026-09-15 (`QA/` package, six 09-15 RESPONSES, `session_2026-09-15.md`) + the 09-15 J-19 cleanup edits (spec E-8, retrospective row, 09-15 CHANGELOG entry) + today's closeout (this file, `session_2026-09-16.md`, CHANGELOG close entry, `RULINGS_ADDENDUM.md`, closeout report). One commit on `qa/phase-3-bim003`, then merge — Director only.
+**⚠️ UNCOMMITTED:** only this SHA-recording touch (RECOVERY, session log, one RESPONSES record). Everything else — QA lane, cleanup, closeout — is in `60ce6bd`, merged at `f7a1d4c`, on `origin/main`.
 
 _(prior module: BIM-002 CLOSED · Gate Q PASS @ `dfc8a6a`, close batch `6171c54`, proto-06 landing zone removed `5c51fff` — preserved below)_
 ---
