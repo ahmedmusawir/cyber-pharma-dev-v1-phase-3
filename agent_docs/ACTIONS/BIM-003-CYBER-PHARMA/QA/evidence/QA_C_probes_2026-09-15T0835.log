@@ -1,0 +1,14 @@
+[stage C / D-1] member-A = staffA (junction MEMBER of A1) — audit watermark id=639
+  staffA junction memberships (svc): A1
+  DIRECT user_data SELECT: allowed=true rows=204 new read_page=0
+  ok   member-A direct SELECT on user_data is ALLOWED under BIM-002 RLS (the D-1 bypass premise) — NO ERROR
+  ok   returned rows == svc ground truth for A1 (204 vs 204)
+  ok   every returned row's business_id ∈ staffA's junction set (no cross-tenant leakage)
+  ok   ZERO read_page rows created by the direct read
+  WRAPPER owedbook_kpis(A1) as member-A: allowed=true result=1 row {"commercial_underpaid":20119.5,"commercial_scripts":204,"updated_difference":6,"owed":20119.5} new read_page=1
+  ok   wrapper read is allowed AND audited (+1 read_page)
+  ok   wrapper audit row: actor_user_id=staffA, actor_role=authenticated
+
+[stage C verdict] DIRECT=ALLOWED (204 rows, +0 read_page) vs WRAPPER=ALLOWED (+1 read_page)
+
+[qa-probes C] ALL CHECKS AS RECORDED — see log for allowed/denied facts

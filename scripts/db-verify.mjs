@@ -175,7 +175,7 @@ for (const [col, tables] of TEXT_IDS) {
 // ── AC12 structural: timestamps + trigger on all 16 ──────────────────────────
 {
   for (const t of SIXTEEN) {
-    if (["user_roles", "profiles"].includes(t)) continue; // baseline: acknowledged as-is, not retrofitted (manager §5 rows 3-4: NO structural change)
+    if (["user_roles", "profiles", "audit_logs"].includes(t)) continue; // baseline: acknowledged as-is, not retrofitted (manager §5 rows 3-4: NO structural change) // audit_logs: BIM-003 shape has occurred_at, no updated_at, immutable (ERRATUM E-3)
     const { rows } = await q(`select count(*)::int as n from information_schema.columns
       where table_schema='public' and table_name=$1 and column_name in ('created_at','updated_at')
         and data_type='timestamp with time zone'`, [t]);

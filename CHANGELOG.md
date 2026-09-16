@@ -3,6 +3,51 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-16 04:20 UTC — [CC] Claude Code
+
+- **BIM-003-CYBER-PHARMA CLOSED** — Sol Gate Q PASS 2026-09-15, QA Cleanup PASS, MERGE-READY, certified `c45949e`, zero implementation defects. Delivered: `audit_logs` reshape (0028: Brief §3 shape, immutability guard incl. R-6a TRUNCATE, FORCE RLS, RF-3 revokes) · one admin SELECT policy (0029) · `audit_write()` (0030) · 13 write stamps (0031–0043) · 4 `owedbook_*` read wrappers (0044–0047) · `npm run audit:prove` with symbolic golden · migrations 0028–0047 · regenerated types · README/RUN_NOTES · retrospective.
+- **Updated:** `RECOVERY.md` — BIM-003 status CLOSED, certified `c45949e`, Gate Q 2026-09-15; next module BIM-004; LIVE APPLY still deferred to the named APPLY SESSION
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RULINGS_ADDENDUM.md` — CF-10 ratified text of record (Sol D-1, Architect) appended; E-8 note (`supabase/.temp/cli-latest`, generator artifact)
+- **Created:** `agent_docs/SESSIONS/session_2026-09-16.md` — closeout entry
+- **Created:** `agent_docs/RESPONSES/response_2026-09-16_*_bim003-closeout.md` — closeout report incl. the proposed map v1.1 status-line text and the Director's merge sequence
+- **Reason:** Director closeout instruction 2026-09-16 (J-19: `qa/phase-3-bim003` merges to `main`). Docs only; implementation diff vs `c45949e` EMPTY.
+
+## 2026-09-15 09:32 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RULINGS_ADDENDUM.md` — CF-10 (QA D-1 contract/threat-model gap, routed) + CF-8 QA corroboration (audit-prove evidence path)
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RETROSPECTIVE.md` — Deferred Ledger row for D-1 / CF-10
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md` — Erratum Lane E-8 (D-3, `supabase/.temp/cli-latest` vs AC-901); AC text untouched
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/` — QA Cleanup (J-19): 22 disposable files removed (20 duplicate Stage-B runner sets + 2 ABORTED partials); durable package = README + recon + journal + helpers ×3 + evidence ×26 + rls-prove ×14; `QA_WORK_JOURNAL.md` row 15
+- **Restored:** `scripts/rls-harness/seed-map.json`, `audit-seed-map.json` — to certified `c45949e` bytes (QA runtime regen, not candidate changes)
+- **Reason:** SOL Gate Q PASS for BIM-003 (certified `c45949e`, zero implementation defects) → QA Cleanup per SOL + Director release 2026-09-15. RECOVERY.md / SESSIONS untouched (Director-protected).
+
+## 2026-09-14 07:42 UTC — [CC] Claude Code
+
+- **Created:** `RUN_NOTES.md` (root) — the two proof commands, env re-pointing, reading a result, stage-by-stage (AC-308)
+- **Updated:** `README.md` — script table gains `npm run rls:prove` and `npm run audit:prove` (AC-308)
+- **Created:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RETROSPECTIVE.md` — Keep / Change / Drop + Deferred Ledger (AC-309)
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md` — remaining evidence cells filled (every AC now points at evidence; AC-307 marked PENDING Director paste); AC wording untouched
+- **Created:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/S3_*` (+ `rls-prove/S3_*`) — audit:prove logs, failure path, triad, types-regen instructions, AC-301…906 evidence
+- **Created:** `agent_docs/RESPONSES/BIM003_S3_2026-09-14.md` (+ `response_` copy) — Stage 3 report
+- **Updated:** `RECOVERY.md` — BIM-003 ENGINEERING COMPLETE, AC-307 verified (E-7), ready for QA
+- **Reason:** BIM-003 Stage 3 executed (Director prompt of 2026-09-14, RULINGS_ADDENDUM R-6a/R-8a/R-10)
+
+## 2026-09-14 06:54 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md` — Stage 2 evidence cells filled (AC-201…210); AC wording untouched
+- **Created:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/WRAPPER_CONTRACT.md` (AC-209), `S2_catalog.md`, `S2_wrappers.md`, `S2_files.md`, `S2_apply_*.log` — Stage 2 evidence
+- **Created:** `agent_docs/RESPONSES/BIM003_S2_2026-09-14.md` (+ `response_` copy) — Stage 2 report
+- **Updated:** `RECOVERY.md` — BIM-003 S2 state, pending S3
+- **Reason:** BIM-003 Stage 2 executed and closed (four owedbook_* wrappers, Director prompt of 2026-09-14)
+
+## 2026-09-14 05:54 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md` — Stage 1 evidence cells filled (AC-101…105, 107, 108, 113, 114, 115, 120, 121, 305, 905); AC wording untouched
+- **Created:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/S1_catalog.md`, `S1_files.md`, `S1_apply_*.log`, `S1_db-verify.log`, `rls-prove/*` — Stage 1 evidence
+- **Created:** `agent_docs/RESPONSES/BIM003_S1_2026-09-14.md` (+ `response_` copy) — Stage 1 report; `response_2026-09-14_125225_bim003-plan.md` — approved plan; two earlier session-open / block records
+- **Updated:** `RECOVERY.md` — BIM-003 S1 state, pending S2, open flags
+- **Reason:** BIM-003 Stage 1 executed and closed (Director-approved plan, errata E-0…E-5)
+
 ## 2026-09-02 18:00 UTC — [CC] Claude Code
 
 - **Updated:** `agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/ERRATUM.md` — D-1: E-2 heading → RATIFIED/APPLIED, superseded by E-4; D-2: E-4 status records its 2026-09-01 ratification (both revokes). Status lines only, no wording changes

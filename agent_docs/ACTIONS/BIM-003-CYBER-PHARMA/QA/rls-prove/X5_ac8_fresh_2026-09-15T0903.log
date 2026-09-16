@@ -1,0 +1,11 @@
+[ac8] helper shape + grants (asserted after a from-scratch apply, per E-5)
+  ok   is_account_member  secdef=true volatile=s config={"search_path=\"\""} acl={postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+  ok   is_admin_of        secdef=true volatile=s config={"search_path=\"\""} acl={postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+  ok   is_member_of       secdef=true volatile=s config={"search_path=\"\""} acl={postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+  ok   my_business_ids    secdef=true volatile=s config={"search_path=\"\""} acl={postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+  ok   is_member_of(uuid)         anon=false authenticated=true service_role=true
+  ok   is_admin_of(uuid)          anon=false authenticated=true service_role=true
+  ok   is_account_member(uuid)    anon=false authenticated=true service_role=true
+  ok   my_business_ids()          anon=false authenticated=true service_role=true
+  ok   anon denied at execution (42501)
+[ac8] AC8 GREEN

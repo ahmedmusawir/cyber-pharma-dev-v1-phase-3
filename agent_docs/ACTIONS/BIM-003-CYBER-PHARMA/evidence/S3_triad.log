@@ -1,0 +1,61 @@
+[S3 triad — 2026-09-14T15:35:17+08:00]
+
+===== next build =====
+[37m[1m [22m[39m Creating an optimized production build ...
+Browserslist: browsers data (caniuse-lite) is 13 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[32m[1m✓[22m[39m Compiled successfully in 8.0s
+[37m[1m [22m[39m Running TypeScript ...
+[37m[1m [22m[39m Finished TypeScript in 3.2s ...
+[37m[1m [22m[39m Collecting page data using 3 workers ...
+[37m[1m [22m[39m Generating static pages using 3 workers (0/16) ...
+[37m[1m [22m[39m Generating static pages using 3 workers (4/16) 
+[37m[1m [22m[39m Generating static pages using 3 workers (8/16) 
+[37m[1m [22m[39m Generating static pages using 3 workers (12/16) 
+[32m[1m✓[22m[39m Generating static pages using 3 workers (16/16) in 378ms
+[37m[1m [22m[39m Finalizing page optimization ...
+
+[4mRoute (app)[24m
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /access-denied
+├ ƒ /admin-portal
+├ ƒ /admin-portal/audit
+├ ƒ /admin-portal/billing
+├ ƒ /admin-portal/settings
+├ ƒ /admin-portal/stores/[id]
+├ ƒ /admin-portal/stores/[id]/invite
+├ ƒ /api/auth/confirm
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/signup
+├ ○ /auth
+├ ○ /error
+├ ○ /icon.png
+├ ƒ /moose-portal
+├ ƒ /moose-portal/users
+├ ƒ /moose-portal/users/add-member
+├ ƒ /moose-portal/users/edit/[id]
+├ ƒ /owedbook
+└ ƒ /profile
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+build exit: 0
+
+===== tsc --noEmit =====
+tsc exit: 0
+
+===== jest =====
+
+[1mTest Suites: [22m[1m[32m28 passed[39m[22m, 28 total
+[1mTests:       [22m[1m[32m128 passed[39m[22m, 128 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        3.774 s
+[2mRan all test suites[22m[2m.[22m
+jest exit: 0

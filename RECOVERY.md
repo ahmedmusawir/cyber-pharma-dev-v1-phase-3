@@ -4,21 +4,24 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-09-02 — **BIM-002 CLOSED · GATE Q PASS**
-**Branch:** **`main`** @ **`dfc8a6a4644081bef5a5142c27f2c77e4a6be3d9`** — the **certified
-SHA** (Sol, 2026-09-02: zero implementation defects, zero engineering rework).
-**Module history for BIM-002:** PRE-Q attacked specimen **`53f1ac0`** on
-`phase-3-bim002` (branch of record, merged to `main`) — **byte-identical to the certified
-SHA** across `supabase/migrations/`, `scripts/rls-harness/`, `scripts/db-reset.mjs`,
-`src/`, `package.json` (verified empty diff). **`qa/bim002` was a disposable PRE-Q
-execution branch, never merged and slated for deletion** — QA's artifacts were *copied*
-onto `phase-3-bim002` (copy-not-merge, the Proto 06 rule).
-**Branch-recovery incident: RESOLVED.** Close-out work briefly proceeded in a `qa/bim002`
-context; artifacts were restored onto `phase-3-bim002`, RECOVERY's branch identity was
-corrected, and the empty protected-path diff proves nothing was lost or altered.
-**Session log:** `agent_docs/SESSIONS/session_2026-09-02.md`
-_(prior: BIM-001 certified `9f8c80d` · PROTO 06 rig lane closed, `phase-3-proto-6` pending deletion)_
+**Last updated:** 2026-09-16 — **BIM-003-CYBER-PHARMA · CLOSED — GATE Q PASS (Sol, 2026-09-15) · QA CLEANUP PASS · MERGE-READY**
+**Certified SHA:** **`c45949ece1a17f1a3fbb299f5551f911f869c21e`** (`c45949e`) — zero implementation defects across QA Stages A–I; engineering S1 `011eada` · S2 `c2d9348` · S3 `c45949e`.
+**Branch:** **`qa/phase-3-bim003`** @ `c45949e` + the uncommitted QA package and closeout docs. **Merges to `main` per J-19** — Director commits on this branch, pushes, `merge --no-ff` into `main` (sequence in `agent_docs/RESPONSES/response_2026-09-16_*_bim003-closeout.md`). `main` is at `5c51fff` until then.
+**Session log:** `agent_docs/SESSIONS/session_2026-09-16.md` (QA day: `session_2026-09-15.md` · engineering: `session_2026-09-14.md`)
 
+**Last action:** **BIM-003 repository closeout** (docs only, 2026-09-16): RECOVERY final · session entry · CHANGELOG close entry · `RULINGS_ADDENDUM.md` + ratified CF-10 (Sol D-1) and E-8 note. Implementation diff vs `c45949e` re-verified **EMPTY** after the edits. No standalone Gate Q report file exists in `QA/` — verdict recorded in `QA/QA_WORK_JOURNAL.md` row 15 + campaign position; Director may paste Sol's text for verbatim filing.
+
+**Module delivered:** `audit_logs` reshaped to Brief §3 (0028; immutability guard incl. R-6a TRUNCATE; FORCE RLS; UPDATE/DELETE revoked from anon+authenticated) · one admin SELECT policy (0029) · `audit_write()` SECURITY DEFINER trigger fn (0030) · thirteen write stamps (0031–0043, E-0) · four `owedbook_*` read wrappers (0044–0047, A-3 mapping) · `npm run audit:prove` (audit-prove/seed/session + symbolic golden, E-2/E-4/R-10) · README + `RUN_NOTES.md` · `RETROSPECTIVE.md` · `src/types/supabase.ts` regenerated (E-7). Errata E-0…E-8 in the spec lane; rulings R-6a/R-8a/R-10 + CF-8/9/10 in `RULINGS_ADDENDUM.md`.
+
+**Campaign board:** BIM-000 ✅ · FIX-001 ✅ · BIM-001 ✅ · PROTO 06 ✅ · BIM-002 ✅ · **BIM-003 ✅** → **next: BIM-004 (seed factory)** → **Phase 3 APPLY SESSION** (Director applies chains 001→002→003→004 to the dev backend with `db:apply`, catalog check after each, harness run after 002) → BIM-005 (CRV).
+
+**Carried flags (owners):** **CF-10** direct member SELECT on `user_data` is unaudited at the DB layer → BIM-005 routes every app read through `owedbook_*`; DB-layer closure = later permissions ruling · **CF-9** `db-verify.mjs` AC7 red since BIM-002 → QA Cleanup re-baseline · **CF-8** (+ additions) harness evidence root by module, `prove.mjs` "18 policies" text, real env prefix for scratch → BIM-005 · **CF-1…CF-7** as recorded in BIM-002's manager §10a · E-8 hygiene: add `supabase/.temp/` to `.gitignore` in a later module · Director: credential rotation on throwaways, `qa/bim002` / `phase-3-proto-6` deletion.
+
+**LIVE APPLY: STILL DEFERRED.** Dev backend remains at the 2-table baseline; the BIM-001→003 chain (`0001–0047`) has been proven from scratch only on throwaways. Applied to the dev backend only in the named Phase 3 APPLY SESSION, after BIM-004.
+
+**⚠️ UNCOMMITTED (2026-09-16):** the entire QA lane from 2026-09-15 (`QA/` package, six 09-15 RESPONSES, `session_2026-09-15.md`) + the 09-15 J-19 cleanup edits (spec E-8, retrospective row, 09-15 CHANGELOG entry) + today's closeout (this file, `session_2026-09-16.md`, CHANGELOG close entry, `RULINGS_ADDENDUM.md`, closeout report). One commit on `qa/phase-3-bim003`, then merge — Director only.
+
+_(prior module: BIM-002 CLOSED · Gate Q PASS @ `dfc8a6a`, close batch `6171c54`, proto-06 landing zone removed `5c51fff` — preserved below)_
 ---
 
 **Last action:** **BIM-001-CYBER-PHARMA CLOSED — GATE Q PASS** (Sol, 2026-08-31:
@@ -107,11 +110,8 @@ implementation, harness, QA package, close-out docs — is committed and merged 
 
 ## Known Good State
 
-- **HEAD:** `dfc8a6a` on **`main`** — "2sep2026 - BIM002 done and closed out after QA"
-  (BIM-002 merged; the certified specimen was `53f1ac0` on `phase-3-bim002`).
-- **Working:** Everything — board **build 22 routes · tsc clean · jest 28 suites / 128
-  tests / 0 failures**; sixteen-table chain `0001–0027` with 18 RLS policies; isolation
-  harness at `scripts/rls-harness/` (`npm run rls:prove`).
-- **Broken:** Nothing known. KIP-2 is CLOSED (FIX-001). KIP-1 remains parked.
+- **HEAD:** `c45949e` on **`qa/phase-3-bim003`** — the BIM-003 certified SHA (Gate Q PASS 2026-09-15). `main` = `5c51fff` until the J-19 merge. Prior certified: `dfc8a6a` (BIM-002), `9f8c80d` (BIM-001).
+- **Working:** Everything — board last certified **22 routes · tsc clean · jest 28/128/0** (BIM-002; S3 re-runs the triad); chain now `0001–0047` (16 tables, **19** RLS policies, 4 helpers, `audit_write()` on 13 tables, immutable `audit_logs`, 4 `owedbook_*` read wrappers); `npm run rls:prove` and `npm run audit:prove` both GREEN on 2026-09-14 after the 47-file chain; board re-certified 22 routes · tsc clean · jest 28/128/0.
+- **Broken:** Nothing known. KIP-2 is CLOSED (FIX-001). KIP-1 remains parked. CF-9/CF-10 are carried flags, not breaks.
 - **Dev backend:** untouched, still at the 2-table baseline (LIVE APPLY DEFERRED through
   BIM-004).

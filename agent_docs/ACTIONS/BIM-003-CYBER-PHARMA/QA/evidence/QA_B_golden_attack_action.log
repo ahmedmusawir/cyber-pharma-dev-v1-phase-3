@@ -1,0 +1,9 @@
+[qa-golden-attack] case=action — row 1 action insert→delete
+[qa-golden-attack] running canonical npm run audit:prove against the corrupted golden…
+exit code: 8
+--- mismatch-relevant output ---
+═══ 4/4 SESSION + PROBES + GOLDEN DIFF ═══
+  DIFF at row 1:
+  ok   row count: produced 10, golden 10
+  FAIL 1 differing row(s) against golden/audit_trail_expected.json
+[audit:prove] ✗ FAILED at 4/4 SESSION + PROBES + GOLDEN DIFF (exit 3)

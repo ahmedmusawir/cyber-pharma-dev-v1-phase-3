@@ -1,0 +1,54 @@
+[audit-session] BIM-003 scripted two-tenant session — 2026-09-14T07:39:21.065Z — host jmzwhgnyunwssamrqyhp.supabase.co
+  watermark: audit_logs.id = 629 (629 rows on the trail before the session)
+
+AC-106 — tampering: UPDATE and DELETE on audit_logs as svc, admin-A, anon (six probes)
+  ok   svc UPDATE raises — P0001 "audit_logs is append-only" · ground truth actor_role=postgres
+  ok   svc DELETE raises — P0001 "audit_logs is append-only" · ground truth count=629
+  ok   admin-A UPDATE raises — 42501 "permission denied for table audit_logs" · ground truth actor_role=postgres
+  ok   admin-A DELETE raises — 42501 "permission denied for table audit_logs" · ground truth count=629
+  ok   anon UPDATE raises — 42501 "permission denied for table audit_logs" · ground truth actor_role=postgres
+  ok   anon DELETE raises — 42501 "permission denied for table audit_logs" · ground truth count=629
+
+AC-116/117 — admin-A INSERT → UPDATE → DELETE on user_data (A1)
+  ok   insert — id 750373e9-e7c5-449e-b1fe-1eaa4c9828dd
+  ok   update — 1 row
+  ok   delete — 1 row
+  ok   three trail rows for row <session-row> — insert,update,delete
+  ok   insert: new_data only, business_id A1, table user_data, row_id = pk
+  ok   update: old_data AND new_data
+  ok   delete: old_data only
+  ok   AC-119: actor_user_id = admin-A, actor_role = authenticated
+  ok   payload key set carries id + business_id (E-2 stable keys)
+
+AC-118 — svc INSERT on apa_memberships (R-8: no business_id)
+  ok   svc insert — 1 row
+  ok   R-8 row: business_id NULL, context non-null carrying the identifying key — {"id":"03dc6010-3fb7-4bbf-a7fb-6d6960df3b5f"}
+  ok   AC-119: svc write → actor_user_id NULL, actor_role service_role
+
+AC-302 — wrapper calls (log-then-return, R-10 shapes non-empty)
+  ok   owedbook_kpis(A1): 204 scripts · 20119.50 underpaid · 6.00 updated_difference (200 seed + 4 R-10) — {"commercial_underpaid":20119.5,"commercial_scripts":204,"updated_difference":6,"owed":20119.5}
+  ok   owedbook_rows(A1, commercial): total 204, 25 rows, 9 pages — 204/25/9
+  ok   owedbook_rows(A1, updated): total 2, every row has new_paid (R-10) — 2
+  ok   owedbook_summary(A1): [OptumRx 10.00, Caremark 9.50] desc (R-10) — [{"pbm":"OptumRx","commercial_dollars":10,"federal_dollars":0},{"pbm":"Caremark","commercial_dollars":9.5,"federal_dollars":0}]
+  ok   owedbook_pbm_options(A1): [Caremark, OptumRx] (R-10) — ["Caremark","OptumRx"]
+  ok   multi → owedbook_kpis(B1): 200 scripts (second tenant in the trail) — {"commercial_underpaid":20100,"commercial_scripts":200,"updated_difference":0,"owed":20100}
+  ok   exactly six read_page rows for six wrapper calls (R-7)
+
+AC-206 — admin-A → owedbook_kpis(B1)
+  ok   raises 'not a member of business', zero rows inserted — P0001 "not a member of business"
+
+AC-113 — admin-A INSERT into audit_logs
+  ok   denied by RLS (42501), count unchanged — 42501 "new row violates row-level security policy for table "audit_logs""
+
+AC-109…112 — audit_logs SELECT scoping (junction ADMIN of the row's business only)
+  ok   AC-109 admin-A: 421 rows = expected A-count 421 (A1+A2, ownerA is admin of both); outside A = 0; NULL-business = 0
+  ok   AC-110 member-A: 0 rows (expected 0)
+  ok   AC-111 admin-B: 206 rows = expected B-count 206; outside B = 0
+  ok   AC-111 multi: 424 rows = expected A1+B1 count 424; outside = 0
+  ok   AC-112 anon: 0 rows
+
+AC-303 — golden diff (rows after the watermark, ordered by id, id/occurred_at excluded, symbolised per E-2)
+  ok   row count: produced 10, golden 10
+  ok   0 differing row(s) against golden/audit_trail_expected.json
+
+[audit-session] TRAIL EXACT — every probe green and the produced trail matches the golden row-for-row

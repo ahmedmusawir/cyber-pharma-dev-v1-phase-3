@@ -15,7 +15,8 @@
     "db:inventory": "node scripts/db-reset.mjs inventory",
     "db:verify": "node scripts/db-verify.mjs",
     "db:verify:probes": "node scripts/db-verify.mjs --probes",
-    "rls:prove": "node scripts/rls-harness/prove.mjs"
+    "rls:prove": "node scripts/rls-harness/prove.mjs",
+    "audit:prove": "node scripts/rls-harness/audit-prove.mjs"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",

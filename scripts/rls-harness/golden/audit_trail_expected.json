@@ -1,0 +1,18 @@
+[
+  { "table_name": "user_data", "action": "insert", "actor_role": "authenticated", "actor_user_id": "admin-A", "business_id": "A1", "row_id": "<uuid>", "old_data": null, "new_data": "present", "context": null },
+  { "table_name": "user_data", "action": "update", "actor_role": "authenticated", "actor_user_id": "admin-A", "business_id": "A1", "row_id": "<uuid>", "old_data": "present", "new_data": "present", "context": null },
+  { "table_name": "user_data", "action": "delete", "actor_role": "authenticated", "actor_user_id": "admin-A", "business_id": "A1", "row_id": "<uuid>", "old_data": "present", "new_data": null, "context": null },
+  { "table_name": "apa_memberships", "action": "insert", "actor_role": "service_role", "actor_user_id": null, "business_id": null, "row_id": "<uuid>", "old_data": null, "new_data": "present", "context": { "id": "<uuid>" } },
+  { "table_name": "user_data", "action": "read_page", "actor_role": "authenticated", "actor_user_id": "admin-A", "business_id": "A1", "row_id": null, "old_data": null, "new_data": null,
+    "context": { "fn": "owedbook_kpis", "args": { "p_business_id": "A1", "p_from": null, "p_to": null, "p_pbms": [], "p_filter": null }, "filters": { "from": null, "to": null, "pbms": [], "filter": null } } },
+  { "table_name": "user_data", "action": "read_page", "actor_role": "authenticated", "actor_user_id": "admin-A", "business_id": "A1", "row_id": null, "old_data": null, "new_data": null,
+    "context": { "fn": "owedbook_rows", "args": { "p_business_id": "A1", "p_tab": "commercial_dollars", "p_from": null, "p_to": null, "p_pbms": [], "p_filter": null, "p_page": 1, "p_limit": 25 }, "page": 1, "limit": 25, "offset": 0, "filters": { "from": null, "to": null, "pbms": [], "filter": null, "tab": "commercial_dollars" } } },
+  { "table_name": "user_data", "action": "read_page", "actor_role": "authenticated", "actor_user_id": "admin-A", "business_id": "A1", "row_id": null, "old_data": null, "new_data": null,
+    "context": { "fn": "owedbook_rows", "args": { "p_business_id": "A1", "p_tab": "updated_commercial_payments", "p_from": null, "p_to": null, "p_pbms": [], "p_filter": null, "p_page": 1, "p_limit": 25 }, "page": 1, "limit": 25, "offset": 0, "filters": { "from": null, "to": null, "pbms": [], "filter": null, "tab": "updated_commercial_payments" } } },
+  { "table_name": "user_data", "action": "read_page", "actor_role": "authenticated", "actor_user_id": "admin-A", "business_id": "A1", "row_id": null, "old_data": null, "new_data": null,
+    "context": { "fn": "owedbook_summary", "args": { "p_business_id": "A1", "p_from": null, "p_to": null, "p_pbms": [], "p_filter": null }, "filters": { "from": null, "to": null, "pbms": [], "filter": null } } },
+  { "table_name": "user_data", "action": "read_page", "actor_role": "authenticated", "actor_user_id": "admin-A", "business_id": "A1", "row_id": null, "old_data": null, "new_data": null,
+    "context": { "fn": "owedbook_pbm_options", "args": { "p_business_id": "A1" } } },
+  { "table_name": "user_data", "action": "read_page", "actor_role": "authenticated", "actor_user_id": "multi", "business_id": "B1", "row_id": null, "old_data": null, "new_data": null,
+    "context": { "fn": "owedbook_kpis", "args": { "p_business_id": "B1", "p_from": null, "p_to": null, "p_pbms": [], "p_filter": null }, "filters": { "from": null, "to": null, "pbms": [], "filter": null } } }
+]
