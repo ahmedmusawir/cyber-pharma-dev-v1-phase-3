@@ -3,6 +3,13 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-20 10:25 UTC — [CC] Claude Code
+
+- **RRM-001 S2 — public self-registration removed** (D1, R-011 by removal) and the login `GET` probe removed (R-002): `src/app/api/auth/signup/`, `RegisterForm.tsx`, `AuthTabs.tsx` deleted; `/auth` is login-only; three "Start free trial" hrefs now point at `/auth` (ruling A-03); new `src/__tests__/auth/AuthPage.test.tsx` (AC-202).
+- **Updated:** `docs/AUTHENTICATION.md`, `docs/ROUTES_AND_SURFACES.md`, `README.md` — "removed in RRM-001 (2026-09-20)" notes (ruling A-06)
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/EXECUTION_LOG.md` — Stage S2 section; evidence `S2_404_matrix.txt`, `S2_greps.txt`
+- **Reason:** Director P2-S2 instruction, 2026-09-20. Board: tsc 0 · eslint 0 errors · jest 29/130/0 · build 17 routes.
+
 ## 2026-09-20 10:19 UTC — [CC] Claude Code
 
 - **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/RULINGS_ADDENDUM.md` — appended ruling A-12 (O-1: AC-103 `.next/server` pass test) and OBS-1 (`protectPage` registered as a Server Action → RRM-003)

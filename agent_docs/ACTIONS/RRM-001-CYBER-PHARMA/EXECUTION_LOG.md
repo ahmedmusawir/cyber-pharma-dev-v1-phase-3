@@ -55,7 +55,51 @@ GIT REMINDER — uncommitted paths: 14 deletions under `src/app/moose-portal/` �
 
 ## Stage S2 — Signup removal + login probe
 
-(same shape; include blank-env and placeholder-env build transcripts; `evidence/S2_404_matrix.txt`; AC-301 preserved-path diff transcript; AC-303 grep)
+Date/time: 2026-09-20 18:21–18:25 · Input SHA: `7e2eaeb43c5e1fd1122d7d369f7bb0956d6fd460` (S1 + A-12 commit; tree clean; no code drift since `9d5fe22`) · Approved: D1, R-011 (by removal), R-002 · AC-201–205, AC-301–303, AC-401 · P2-S2 under A-03, A-06, A-08, A-09, A-10
+Stage report: `agent_docs/RESPONSES/response_2026-09-20_182509_rrm001-s2-result.md`.
+
+| File / surface | Change and reason | Ledger / AC | Preservation concern |
+|---|---|---|---|
+| `src/app/api/auth/signup/route.ts` (+ folder) | DELETED | D1 · AC-201 | sole caller was RegisterForm |
+| `src/components/auth/RegisterForm.tsx` | DELETED | D1, R-011 · AC-202 | sole importer was AuthTabs |
+| `src/components/auth/AuthTabs.tsx` | DELETED — single-tab wrapper (S0 §3) | AC-202 | sole importer was the `/auth` page; `src/components/ui/tabs.tsx` kept (OwedBookScreen) |
+| `src/app/(auth)/auth/page.tsx` | renders `LoginForm` directly inside the same outer box (`w-[400px] mt-16` → `p-4 border-t border-border bg-card`); `Suspense` removed; `"use client"` kept | AC-202 | `src/components/auth/LoginForm.tsx` byte-identical; `?tab=register` is now an ignored param → 200, login page |
+| `src/app/api/auth/login/route.ts` | removed baseline lines 10-28 (comment + `GET` + blank). 19 deletions, 0 additions | R-002 · AC-205 | **POST handler byte-identical** to `5f45fb3` (diff of POST..EOF empty) |
+| `src/app/(public)/HomePageContent.tsx:40` · `src/components/global/MobileNav.tsx:103` · `src/components/global/UserMenu.tsx:66` | href `/auth?tab=register` → `/auth`; label "Start free trial" untouched | A-03 Option B · AC-203, AC-303 | one line each; `MobileNav.test.tsx` / `UserMenu.test.tsx` pass unmodified |
+| `src/__tests__/auth/AuthPage.test.tsx` | NEW — jsdom: login form renders (email, password, one button "Login"); no tablist/tab, no link, no text or markup matching the AC-203 pattern | AC-202 | `src/__tests__/jest.setup.ts` untouched |
+| `docs/AUTHENTICATION.md` | one note under "### 1. Signup" — removed in RRM-001, text below is historical | A-06 | body left for RRM-003 |
+| `docs/ROUTES_AND_SURFACES.md` | `/auth` row and `(auth)` bullet → login-only; one line added under "Removed Surfaces" | A-06 | — |
+| `README.md` | the single S1 line extended to name public self-registration (still one line) | A-06 | — |
+| `CHANGELOG.md` | one S2 entry | A-10 | — |
+
+| Command/check | Environment | Exit/result | Evidence path |
+|---|---|---|---|
+| `rm -rf .next && next build` **blank** Supabase env | local | exit 0 · **17 routes** | `evidence/S2_404_matrix.txt` (header) |
+| same, placeholder env, flag=`true` (T) | local, no live Supabase | exit 0 · 17 routes · no `/api/auth/signup`, no `/moose-portal*` | `evidence/S2_404_matrix.txt` |
+| same, placeholder env, flag=`''` (U) | local | exit 0 · 17 routes · table identical to T and blank | `evidence/S2_404_matrix.txt` |
+| `npx tsc --noEmit` (after the build — S1 lesson) | local | **0 errors** | |
+| `npx eslint .` | local | **0 errors / 35 warnings** (unchanged from S1) | |
+| `npx jest --ci` | local, mocks | **29 suites / 130 tests passed, skipped = 0** (+1 suite, +2 tests = the new file) | |
+| 404 matrix rows 1-8, states T and U | standalone `server.js`, placeholder env, 127.0.0.1:36055 | rows 1-4 **404** · row 5 **307 → /auth** · row 6 `POST /api/auth/signup` **404** · row 7 `POST /api/auth/login` empty body **500** (baseline control: `Unexpected end of JSON input`, non-404 ✓) · row 8 `GET /api/auth/login` **405**, 0-byte body — identical in both states | `evidence/S2_404_matrix.txt` |
+| `/auth` and `/auth?tab=register` | served build | **200 / 200**, both states | `evidence/S2_404_matrix.txt` |
+| AC-103b regression | served build | 5 × 404, both states | `evidence/S2_404_matrix.txt` |
+| AC-203 grep | repo | 2 hits = the two A-09 exceptions; 0 after excluding them; `tab=` → 0 | `evidence/S2_greps.txt` |
+| AC-204 | repo | no test references a removed module (0) | `evidence/S2_greps.txt` |
+| AC-205 | repo | `posts` → 0; only export is `POST`; diff = 19 deletions, 0 additions; POST byte-identical | `evidence/S2_greps.txt` |
+| AC-301 preserved-path diff vs `5f45fb3` | repo | **EMPTY** (also empty for `LoginForm.tsx`, `Logout.tsx`, `NavbarLoginReg.tsx`, `NavbarHome.tsx`, `useAuthStore.ts`, `jest.setup.ts`) | `evidence/S2_greps.txt` |
+| AC-302 | repo | tracked diff under `src/__tests__` empty; only untracked = `src/__tests__/auth/AuthPage.test.tsx` | `evidence/S2_greps.txt` |
+| AC-303 | repo | Navbar = the 4 flag-wiring lines; MobileNav / UserMenu = the href line only; `useAuthStore` in those two = import + logout call only | `evidence/S2_greps.txt` |
+
+Allowed grep exceptions:
+- AC-203 (A-09): `src/instrumentation.ts:18` (`export function register()` — Next.js hook, file byte-identical) · `src/__tests__/auth/AuthPage.test.tsx:17` (the AC-202 assertion pattern). No other hit.
+- Carried from S1, re-checked on this tree: AC-103 `src/` (A-04) three adminDemo lines · AC-106 (A-05) `src/app/(admin)/layout.tsx:20`.
+
+Deviations: none from the approved plan. Notes: (1) `git diff --stat 5f45fb3 -- src/__tests__` prints nothing until the new test is committed (untracked) — shown via `git ls-files --others` instead; after the Director's commit it will list exactly that one file. (2) README: A-06 allows one line; the S1 line was extended rather than a second line added.
+Auth behaviour change beyond removal: **none observed** — login POST, logout, confirm, proxy, middleware, protectPage, LoginForm and useAuthStore are byte-identical to baseline.
+Dead code left in place, not removed (ask before deleting): `TabsContent` export in `src/components/ui/tabs.tsx` (no consumer now) · `src/components/common/PaginationControls.tsx` (from S1).
+
+Env restoration: placeholder env scoped per command (`https://placeholder.invalid` …); nothing exported; `.env.local` not read for values, not edited; no live Supabase call; server stopped, port 36055 free, 0 processes; `.next/` (gitignored) left as the state-U build. Director checkpoint SHA: <Director fills after the S2 commit>
+GIT REMINDER — uncommitted paths: 3 deletions (`src/app/api/auth/signup/route.ts`, `src/components/auth/RegisterForm.tsx`, `src/components/auth/AuthTabs.tsx`) · `src/app/(auth)/auth/page.tsx` · `src/app/api/auth/login/route.ts` · `src/app/(public)/HomePageContent.tsx` · `src/components/global/MobileNav.tsx` · `src/components/global/UserMenu.tsx` · new `src/__tests__/auth/AuthPage.test.tsx` · `README.md` · `docs/AUTHENTICATION.md` · `docs/ROUTES_AND_SURFACES.md` · `CHANGELOG.md` · this log · `evidence/S2_404_matrix.txt` · `evidence/S2_greps.txt` · session log · stage report.
 
 ## Completion claim
 

@@ -11,7 +11,7 @@
 | Path                         | Role gate                  | Purpose                                                        | Data source        |
 | ---------------------------- | -------------------------- | ------------------------------------------------------------- | ------------------ |
 | `/`                          | public                     | Marketing / landing page                                      | static             |
-| `/auth`                      | public                     | Login + signup tabs (`AuthTabs`)                              | Supabase Auth      |
+| `/auth`                      | public                     | Login only (`LoginForm`)                                      | Supabase Auth      |
 | `/access-denied`             | public                     | Friendly unauthorized page                                    | static             |
 | `/owedbook`                  | **ADMIN + MEMBER**         | OwedBook reimbursement ledger — **post-login landing for any authed user** | mock service |
 | `/profile`                   | any authed (redirects to `/auth`) | View/edit own profile                                  | Supabase           |
@@ -30,7 +30,7 @@ App Router route groups (`(name)`) organize layouts/gating without adding a URL
 segment.
 
 - **`(public)`** — `/`, `/access-denied`. No auth.
-- **`(auth)`** — `/auth`. The login/signup surface.
+- **`(auth)`** — `/auth`. The login surface (login-only).
 - **`(admin)`** — wraps `/admin-portal/*`. Layout calls
   `protectPage([AppRole.ADMIN], { unauthorizedRedirect: "/owedbook" })` — a MEMBER
   who types an admin URL is bounced to their OwedBook landing, **not** to login.
@@ -60,6 +60,7 @@ overlay shows on primary navigation across all authed surfaces.
 ## Removed Surfaces
 
 - The env-gated operator user-management portal was removed in RRM-001 (2026-09-20), together with its env flag and navbar link.
+- Public self-registration was removed in RRM-001 (2026-09-20): `/auth` is login-only.
 
 ---
 
