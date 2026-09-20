@@ -3,6 +3,11 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-20 09:52 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/RULINGS_ADDENDUM.md` — appended Architect rulings A-02…A-11 (Director-approved, verbatim); removed the empty placeholder row and the blank line that split the table; A-01 byte-identical
+- **Reason:** Director documentation-prep instruction before RRM-001 S1 (2026-09-20). Docs only; no product change.
+
 ## 2026-09-16 04:20 UTC — [CC] Claude Code
 
 - **BIM-003-CYBER-PHARMA CLOSED** — Sol Gate Q PASS 2026-09-15, QA Cleanup PASS, MERGE-READY, certified `c45949e`, zero implementation defects. Delivered: `audit_logs` reshape (0028: Brief §3 shape, immutability guard incl. R-6a TRUNCATE, FORCE RLS, RF-3 revokes) · one admin SELECT policy (0029) · `audit_write()` (0030) · 13 write stamps (0031–0043) · 4 `owedbook_*` read wrappers (0044–0047) · `npm run audit:prove` with symbolic golden · migrations 0028–0047 · regenerated types · README/RUN_NOTES · retrospective.
