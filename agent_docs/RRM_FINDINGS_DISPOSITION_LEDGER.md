@@ -1,0 +1,48 @@
+# RRM FINDINGS DISPOSITION LEDGER — FFM REVIEW REWORK CAMPAIGN
+
+**Placement:** `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` (campaign-level; every module's brief cites its rows by ID). Original reports are immutable inputs: `agent_docs/FABLE_CODE_REVIEW.md`, `agent_docs/ASTRA_CODE_REVIEW.md`. Applicability evidence: Claudy recon Rev 2 (`agent_docs/RECON/RRM001_RECON_2026-09-18.md`, baseline `5f45fb3`). Severity/confidence are the reviewers'; disposition is the Director's (D1–D7, 2026-09-20).
+
+| Ledger ID | Original IDs | Narrow claim | Current applicability + evidence | Disposition | Rationale / Director ruling | Module |
+|---|---|---|---|---|---|---|
+| R-001 | F1 · A-001 | Moose Server Actions perform privileged ops with no in-action caller/role/flag check; delete has no target limit | VERIFIED — `moose-portal/users/actions.ts:27,92,126,158,178`; gates only in `layout.tsx:15,17` | **ACCEPT — by removal** | D2: starter-kit tool, not a feature; objective = entry points gone and unreachable | RRM-001 |
+| R-002 | F2 | `GET /api/auth/login` probes a non-existent `posts` table | VERIFIED — `route.ts:11-27`; no `posts` in migrations | **ACCEPT** | Kit residue on a security-relevant route | RRM-001 |
+| R-003 | F3 · Astra §8 gross/net | KPI "Owed" equals "Commercial Underpaid" | VERIFIED in mock (`:76,81`) **and** certified wrapper `0044:68,71` by contract (`WRAPPER_CONTRACT.md:42`); test pins equality (`owedbook.test.ts:23`) | **DEFER — Phase 5** | Aggregate KPI semantics settle in Phase 5 parity harness; mock and wrapper move in lockstep. Legacy demo formula (Owed = Commercial Underpaid − Updated Difference; commercial tiles excluded Federal rows) recorded as candidate. Wrapper `commercial_scripts` counts all rows — same bucket. | — (RRM-002 flags; RRM-001 AC8 protects parity) |
+| R-004 | F4 · Astra §8 sorting | Sort reorders only the current page | VERIFIED — `OwedBookScreen.tsx:124-137`; explicit deferral; no sort param | **DEFER — Phase 5c** | Server-side pagination/filtering is Phase 5c; keyboard access to existing sort in RRM-003 | — |
+| R-005 | F5 | Persisted client role read in public navbar | CHANGED — closed by FIX-001 (`MobileNav.tsx:22,33`, `UserMenu.tsx:21`, `KIP_REGISTRY.md:51-59`) | **ALREADY RESOLVED** | Regression-protected (RRM-001 AC9) | — |
+| R-006 | F6 | Global `no-store` header on hashed static assets | VERIFIED and **measured** (recon R3) | **ACCEPT** | Fable inferred; recon proved | RRM-003 |
+| R-007 | F7 | Build fails without env | CHANGED — blank-env build exits 0 (recon R3) | **ALREADY RESOLVED** | Dual-build AC in every module board | — |
+| R-008 | F8 · Astra §8 rounding | Federal sign diverges; Summary federal ≈ 0; rounding unruled | VERIFIED — 132 neg / 7 pos / 11 null; wrapper returns hard 0 (`0046:62`) | **DEFER — Phase 5** | Federal math is Phase 5; rounding law before validation week; flag-only in RRM-002 | — |
+| R-009 | F9 · A-003 | Installed next/sharp/libvips match critical/high advisories; broad Cloudinary pattern; `_next/image` outside proxy matcher | VERIFIED — recon R6: 1 critical, 3 high, 1 moderate, 1 low; `fixAvailable` for next/sharp; no Dockerfile in repo (deploy waived) | **ACCEPT** | D4: isolated final module, full board rerun, targets verified at implementation, Cloudinary per real sources | RRM-004 |
+| R-010 | F10 (headers) · A-005 | Sort headers mouse-only; drawer/MultiSelect lack focus move/trap/return | VERIFIED — `DataTable.tsx:70-86`, `AuthedShell.tsx:46-57,93`, `MultiSelect.tsx:25-46`; requirement `PHASE_2.1/UI_SPEC.md:132-134` | **ACCEPT** | Fulfils existing Phase-2 contract | RRM-003 |
+| R-010b | F10 (Report button) | Inert focusable "Report" button | VERIFIED — `columns.tsx:17-19` | **REJECT — retain as is** | D5: not hidden, disabled, relabeled or dashed | — (byte-identical AC in RRM-002/003) |
+| R-011 | F11 · A-007 | Signup: unguarded fetch strands loading; OK path ignores session | VERIFIED — `RegisterForm.tsx:70,84-86,90` | **NOT APPLICABLE — feature removed** | D1 | RRM-001 (removal) |
+| R-012 | F12 | Duplicate service-role admin client | VERIFIED — `_lib/admin.ts` (Moose-only) vs `utils/supabase/admin.ts` (zero importers, "blessed" 2026-07-14) | **ACCEPT — reconciled** | E-04: delete Moose copy; retain blessed file, zero app importers, fenced to seeding/system jobs | RRM-001 |
+| R-013 | F13 | Debug strings in not-found pages; `console.log` in RegisterForm | VERIFIED | **ACCEPT** (RegisterForm part moot) | Polish | RRM-003 |
+| R-014 | A-002 | Signup trigger assigns role from user metadata | **CONFIRMED LIVE on dev database** (Director, 2026-09-20); `docs/migration_add_profiles.sql:82-85`; `scripts/db-bootstrap-baseline.sql:76-79`; 0001–0047 do not replace | **NEEDS BACKEND — outside campaign engineering**; docs quarantine in RRM-003 | Three distinct evidence items: application removal (RRM-001); Supabase signup off (Director DA-2); permanent migration (BIM-004 rider CE-2, verified at APPLY SESSION). None proves the others. | RRM-003 (docs) · DA-2 · CE-2 |
+| R-015 | A-004 | Underpaid dollars on null-PBM claims vanish from Summary | VERIFIED — mock `:113` and wrapper `0046:65` both drop by contract; 4 null-PBM fixture rows; null PBM is a real state (Frank Ruling 5) | **ACCEPT — disclosure**; bucket **DEFER — Phase 5** | D3: footer from two existing aggregates over the full filtered set; no formula, no count, no wrapper change | RRM-002 |
+| R-016 | A-006 · Fable §10 seams | Components cannot support service-only swap (no invalidation, no catch, KPI error → zeros) | VERIFIED — `FilterRail.tsx:59-72`, `OwedBookScreen.tsx:80-82`, `OwedBookContext.tsx:48-57` | **DEFER — BIM-005 authoring gate** | "Components untouched at swap" is too strong; BIM-005 brief rules it (CE-3) | — |
+| R-017 | A-008 | Fresh-setup trigger reads `name`, app sends `full_name` | VERIFIED on disk; **absent from installed function** | **NOT APPLICABLE (installed)** · docs **ACCEPT — quarantine** | Legacy files describe two lineages; migration rider must read `full_name` | RRM-003 (docs) |
+| R-018 | README drift · Moose O(N) · Playwright unused · mock↔wrapper D3–D5 | Recon-level observations | README stale; Moose moot; Playwright devDep without config; tiebreak/empty-string/rounding not in WRAPPER_CONTRACT | README **ACCEPT** · Moose **N/A** · Playwright **DEFER (record)** · D3–D5 **DEFER — BIM-005 contract note** | Counts match final run; parity notes for BIM-005 | RRM-003 (README) |
+| R-019 | Fable §10 future gates · Astra §8 demo consistency | Tenant scoping, upload validation, signed report URLs, billing; admin-demo identity sync | Explicitly deferred by design | **DEFER — existing gates** · demo consistency **REJECT** (explicit mock) | Already routed in plan/map | — |
+| R-020 | Director money rules 1–7 | Fixtures/copy must not contradict locked rules | To be audited in RRM-002 Plan Mode (report only) | **ACCEPT — bounded audit** | Corrections only with a Director erratum row; no money value recomputed; conflicts flagged with owner/gate | RRM-002 |
+
+## Append-only decisions and errata (campaign level)
+
+| Date / author | Item | Prior claim / contract | Approved interpretation / change | Authority | Verification impact |
+|---|---|---|---|---|---|
+| 2026-09-20 / Tony | E-01 | Retain public signup with recovery fix + future removal gate | Public signup removed (D1); Supabase signup off by Director (DA-2); trigger correction stays backend | Director | R-011 → N/A; RRM-001 |
+| 2026-09-20 / Tony | E-02 | Retain Moose with in-action auth; map §6 Moose provisions seed users; map §7 BIM-005 AC5 Moose byte-identical | Moose removed (D2); BIM-004 creates test users via seed + explicit role writes (CE-1); BIM-005 AC5 → Moose absent (CE-3) | Director | RRM-001; CE-1; CE-3 |
+| 2026-09-20 / Fable | E-03 | `PHASE_2.1/DATA_CONTRACT.md` v1.0: `pbm: string` non-nullable | Code (`OwedBook.ts:10`) and fixtures make `pbm` nullable; Frank Ruling 5 makes unmatched claims a real state. Nullable `pbm` governs. | Architect (Director may amend) | RRM-002 premise |
+| 2026-09-20 / Fable | E-04 | 2026-07-14: `src/utils/supabase/admin.ts` blessed, unconsumed, reconcile at Phase 3 | Moose copy deleted; blessed file retained as the single service-role factory, zero importers under `src/`, header cites this row, fenced to seeding/system jobs; BIM-004 seed decides its own import | Architect per D2 | RRM-001 AC5 |
+| 2026-09-20 / Tony | E-05 | Render Report control as "—" | Retained exactly as is (D5) | Director | byte-identical ACs |
+| 2026-09-20 / Fable | E-06 | Map §7 BIM-005 AC2 "diff vs pre-swap" | Baseline = post-RRM-campaign `main` | Architect per D2 | CE-3 |
+| 2026-09-20 / Tony | E-07 | Dependency bump as separate mini-module vs inside | Own module, last in campaign (D4) | Director | RRM-004 |
+| 2026-09-20 / Fable | E-08 | Signup-recovery / confirmation robustness proposed | Withdrawn (feature removed) | Director standing direction | none |
+| 2026-09-20 / Tony | E-09 | Single RRM with five stages; register file in `ACTIONS/` | Campaign of four modules; map + journal at campaign level; only module packs in `ACTIONS/` | Director | this ledger's Module column |
+| _RRM-002 audit rows_ | E-10… | fixture/copy items | per Director ruling | Director | RRM-002 |
+
+## Resolution evidence — appended per module at closeout
+
+| Ledger ID | Module | Certified SHA | Repair evidence | Independent check (SOL/Cody) | Final disposition |
+|---|---|---|---|---|---|
+| _(appended at each Gate Q)_ | | | | | |
