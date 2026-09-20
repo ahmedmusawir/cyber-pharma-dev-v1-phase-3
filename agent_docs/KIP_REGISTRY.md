@@ -11,6 +11,8 @@
 
 _Registry created: 2026-08-04. Format: mechanism · risk · triggers · verification._
 
+> **Note:** the env-gated operator user-management portal and its env flag were removed in RRM-001 (2026-09-20) — no KIP may assume it exists.
+
 > **Provenance note (2026-08-11):** this registry was absent from the
 > `cyber-pharma-dev-v1-phase-3` working copy — it never made it across the phase-3
 > branch cut. Restored verbatim from `cyber-pharma-dev-v1/agent_docs/KIP_REGISTRY.md`.

@@ -35,8 +35,7 @@ A signed-in user lands on one of two surfaces based on their role:
   and an Audit log. This is the **Admin Portal Demo Shell** — fully interactive
   on in-memory mock state (see "Current State" below).
 
-There is also `/moose-portal`, an **env-gated operator escape hatch** with real
-user CRUD, isolated from the demo shell. See
+The env-gated operator user-management portal was removed in RRM-001 (2026-09-20). See
 [ROUTES_AND_SURFACES](./ROUTES_AND_SURFACES.md) for the full map and role gates.
 
 > **Note on `superadmin`:** the `superadmin` role still exists in the Postgres

@@ -1,0 +1,33 @@
+RRM-001 S1 — AC-103b Server Action ID evidence (ruling A-11)
+== PART 1: BASELINE CAPTURE (before any deletion) ==
+source: .next/server/server-reference-manifest.json  mtime: 2026-09-18 16:31:37  BUILD_ID: muJ3N16y80matgd-W6R12
+build provenance: recon R3 controlled build 2026-09-18 at code baseline 5f45fb3 (src/ unchanged since: git diff 5f45fb3..HEAD -- src/ is empty)
+note: manifest field 'encryptionKey' deliberately NOT copied into evidence.
+
+action id                                    export         filename                                      worker pages
+602bed7631be2f85c8f1207a83014ead5e2a7b6760   protectPage    src/utils/supabase/actions.ts                 (12 pages)
+402dc37b2b824c1412b54c07a6754d1f00f781c2dc   deleteUser     src/app/moose-portal/users/actions.ts         app/moose-portal/users/edit/[id]/page, app/moose-portal/users/page
+404e90d686531af573f3973524ae30e48d42564fdb   addMember      src/app/moose-portal/users/actions.ts         app/moose-portal/users/add-member/page, app/moose-portal/users/edit/[id]/page, app/moose-portal/users/page
+40d73ff364e71e0ded6e2d8bdbd18d3449dc317cad   getUsers       src/app/moose-portal/users/actions.ts         app/moose-portal/users/edit/[id]/page, app/moose-portal/users/page
+40e1008514ac7084cf1a567948a2afe66cb4986f22   getUserById    src/app/moose-portal/users/actions.ts         app/moose-portal/users/edit/[id]/page, app/moose-portal/users/page
+60fe6f04c7baf4ba561914ff2157c6d7071a99ff7e   editUser       src/app/moose-portal/users/actions.ts         app/moose-portal/users/edit/[id]/page, app/moose-portal/users/page
+
+Moose action ids (count=5): 402dc37b2b824c1412b54c07a6754d1f00f781c2dc 404e90d686531af573f3973524ae30e48d42564fdb 40d73ff364e71e0ded6e2d8bdbd18d3449dc317cad 40e1008514ac7084cf1a567948a2afe66cb4986f22 60fe6f04c7baf4ba561914ff2157c6d7071a99ff7e
+
+== PART 2: AFTER S1 (fresh builds) ==
+--- post-S1 manifest, state T build (BUILD_ID vLdajStNLVI3W-Y-aOdvh)
+  node 601f7a0a544c09565e65e85fd438efeb7175976e16 protectPage src/utils/supabase/actions.ts (8 worker pages)
+  baseline ids still listed: 0 of 5
+  entries whose filename or worker path contains 'moose-portal': 0
+--- post-S1 manifest, state U build (BUILD_ID MJjd0Atu4W8vr6eemZJwK)
+  node 603f66b01cc91c03a1f64488e73ea8a4db6752d7b8 protectPage src/utils/supabase/actions.ts (8 worker pages)
+  baseline ids still listed: 0 of 5
+  entries whose filename or worker path contains 'moose-portal': 0
+
+== PART 3: PROBES ==
+POST / with 'Next-Action: <baseline id>' for all five ids → 404 in state T and state U. Full transcripts: evidence/S1_404_matrix.txt.
+
+== LIMITATION (stated, not hidden) ==
+Next salts action ids per build: protectPage was 602bed… at baseline, 601f7a… in build T, 603f66… in build U. 'Old id not listed' is therefore weak on its own.
+The load-bearing facts are: (a) zero manifest entries reference src/app/moose-portal in either build, (b) the only registered action is protectPage, (c) all five old ids return 404.
+No positive control was run (invoking an old id against a baseline server would execute a service-role action) — not approved, not done.

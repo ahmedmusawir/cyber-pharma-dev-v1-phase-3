@@ -1,7 +1,12 @@
-// src/utils/supabase/admin.ts
-// BLESSED INFRA — kept unconsumed by ruling 2026-07-14; expected consumer: privileged server ops (Phase 3+). /moose-portal carries its own service-role client — reconcile the duplicates at Phase 3. See agent_docs/KEEP_MANIFEST.md.
-// CRITICAL: This file uses the service_role key and MUST ONLY be imported in server-side code.
-// NEVER import this in client components or expose the service_role key to the browser.
+// Service-role Supabase client factory — BLESSED INFRA, currently UNCONSUMED.
+// Ledger E-04 (agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md, 2026-09-20): this is the
+// single service-role factory in the repo. The duplicate copy that lived beside the
+// operator user-management portal was deleted with that portal in RRM-001 (2026-09-20).
+// Zero app consumers: nothing under src/ or scripts/ imports this file, and no route,
+// page, component or Server Action may.
+// FENCED to seeding and system jobs only — BIM-004's seed script decides its own import.
+// CRITICAL: uses the secret (service_role) key — server-side only. NEVER import this in
+// client components or expose the key to the browser.
 
 import { createClient } from '@supabase/supabase-js'
 

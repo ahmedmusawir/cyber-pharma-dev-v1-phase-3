@@ -3,6 +3,13 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-20 10:01 UTC — [CC] Claude Code
+
+- **RRM-001 S1 — operator user-management portal removed** (R-001, R-012): 14 files under `src/app/moose-portal/` deleted; navbar flag wiring and `.env.example` key removed; `src/utils/supabase/admin.ts` header now cites ledger E-04.
+- **Updated:** `README.md`, `docs/ROUTES_AND_SURFACES.md`, `docs/PROJECT_OVERVIEW.md`, `docs/AUTHORIZATION.md`, `docs/DATABASE_SETUP.md`, `agent_docs/KIP_REGISTRY.md` — "removed in RRM-001 (2026-09-20)" notes (ruling A-06)
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/EXECUTION_LOG.md` — Stage S1 section; evidence `S1_404_matrix.txt`, `S1_action_ids.txt`, `S1_greps.txt`
+- **Reason:** Director P2-S1 instruction, 2026-09-20. Board: tsc 0 · eslint 0 errors · jest 28/128/0 · build 18 routes.
+
 ## 2026-09-20 09:52 UTC — [CC] Claude Code
 
 - **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/RULINGS_ADDENDUM.md` — appended Architect rulings A-02…A-11 (Director-approved, verbatim); removed the empty placeholder row and the blank line that split the table; A-01 byte-identical

@@ -1,0 +1,99 @@
+RRM-001 S1 — 404 matrix (AC-102) + action-id probes (AC-103b). Ruling A-08: one fresh build per flag state; 'unset' = explicit empty string on build AND serve; server = standalone server.js.
+Builds: rm -rf .next && env <placeholders> NEXT_PUBLIC_ENABLE_MOOSE_PORTAL=<state> npx next build   (exit 0 both; .env.local untouched; no real keys in shell)
+
+##### BUILD T (flag=true) route table
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /access-denied
+├ ƒ /admin-portal
+├ ƒ /admin-portal/audit
+├ ƒ /admin-portal/billing
+├ ƒ /admin-portal/settings
+├ ƒ /admin-portal/stores/[id]
+├ ƒ /admin-portal/stores/[id]/invite
+├ ƒ /api/auth/confirm
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/signup
+├ ○ /auth
+├ ○ /error
+├ ○ /icon.png
+├ ƒ /owedbook
+└ ƒ /profile
+
+
+ƒ Proxy (Middleware)
+
+##### BUILD U (flag='') route table — identical to T (diff empty)
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /access-denied
+├ ƒ /admin-portal
+├ ƒ /admin-portal/audit
+├ ƒ /admin-portal/billing
+├ ƒ /admin-portal/settings
+├ ƒ /admin-portal/stores/[id]
+├ ƒ /admin-portal/stores/[id]/invite
+├ ƒ /api/auth/confirm
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/signup
+├ ○ /auth
+├ ○ /error
+├ ○ /icon.png
+├ ƒ /owedbook
+└ ƒ /profile
+
+
+ƒ Proxy (Middleware)
+
+route count T: 18 · U: 18 · '/moose-portal' lines T: 0 U: 0
+
+=== STATE T — NEXT_PUBLIC_ENABLE_MOOSE_PORTAL='true' (build AND serve) — 2026-09-20 17:57:44
+server: node .next/standalone/server.js  PORT=36055 HOSTNAME=127.0.0.1  BUILD_ID=vLdajStNLVI3W-Y-aOdvh
+env: NEXT_PUBLIC_SUPABASE_URL=https://placeholder.invalid NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=placeholder-publishable SUPABASE_SECRET_KEY=placeholder-secret NEXT_PUBLIC_SITE_URL=http://127.0.0.1:36055
+--- server log:
+    ▲ Next.js 16.2.12
+    - Local:         http://127.0.0.1:36055
+    - Network:       http://127.0.0.1:36055
+    ✓ Ready in 0ms
+    ✓ Environment validated
+--- AC-102 rows 1-5 (format: status redirect_url | request)
+404  | GET /moose-portal
+404  | GET /moose-portal/users
+404  | GET /moose-portal/users/add-member
+404  | GET /moose-portal/users/edit/x
+307 http://127.0.0.1:36055/auth | GET /owedbook
+--- AC-103b: POST / with each baseline Moose action id (format: status | id)
+404 | POST / Next-Action: 402dc37b2b824c1412b54c07a6754d1f00f781c2dc
+404 | POST / Next-Action: 404e90d686531af573f3973524ae30e48d42564fdb
+404 | POST / Next-Action: 40d73ff364e71e0ded6e2d8bdbd18d3449dc317cad
+404 | POST / Next-Action: 40e1008514ac7084cf1a567948a2afe66cb4986f22
+404 | POST / Next-Action: 60fe6f04c7baf4ba561914ff2157c6d7071a99ff7e
+--- teardown: port 36055 listeners: 0  ; standalone procs: 0
+
+=== STATE U — NEXT_PUBLIC_ENABLE_MOOSE_PORTAL='' (build AND serve) — 2026-09-20 17:59:02
+server: node .next/standalone/server.js  PORT=36055 HOSTNAME=127.0.0.1  BUILD_ID=MJjd0Atu4W8vr6eemZJwK
+env: NEXT_PUBLIC_SUPABASE_URL=https://placeholder.invalid NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=placeholder-publishable SUPABASE_SECRET_KEY=placeholder-secret NEXT_PUBLIC_SITE_URL=http://127.0.0.1:36055
+--- server log:
+    ▲ Next.js 16.2.12
+    - Local:         http://127.0.0.1:36055
+    - Network:       http://127.0.0.1:36055
+    ✓ Ready in 0ms
+    ✓ Environment validated
+--- AC-102 rows 1-5 (format: status redirect_url | request)
+404  | GET /moose-portal
+404  | GET /moose-portal/users
+404  | GET /moose-portal/users/add-member
+404  | GET /moose-portal/users/edit/x
+307 http://127.0.0.1:36055/auth | GET /owedbook
+--- AC-103b: POST / with each baseline Moose action id (format: status | id)
+404 | POST / Next-Action: 402dc37b2b824c1412b54c07a6754d1f00f781c2dc
+404 | POST / Next-Action: 404e90d686531af573f3973524ae30e48d42564fdb
+404 | POST / Next-Action: 40d73ff364e71e0ded6e2d8bdbd18d3449dc317cad
+404 | POST / Next-Action: 40e1008514ac7084cf1a567948a2afe66cb4986f22
+404 | POST / Next-Action: 60fe6f04c7baf4ba561914ff2157c6d7071a99ff7e
+--- teardown: port 36055 listeners: 0  ; standalone procs: 0
+

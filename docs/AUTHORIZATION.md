@@ -192,8 +192,8 @@ isolated from client code.
 > **Security rule:** The service role key must never be exposed to the browser. Ever.
 
 In the current app, the live example of stage 1 is `protectPage()` gating the
-admin layout; there is no stage-2 service-role write path shipped (real-user CRUD
-lives only in the env-gated `/moose-portal` operator tool — see
+admin layout; there is no stage-2 service-role write path shipped (the operator
+user-management portal that carried one was removed in RRM-001 (2026-09-20) — see
 [ROUTES_AND_SURFACES.md](./ROUTES_AND_SURFACES.md)).
 
 ---
