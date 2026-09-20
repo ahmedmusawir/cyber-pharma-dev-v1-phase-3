@@ -3,6 +3,12 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-20 10:19 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/RULINGS_ADDENDUM.md` — appended ruling A-12 (O-1: AC-103 `.next/server` pass test) and OBS-1 (`protectPage` registered as a Server Action → RRM-003)
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/EXECUTION_LOG.md` — S1: AC-103 marked GREEN citing A-12; Director checkpoint SHA `9d5fe22` recorded
+- **Reason:** Director documentation instruction after RRM-001 S1 (2026-09-20). Docs only; no product change.
+
 ## 2026-09-20 10:01 UTC — [CC] Claude Code
 
 - **RRM-001 S1 — operator user-management portal removed** (R-001, R-012): 14 files under `src/app/moose-portal/` deleted; navbar flag wiring and `.env.example` key removed; `src/utils/supabase/admin.ts` header now cites ledger E-04.
