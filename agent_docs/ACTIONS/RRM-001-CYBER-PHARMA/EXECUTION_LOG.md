@@ -98,13 +98,40 @@ Deviations: none from the approved plan. Notes: (1) `git diff --stat 5f45fb3 -- 
 Auth behaviour change beyond removal: **none observed** — login POST, logout, confirm, proxy, middleware, protectPage, LoginForm and useAuthStore are byte-identical to baseline.
 Dead code left in place, not removed (ask before deleting): `TabsContent` export in `src/components/ui/tabs.tsx` (no consumer now) · `src/components/common/PaginationControls.tsx` (from S1).
 
-Env restoration: placeholder env scoped per command (`https://placeholder.invalid` …); nothing exported; `.env.local` not read for values, not edited; no live Supabase call; server stopped, port 36055 free, 0 processes; `.next/` (gitignored) left as the state-U build. Director checkpoint SHA: <Director fills after the S2 commit>
+Env restoration: placeholder env scoped per command (`https://placeholder.invalid` …); nothing exported; `.env.local` not read for values, not edited; no live Supabase call; server stopped, port 36055 free, 0 processes; `.next/` (gitignored) left as the state-U build. Director checkpoint SHA: `4965c0c` (S2 commit, observed on disk at P3)
 GIT REMINDER — uncommitted paths: 3 deletions (`src/app/api/auth/signup/route.ts`, `src/components/auth/RegisterForm.tsx`, `src/components/auth/AuthTabs.tsx`) · `src/app/(auth)/auth/page.tsx` · `src/app/api/auth/login/route.ts` · `src/app/(public)/HomePageContent.tsx` · `src/components/global/MobileNav.tsx` · `src/components/global/UserMenu.tsx` · new `src/__tests__/auth/AuthPage.test.tsx` · `README.md` · `docs/AUTHENTICATION.md` · `docs/ROUTES_AND_SURFACES.md` · `CHANGELOG.md` · this log · `evidence/S2_404_matrix.txt` · `evidence/S2_greps.txt` · session log · stage report.
 
 ## Completion claim
 
-Candidate SHA: <...> · Repair diff: `evidence/repair.diff` · Changed files: `evidence/changed_files.txt` · AC coverage claims: <AC IDs → evidence paths>
-Limitations / not run: browser walk and real-auth login (QA); no live Supabase call; trigger correction not performed (BIM-004 rider CE-2)
+Assembled at P3, 2026-09-20 18:34. Stage report: `agent_docs/RESPONSES/response_2026-09-20_183418_rrm001-p3-handoff.md`.
+
+Candidate SHA: `4965c0c56ae7f658995d8b7cd634b5cdbc697f56` · Repair diff: `evidence/repair.diff` (`git diff 5f45fb3..4965c0c`, 5753 lines, whole tree incl. docs; secrets scan 0) · Changed files: `evidence/changed_files.txt` (71 paths; product paths: 17 D · 9 M · 1 A)
+
+AC coverage claims (AC → evidence):
+
+| AC | Claim | Evidence |
+|---|---|---|
+| AC-101 | folder absent | `evidence/S1_greps.txt` |
+| AC-102 | no `/moose-portal*` route; 4 × 404 + control 307, states T and U | `evidence/S1_404_matrix.txt`, `evidence/S2_404_matrix.txt` |
+| AC-103 | GREEN **per A-04 + A-12** (not literal zero) | `evidence/S1_greps.txt` |
+| AC-103b (A-11) | 5 ids captured pre-deletion; absent after; 5 × 404 both states | `evidence/S1_action_ids.txt`, both matrices |
+| AC-104 | 0 consumers; key gone; `src/instrumentation.ts` byte-identical | `evidence/S1_greps.txt` |
+| AC-105 | Moose copy deleted; 0 importers; header cites E-04 | `evidence/S1_greps.txt` |
+| AC-106 | one hit = A-05 exception; notes per A-06 | `evidence/S1_greps.txt`, `evidence/S2_greps.txt` |
+| AC-201 | folder absent; `POST /api/auth/signup` 404; control non-404 | `evidence/S2_404_matrix.txt` |
+| AC-202 | files deleted; `/auth` + `/auth?tab=register` 200 login-only; jsdom test | `src/__tests__/auth/AuthPage.test.tsx`, `evidence/S2_greps.txt` — QA browser/screenshot **not run** |
+| AC-203 | two hits = A-09 exceptions | `evidence/S2_greps.txt` |
+| AC-204 | no test references a removed module; jest 29/130, 0 skipped | `evidence/S2_greps.txt`, S2 table above |
+| AC-205 | `GET` gone; no `posts`; 405; POST byte-identical | `evidence/S2_greps.txt`, `evidence/S2_404_matrix.txt` |
+| AC-206 | **not engineering's** — Director evidence file NOT YET | — |
+| AC-301 | preserved-path diff empty | `evidence/S2_greps.txt` |
+| AC-302 | named suites pass unmodified; only new file under `src/__tests__` | `evidence/S2_greps.txt` |
+| AC-303 | as narrowed by A-03 | `evidence/S2_greps.txt` |
+| AC-304 | **not claimed** — QA One-Walk | — |
+| AC-401 | board recorded end of S1 and S2 | S1 / S2 tables above |
+| AC-402 | tree clean after each Director commit (`9d5fe22`/`7e2eaeb`, `4965c0c`); candidate recorded; `.env.local` not edited — stated | this log |
+
+Limitations / not run: browser walk and real-auth login (QA); Gate M; no live Supabase call; trigger correction not performed (BIM-004 rider CE-2); QA playbook snapshot NOT YET (`QA/GOVERNING/README.md`); OBS-1 not exercised; OBS-2 orphans left in place.
 QA handoff: `QA_HANDOFF.md`
 
 Engineering evidence, not independent QA certification.

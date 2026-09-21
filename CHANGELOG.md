@@ -3,6 +3,13 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-20 10:34 UTC — [CC] Claude Code
+
+- **RRM-001 P3 — engineering completion handoff.** Candidate `4965c0c`. Docs and evidence only.
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/QA_HANDOFF.md` — every field filled · `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/EXECUTION_LOG.md` — completion claim + AC→evidence map · `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/RULINGS_ADDENDUM.md` — OBS-2 appended · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` — resolution-evidence rows R-001, R-002, R-011, R-012
+- **Created:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/evidence/changed_files.txt`, `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/evidence/repair.diff`, `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/QA/GOVERNING/README.md` (QA playbook snapshot NOT YET — file not on disk)
+- **Reason:** Director P3 instruction, 2026-09-20.
+
 ## 2026-09-20 10:25 UTC — [CC] Claude Code
 
 - **RRM-001 S2 — public self-registration removed** (D1, R-011 by removal) and the login `GET` probe removed (R-002): `src/app/api/auth/signup/`, `RegisterForm.tsx`, `AuthTabs.tsx` deleted; `/auth` is login-only; three "Start free trial" hrefs now point at `/auth` (ruling A-03); new `src/__tests__/auth/AuthPage.test.tsx` (AC-202).
