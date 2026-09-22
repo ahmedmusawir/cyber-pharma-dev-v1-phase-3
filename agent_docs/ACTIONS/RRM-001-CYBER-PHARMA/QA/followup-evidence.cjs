@@ -1,0 +1,20 @@
+// Read-only repository checks plus QA-only evidence; no tests rerun or Git mutation.
+const fs=require('fs'),path=require('path'),cp=require('child_process'),crypto=require('crypto');
+const qa=__dirname,root=process.cwd(),e=path.join(qa,'evidence/followup');fs.mkdirSync(e,{recursive:true});
+const git=(...args)=>cp.execFileSync('git',args,{encoding:'utf8',maxBuffer:20e6});
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const save=(n,d)=>fs.writeFileSync(path.join(e,n),typeof d==='string'?d:JSON.stringify(d,null,2)+'\n');
+const oldInventory=JSON.parse(fs.readFileSync(path.join(qa,'ARTIFACT_INVENTORY.json')));
+if(!fs.existsSync(path.join(e,'prior-artifact-inventory.json')))save('prior-artifact-inventory.json',oldInventory);
+const expected='cad164d62a623a115541c0441302de01ff74da5b',identity=git('rev-parse','HEAD','refs/heads/qa/phase-3-rrm001');save('identity.txt',identity);
+if(identity.trim().split('\n').some(s=>s!==expected))throw Error('Candidate changed');
+const prior=JSON.parse(fs.readFileSync(path.join(qa,'evidence/preexisting-document-relocations.json')));
+const rows=prior.map(r=>{const committed=cp.execFileSync('git',['show',expected+':'+r.original]);const actual=fs.readFileSync(r.relocated);return {...r,originalExists:fs.existsSync(r.original),byteEqual:committed.equals(actual),originalCommittedSha256:hash(committed),relocatedSha256:hash(actual),indexChange:git('diff','--cached','--name-only','--',r.original,r.relocated).trim(),destinationTracked:git('ls-files','--',r.relocated).trim()!==''};});save('relocations.json',rows);
+const docs=git('ls-files','*.md').trim().split('\n').filter(p=>fs.existsSync(p)&&!path.resolve(p).startsWith(qa));const refs=[];
+for(const p of docs)fs.readFileSync(p,'utf8').split('\n').forEach((line,i)=>{for(const r of rows)if(line.includes(path.basename(r.original)))refs.push({referencingFile:p,line:i+1,original:r.original,originalExists:fs.existsSync(r.original)});});save('relocation-references.json',refs);
+const scope=['src','supabase','scripts','package.json','package-lock.json','next.config.js','.env.example','tsconfig.json','eslint.config.mjs','jest.config.js'];const diff=git('diff',expected,'--',...scope);save('product-config.diff',diff);
+save('authority.diff',git('diff',expected,'--','agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/ACCEPTANCE_SPEC.md','agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/RULINGS_ADDENDUM.md','agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/CLAUDE.md','agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/RRM_BRIEF.md','agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/AUTHORITY_POINTER.md','agent_docs/RRM_DIRECTOR_DECISIONS.md','agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md'));
+save('tracked.diff',git('diff','--no-ext-diff','--binary',expected));save('status.txt',git('status','--porcelain','--untracked-files=all'));
+const inherited=JSON.parse(fs.readFileSync(path.join(e,'prior-artifact-inventory.json'))).files.filter(x=>/^evidence\/(T|U|blank|board)\//.test(x.path));save('completed-evidence-integrity.json',{files:inherited.length,allBytesUnchanged:inherited.every(x=>fs.existsSync(path.join(qa,x.path))&&hash(fs.readFileSync(path.join(qa,x.path)))===x.sha256)});
+save('summary.json',{date:new Date().toISOString(),candidate:expected,relocations:rows.length,allRelocatedBytesIdentical:rows.every(x=>x.byteEqual),allMovesUncommitted:rows.every(x=>!x.destinationTracked&&!x.indexChange&&!x.originalExists),productConfigDiffEmpty:diff==='',referencingLines:refs.length,firstObservation:'First preflight of prior QA execution-release turn, 2026-09-21; exact observation clock time was not captured',priorPreflightCaptureMtime:fs.statSync(path.join(qa,'evidence/preflight-identity.txt')).mtime.toISOString(),intakeReportMtime:fs.statSync(path.join(qa,'QA_INTAKE_REPORT.md')).mtime.toISOString(),moveActor:'Unknown; no recorded actor or command',moveTime:'Unknown; observed after clean intake and before execution build',DA2Present:fs.existsSync(path.join(qa,'../evidence/DA-2_SUPABASE_SIGNUP_DISABLED.md'))});
+console.log('Follow-up pin, relocations, references, and completed-evidence integrity recorded.');

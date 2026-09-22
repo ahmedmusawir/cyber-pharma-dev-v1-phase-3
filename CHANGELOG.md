@@ -3,6 +3,12 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-22 07:58 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/RULINGS_ADDENDUM.md` — appended ruling A-13 (AC-304: logout lands on `/auth`, not `/`; Architect drafting error; no product change)
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/ACCEPTANCE_SPEC.md` — erratum lane row for AC-304 citing A-13; frozen AC-304 text untouched
+- **Reason:** Director-approved documentation correction relayed via CLAUDY, 2026-09-22. Docs only; no product change, build, test, or git mutation.
+
 ## 2026-09-20 10:34 UTC — [CC] Claude Code
 
 - **RRM-001 P3 — engineering completion handoff.** Candidate `4965c0c`. Docs and evidence only.

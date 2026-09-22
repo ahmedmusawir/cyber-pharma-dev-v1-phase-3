@@ -1,0 +1,353 @@
+[
+  {
+    "path": ".next/server/chunks/[root-of-the-server]__1oht-x8._.js",
+    "sha256": "9c6dbba11ca1723a29a49f70a0add80c203f0d5aaeb1c585116d062523fb0150",
+    "hits": [
+      "getUserById",
+      "deleteUser"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": true,
+    "containsAdminDemo": false,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/[root-of-the-server]__1oht-x8._.js.map",
+    "sha256": "9fc4688d4c45fb3f2d84a205d5e337b8bdd81f6c8f4f22a39ba38f05d938eaac",
+    "hits": [
+      "getUserById",
+      "deleteUser"
+    ],
+    "authAdminCallLiteral": true,
+    "removedModuleReference": false,
+    "containsAdminUsers": true,
+    "containsAdminDemo": false,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": [
+      {
+        "source": "../../../node_modules/%40supabase/auth-js/src/lib/types.ts",
+        "literalOccurrences": 2,
+        "nonCommentCodeOccurrences": 0
+      },
+      {
+        "source": "../../../node_modules/%40supabase/auth-js/src/GoTrueAdminApi.ts",
+        "literalOccurrences": 23,
+        "nonCommentCodeOccurrences": 0
+      }
+    ]
+  },
+  {
+    "path": ".next/server/chunks/_0llx6m_._.js",
+    "sha256": "4ec22b53777e4c3a395b23f6bfae5f765cacd12e91954f75c3b993760dd112ab",
+    "hits": [
+      "getUserById",
+      "deleteUser"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": true,
+    "containsAdminDemo": false,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/_0llx6m_._.js.map",
+    "sha256": "3b6f5e9b725be08dadbd10a2a0fa43355aedd93dcbb127c593a9364d0d2731d0",
+    "hits": [
+      "getUserById",
+      "deleteUser"
+    ],
+    "authAdminCallLiteral": true,
+    "removedModuleReference": false,
+    "containsAdminUsers": true,
+    "containsAdminDemo": false,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": [
+      {
+        "source": "../../../node_modules/%40supabase/auth-js/src/lib/types.ts",
+        "literalOccurrences": 2,
+        "nonCommentCodeOccurrences": 0
+      },
+      {
+        "source": "../../../node_modules/%40supabase/auth-js/src/GoTrueAdminApi.ts",
+        "literalOccurrences": 23,
+        "nonCommentCodeOccurrences": 0
+      }
+    ]
+  },
+  {
+    "path": ".next/server/chunks/ssr/_0b9thrh._.js",
+    "sha256": "02436606ad01f06fa4f1469062028d6b791979e9bdf23f1de183b994e88ed7e0",
+    "hits": [
+      "getUserById",
+      "deleteUser"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": true,
+    "containsAdminDemo": false,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/_0b9thrh._.js.map",
+    "sha256": "890a033ba81a82015dfcbc9e314c1d914036c0f0eaf5fb4f0b2f012176649e5f",
+    "hits": [
+      "getUserById",
+      "deleteUser"
+    ],
+    "authAdminCallLiteral": true,
+    "removedModuleReference": false,
+    "containsAdminUsers": true,
+    "containsAdminDemo": false,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": [
+      {
+        "source": "../../../../node_modules/%40supabase/auth-js/src/lib/types.ts",
+        "literalOccurrences": 2,
+        "nonCommentCodeOccurrences": 0
+      },
+      {
+        "source": "../../../../node_modules/%40supabase/auth-js/src/GoTrueAdminApi.ts",
+        "literalOccurrences": 23,
+        "nonCommentCodeOccurrences": 0
+      }
+    ]
+  },
+  {
+    "path": ".next/server/chunks/ssr/_0p0j8_e._.js",
+    "sha256": "bc746a354e065b9214735028af675cd7bf8f5940062672fbc0b1fefa93a0ff1d",
+    "hits": [
+      "getUserById",
+      "deleteUser"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": true,
+    "containsAdminDemo": false,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/_0p0j8_e._.js.map",
+    "sha256": "803b101fada0ec34630fdf7f5408df3dc2c4975153e02b3c0f4363fc29d1047e",
+    "hits": [
+      "getUserById",
+      "deleteUser"
+    ],
+    "authAdminCallLiteral": true,
+    "removedModuleReference": false,
+    "containsAdminUsers": true,
+    "containsAdminDemo": false,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": [
+      {
+        "source": "../../../../node_modules/%40supabase/auth-js/src/lib/types.ts",
+        "literalOccurrences": 2,
+        "nonCommentCodeOccurrences": 0
+      },
+      {
+        "source": "../../../../node_modules/%40supabase/auth-js/src/GoTrueAdminApi.ts",
+        "literalOccurrences": 23,
+        "nonCommentCodeOccurrences": 0
+      }
+    ]
+  },
+  {
+    "path": ".next/server/chunks/ssr/_1h8yg40._.js",
+    "sha256": "a01e866db356ec1f1eb77a9a55f0f6cad783bcb49893f78510e1326df71dba36",
+    "hits": [
+      "getUserById",
+      "deleteUser"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": true,
+    "containsAdminDemo": false,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/_1h8yg40._.js.map",
+    "sha256": "4eb86a754712936b9b71e0138f21d7152e78df9538aeb734090940b525624ba4",
+    "hits": [
+      "getUserById",
+      "deleteUser"
+    ],
+    "authAdminCallLiteral": true,
+    "removedModuleReference": false,
+    "containsAdminUsers": true,
+    "containsAdminDemo": false,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": [
+      {
+        "source": "../../../../node_modules/%40supabase/auth-js/src/lib/types.ts",
+        "literalOccurrences": 2,
+        "nonCommentCodeOccurrences": 0
+      },
+      {
+        "source": "../../../../node_modules/%40supabase/auth-js/src/GoTrueAdminApi.ts",
+        "literalOccurrences": 23,
+        "nonCommentCodeOccurrences": 0
+      }
+    ]
+  },
+  {
+    "path": ".next/server/chunks/ssr/src_components_0m8ipp1._.js",
+    "sha256": "e2179a099742f78bc8dafc54450ece2587575dc18e77d09b1eed9f15795f6c12",
+    "hits": [
+      "addMember"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": false,
+    "containsAdminDemo": true,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/src_components_0m8ipp1._.js.map",
+    "sha256": "696606e84cf4327a5df37c0df1f22a52c63b323ace361508bd529c03cff18fae",
+    "hits": [
+      "addMember"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": false,
+    "containsAdminDemo": true,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/src_components_0svqujc._.js",
+    "sha256": "2ae30b328ee367cedce42c6d8cb1f4811be1570470c91096fd811fa86ae34f6e",
+    "hits": [
+      "addMember"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": false,
+    "containsAdminDemo": true,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/src_components_0svqujc._.js.map",
+    "sha256": "72a7031a1abc98292750eff7d3a23736c329b7814bcebbf803ca7018adf506dd",
+    "hits": [
+      "addMember"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": false,
+    "containsAdminDemo": true,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/src_components_0vgeznr._.js",
+    "sha256": "cd0cf953044d3ee18c0d777cccd4836487bd40153073863fa1ebe979a8c69d8c",
+    "hits": [
+      "addMember"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": false,
+    "containsAdminDemo": true,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/src_components_0vgeznr._.js.map",
+    "sha256": "74c06abdfad38f090a6d1aa087e65554244ffcb0a03b961bfa8de720820c0732",
+    "hits": [
+      "addMember"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": false,
+    "containsAdminDemo": true,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/src_components_0wa-ekr._.js",
+    "sha256": "9fe1eb65495e4ee3ef636dfd0327ed3a9b746f18b2eced9a9faf99f343717b06",
+    "hits": [
+      "addMember"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": false,
+    "containsAdminDemo": true,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/src_components_0wa-ekr._.js.map",
+    "sha256": "192872f58f2d7bbdc1b37ed5e5d11bfa70779385543bc928dc3574010b9dd661",
+    "hits": [
+      "addMember"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": false,
+    "containsAdminDemo": true,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/src_components_1-6yw7x._.js",
+    "sha256": "ac5646a8e6ba174b9fe742378ca5e4ac924d5bcbee26a0ea5b2d46211d91767c",
+    "hits": [
+      "addMember"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": false,
+    "containsAdminDemo": true,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/src_components_1-6yw7x._.js.map",
+    "sha256": "e1e6c6d2da18c6ca4b511e9932599ab6331e59e1624c1e6a81999c40782f4184",
+    "hits": [
+      "addMember"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": false,
+    "containsAdminDemo": true,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/src_components_1p9shf1._.js",
+    "sha256": "22c775329e0ba1b76455f5dbc3e934510889bca357f2583b789a8ae34d9146ba",
+    "hits": [
+      "addMember"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": false,
+    "containsAdminDemo": true,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  },
+  {
+    "path": ".next/server/chunks/ssr/src_components_1p9shf1._.js.map",
+    "sha256": "645ee3a45782e471605b0cd611156a98e2e87d1f3ae27b08223e55b663b7c377",
+    "hits": [
+      "addMember"
+    ],
+    "authAdminCallLiteral": false,
+    "removedModuleReference": false,
+    "containsAdminUsers": false,
+    "containsAdminDemo": true,
+    "executableAuthAdminMatches": 0,
+    "mapSourceOccurrences": []
+  }
+]

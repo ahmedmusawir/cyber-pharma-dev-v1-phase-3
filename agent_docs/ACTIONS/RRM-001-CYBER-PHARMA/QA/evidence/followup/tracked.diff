@@ -1,0 +1,1688 @@
+diff --git a/agent_docs/RESPONSES/BIM003_S1_2026-09-14.md b/agent_docs/RESPONSES/BIM003_S1_2026-09-14.md
+deleted file mode 100644
+index c38bdec..0000000
+--- a/agent_docs/RESPONSES/BIM003_S1_2026-09-14.md
++++ /dev/null
+@@ -1,68 +0,0 @@
+-# BIM003_S1 — STAGE 1 COMPLETE · trail + guard + RLS + audit_write() + thirteen stamps
+-
+-**Module** BIM-003-CYBER-PHARMA · **Branch** `phase-3-bim003` (base `0e4e17e`) · **Target** scratch throwaway per `evidence/ENV_NOTE.md` · **Date** 2026-09-14
+-**Verdict:** every S1 gate GREEN · `rls:prove` GREEN with the audit chain live · zero migration errors · zero git · zero cloud commands · no credential value printed.
+-
+-## 1. What landed
+-
+-| # | File | What |
+-|---|---|---|
+-| 0028 | `supabase/migrations/0028_audit_logs_reshape.sql` | asserts the 0015 table exists, is unreshaped and **empty** → drops it → Brief §3 shape (11 cols, `bigint identity`) → 3 indexes → `audit_logs_immutable()` + BEFORE UPDATE OR DELETE row trigger → **plus a BEFORE TRUNCATE statement trigger** (addition, see §4) → ENABLE + FORCE RLS → `revoke update, delete … from anon, authenticated` (RF-3) |
+-| 0029 | `0029_rls_audit_logs.sql` | the one policy `audit_logs_select_admin`, `using (public.is_admin_of(business_id))`; assert-then-create |
+-| 0030 | `0030_audit_write.sql` | `audit_write()` — SECURITY DEFINER, `search_path=''`, `to_jsonb(NEW/OLD)`, business key from the row (`businesses` → own id, approved), R-8 → NULL + `context {id, account_id?}`, `actor_role` = JWT role claim → `current_user` fallback, `actor_user_id = auth.uid()`; EXECUTE revoked from public and anon |
+-| 0031–0043 | `00NN_audit_stamp_<table>.sql` × 13 | identical stamps in E-0 order; number only in the header line |
+-
+-**Harness (RF-7, all four approved):** `seed.mjs` — `audit_logs` out of the wipe list, seed insert line removed (the table self-seeds through the stamps) · `payloads.mjs` — new-shape probe, `target: 0` · `expectations.json` — `ownerA`/`ownerB` `audit_logs.select` ALLOW · `attacks.mjs` — A8.3 runs as `staffA` (member).
+-**E-3:** `scripts/db-verify.mjs` — one line: the baseline skip gains `audit_logs`. Note: the line is **178**, not 177 as the erratum cites (177 is the `for`).
+-**New instrument:** `scripts/rls-harness/audit-catalog.mjs` — generates `evidence/S1_catalog.md` from `pg_catalog`, every write inside a rolled-back transaction. Kept for S2/S3 and for QA.
+-
+-## 2. Gates
+-
+-| Gate / AC | Result | Evidence |
+-|---|---|---|
+-| RISK-1 BYPASSRLS | **GREEN** — `postgres rolbypassrls = true` (read-only check before S1, re-confirmed in catalog) | `S1_catalog.md` § RISK-1 |
+-| G-1 / AC-101 from scratch | 43 migrations, every line ok, exit 0 | `S1_apply_2026-09-14T0546.log` |
+-| AC-102 columns | 11, Brief order | `S1_catalog.md` |
+-| AC-103 CHECK | 4 accepted, 5th → 23514 | `S1_catalog.md` |
+-| AC-104 indexes | exactly 3 | `S1_catalog.md` |
+-| AC-105 guard | BEFORE DELETE OR UPDATE → bare RAISE | `S1_catalog.md` |
+-| AC-107 RLS | enabled + forced | `S1_catalog.md` |
+-| AC-108 policy | 1 SELECT {authenticated}, 0 writes | `S1_catalog.md` |
+-| AC-114 audit_write | secdef, pinned, no PUBLIC/anon EXECUTE | `S1_catalog.md` |
+-| G-2 / AC-115 stamps | 13 = E-0 | `S1_catalog.md` |
+-| AC-120 stamp diff | table name + header number only; 13 identical hashes | `S1_files.md` |
+-| AC-121 fence | `git diff dfc8a6a` on 0001–0027 empty | `S1_files.md` |
+-| AC-905 headers | 16/16 | `S1_files.md` |
+-| AC-305 rls:prove | **ISOLATION PROVEN** — 19 policies, AC8 fresh, 4 laws, 320/320, scoping exact, 28/28 denied + ground truth, revocation R-C | `rls-prove/S1_prove_2026-09-14T0550.log` |
+-| Smoke (rolled back) | 5 writes → 5 rows: accounts R-8 (NULL + context), businesses own-id, user_data insert/update/delete payload shapes; owner UPDATE/DELETE/TRUNCATE all raise P0001; authenticated UPDATE/DELETE → 42501 privilege, INSERT → 42501 RLS | `S1_catalog.md` § Smoke |
+-
+-The matrix's twenty `audit_logs` cells: admins SELECT ALLOW (5 rows each, non-vacuous); members and anon 0 rows; every write DENY with `42501` (INSERT by RLS, UPDATE/DELETE by revoked privilege) — exactly the F-14 shapes predicted in the plan.
+-
+-## 3. Things I didn't touch
+-
+-`0001`–`0027` (empty diff vs `dfc8a6a`) · `src/**` (empty diff) · `agent_docs/AUTHORITY/**` · AC wording (evidence column only, 14 cells) · `.env*` · the harness cast and its hardcoded counts · `prove.mjs` (its verdict line still says "18 policies"; cosmetic, left alone) · `BIM-002-CYBER-PHARMA/**` — the proof's sub-runners write into BIM-002's evidence folder by hardcoded path; the seven new logs were **moved** to `BIM-003…/evidence/rls-prove/` so the certified folder is unchanged (`git status` there is empty).
+-
+-## 4. Potential concerns
+-
+-1. **Addition beyond the letter of the plan:** a `BEFORE TRUNCATE … FOR EACH STATEMENT` trigger on `audit_logs` calling the same raise function. Row triggers never see TRUNCATE, so without it the service role could empty the trail in one statement. AC-105 still holds (the BEFORE UPDATE OR DELETE row trigger exists). Say the word and it goes.
+-2. **`db:verify` is red on AC7, and was before this module.** `scripts/db-verify.mjs:65-77` asserts *zero* non-baseline policies — BIM-001's world. It has listed every BIM-002 policy as a failure since 0016 landed; mine joins the list. AC12 (the E-3 line) is green for all 13 chain tables. Not mine to fix; flagging for the Director/Architect (candidate: retire AC7 or re-baseline it to the certified policy set).
+-3. **E-3 line number:** ruling says `:177`; the skip is line 178. Same line, off-by-one in the erratum text.
+-4. `seed-map.json` changed (it is rewritten every seed run, as in BIM-002).
+-
+-## 5. Uncommitted paths (AC-901 fence respected)
+-
+-```
+-supabase/migrations/0028_*.sql … 0043_*.sql                       (16 new)
+-scripts/rls-harness/{seed.mjs,payloads.mjs,expectations.json,attacks.mjs,seed-map.json}
+-scripts/rls-harness/audit-catalog.mjs                              (new)
+-scripts/db-verify.mjs                                              (1 line, E-3)
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md  (evidence column only)
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/{S1_catalog.md,S1_files.md,S1_apply_*.log,S1_db-verify.log,rls-prove/*}
+-agent_docs/RESPONSES/BIM003_S1_2026-09-14.md (+ response_ copy) · agent_docs/SESSIONS/session_2026-09-14.md · RECOVERY.md · CHANGELOG.md
+-```
+-
+-🔔 GIT REMINDER — uncommitted work: the paths above.
+-Suggested: git add -A && git commit -m "14sep2026 - BIM-003 S1 - audit_logs reshape + guard + RLS + audit_write + 13 stamps - from-scratch green, rls:prove green"
+-→ Your call. I will not run it.
+-
+-**Next:** S2 (wrappers `0044`–`0047`) on your prompt. **STOP.**
+diff --git a/agent_docs/RESPONSES/BIM003_S2_2026-09-14.md b/agent_docs/RESPONSES/BIM003_S2_2026-09-14.md
+deleted file mode 100644
+index 32c5836..0000000
+--- a/agent_docs/RESPONSES/BIM003_S2_2026-09-14.md
++++ /dev/null
+@@ -1,65 +0,0 @@
+-# BIM003_S2 — STAGE 2 COMPLETE · four owedbook_* read wrappers
+-
+-**Module** BIM-003-CYBER-PHARMA · **Branch** `phase-3-bim003` (base `011eada`) · **Target** scratch per `evidence/ENV_NOTE.md` · **Date** 2026-09-14
+-**Verdict:** AC-201…AC-210 all GREEN · chain of 47 applies from scratch with zero errors · zero git · zero cloud · no credential printed · `src/**` untouched.
+-
+-## 1. What landed
+-
+-| # | File | Mirrors | Returns |
+-|---|---|---|---|
+-| 0044 | `supabase/migrations/0044_owedbook_kpis.sql` | `getKpis` → `OwedBookKpis` | `table(commercial_underpaid, commercial_scripts, updated_difference, owed)` — 1 row |
+-| 0045 | `0045_owedbook_rows.sql` | `getRows` → `OwedBookPage` | `jsonb` envelope `{rows: OwedBookRow[17 keys], page, pageCount, limit, total}` |
+-| 0046 | `0046_owedbook_summary.sql` | `getSummary` → `OwedBookSummaryRow[]` | `table(pbm, commercial_dollars, federal_dollars)` |
+-| 0047 | `0047_owedbook_pbm_options.sql` | `getPbmOptions` → `string[]` | `setof text` |
+-
+-Every wrapper: `plpgsql` · SECURITY DEFINER · `search_path = ''` · `p_business_id uuid` first · statement 1 membership via `my_business_ids()` (NULL never a member) else `raise 'not a member of business'` · statement 2 exactly one `read_page` row with `context {fn, args, filters[, page, limit, offset]}` · statement 3 the read with an explicit `where ud.business_id = p_business_id` · revoke public + anon, grant authenticated. Mapping per approved A-3; the four NULL fields (`report_file`, `aac`, `federal_expected`, `federal_diff`) are NULL by construction. **`evidence/WRAPPER_CONTRACT.md`** documents each with file:line into `src/services/owedbook.ts` and `src/types/OwedBook.ts` (AC-209).
+-
+-**Instruments:** `scripts/rls-harness/audit-catalog.mjs` now takes a stage (`S1` | `S2`) — S2 adds AC-201…203 plus a body-shape check (membership < raise < insert < read, exactly one audit insert, explicit fence). New `scripts/rls-harness/audit-wrappers.mjs` runs AC-204…208 through real signed-in sessions (admin-A = ownerA, member-A = staffA, anon) with every audit-row claim ground-truthed via the service role.
+-
+-## 2. Gates
+-
+-| AC | Result | Evidence |
+-|---|---|---|
+-| AC-101 (re-proven) | 47/47 ok, exit 0 | `S2_apply_2026-09-14T0652.log` |
+-| AC-201 | 4 functions, names = E-0 | `S2_catalog.md` |
+-| AC-202 | secdef · pinned · anon=false / authenticated=true · no PUBLIC entry · anon refused live 42501 ×4 | `S2_catalog.md` |
+-| AC-203 | `p_business_id uuid` first, ×4 | `S2_catalog.md` |
+-| AC-204 / AC-205 | admin-A and member-A ×4: returns, audit +1, row fields exact, `context.fn` = name | `S2_wrappers.md` |
+-| AC-206 | admin-A → B ×4: `P0001 not a member of business`, audit +0 | `S2_wrappers.md` |
+-| AC-207 | anon ×4: `42501 permission denied for function`, audit +0 | `S2_wrappers.md` |
+-| AC-208 | 25 rows served, audit +1; context carries page/limit/offset/filters | `S2_wrappers.md` |
+-| AC-209 | contract doc, file:line | `WRAPPER_CONTRACT.md` |
+-| AC-210 | `git diff dfc8a6a` empty on all four paths | `S2_files.md` |
+-| S1 invariants | 1 policy · RLS enabled+forced · 13 stamps; S1 catalog re-run GREEN | `S2_catalog.md`, `S1_catalog.md` |
+-
+-Seed-shaped sanity in the probes: KPIs over A1 = 200 scripts / 20 100 owed; `owedbook_rows` pages 200 rows as 8 × 25; page 99 clamps to 8/8; updated and federal tabs return 0 (seed has no `new_paid`; federal is NULL by A-3); summary and pbm_options are empty because the seed writes no `insurance`. Unknown tab raises.
+-
+-## 3. Mid-stage correction (reported, not hidden)
+-
+-My first cut of `owedbook_rows` ran the pager's `COUNT` **before** the audit insert so the log could carry the clamped page. The S2 catalog's body-shape check flagged it against Brief §5's letter (membership → log → read). Fixed in `0045`: the audit row is written before any read and carries the **requested** `page/limit/offset`; the served page lives in the envelope. The chain was re-applied from scratch and every probe re-run after the fix; the superseded 06:48 apply log was deleted so only the proven run is on disk. `WRAPPER_CONTRACT.md` says the same.
+-
+-## 4. Things I didn't touch
+-
+-`src/**` (empty diff, AC-210) · `0001`–`0043` · AC wording (10 evidence cells filled, zero words removed) · `.env*` · `agent_docs/AUTHORITY/**` · the harness cast · `prove.mjs`.
+-
+-## 5. Potential concerns
+-
+-1. **Seed coverage:** the BIM-002 seed writes no `insurance`, `new_paid`, or `status`, so summary/pbm_options/updated-tab paths are exercised as *empty-but-correct*. S3's scripted session should seed a few rows with those columns so the golden trail (and BIM-005) sees non-empty shapes. Noting for the S3 golden design.
+-2. **Types (AC-307):** Director-run regen will add four `Functions` entries plus the reshaped `audit_logs` table under `Tables`. `owedbook_rows` returns `Json`; the other three get typed rows.
+-3. **Not on disk yet:** CF-9 and the R-6 TRUNCATE amendment were ruled in chat; I don't see them in the manager or brief. Not blocking — flagging so the pack catches up before QA.
+-
+-## 6. Uncommitted paths (AC-901 fence respected)
+-
+-```
+-supabase/migrations/0044–0047                                     (4 new)
+-scripts/rls-harness/audit-catalog.mjs (stage switch) · audit-wrappers.mjs (new) · seed-map.json (rewritten by seed)
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/{WRAPPER_CONTRACT.md,S2_catalog.md,S2_wrappers.md,S2_files.md,S2_apply_2026-09-14T0652.log,S1_catalog.md (re-run)}
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md  (evidence cells AC-201…210 only)
+-agent_docs/RESPONSES/BIM003_S2_2026-09-14.md (+ response_ copy) · session log · RECOVERY.md · CHANGELOG.md
+-```
+-
+-🔔 GIT REMINDER — uncommitted work: the paths above.
+-Suggested: git add -A && git commit -m "14sep2026 - BIM-003 S2 - four owedbook_* wrappers (0044-0047), wrapper contract, AC-201..210 green from scratch"
+-→ Your call. I will not run it.
+-
+-**Next:** S3 — `audit:prove`, symbolic golden (E-2), `multiAdmin` (E-4), RUN_NOTES.md + README, triad, retrospective, types-regen request. **STOP.**
+diff --git a/agent_docs/RESPONSES/BIM003_S3_2026-09-14.md b/agent_docs/RESPONSES/BIM003_S3_2026-09-14.md
+deleted file mode 100644
+index 5187c6a..0000000
+--- a/agent_docs/RESPONSES/BIM003_S3_2026-09-14.md
++++ /dev/null
+@@ -1,70 +0,0 @@
+-# BIM003_S3 — STAGE 3 COMPLETE · audit:prove, golden trail, board, docs, retrospective
+-
+-**Module** BIM-003-CYBER-PHARMA · **Branch** `phase-3-bim003` (base `c2d9348`) · **Target** scratch per `evidence/ENV_NOTE.md` · **Date** 2026-09-14
+-
+-## 1. In plain language
+-
+-The vault now has its camera, and the camera has been tested from an empty database. One command, `npm run audit:prove`, wipes the throwaway, replays all 47 migrations, seeds two pharmacies with their staff, then plays a scripted session: an admin creates, edits and deletes a claim; the platform writes a reference row; the admin opens the OwedBook screens through the four read wrappers; a second-store admin opens theirs; the first admin tries to open the other store's and is refused; three different identities try to edit or erase audit rows and every attempt fails, the service role included. Afterwards the runner reads back what the trail recorded and compares it, row by row, to a committed expectation file written by hand before the first run. It matched on the first run. I then broke one expected row on purpose, ran again, watched it fail with the exact row named, and restored the file. The BIM-002 isolation proof still passes with the trail switched on, the app still builds to the same 22 routes with the same 128 green tests, and the two proof commands are documented in the README and a new RUN_NOTES. Every acceptance criterion in the spec now points at its evidence, including the regenerated TypeScript types you produced, which I verified against the pre-module file and re-type-checked.
+-
+-## 2. What landed
+-
+-| Item | Path |
+-|---|---|
+-| Audit runner (the one command) | `scripts/rls-harness/audit-prove.mjs` → `npm run audit:prove` (`package.json` scripts block) |
+-| E-4 `multi` identity + R-10 rows | `scripts/rls-harness/audit-seed.mjs` (+ `audit-seed-map.json`, ids only) |
+-| Scripted session, probes, golden diff | `scripts/rls-harness/audit-session.mjs` |
+-| Golden expectation, 10 rows, symbolic (E-2) | `scripts/rls-harness/golden/audit_trail_expected.json` |
+-| Docs (AC-308) | `README.md:137-138` script table · `RUN_NOTES.md` (new, root) — no new env names |
+-| Retrospective (AC-309) | `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RETROSPECTIVE.md` |
+-| Types regen instructions (AC-307) | `evidence/S3_types_regen.md` |
+-| Evidence | `evidence/S3_audit_prove_2026-09-14T0738.log` (+ normalised, + produced.json) · `S3_failure_path.md` · `rls-prove/S3_prove_2026-09-14T0737.log` · `S3_triad.log` · `S3_files.md` |
+-
+-## 3. Gates
+-
+-| Gate / AC | Result |
+-|---|---|
+-| G-6 / AC-301…304 | `audit:prove` **TRAIL PROVEN**, exit 0, first run against the hand-written golden; failure path exit 8 with `DIFF at row 1` |
+-| G-3 / AC-106 | six tampering probes: svc → `P0001 audit_logs is append-only`; admin-A and anon → `42501`; ground truth unchanged |
+-| G-4 / AC-109…112 | admin-A = A-count (A1+A2), member-A 0, admin-B = B-count, multi = A1+B1, anon 0; nothing outside each set |
+-| AC-113, 116…119 | in the session log; write-trail shapes and actor fields exact; R-8 row NULL + context |
+-| G-5 (wrappers in the trail) | six `read_page` rows for six calls; R-10 shapes non-empty: summary `[OptumRx 10.00, Caremark 9.50]`, pbm_options `[Caremark, OptumRx]`, updated tab total 2, KPIs 204 scripts / 20 119.50 |
+-| AC-305 | `rls:prove` **ISOLATION PROVEN** after the 47-file chain |
+-| G-7 / AC-306 | build 22 routes · tsc 0 · jest 28 / 128 / 0 |
+-| AC-307 | **PASS** on schema content (E-7) — hunks confined to `audit_logs` + `Functions`; 11 Row keys = 0028; four `owedbook_*` entries; tsc 0 on the regenerated file (`S3_files.md` § AC-307) |
+-| AC-308 / AC-309 | README + RUN_NOTES identical strings; retrospective with Keep/Change/Drop + Deferred Ledger |
+-| AC-901…906 | `evidence/S3_files.md`; 902/903 need your attestation of the transcript |
+-
+-## 4. Things I didn't touch
+-
+-`src/**` (AC-210 still empty) · `0001`–`0047` after S2 · AC wording (24 cells filled this stage; the only removed words are my own S1 pointers on AC-305/AC-905, superseded by S3's) · `.env*` · `agent_docs/AUTHORITY/**` · the BIM-002 cast and `seed.mjs` · BIM-002's evidence folder (seven `rls:prove` logs moved out again).
+-
+-## 5. AC-307 — verified
+-
+-Director ran Route B (login → gen → logout, CLI 2.116) and pasted the diff. Verified on disk: 94+/51−, hunks only in `audit_logs` (Row/Insert/Update → the 0028 shape, `id?: never` for the identity column) and `Functions` (four `owedbook_*` one-to-one with 0044–0047, plus the four BIM-002 helpers and the PostgrestVersion/parenthesization hunks that **E-7** rules non-module). No other table added, removed or edited. `tsc --noEmit` exit 0 against the regenerated file. Block appended to `evidence/S3_files.md` § AC-307; AC-307 cell filled.
+-
+-## 6. Potential concerns
+-
+-1. **`multiStore` vs `multi`:** the spec's "A" for `multi` is store A1 (multiAdmin is admin of A1+B1), while admin-A's "A" is A1+A2 (ownerA is admin of both). Both are stated in the session log so QA reads the counts the same way.
+-2. **`audit-seed-map.json` and `seed-map.json`** are rewritten every run (ids only) — expect them modified after any proof, as in BIM-002.
+-3. **Three new harness files + golden** are BIM-003's to certify; `prove.mjs`'s "18 policies" verdict text and the hardcoded BIM-002 evidence path remain CF-8 (BIM-005).
+-
+-## 7. Uncommitted paths (AC-901)
+-
+-```
+-package.json (scripts block) · README.md · RUN_NOTES.md (new)
+-scripts/rls-harness/{audit-prove.mjs, audit-seed.mjs, audit-session.mjs, audit-seed-map.json, golden/audit_trail_expected.json} (new) · seed-map.json
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/{RETROSPECTIVE.md, BIM003_ACCEPTANCE_SPEC.md (evidence cells)}
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/{S3_*, rls-prove/S3_*}
+-agent_docs/RESPONSES/BIM003_S3_2026-09-14.md (+ response_ copy) · session log · RECOVERY.md · CHANGELOG.md
+-src/types/supabase.ts (Director-regenerated, AC-307)
+-```
+-
+-🔔 GIT REMINDER — uncommitted work: the paths above.
+-Suggested: git add -A && git commit -m "14sep2026 - BIM-003 S3 - audit:prove + golden trail + failure path, rls:prove green, triad 22/0/28-128, RUN_NOTES, retrospective, types regenerated, spec fully evidence-filled"
+-→ Your call. I will not run it.
+-
+-## 8. Definition of done (manager §11)
+-
+-G-1…G-7 green (G-8 = your attestation) · every AC carries an evidence pointer · retrospective written · RECOVERY + session log current · GIT REMINDER issued.
+-
+-**ENGINEERING COMPLETE — ready for the Director to open qa/phase-3-bim003. STOP.** Not self-certified: Cody executes, Sol adjudicates.
+diff --git a/agent_docs/RESPONSES/response_2026-09-14_123800_session-open.md b/agent_docs/RESPONSES/response_2026-09-14_123800_session-open.md
+deleted file mode 100644
+index c32ed08..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-14_123800_session-open.md
++++ /dev/null
+@@ -1,36 +0,0 @@
+-# SESSION OPEN — 2026-09-14 · BIM-003 lane
+-
+-**Branch:** `phase-3-bim003` @ `5c51fff` · **Working tree:** clean except the untracked BIM-003 pack · **Git:** read-only only · **Cloud:** none
+-
+-## Step-0 done
+-
+-| Check | Result |
+-|---|---|
+-| RECOVERY.md | Read. **Stale** — last updated 2026-09-02, says `main @ dfc8a6a`. Refresh due at first BIM-003 plan completion. |
+-| Last session log | `session_2026-09-02.md` read — BIM-002 closed, merged, Gate Q PASS. |
+-| Latest response | `response_2026-09-07_122801_bim002-close-pastes-filed.md` — items 5 & 6 filed verbatim; close complete. |
+-| KIP registry | KIP-1 parked (trigger = `src/utils/supabase/server.ts`, not in BIM-003 scope). KIP-2 closed. **No trigger met.** |
+-| Session file | **Created** `agent_docs/SESSIONS/session_2026-09-14.md`. |
+-| BIM-003 pack | Read: module CLAUDE.md (R-1..R-8, TV-1..TV-9, G-1..G-8), BIM003_BRIEF.md, AUTHORITY_POINTER.md. **Not read:** BIM003_CLAUDY_PROMPTS.md (§3 item 8 — only the prompt the Director hands me) and the ACCEPTANCE_SPEC (read at Plan Mode). |
+-
+-## Where we are
+-
+-BIM-002 ✅ closed at `dfc8a6a` (batch `6171c54`); proto-06 landing zone removed at `5c51fff`. Campaign board: BIM-000 ✅ · FIX-001 ✅ · BIM-001 ✅ · PROTO 06 ✅ · BIM-002 ✅ → **BIM-003 (audit) — launch pending.**
+-
+-The BIM-003 contract pack (7 files, Architect-authored 09-07, landed on disk today 12:29) is **untracked**. Naming ruling on the pointer (RULED 2026-09-14): module ID `BIM-003-CYBER-PHARMA`, branch `phase-3-bim003`, QA branch `qa/phase-3-bim003`.
+-
+-## What I'm waiting on
+-
+-The Director's launch line. Per the module manager §2/§9, my first substantive message is ONE Plan Mode message: TV-1..TV-9 with file:line evidence, the sixteen-table stamp list, the wrapper list, migration filenames after `0027`, red flags, and the three-stage plan. Nothing on disk changes before approval.
+-
+-## Standing rules acknowledged
+-
+-- Git is yours. I run `status`/`log`/`diff`/`show`/`branch`/`rev-parse` for information only. No add, commit, push, checkout.
+-- Every report goes to `agent_docs/RESPONSES/` before it hits the screen (this file is the first).
+-
+-🔔 GIT REMINDER — uncommitted work:
+-  agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/   (untracked — the whole contract pack, 7 files)
+-  agent_docs/SESSIONS/session_2026-09-14.md  (new)
+-  agent_docs/RESPONSES/response_2026-09-14_123800_session-open.md  (new)
+-Suggested: git add agent_docs/ && git commit -m "14sep2026 - BIM-003 contract pack landed + session open"
+-→ Your call. I will not run it.
+diff --git a/agent_docs/RESPONSES/response_2026-09-14_125225_bim003-plan.md b/agent_docs/RESPONSES/response_2026-09-14_125225_bim003-plan.md
+deleted file mode 100644
+index 79bf06d..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-14_125225_bim003-plan.md
++++ /dev/null
+@@ -1,116 +0,0 @@
+-# BIM-003 PLAN — Audit Machinery · Plan Mode (P1)
+-
+-**Branch** `phase-3-bim003` @ `5c51fff` · working tree: BIM-003 pack untracked, nothing else · `supabase/migrations/0001–0027` and `src/services|app|components|mocks` byte-identical to `dfc8a6a` (`git diff --stat` empty, checked) · nothing written except this plan's protocol copies.
+-
+----
+-
+-## 1. TV-1 … TV-9
+-
+-**TV-1 — table count.** The chain creates **14** tables, one per file `0002`–`0015` (`supabase/migrations/0002_accounts.sql:5` … `0015_audit_logs.sql:10`). The baseline adds `user_roles` + `profiles` — asserted, never created (`0001_baseline_acknowledge.sql:12-17`; built on scratch by `scripts/db-bootstrap-baseline.sql:18,37`). **16 in `public`** — matches VG-1, the harness matrix (`scripts/rls-harness/expectations.json:11-28`) and `scripts/db-verify.mjs:14-20`. **But the sixteen include `audit_logs` itself**, which cannot carry its own write trigger (recursive insert). **Stampable ≠ 16 → RF-2.** Candidates: **13** chain tables, or 15 if the two baseline tables are included.
+-
+-**TV-2 — tables lacking `business_id`.** Of the 13 chain tables (excluding audit_logs):
+-- **has `business_id` column (4):** `user_businesses` (`0004:14`) · `pending_registrations` (`0005:33`, nullable) · `user_data` (`0013:20`) · `report_files` (`0014:14`)
+-- **own `id` is the business key (1):** `businesses` (`0003:16`; RLS precedent `0019:25` uses `id in (select my_business_ids())`)
+-- **no business key → R-8 (8):** `accounts` (`0002`) · `subscriptions` (`0006:11` — account_id, deliberately no business_id) · `apa_memberships` (`0007`) · `reference_dataset_versions` (`0008`) · `aac_reference` (`0009`) · `wac_reference` (`0010`) · `ful_reference` (`0011`) · `pbm_info` (`0012`)
+-- baseline `user_roles`, `profiles`: no business key (R-8 if ever stamped)
+-
+-**TV-3 — role-gated helper (Formulation A).** `public.is_admin_of(biz uuid) returns boolean` — `language sql stable security definer set search_path = ''` — `0016_rls_helpers.sql:57-68`; `revoke … from public` `:120`, `from anon` `:124`, `grant … to authenticated` `:129`. Used by `0019:27-30`, `0021:41-43`. **Reused verbatim for the R-1 policy: `using (public.is_admin_of(business_id))`. No new helper.**
+-
+-**TV-4 — set-returning helper.** `public.my_business_ids() returns setof uuid`, same shape — `0016:81-89`; grants `:122` (public), `:126` (anon), `:131` (authenticated). Wrapper membership check: `p_business_id in (select public.my_business_ids())`.
+-
+-**TV-5 — next number + convention.** Last on disk `0027_rls_reference_dataset_versions.sql` → **next `0028`**. Pattern `NNNN_<snake>.sql`; the runner replays every match of `^\d{4}_.+\.sql$` in lexical order (`scripts/db-reset.mjs:48-50, 114-116`). Header line convention `-- BIM-00X · NNNN · <subject> — …` (`0017:1`, `0021:1`). AC-905 → every header names `BIM-003-CYBER-PHARMA`.
+-
+-**TV-6 — BACKEND_SWAP_NOTES + read queries.** The notes are **inline JSDoc** in `src/services/owedbook.ts`, not a separate file: lines 14, 21, 28, 34 (Phase-3 reads) and 42, 49 (Phase-5 mocks). **Path note:** the pack says `services/owedbook.ts`; disk is **`src/services/owedbook.ts`** (likewise `src/app`, `src/components`, `src/mocks`). Distinct read queries: **4** — `getKpis` (`:17`), `getRows` (`:24`), `getSummary` (`:30`), `getPbmOptions` (`:37`). `uploadData` (`:45`) and `refreshData` (`:52`) are Phase-5 mocks, not reads. Types in `src/types/OwedBook.ts`: `OwedBookRow` `:5-26`, `OwedBookKpis` `:35-40`, `OwedBookFilters` `:48-53`, `OwedBookPage` `:55-61`, `OwedBookSummaryRow` `:64-68`. `DEFAULT_LIMIT = 25` (`owedbook.ts:55`). **N = 4.**
+-
+-**TV-7 — harness auth + re-point.** `scripts/rls-harness/lib/env.mjs:22` `loadEnv(prefix)` reads `.env.local`; prefix from `RLS_HARNESS_PREFIX` (default `RLS_HARNESS_`); logical keys `DB_URL, SUPABASE_URL, PUBLISHABLE_KEY, SECRET_KEY`; A-1 fallback (`env.mjs:15-20`) → `PROTO06_DB_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`. `.env.local` today carries `RLS_REPLICA_*` (4 keys) plus the fallback set; **no `RLS_HARNESS_*` keys** (key names only; no value read or printed). Identities: `seed.mjs:27-32` cast via `svc.auth.admin.createUser` (`:62-66`); sessions via `signInWithPassword` + `CAST_PASSWORD` (`env.mjs:53`, `harness.mjs:27-34`), identity asserted (`attacks.mjs:24`). Clients `lib/db.mjs`: `pgClient` `:8` (DB_URL), `serviceClient` `:15`, `anonClient` `:21`. Runner `prove.mjs` (`package.json:18`), stages `:31-41`. Evidence dir is **hardcoded to BIM-002's folder** (`prove.mjs:25`, `harness.mjs:111`, `attacks.mjs:140`, `scoping.mjs:62`, `ac8-check.mjs:64`) — my runner writes to BIM-003's.
+-
+-**TV-8 — from-scratch apply.** `scripts/db-reset.mjs`: `reset` (`:86-102`) drops `ensure_rls` → drop/create schema → re-grants defaults (`:95-99`, incl. `GRANT ALL ON FUNCTIONS TO anon` = the E-4 channel) → bootstrap baseline → replays the whole chain; `apply` = chain only. `npm run db:reset|db:apply` (`package.json:13-14`). My files join the ritual by filename alone. `rls:prove` stage 1 calls `reset` (`prove.mjs:32-33`).
+-
+-**TV-9 — ACs I cannot meet literally.** §5: AC-102/104/105 (table pre-exists in another shape), AC-115 (count), AC-106 (four of six probes do not "raise" under RLS alone), AC-303/AC-304 (literal uuids/timestamps in a committed golden), AC-308 (RUN_NOTES does not exist), plus an instrument conflict (`db-verify` AC12) and a cast mismatch (`multi`).
+-
+-## 2. Stamp list (TV-1 → E-0 candidate)
+-
+-**Recommended: 13 stamps** — the chain's tenant + reference tables, excluding `audit_logs` (self) and the two baseline tables.
+-
+-| has `business_id` (5) | R-8 applies (8) |
+-|---|---|
+-| businesses (key = own `id`) · user_businesses · pending_registrations (nullable) · user_data · report_files | accounts · subscriptions · apa_memberships · reference_dataset_versions · aac_reference · wac_reference · ful_reference · pbm_info |
+-
+-Why not `user_roles`/`profiles`: baseline, not chain-created; BIM-001 ruled "NO structural change" on them (`scripts/db-verify.mjs:177` comment); `handle_new_user()` writes them inside the auth-signup transaction (`db-bootstrap-baseline.sql:82-92`) — a trigger there makes every future signup depend on `audit_write()`. **Alternative if you want 15:** add both under R-8 (`business_id NULL`, `context.id`); nothing else changes.
+-
+-## 3. Wrappers — N = 4
+-
+-Common: `language plpgsql`, `security definer`, `set search_path = ''`, `revoke execute from public, anon`, `grant execute to authenticated`. Statement 1 = membership check, fixed message `'not a member of business'`; statement 2 = one `read_page` insert with `context = {fn, args, page, limit, offset, filters}`; statement 3 = the read, always `where business_id = p_business_id` explicitly (a DEFINER bypasses RLS — the WHERE is the fence).
+-
+-| Wrapper | Signature | Returns (mirrors) |
+-|---|---|---|
+-| `owedbook_kpis` | `(p_business_id uuid, p_from date default null, p_to date default null, p_pbms text[] default '{}', p_filter text default null)` | `table(commercial_underpaid numeric, commercial_scripts bigint, updated_difference numeric, owed numeric)` — one row = `OwedBookKpis` |
+-| `owedbook_rows` | `(p_business_id uuid, p_tab text, p_from date, p_to date, p_pbms text[], p_filter text, p_page int default 1, p_limit int default 25)` | `jsonb` = `OwedBookPage` `{rows: OwedBookRow[], page, pageCount, limit, total}` — an envelope is not a row set |
+-| `owedbook_summary` | `(p_business_id uuid, p_from date, p_to date, p_pbms text[], p_filter text)` | `table(pbm text, commercial_dollars numeric, federal_dollars numeric)` = `OwedBookSummaryRow[]` |
+-| `owedbook_pbm_options` | `(p_business_id uuid)` | `setof text` = `string[]` |
+-
+-Column mapping `OwedBookRow ← user_data` (`0013`): `id ← id::text` · `date ← date_dispensed` · `script` · `qty` · `pbm ← insurance` · `status` · `original_paid ← total_paid` · `medicaid_rate` · `method ← medicaid_method` · `expected ← expected_paid` · `owed` · `new_paid` · `updated_difference ← difference` · **`report_file`, `aac`, `federal_expected`, `federal_diff` → NULL** (reference joins + rate math are Phase 5 / scope firewall; the keys stay in the shape so BIM-005's swap remains one line). KPIs/summary aggregate **stored** columns only (`sum(owed) filter (where owed > 0)`, `count(*)`, `sum(difference)`) — no rate computation. Tab filters as `owedbook.ts:89-93` (updated = `new_paid is not null`; federal = `federal_expected is not null` → empty in v1, honestly). **This mapping is ASSUMPTION A-3 — confirm or correct before S2.**
+-
+-## 4. Migration files — 20 files, `0028`–`0047` (22 if 15 stamps)
+-
+-| # | File | Concern |
+-|---|---|---|
+-| 0028 | `0028_audit_logs_reshape.sql` | assert BIM-001 `audit_logs` exists **and is empty** (else raise — never drop a trail) → drop it (with its `set_updated_at` trigger) → create Brief §3 shape (11 columns, `bigint generated always as identity`) → the 3 indexes → `audit_logs_immutable()` + `BEFORE UPDATE OR DELETE` trigger → `enable` + `force row level security` → `revoke update, delete on public.audit_logs from anon, authenticated` (RF-3) |
+-| 0029 | `0029_rls_audit_logs.sql` | the ONE policy `audit_logs_select_admin` — SELECT to authenticated `using (public.is_admin_of(business_id))`; assert-then-create (§9 law 6) |
+-| 0030 | `0030_audit_write.sql` | `audit_write()` trigger fn: SECURITY DEFINER, search_path '', `j := to_jsonb(coalesce(NEW, OLD))`; `business_id` = `(j->>'business_id')::uuid`, **or `(j->>'id')::uuid` when `TG_TABLE_NAME = 'businesses'`**, else NULL; `row_id = j->>'id'`; `actor_user_id = auth.uid()`; `actor_role = coalesce(jwt claims ->> 'role', current_user)`; `old_data/new_data` per action; `context = jsonb_strip_nulls({id, account_id})` for R-8 tables, NULL otherwise; revoke public + anon |
+-| 0031–0043 | `00NN_audit_stamp_<table>.sql` × 13 | identical stamp: assert table + `audit_write()` exist and no `audit_write` trigger yet → `create trigger audit_write after insert or update or delete on public.<table> for each row execute function public.audit_write()`. **The migration number appears only in the header line**, so any two files `diff` to the table name only (AC-120) |
+-| 0044–0047 | `0044_owedbook_kpis.sql` · `0045_owedbook_rows.sql` · `0046_owedbook_summary.sql` · `0047_owedbook_pbm_options.sql` | one file per wrapper — distinct return types, reviewable by diff, one-to-one with the regenerated `Functions` entries |
+-
+-Choice rationale: one file per stamp because AC-120 is a *file* diff; one file per wrapper because each is its own contract. Chain order table → policy → function → stamps → wrappers; every file asserts its predecessors.
+-
+-## 5. Red flags — each needs a ruling or an erratum-lane row **before build** (J-21)
+-
+-**RF-1 — `audit_logs` already exists in a different shape (AC-102, AC-104, AC-105).** `0015_audit_logs.sql:10-33` created it: uuid PK, `username NOT NULL`, `record_id varchar(128)`, `field_name`, `old_value/new_value text`, free-text `action`, `ip_address`, `user_agent`, `created_at/updated_at`, three different indexes, a `set_updated_at` trigger. The pack writes as if the table is new. `0015` is read-only, so the only literal path to AC-102's eleven columns is **drop + recreate in `0028`** (assert empty first). No data exists anywhere: dev backend is at the 2-table baseline (VG-8); throwaways are wiped from scratch. `RLS_TEMPLATES.md:179` already assigns this table to BIM-003. **Ask:** ratify drop + recreate (recommended). ALTER-in-place cannot produce AC-102's column order or PK type without dropping every column anyway.
+-
+-**RF-2 — "sixteen" is not the stampable count (AC-115, R-2, E-0).** Literal 16 is impossible (self-stamp). **Proposed E-0: 13**, names in §2. Alternative: 15.
+-
+-**RF-3 — AC-106 "six raises".** With no UPDATE/DELETE policy, `admin-A` and `anon` mutations are denied by `USING` → **0 affected, NO error** (F-14; `lib/verdict.mjs:6-8`); the BEFORE trigger never fires because no row is reached. Only `svc` (bypasses RLS, reaches the row) raises. **Proposed fix, literal, no erratum:** `revoke update, delete on public.audit_logs from anon, authenticated` in `0028` → PostgREST returns `42501 permission denied` = a raise, six for six. AC-108 still holds (zero write *policies*); INSERT is left RLS-denied so AC-113 stays "denied by RLS". If you prefer not to touch grants → erratum: "svc ×2 raise; admin-A/anon ×4 = 0 affected + ground truth unchanged". Either way the `svc` probes must target an **existing** row (CF-8 #3).
+-
+-**RF-4 — AC-303 / AC-304 literal golden.** Every run regenerates uuids (`gen_random_uuid()`, `auth.admin.createUser`) and `old_data/new_data` carry `created_at/updated_at`. A committed file with literal uuids can never match. **Proposal:** golden carries **symbolic** tokens (`"business_id": "A1"`, `"actor_user_id": "admin-A"`, `"row_id": "<uuid>"`); the runner maps real ids → symbols via the seed map before diffing; `old_data/new_data` compared as null/non-null plus a whitelisted stable key set; comparison scoped to rows with `id >` a watermark taken **before** the scripted session (seed writes ~600 rows of `postgres`-actor noise). AC-304 "uuid or null" → erratum wording "symbol or null".
+-
+-**RF-5 — AC-308: `RUN_NOTES` does not exist.** No file named RUN_NOTES anywhere in the repo, and `README.md` has no `rls:prove` entry either. **Proposal:** add `npm run audit:prove` (and the existing `rls:prove`) to README's script table (`README.md:129-136`) and **create `RUN_NOTES.md`** at root (AC-901 lists it as a permitted target). Creating a new root doc needs your yes.
+-
+-**RF-6 — `scripts/db-verify.mjs` (BIM-001 instrument) will go RED.** Its AC12 asserts `created_at` + `updated_at` and a `set_updated_at` trigger on all 14 chain tables, `audit_logs` included (`db-verify.mjs:175-185`). Brief §3 has neither. `db-verify.mjs` is **not** in AC-901's touch list. **Ask:** rule a one-line exemption (add `audit_logs` to the skip at `:177`) with an AC-901 erratum — or accept a documented red on `db:verify`. I don't recommend leaving a knowingly-red instrument on main.
+-
+-**RF-7 — `rls:prove` (AC-305) breaks without four harness edits.** (a) `seed.mjs:41-44` runs `delete from public.audit_logs` → R-6 raises → stage 2 dies; drop it from the wipe list (the schema was dropped in stage 1; nothing may delete a trail row by design). (b) `seed.mjs:97` inserts `(username, …)` → column gone; the line goes (writes now self-seed the table). (c) `expectations.json` has no `audit_logs` override → `ownerA`/`ownerB` SELECT become legitimate ALLOW under R-1 (their stores' seed writes produce visible rows) → matrix RED; add those two overrides (`staffA`, `multiStore` stay DENY as members). (d) `attacks.mjs:127-131` A8.3 "ownerA reads audit_logs → DENIED" is now a legitimate ALLOW → re-target A8.3 to `staffA` (member). Plus `payloads.mjs:28` audit_logs probe uses the old columns (DENY for the wrong reason, F-14) → new-shape payload, `target: 0`. All inside `scripts/rls-harness/**` (AC-901 ✓). The cast is **not** touched — the junction count 6 is hardcoded in `attacks.mjs:101,104`.
+-
+-**RF-8 — spec identity `multi` = admin of A **and** B; the harness's `multiStore` is a *member* of both** (`seed.mjs:8,81`). AC-111 needs an admin-of-both. **Proposal:** the audit runner seeds one extra identity `multiAdmin` (admin A1 + B1) in its own step, leaving `seed.mjs` and its counts untouched.
+-
+-**RF-9 — launch-line gaps (informational).** `agent_docs/AUTHORITY/README.md` (pack §3 item 4) is on disk as `AUTHORITY_README.md`. `evidence/ENV_NOTE.md` (pooler host, per `evidence/README.md:5`) **does not exist**. Which throwaway is BIM-003's target — A-1 fallback (Proto 06 scratch) or `RLS_HARNESS_PREFIX=RLS_REPLICA_`? CF-4 rotation status is unknown to me. Needed before any S1 run.
+-
+-**R-8 nuance (a stated choice, not a flag):** `businesses` has no `business_id` column but its `id` *is* the business; stamping it NULL would hide a store's own profile edits from that store's admin. `audit_write()` special-cases it (`0019:25` precedent). Overrule for literal R-8.
+-
+-## 6. Risks
+-
+-- **RISK-1 — FORCE RLS vs the definer's owner.** With `force row level security` and zero INSERT policy, the trigger and the wrappers can insert only if their owner (the `DB_URL` role, `postgres`) has `BYPASSRLS`. Supabase's `postgres` is documented as BYPASSRLS, but there is no in-repo evidence. **S1 step 0: `select rolbypassrls from pg_roles where rolname = current_user`, logged into the from-scratch evidence.** If false → STOP and report; every fallback costs an erratum (drop FORCE → AC-107; an INSERT policy for postgres → AC-108).
+-- **RISK-2** — an `audit_write()` failure blocks every write on 13 tables. That is the design (fail closed); the 320-cell matrix exercises it before the golden run.
+-- **RISK-3** — `actor_role` for non-PostgREST writes (seed via `pg`) falls back to `current_user` = `postgres`; the golden run excludes them by watermark.
+-
+-## 7. Stages
+-
+-| Stage | Builds | Stop rule |
+-|---|---|---|
+-| **S1 — trail + stamps** | RISK-1 check → `0028`–`0043` → from-scratch apply on the throwaway → catalog evidence `evidence/S1_catalog.md` (AC-101…105, 107, 108, 114, 115, 120, 121) → RF-7 harness edits → `npm run rls:prove` green (AC-305) → `RESPONSES/BIM003_S1_<date>.md` + GIT REMINDER | any migration error → revert the file, report, STOP · RISK-1 false → STOP |
+-| **S2 — wrappers** | `0044`–`0047` → from-scratch re-apply → `evidence/WRAPPER_CONTRACT.md` (AC-209, file:line into the service) → catalog evidence (AC-201…203) → report + REMINDER | any wrapper whose return shape cannot mirror the service contract → red flag, STOP |
+-| **S3 — proof** | `scripts/rls-harness/audit-prove.mjs` + `audit-seed.mjs` (multiAdmin) + `golden/audit_trail_expected.json`; `npm run audit:prove` = wipe + chain → seed → audit-seed → G-3…G-6 probes → scripted session → golden diff; deliberately broken run → `evidence/S3_failure_path.md`; triad (AC-306); README/RUN_NOTES (AC-308); spec evidence fill; `RETROSPECTIVE.md`; RECOVERY + session; types-regen request to the Director (AC-307) | any literal FAIL against the spec → report, do not patch the spec, STOP |
+-
+-Every stage: no git, no cloud, throwaway credentials only via `.env.local`, values never printed, GIT REMINDER at the end.
+-
+-## 8. Files
+-
+-**CREATE:** `supabase/migrations/0028`–`0047` (20) · `scripts/rls-harness/audit-prove.mjs`, `audit-seed.mjs`, `golden/audit_trail_expected.json` · `evidence/S1_*.md, S2_*.md, S3_*.md, WRAPPER_CONTRACT.md, S3_failure_path.md` · `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RETROSPECTIVE.md` · `RUN_NOTES.md` (only if RF-5 approved).
+-**MODIFY:** `package.json` (scripts block only: `audit:prove`) · `scripts/rls-harness/seed.mjs, payloads.mjs, expectations.json, attacks.mjs` (RF-7, minimal lines) · `README.md` (script table) · `BIM003_ACCEPTANCE_SPEC.md` **evidence column only** · `RECOVERY.md` · session log · `scripts/db-verify.mjs:177` **only if ruled** (RF-6).
+-**WILL NOT TOUCH:** `0001`–`0027` · `src/**` · `agent_docs/AUTHORITY/**` · AC wording · `.env*` · `src/types/supabase.ts` (the Director regenerates) · the harness cast.
+-
+-## 9. Assumptions
+-
+-A-1 drop + recreate of `audit_logs` in `0028` (RF-1) · A-2 E-0 = 13 stamps (RF-2) · A-3 the `OwedBookRow ← user_data` mapping in §3, four NULL fields (TV-6) · A-4 the two REVOKEs in RF-3 are in bounds · A-5 symbolic golden + watermark (RF-4) · A-6 target throwaway = **?** (RF-9) · A-7 `multiAdmin` extra identity in the audit runner only (RF-8) · A-8 `RUN_NOTES.md` may be created (RF-5) · A-9 `db-verify.mjs:177` one-line exemption is ruled (RF-6).
+-
+-→ Correct me now, or I proceed with these once approved.
+-
+-**PLAN COMPLETE — awaiting approval.**
+diff --git a/agent_docs/RESPONSES/response_2026-09-14_131702_bim003-s1-blocked-disk-mismatch.md b/agent_docs/RESPONSES/response_2026-09-14_131702_bim003-s1-blocked-disk-mismatch.md
+deleted file mode 100644
+index f6ceca2..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-14_131702_bim003-s1-blocked-disk-mismatch.md
++++ /dev/null
+@@ -1,42 +0,0 @@
+-# BIM-003 · STAGE 1 — BLOCKED BEFORE FIRST WRITE (disk ≠ approval message)
+-
+-**Rule applied:** module CLAUDE.md §2 "Flag, don't deviate — if disk contradicts a ruling, stop and raise a red flag with file:line evidence."
+-**Files written this turn:** none outside protocol (this report + session entry). Zero migrations, zero harness edits.
+-
+-## 1. Two things the approval says are on disk are not
+-
+-| # | Approval message | Disk (checked after the message, on `phase-3-bim003` @ `0e4e17e`) |
+-|---|---|---|
+-| D-1 | "E-0 through E-5 are written into the spec — read them before touching a file." | `BIM003_ACCEPTANCE_SPEC.md:81-83` — the erratum lane holds **only the seeded E-0 placeholder**, still reading *"(Engineer states: …)"* / *"(filled at approval, before build — J-21)"*. No E-1…E-5 rows exist. `grep -n "^| E-"` → header + E-0 only. |
+-| D-2 | "ENV_NOTE.md is on disk." | `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/` contains **README.md only** (`ls -la`, 12:29 timestamp). `find agent_docs -iname "ENV_NOTE*"` → nothing. |
+-
+-Your commit `0e4e17e` "14sep2026 - beginning bim003" carries the pack as it landed at 12:29 (spec 87 lines = the seeded version); the erratum rows and ENV_NOTE were not in it and are not in the working tree either. Most likely they were written in another window and not saved, or saved to a different checkout.
+-
+-Since E-0…E-5 fix the literal wording QA will grade (the 13 names, the REVOKE disposition, the symbolic-golden wording, the AC-901 amendment for `db-verify.mjs`, RUN_NOTES), I will not build against wording I have not read.
+-
+-## 2. RISK-1 — resolved GREEN (read-only, no file touched)
+-
+-Connected via the default unprefixed block as ruled (A-1 fallback → `PROTO06_DB_URL` et al.; no `RLS_HARNESS_PREFIX` set). Host `aws-1-us-west-1.pooler.supabase.com`; 16 public tables present (BIM-002's chain is already applied there).
+-
+-```
+-current_user = postgres   rolbypassrls = true   rolsuper = false   rolcreaterole = true
+-anon            bypassrls = false
+-authenticated   bypassrls = false
+-postgres        bypassrls = true
+-service_role    bypassrls = true
+-supabase_admin  bypassrls = true
+-```
+-
+-**Consequence:** FORCE ROW LEVEL SECURITY on `audit_logs` with zero INSERT policy is safe — the SECURITY DEFINER trigger and wrappers (owned by `postgres`) insert through BYPASSRLS. No erratum needed for AC-107/AC-108. This line goes into `evidence/S1_catalog.md` when S1 runs.
+-
+-## 3. Observation (not blocking)
+-
+-`0e4e17e` also lists thirteen BIM-002 response files under `agent_docs/RESPONSES/` with **0 line changes** — a mode change (`chmod`), not content. Harmless; noting it so the diff stat doesn't surprise QA.
+-
+-## 4. What unblocks S1
+-
+-1. Erratum rows E-1…E-5 present in `BIM003_ACCEPTANCE_SPEC.md` (and E-0 filled with the thirteen names + N = 4) — save, then `git status` shows the spec modified.
+-2. `evidence/ENV_NOTE.md` present (host only, no secrets — the host above is what the harness will hit).
+-3. Say "go" — I re-read both and execute S1 exactly as planned.
+-
+-**STOP.**
+diff --git a/agent_docs/RESPONSES/response_2026-09-14_135344_bim003-s1-complete.md b/agent_docs/RESPONSES/response_2026-09-14_135344_bim003-s1-complete.md
+deleted file mode 100644
+index c38bdec..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-14_135344_bim003-s1-complete.md
++++ /dev/null
+@@ -1,68 +0,0 @@
+-# BIM003_S1 — STAGE 1 COMPLETE · trail + guard + RLS + audit_write() + thirteen stamps
+-
+-**Module** BIM-003-CYBER-PHARMA · **Branch** `phase-3-bim003` (base `0e4e17e`) · **Target** scratch throwaway per `evidence/ENV_NOTE.md` · **Date** 2026-09-14
+-**Verdict:** every S1 gate GREEN · `rls:prove` GREEN with the audit chain live · zero migration errors · zero git · zero cloud commands · no credential value printed.
+-
+-## 1. What landed
+-
+-| # | File | What |
+-|---|---|---|
+-| 0028 | `supabase/migrations/0028_audit_logs_reshape.sql` | asserts the 0015 table exists, is unreshaped and **empty** → drops it → Brief §3 shape (11 cols, `bigint identity`) → 3 indexes → `audit_logs_immutable()` + BEFORE UPDATE OR DELETE row trigger → **plus a BEFORE TRUNCATE statement trigger** (addition, see §4) → ENABLE + FORCE RLS → `revoke update, delete … from anon, authenticated` (RF-3) |
+-| 0029 | `0029_rls_audit_logs.sql` | the one policy `audit_logs_select_admin`, `using (public.is_admin_of(business_id))`; assert-then-create |
+-| 0030 | `0030_audit_write.sql` | `audit_write()` — SECURITY DEFINER, `search_path=''`, `to_jsonb(NEW/OLD)`, business key from the row (`businesses` → own id, approved), R-8 → NULL + `context {id, account_id?}`, `actor_role` = JWT role claim → `current_user` fallback, `actor_user_id = auth.uid()`; EXECUTE revoked from public and anon |
+-| 0031–0043 | `00NN_audit_stamp_<table>.sql` × 13 | identical stamps in E-0 order; number only in the header line |
+-
+-**Harness (RF-7, all four approved):** `seed.mjs` — `audit_logs` out of the wipe list, seed insert line removed (the table self-seeds through the stamps) · `payloads.mjs` — new-shape probe, `target: 0` · `expectations.json` — `ownerA`/`ownerB` `audit_logs.select` ALLOW · `attacks.mjs` — A8.3 runs as `staffA` (member).
+-**E-3:** `scripts/db-verify.mjs` — one line: the baseline skip gains `audit_logs`. Note: the line is **178**, not 177 as the erratum cites (177 is the `for`).
+-**New instrument:** `scripts/rls-harness/audit-catalog.mjs` — generates `evidence/S1_catalog.md` from `pg_catalog`, every write inside a rolled-back transaction. Kept for S2/S3 and for QA.
+-
+-## 2. Gates
+-
+-| Gate / AC | Result | Evidence |
+-|---|---|---|
+-| RISK-1 BYPASSRLS | **GREEN** — `postgres rolbypassrls = true` (read-only check before S1, re-confirmed in catalog) | `S1_catalog.md` § RISK-1 |
+-| G-1 / AC-101 from scratch | 43 migrations, every line ok, exit 0 | `S1_apply_2026-09-14T0546.log` |
+-| AC-102 columns | 11, Brief order | `S1_catalog.md` |
+-| AC-103 CHECK | 4 accepted, 5th → 23514 | `S1_catalog.md` |
+-| AC-104 indexes | exactly 3 | `S1_catalog.md` |
+-| AC-105 guard | BEFORE DELETE OR UPDATE → bare RAISE | `S1_catalog.md` |
+-| AC-107 RLS | enabled + forced | `S1_catalog.md` |
+-| AC-108 policy | 1 SELECT {authenticated}, 0 writes | `S1_catalog.md` |
+-| AC-114 audit_write | secdef, pinned, no PUBLIC/anon EXECUTE | `S1_catalog.md` |
+-| G-2 / AC-115 stamps | 13 = E-0 | `S1_catalog.md` |
+-| AC-120 stamp diff | table name + header number only; 13 identical hashes | `S1_files.md` |
+-| AC-121 fence | `git diff dfc8a6a` on 0001–0027 empty | `S1_files.md` |
+-| AC-905 headers | 16/16 | `S1_files.md` |
+-| AC-305 rls:prove | **ISOLATION PROVEN** — 19 policies, AC8 fresh, 4 laws, 320/320, scoping exact, 28/28 denied + ground truth, revocation R-C | `rls-prove/S1_prove_2026-09-14T0550.log` |
+-| Smoke (rolled back) | 5 writes → 5 rows: accounts R-8 (NULL + context), businesses own-id, user_data insert/update/delete payload shapes; owner UPDATE/DELETE/TRUNCATE all raise P0001; authenticated UPDATE/DELETE → 42501 privilege, INSERT → 42501 RLS | `S1_catalog.md` § Smoke |
+-
+-The matrix's twenty `audit_logs` cells: admins SELECT ALLOW (5 rows each, non-vacuous); members and anon 0 rows; every write DENY with `42501` (INSERT by RLS, UPDATE/DELETE by revoked privilege) — exactly the F-14 shapes predicted in the plan.
+-
+-## 3. Things I didn't touch
+-
+-`0001`–`0027` (empty diff vs `dfc8a6a`) · `src/**` (empty diff) · `agent_docs/AUTHORITY/**` · AC wording (evidence column only, 14 cells) · `.env*` · the harness cast and its hardcoded counts · `prove.mjs` (its verdict line still says "18 policies"; cosmetic, left alone) · `BIM-002-CYBER-PHARMA/**` — the proof's sub-runners write into BIM-002's evidence folder by hardcoded path; the seven new logs were **moved** to `BIM-003…/evidence/rls-prove/` so the certified folder is unchanged (`git status` there is empty).
+-
+-## 4. Potential concerns
+-
+-1. **Addition beyond the letter of the plan:** a `BEFORE TRUNCATE … FOR EACH STATEMENT` trigger on `audit_logs` calling the same raise function. Row triggers never see TRUNCATE, so without it the service role could empty the trail in one statement. AC-105 still holds (the BEFORE UPDATE OR DELETE row trigger exists). Say the word and it goes.
+-2. **`db:verify` is red on AC7, and was before this module.** `scripts/db-verify.mjs:65-77` asserts *zero* non-baseline policies — BIM-001's world. It has listed every BIM-002 policy as a failure since 0016 landed; mine joins the list. AC12 (the E-3 line) is green for all 13 chain tables. Not mine to fix; flagging for the Director/Architect (candidate: retire AC7 or re-baseline it to the certified policy set).
+-3. **E-3 line number:** ruling says `:177`; the skip is line 178. Same line, off-by-one in the erratum text.
+-4. `seed-map.json` changed (it is rewritten every seed run, as in BIM-002).
+-
+-## 5. Uncommitted paths (AC-901 fence respected)
+-
+-```
+-supabase/migrations/0028_*.sql … 0043_*.sql                       (16 new)
+-scripts/rls-harness/{seed.mjs,payloads.mjs,expectations.json,attacks.mjs,seed-map.json}
+-scripts/rls-harness/audit-catalog.mjs                              (new)
+-scripts/db-verify.mjs                                              (1 line, E-3)
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md  (evidence column only)
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/{S1_catalog.md,S1_files.md,S1_apply_*.log,S1_db-verify.log,rls-prove/*}
+-agent_docs/RESPONSES/BIM003_S1_2026-09-14.md (+ response_ copy) · agent_docs/SESSIONS/session_2026-09-14.md · RECOVERY.md · CHANGELOG.md
+-```
+-
+-🔔 GIT REMINDER — uncommitted work: the paths above.
+-Suggested: git add -A && git commit -m "14sep2026 - BIM-003 S1 - audit_logs reshape + guard + RLS + audit_write + 13 stamps - from-scratch green, rls:prove green"
+-→ Your call. I will not run it.
+-
+-**Next:** S2 (wrappers `0044`–`0047`) on your prompt. **STOP.**
+diff --git a/agent_docs/RESPONSES/response_2026-09-14_145430_bim003-s2-complete.md b/agent_docs/RESPONSES/response_2026-09-14_145430_bim003-s2-complete.md
+deleted file mode 100644
+index 32c5836..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-14_145430_bim003-s2-complete.md
++++ /dev/null
+@@ -1,65 +0,0 @@
+-# BIM003_S2 — STAGE 2 COMPLETE · four owedbook_* read wrappers
+-
+-**Module** BIM-003-CYBER-PHARMA · **Branch** `phase-3-bim003` (base `011eada`) · **Target** scratch per `evidence/ENV_NOTE.md` · **Date** 2026-09-14
+-**Verdict:** AC-201…AC-210 all GREEN · chain of 47 applies from scratch with zero errors · zero git · zero cloud · no credential printed · `src/**` untouched.
+-
+-## 1. What landed
+-
+-| # | File | Mirrors | Returns |
+-|---|---|---|---|
+-| 0044 | `supabase/migrations/0044_owedbook_kpis.sql` | `getKpis` → `OwedBookKpis` | `table(commercial_underpaid, commercial_scripts, updated_difference, owed)` — 1 row |
+-| 0045 | `0045_owedbook_rows.sql` | `getRows` → `OwedBookPage` | `jsonb` envelope `{rows: OwedBookRow[17 keys], page, pageCount, limit, total}` |
+-| 0046 | `0046_owedbook_summary.sql` | `getSummary` → `OwedBookSummaryRow[]` | `table(pbm, commercial_dollars, federal_dollars)` |
+-| 0047 | `0047_owedbook_pbm_options.sql` | `getPbmOptions` → `string[]` | `setof text` |
+-
+-Every wrapper: `plpgsql` · SECURITY DEFINER · `search_path = ''` · `p_business_id uuid` first · statement 1 membership via `my_business_ids()` (NULL never a member) else `raise 'not a member of business'` · statement 2 exactly one `read_page` row with `context {fn, args, filters[, page, limit, offset]}` · statement 3 the read with an explicit `where ud.business_id = p_business_id` · revoke public + anon, grant authenticated. Mapping per approved A-3; the four NULL fields (`report_file`, `aac`, `federal_expected`, `federal_diff`) are NULL by construction. **`evidence/WRAPPER_CONTRACT.md`** documents each with file:line into `src/services/owedbook.ts` and `src/types/OwedBook.ts` (AC-209).
+-
+-**Instruments:** `scripts/rls-harness/audit-catalog.mjs` now takes a stage (`S1` | `S2`) — S2 adds AC-201…203 plus a body-shape check (membership < raise < insert < read, exactly one audit insert, explicit fence). New `scripts/rls-harness/audit-wrappers.mjs` runs AC-204…208 through real signed-in sessions (admin-A = ownerA, member-A = staffA, anon) with every audit-row claim ground-truthed via the service role.
+-
+-## 2. Gates
+-
+-| AC | Result | Evidence |
+-|---|---|---|
+-| AC-101 (re-proven) | 47/47 ok, exit 0 | `S2_apply_2026-09-14T0652.log` |
+-| AC-201 | 4 functions, names = E-0 | `S2_catalog.md` |
+-| AC-202 | secdef · pinned · anon=false / authenticated=true · no PUBLIC entry · anon refused live 42501 ×4 | `S2_catalog.md` |
+-| AC-203 | `p_business_id uuid` first, ×4 | `S2_catalog.md` |
+-| AC-204 / AC-205 | admin-A and member-A ×4: returns, audit +1, row fields exact, `context.fn` = name | `S2_wrappers.md` |
+-| AC-206 | admin-A → B ×4: `P0001 not a member of business`, audit +0 | `S2_wrappers.md` |
+-| AC-207 | anon ×4: `42501 permission denied for function`, audit +0 | `S2_wrappers.md` |
+-| AC-208 | 25 rows served, audit +1; context carries page/limit/offset/filters | `S2_wrappers.md` |
+-| AC-209 | contract doc, file:line | `WRAPPER_CONTRACT.md` |
+-| AC-210 | `git diff dfc8a6a` empty on all four paths | `S2_files.md` |
+-| S1 invariants | 1 policy · RLS enabled+forced · 13 stamps; S1 catalog re-run GREEN | `S2_catalog.md`, `S1_catalog.md` |
+-
+-Seed-shaped sanity in the probes: KPIs over A1 = 200 scripts / 20 100 owed; `owedbook_rows` pages 200 rows as 8 × 25; page 99 clamps to 8/8; updated and federal tabs return 0 (seed has no `new_paid`; federal is NULL by A-3); summary and pbm_options are empty because the seed writes no `insurance`. Unknown tab raises.
+-
+-## 3. Mid-stage correction (reported, not hidden)
+-
+-My first cut of `owedbook_rows` ran the pager's `COUNT` **before** the audit insert so the log could carry the clamped page. The S2 catalog's body-shape check flagged it against Brief §5's letter (membership → log → read). Fixed in `0045`: the audit row is written before any read and carries the **requested** `page/limit/offset`; the served page lives in the envelope. The chain was re-applied from scratch and every probe re-run after the fix; the superseded 06:48 apply log was deleted so only the proven run is on disk. `WRAPPER_CONTRACT.md` says the same.
+-
+-## 4. Things I didn't touch
+-
+-`src/**` (empty diff, AC-210) · `0001`–`0043` · AC wording (10 evidence cells filled, zero words removed) · `.env*` · `agent_docs/AUTHORITY/**` · the harness cast · `prove.mjs`.
+-
+-## 5. Potential concerns
+-
+-1. **Seed coverage:** the BIM-002 seed writes no `insurance`, `new_paid`, or `status`, so summary/pbm_options/updated-tab paths are exercised as *empty-but-correct*. S3's scripted session should seed a few rows with those columns so the golden trail (and BIM-005) sees non-empty shapes. Noting for the S3 golden design.
+-2. **Types (AC-307):** Director-run regen will add four `Functions` entries plus the reshaped `audit_logs` table under `Tables`. `owedbook_rows` returns `Json`; the other three get typed rows.
+-3. **Not on disk yet:** CF-9 and the R-6 TRUNCATE amendment were ruled in chat; I don't see them in the manager or brief. Not blocking — flagging so the pack catches up before QA.
+-
+-## 6. Uncommitted paths (AC-901 fence respected)
+-
+-```
+-supabase/migrations/0044–0047                                     (4 new)
+-scripts/rls-harness/audit-catalog.mjs (stage switch) · audit-wrappers.mjs (new) · seed-map.json (rewritten by seed)
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/{WRAPPER_CONTRACT.md,S2_catalog.md,S2_wrappers.md,S2_files.md,S2_apply_2026-09-14T0652.log,S1_catalog.md (re-run)}
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md  (evidence cells AC-201…210 only)
+-agent_docs/RESPONSES/BIM003_S2_2026-09-14.md (+ response_ copy) · session log · RECOVERY.md · CHANGELOG.md
+-```
+-
+-🔔 GIT REMINDER — uncommitted work: the paths above.
+-Suggested: git add -A && git commit -m "14sep2026 - BIM-003 S2 - four owedbook_* wrappers (0044-0047), wrapper contract, AC-201..210 green from scratch"
+-→ Your call. I will not run it.
+-
+-**Next:** S3 — `audit:prove`, symbolic golden (E-2), `multiAdmin` (E-4), RUN_NOTES.md + README, triad, retrospective, types-regen request. **STOP.**
+diff --git a/agent_docs/RESPONSES/response_2026-09-14_154208_bim003-s3-complete-pending-ac307.md b/agent_docs/RESPONSES/response_2026-09-14_154208_bim003-s3-complete-pending-ac307.md
+deleted file mode 100644
+index 7bf96b4..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-14_154208_bim003-s3-complete-pending-ac307.md
++++ /dev/null
+@@ -1,65 +0,0 @@
+-# BIM003_S3 — STAGE 3 COMPLETE (AC-307 pending your paste) · audit:prove, golden trail, board, docs, retrospective
+-
+-**Module** BIM-003-CYBER-PHARMA · **Branch** `phase-3-bim003` (base `c2d9348`) · **Target** scratch per `evidence/ENV_NOTE.md` · **Date** 2026-09-14
+-
+-## 1. In plain language
+-
+-The vault now has its camera, and the camera has been tested from an empty database. One command, `npm run audit:prove`, wipes the throwaway, replays all 47 migrations, seeds two pharmacies with their staff, then plays a scripted session: an admin creates, edits and deletes a claim; the platform writes a reference row; the admin opens the OwedBook screens through the four read wrappers; a second-store admin opens theirs; the first admin tries to open the other store's and is refused; three different identities try to edit or erase audit rows and every attempt fails, the service role included. Afterwards the runner reads back what the trail recorded and compares it, row by row, to a committed expectation file written by hand before the first run. It matched on the first run. I then broke one expected row on purpose, ran again, watched it fail with the exact row named, and restored the file. The BIM-002 isolation proof still passes with the trail switched on, the app still builds to the same 22 routes with the same 128 green tests, and the two proof commands are documented in the README and a new RUN_NOTES. Every acceptance criterion in the spec now points at its evidence. One item waits on you: regenerating the TypeScript types, which needs a credential I don't hold.
+-
+-## 2. What landed
+-
+-| Item | Path |
+-|---|---|
+-| Audit runner (the one command) | `scripts/rls-harness/audit-prove.mjs` → `npm run audit:prove` (`package.json` scripts block) |
+-| E-4 `multi` identity + R-10 rows | `scripts/rls-harness/audit-seed.mjs` (+ `audit-seed-map.json`, ids only) |
+-| Scripted session, probes, golden diff | `scripts/rls-harness/audit-session.mjs` |
+-| Golden expectation, 10 rows, symbolic (E-2) | `scripts/rls-harness/golden/audit_trail_expected.json` |
+-| Docs (AC-308) | `README.md:137-138` script table · `RUN_NOTES.md` (new, root) — no new env names |
+-| Retrospective (AC-309) | `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RETROSPECTIVE.md` |
+-| Types regen instructions (AC-307) | `evidence/S3_types_regen.md` |
+-| Evidence | `evidence/S3_audit_prove_2026-09-14T0738.log` (+ normalised, + produced.json) · `S3_failure_path.md` · `rls-prove/S3_prove_2026-09-14T0737.log` · `S3_triad.log` · `S3_files.md` |
+-
+-## 3. Gates
+-
+-| Gate / AC | Result |
+-|---|---|
+-| G-6 / AC-301…304 | `audit:prove` **TRAIL PROVEN**, exit 0, first run against the hand-written golden; failure path exit 8 with `DIFF at row 1` |
+-| G-3 / AC-106 | six tampering probes: svc → `P0001 audit_logs is append-only`; admin-A and anon → `42501`; ground truth unchanged |
+-| G-4 / AC-109…112 | admin-A = A-count (A1+A2), member-A 0, admin-B = B-count, multi = A1+B1, anon 0; nothing outside each set |
+-| AC-113, 116…119 | in the session log; write-trail shapes and actor fields exact; R-8 row NULL + context |
+-| G-5 (wrappers in the trail) | six `read_page` rows for six calls; R-10 shapes non-empty: summary `[OptumRx 10.00, Caremark 9.50]`, pbm_options `[Caremark, OptumRx]`, updated tab total 2, KPIs 204 scripts / 20 119.50 |
+-| AC-305 | `rls:prove` **ISOLATION PROVEN** after the 47-file chain |
+-| G-7 / AC-306 | build 22 routes · tsc 0 · jest 28 / 128 / 0 |
+-| AC-307 | **PENDING** your paste (§5) |
+-| AC-308 / AC-309 | README + RUN_NOTES identical strings; retrospective with Keep/Change/Drop + Deferred Ledger |
+-| AC-901…906 | `evidence/S3_files.md`; 902/903 need your attestation of the transcript |
+-
+-## 4. Things I didn't touch
+-
+-`src/**` (AC-210 still empty) · `0001`–`0047` after S2 · AC wording (24 cells filled this stage; the only removed words are my own S1 pointers on AC-305/AC-905, superseded by S3's) · `.env*` · `agent_docs/AUTHORITY/**` · the BIM-002 cast and `seed.mjs` · BIM-002's evidence folder (seven `rls:prove` logs moved out again).
+-
+-## 5. AC-307 — what I need from you
+-
+-Run the sequence in `evidence/S3_types_regen.md` in your terminal (Route A needs no login: `gen types --db-url "$PROTO06_DB_URL"`), then paste back the two read-only `git diff` lines it names. I verify the hunks are confined to `audit_logs` under `Tables` and the four `owedbook_*` entries under `Functions`, append the block to `S3_files.md`, fill the AC-307 cell, and only then print the ENGINEERING COMPLETE line.
+-
+-## 6. Potential concerns
+-
+-1. **`multiStore` vs `multi`:** the spec's "A" for `multi` is store A1 (multiAdmin is admin of A1+B1), while admin-A's "A" is A1+A2 (ownerA is admin of both). Both are stated in the session log so QA reads the counts the same way.
+-2. **`audit-seed-map.json` and `seed-map.json`** are rewritten every run (ids only) — expect them modified after any proof, as in BIM-002.
+-3. **Three new harness files + golden** are BIM-003's to certify; `prove.mjs`'s "18 policies" verdict text and the hardcoded BIM-002 evidence path remain CF-8 (BIM-005).
+-
+-## 7. Uncommitted paths (AC-901)
+-
+-```
+-package.json (scripts block) · README.md · RUN_NOTES.md (new)
+-scripts/rls-harness/{audit-prove.mjs, audit-seed.mjs, audit-session.mjs, audit-seed-map.json, golden/audit_trail_expected.json} (new) · seed-map.json
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/{RETROSPECTIVE.md, BIM003_ACCEPTANCE_SPEC.md (evidence cells)}
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/{S3_*, rls-prove/S3_*}
+-agent_docs/RESPONSES/BIM003_S3_2026-09-14.md (+ response_ copy) · session log · RECOVERY.md · CHANGELOG.md
+-```
+-
+-🔔 GIT REMINDER — uncommitted work: the paths above.
+-Suggested: git add -A && git commit -m "14sep2026 - BIM-003 S3 - audit:prove + golden trail + failure path, rls:prove green, triad 22/0/28-128, RUN_NOTES, retrospective, spec evidence-filled (AC-307 pending types regen)"
+-→ Your call. I will not run it.
+-
+-**STOP — waiting for the AC-307 paste.** The ENGINEERING COMPLETE line follows its verification.
+diff --git a/agent_docs/RESPONSES/response_2026-09-14_164606_bim003-s3-engineering-complete.md b/agent_docs/RESPONSES/response_2026-09-14_164606_bim003-s3-engineering-complete.md
+deleted file mode 100644
+index 5187c6a..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-14_164606_bim003-s3-engineering-complete.md
++++ /dev/null
+@@ -1,70 +0,0 @@
+-# BIM003_S3 — STAGE 3 COMPLETE · audit:prove, golden trail, board, docs, retrospective
+-
+-**Module** BIM-003-CYBER-PHARMA · **Branch** `phase-3-bim003` (base `c2d9348`) · **Target** scratch per `evidence/ENV_NOTE.md` · **Date** 2026-09-14
+-
+-## 1. In plain language
+-
+-The vault now has its camera, and the camera has been tested from an empty database. One command, `npm run audit:prove`, wipes the throwaway, replays all 47 migrations, seeds two pharmacies with their staff, then plays a scripted session: an admin creates, edits and deletes a claim; the platform writes a reference row; the admin opens the OwedBook screens through the four read wrappers; a second-store admin opens theirs; the first admin tries to open the other store's and is refused; three different identities try to edit or erase audit rows and every attempt fails, the service role included. Afterwards the runner reads back what the trail recorded and compares it, row by row, to a committed expectation file written by hand before the first run. It matched on the first run. I then broke one expected row on purpose, ran again, watched it fail with the exact row named, and restored the file. The BIM-002 isolation proof still passes with the trail switched on, the app still builds to the same 22 routes with the same 128 green tests, and the two proof commands are documented in the README and a new RUN_NOTES. Every acceptance criterion in the spec now points at its evidence, including the regenerated TypeScript types you produced, which I verified against the pre-module file and re-type-checked.
+-
+-## 2. What landed
+-
+-| Item | Path |
+-|---|---|
+-| Audit runner (the one command) | `scripts/rls-harness/audit-prove.mjs` → `npm run audit:prove` (`package.json` scripts block) |
+-| E-4 `multi` identity + R-10 rows | `scripts/rls-harness/audit-seed.mjs` (+ `audit-seed-map.json`, ids only) |
+-| Scripted session, probes, golden diff | `scripts/rls-harness/audit-session.mjs` |
+-| Golden expectation, 10 rows, symbolic (E-2) | `scripts/rls-harness/golden/audit_trail_expected.json` |
+-| Docs (AC-308) | `README.md:137-138` script table · `RUN_NOTES.md` (new, root) — no new env names |
+-| Retrospective (AC-309) | `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RETROSPECTIVE.md` |
+-| Types regen instructions (AC-307) | `evidence/S3_types_regen.md` |
+-| Evidence | `evidence/S3_audit_prove_2026-09-14T0738.log` (+ normalised, + produced.json) · `S3_failure_path.md` · `rls-prove/S3_prove_2026-09-14T0737.log` · `S3_triad.log` · `S3_files.md` |
+-
+-## 3. Gates
+-
+-| Gate / AC | Result |
+-|---|---|
+-| G-6 / AC-301…304 | `audit:prove` **TRAIL PROVEN**, exit 0, first run against the hand-written golden; failure path exit 8 with `DIFF at row 1` |
+-| G-3 / AC-106 | six tampering probes: svc → `P0001 audit_logs is append-only`; admin-A and anon → `42501`; ground truth unchanged |
+-| G-4 / AC-109…112 | admin-A = A-count (A1+A2), member-A 0, admin-B = B-count, multi = A1+B1, anon 0; nothing outside each set |
+-| AC-113, 116…119 | in the session log; write-trail shapes and actor fields exact; R-8 row NULL + context |
+-| G-5 (wrappers in the trail) | six `read_page` rows for six calls; R-10 shapes non-empty: summary `[OptumRx 10.00, Caremark 9.50]`, pbm_options `[Caremark, OptumRx]`, updated tab total 2, KPIs 204 scripts / 20 119.50 |
+-| AC-305 | `rls:prove` **ISOLATION PROVEN** after the 47-file chain |
+-| G-7 / AC-306 | build 22 routes · tsc 0 · jest 28 / 128 / 0 |
+-| AC-307 | **PASS** on schema content (E-7) — hunks confined to `audit_logs` + `Functions`; 11 Row keys = 0028; four `owedbook_*` entries; tsc 0 on the regenerated file (`S3_files.md` § AC-307) |
+-| AC-308 / AC-309 | README + RUN_NOTES identical strings; retrospective with Keep/Change/Drop + Deferred Ledger |
+-| AC-901…906 | `evidence/S3_files.md`; 902/903 need your attestation of the transcript |
+-
+-## 4. Things I didn't touch
+-
+-`src/**` (AC-210 still empty) · `0001`–`0047` after S2 · AC wording (24 cells filled this stage; the only removed words are my own S1 pointers on AC-305/AC-905, superseded by S3's) · `.env*` · `agent_docs/AUTHORITY/**` · the BIM-002 cast and `seed.mjs` · BIM-002's evidence folder (seven `rls:prove` logs moved out again).
+-
+-## 5. AC-307 — verified
+-
+-Director ran Route B (login → gen → logout, CLI 2.116) and pasted the diff. Verified on disk: 94+/51−, hunks only in `audit_logs` (Row/Insert/Update → the 0028 shape, `id?: never` for the identity column) and `Functions` (four `owedbook_*` one-to-one with 0044–0047, plus the four BIM-002 helpers and the PostgrestVersion/parenthesization hunks that **E-7** rules non-module). No other table added, removed or edited. `tsc --noEmit` exit 0 against the regenerated file. Block appended to `evidence/S3_files.md` § AC-307; AC-307 cell filled.
+-
+-## 6. Potential concerns
+-
+-1. **`multiStore` vs `multi`:** the spec's "A" for `multi` is store A1 (multiAdmin is admin of A1+B1), while admin-A's "A" is A1+A2 (ownerA is admin of both). Both are stated in the session log so QA reads the counts the same way.
+-2. **`audit-seed-map.json` and `seed-map.json`** are rewritten every run (ids only) — expect them modified after any proof, as in BIM-002.
+-3. **Three new harness files + golden** are BIM-003's to certify; `prove.mjs`'s "18 policies" verdict text and the hardcoded BIM-002 evidence path remain CF-8 (BIM-005).
+-
+-## 7. Uncommitted paths (AC-901)
+-
+-```
+-package.json (scripts block) · README.md · RUN_NOTES.md (new)
+-scripts/rls-harness/{audit-prove.mjs, audit-seed.mjs, audit-session.mjs, audit-seed-map.json, golden/audit_trail_expected.json} (new) · seed-map.json
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/{RETROSPECTIVE.md, BIM003_ACCEPTANCE_SPEC.md (evidence cells)}
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/{S3_*, rls-prove/S3_*}
+-agent_docs/RESPONSES/BIM003_S3_2026-09-14.md (+ response_ copy) · session log · RECOVERY.md · CHANGELOG.md
+-src/types/supabase.ts (Director-regenerated, AC-307)
+-```
+-
+-🔔 GIT REMINDER — uncommitted work: the paths above.
+-Suggested: git add -A && git commit -m "14sep2026 - BIM-003 S3 - audit:prove + golden trail + failure path, rls:prove green, triad 22/0/28-128, RUN_NOTES, retrospective, types regenerated, spec fully evidence-filled"
+-→ Your call. I will not run it.
+-
+-## 8. Definition of done (manager §11)
+-
+-G-1…G-7 green (G-8 = your attestation) · every AC carries an evidence pointer · retrospective written · RECOVERY + session log current · GIT REMINDER issued.
+-
+-**ENGINEERING COMPLETE — ready for the Director to open qa/phase-3-bim003. STOP.** Not self-certified: Cody executes, Sol adjudicates.
+diff --git a/agent_docs/RESPONSES/response_2026-09-15_122338_session-open-qa-standby.md b/agent_docs/RESPONSES/response_2026-09-15_122338_session-open-qa-standby.md
+deleted file mode 100644
+index 3c00836..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-15_122338_session-open-qa-standby.md
++++ /dev/null
+@@ -1,20 +0,0 @@
+-# SESSION OPEN — 2026-09-15 · BIM-003 in QA · Engineer on standby
+-
+-**Repo:** `cyber-pharma-dev-v1-phase-3` · origin `github.com/ahmedmusawir/cyber-pharma-dev-v1-phase-3`
+-**Branch:** `qa/phase-3-bim003` @ `c45949e` — same SHA as `phase-3-bim003` tip and `origin/qa/phase-3-bim003`; `main` at `5c51fff`. Working tree clean.
+-
+-| Check | Result |
+-|---|---|
+-| RECOVERY.md | Read; header was stale (said S3 uncommitted on `phase-3-bim003`). Refreshed to: S3 committed `c45949e`, branch = QA lane, engineer on standby. |
+-| Yesterday's log | Read — ENGINEERING COMPLETE at 16:46, AC-307 verified, not self-certified. |
+-| Session file | Created `agent_docs/SESSIONS/session_2026-09-15.md`. |
+-| QA folder | Only the seed README — Cody hasn't written yet. I don't write there. |
+-| KIP registry | No trigger met (no auth files in play). |
+-
+-**Standing by.** Questions from Cody or Sol → answered from evidence, no reruns unless asked. A ruling package naming files → repairs on this branch only, then Director commits and Cody re-pins.
+-
+-🔔 GIT REMINDER — uncommitted work:
+-  agent_docs/SESSIONS/session_2026-09-15.md  (new)
+-  RECOVERY.md                                (header refresh)
+-  agent_docs/RESPONSES/response_2026-09-15_*_session-open-qa-standby.md  (new)
+-→ Your call. I will not run it. (If you'd rather keep the QA branch free of engineer docs until the ruling package, leave them uncommitted for now.)
+diff --git a/agent_docs/RESPONSES/response_2026-09-15_123634_cody-qa-recon.md b/agent_docs/RESPONSES/response_2026-09-15_123634_cody-qa-recon.md
+deleted file mode 100644
+index b8bb482..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-15_123634_cody-qa-recon.md
++++ /dev/null
+@@ -1,164 +0,0 @@
+-# CODY_QA_RECON — BIM-003-CYBER-PHARMA · Independent QA Recon (STATIC ONLY)
+-
+-**Agent:** Cody (QA execution) · **For:** SOL (QA Lead, adjudicator) · **Date:** 2026-09-15
+-**Scope:** recon only — no destructive command, no db:reset / rls:prove / audit:prove / migration run, no product-file modification. Read-only git inspection only.
+-**Specimen:** `qa/phase-3-bim003` @ `c45949ece1a17f1a3fbb299f5551f911f869c21e` (Engineering handoff candidate `c45949e`). **No PASS/FAIL adjudication is issued here — SOL decides.**
+-
+----
+-
+-## 1. SPECIMEN PIN
+-
+-| Item | Value |
+-|---|---|
+-| pwd | `/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3` |
+-| Branch | `qa/phase-3-bim003` ✅ |
+-| HEAD | `c45949ece1a17f1a3fbb299f5551f911f869c21e` ✅ (resolves to the `c45949e` candidate) |
+-| `git log -3` | `c45949e` (S3) · `c2d9348` (S2) · `011eada` (S1) — matches RECOVERY/session narrative |
+-
+-**Working tree:** `M RECOVERY.md` + 2 untracked session-open protocol files
+-(`agent_docs/RESPONSES/response_2026-09-15_122338_session-open-qa-standby.md`, `agent_docs/SESSIONS/session_2026-09-15.md`).
+-Judged **expected** (today's 12:23 standby write, pre-recorded in the session log and the
+-Director's git status snapshot). Product tree is clean. **No BLOCK.**
+-
+-## 2. CONTRACT READ
+-
+-All six contract files read in the prescribed order, fully:
+-
+-- `ACTIONS/BIM-003-CYBER-PHARMA/CLAUDE.md` (manager) — read
+-- `BIM003_BRIEF.md` — read (Brief §3 row shape, §5 design rules, §6 retention)
+-- `BIM003_ACCEPTANCE_SPEC.md` — read; AC ranges observed: AC-101…121 (S1), AC-201…210 (S2), AC-301…309 (S3), AC-901…906 (hygiene). Every AC carries an Engineering evidence pointer.
+-- `RULINGS_ADDENDUM.md` — read (R-6a TRUNCATE · R-8a businesses own-id · R-10 seed rows · CF-9 · CF-8 additions). **Confirmed on disk at `c45949e`** — S2's concern #3 ("not on disk yet") is resolved.
+-- `AUTHORITY_POINTER.md` — read (precedence: disk > pack > AUTHORITY > memory).
+-- `QA/README.md` — read (lane rules; journal duty honored).
+-
+-**Erratum Lane observed:** E-0…E-7 all Director-approved, all treated as rulings of record. Known-red `db:verify` AC7 = CF-9, pre-existing from BIM-002 — **not classified as a BIM-003 finding** (confirmed in `evidence/S1_db-verify.log`).
+-
+----
+-
+-## 3. ENGINEERING CLAIM MAP
+-
+-| Stage | Major claimed proofs | Where Engineering's evidence lives |
+-|---|---|---|
+-| S1 | 43/43 from-scratch apply; 11-col reshape; action CHECK; 3 indexes; immutability guard (+TRUNCATE, R-6a); RLS enabled+forced; 1 SELECT policy; `audit_write()` secdef/pinned/revoked; 13 stamps = E-0; AC-120 stamp-diff; AC-121 fence; rls:prove green with trail live | `evidence/S1_apply_2026-09-14T0546.log`, `S1_catalog.md`, `S1_files.md`, `S1_db-verify.log`, `rls-prove/S1_prove_…0550.log`, `rls-prove/S1-matrix_…0551.log` |
+-| S2 | 47/47 from-scratch; 4 wrappers = E-0; secdef/pinned/grants; p_business_id first; session probes AC-204…208 incl. cross-tenant deny and anon refusal; WRAPPER_CONTRACT; src untouched | `evidence/S2_apply_…0652.log`, `S2_catalog.md`, `S2_wrappers.md`, `WRAPPER_CONTRACT.md`, `S2_files.md` |
+-| S3 | audit:prove TRAIL PROVEN (first run), failure path (exit 8, DIFF row 1, golden restored), AC-109…112 scoping, 10-row symbolic golden match, rls:prove re-green, triad 22/0/28-128, AC-307 verified, README/RUN_NOTES | `evidence/S3_audit_prove_…0738.log` (+ 0734 first run, 0736 failure run), `S3_failure_path.md`, `rls-prove/S3_prove_…0737.log`, `S3_triad.log`, `S3_files.md`, `S3_types_regen.md`, `RETROSPECTIVE.md` |
+-
+-Claims were **not accepted as proof**; the instruments and migrations behind them were read directly (§4).
+-
+-## 4. IMPLEMENTATION DELTA (independent, from `git diff 0e4e17e..c45949e`)
+-
+-Base note: `dfc8a6a..c45949e` conflates the BIM-002 close batch (proto-06 removals at `5c51fff`); the module's own delta is measured from `0e4e17e` (branch start). Delta = 93 files, +6923/−152, **entirely inside AC-901's fence** except one path (D-3 below).
+-
+-**Audit machinery actually present (code-verified, not prose-verified):**
+-
+-| Element | File(s) | Verified by me |
+-|---|---|---|
+-| `audit_logs` reshape (11 cols, identity PK, 3 indexes) | `0028` (assert-empty → drop → recreate; E-1) | read; matches Brief §3 order |
+-| Immutability guard | `0028:63-80` — bare-RAISE `audit_logs_immutable()`, BEFORE UPDATE/DELETE **row** trigger + BEFORE TRUNCATE **statement** trigger (R-6/R-6a) | read |
+-| RLS | `0028:83-84` enable+force; `0029` the ONE policy `audit_logs_select_admin` → `is_admin_of(business_id)`; asserts predecessor state | read |
+-| Grants | `0028:87` revoke UPDATE/DELETE from anon+authenticated (RF-3); INSERT left to RLS | read |
+-| `audit_write()` | `0030` — secdef, `search_path=''`, JWT-role → `current_user` fallback, businesses special-case (R-8a), R-8 NULL + context `{id, account_id?}`; revoke public + anon | read |
+-| 13 stamps | `0031`–`0043`, one per E-0 table | **all 13 md5-identical after normalizing number + table name** (my own recomputation of AC-120 — not taken from prose) |
+-| 4 wrappers | `0044` kpis · `0045` rows · `0046` summary · `0047` pbm_options — membership → ONE read_page insert → explicit `where ud.business_id = p_business_id` fence; revoke public+anon, grant authenticated | read line-by-line |
+-| Harness | `audit-prove.mjs` (4 stages, exit 8 on any failure), `audit-seed.mjs` (E-4 multiAdmin + R-10), `audit-session.mjs` (watermark → 6 tamper probes → write trail → wrapper calls → cross-tenant → AC-113 → scoping → golden diff, exit 3 on any check failure), `audit-catalog.mjs` (rolled-back pg_catalog evidence + body-shape check), `audit-wrappers.mjs` (AC-204…208, service-role ground truth) | read fully |
+-| Golden | `scripts/rls-harness/golden/audit_trail_expected.json` — 10 rows, symbolic per E-2 | read |
+-| RF-7 edits | `seed.mjs` (audit_logs out of wipe list, seed insert removed), `payloads.mjs` (new-shape probe, target 0), `expectations.json` (ownerA/ownerB audit_logs SELECT ALLOW), `attacks.mjs` (A8.3 → staffA) | diff vs `0e4e17e` — matches plan RF-7 exactly |
+-| E-3/E-6 | `scripts/db-verify.mjs` — one line: skip list gains `audit_logs` (line 178) | diff = 1 line changed |
+-| Types | `src/types/supabase.ts` — removed lines confined to old `audit_logs` Row/Insert/Update keys, `PostgrestVersion`, generic-constraint parenthesization; added: reshaped audit_logs + 4 `owedbook_*` + 4 BIM-002 helpers + `PostgrestVersion: "14.5"` | diff inspected (E-7 classes hold) |
+-| Docs | `package.json` scripts block (+`audit:prove` only), `README.md:137-138`, `RUN_NOTES.md` (new, root) | read |
+-
+-## 5. STATIC ATTACK SURFACE
+-
+-**Trust boundaries:**
+-- Tenant session (anon/authenticated JWT) → PostgREST → policies + grants + guards. `anon` has no EXECUTE on wrappers/audit_write; `authenticated` has no INSERT policy on audit_logs and no UPDATE/DELETE privilege (revoked).
+-- Service role: bypasses RLS; mutation blocked **below RLS** by the unconditional guard (row + TRUNCATE).
+-- Direct pg connection (postgres, BYPASSRLS): outside the tenant trust boundary; actor_role falls back to `current_user` (RISK-3, documented).
+-- SECURITY DEFINER functions: `audit_write`, `audit_logs_immutable`, 4 wrappers — all `search_path=''` pinned, all references schema-qualified (`public.*`, `auth.uid()`), owner = migration role (postgres).
+-
+-**Privilege boundaries verified in code:**
+-- Wrappers: first statement = membership via `my_business_ids()` (NULL never a member) else `raise 'not a member of business'`; the read carries an explicit business_id WHERE (the DEFINER bypasses RLS — the WHERE is the fence). `owedbook_rows` also validates `p_tab` against a fixed set.
+-- Both revoke channels closed per BIM-002 E-2/E-4 law (PUBLIC + explicit anon).
+-
+-**Likely high-risk areas (for dynamic stage):**
+-1. **Read-wrapper bypass** (D-1 below) — the highest-value static finding.
+-2. Pager/filter edge inputs on `owedbook_rows` (`p_page`/`p_limit` extremes, null `p_tab`).
+-3. `svc`-invoked wrappers (EXECUTE is *not* revoked from service_role — read_page row with NULL actor) — untested surface.
+-4. `multi`-vs-`admin-A` business-set asymmetry (multiAdmin: A1+B1; ownerA: A1+A2) — boundary probes can distinguish them.
+-
+-## 6. PROOF-INSTRUMENT REVIEW (question G — false-green)
+-
+-**Strengths (verified in source, not prose):**
+-- `audit-prove.mjs` exits non-zero (8) on **any** stage failure; `audit-session.mjs` accumulates `check` failures → exit 3. No swallowed errors found; every probe ground-truthed via the service role; identities fail closed with an ID assert before any probe.
+-- Golden diff: compares **max(produced, golden)** row-by-row with sorted-key canon; separate length check. **Missing-row and extra-row mutations are caught** (DIFF `<no row>` + count FAIL). Failure path evidence (row-1 alteration → exit 8 → restored, re-parsed) is coherent with the three retained logs (0734 first success, 0736 broken, 0738 restored — spec cites 0738).
+-- `audit-catalog.mjs`: pg_catalog only (F-3), every mutation inside rolled-back transactions/savepoints; AC-115 checks the **negative set too** (`notStamped` must be exactly audit_logs/profiles/user_roles); RISK-1 BYPASSRLS asserted.
+-- Scoping AC-109…111: expected counts computed from the live DB via svc at run time (not hardcoded) — self-consistent ground truth.
+-- Normalisation maps only the 4 cast users and 3 businesses to symbols; any *other* uuid (including a wrong cast member) → `<uuid>` ≠ expected symbol → caught.
+-
+-**Residual false-green risks (observations, not verdicts):**
+-
+-| # | Risk | Detail |
+-|---|---|---|
+-| G-1 | Golden-oracle scope | Golden covers only rows **after the watermark**. The ~600 seed/audit-seed writes (actor `postgres`) are excluded by design (RISK-3) — the golden proves the *session's* trail, not that every seed write trails. AC-116-style verification of seed-time rows rests on the catalog smoke + matrix, not the golden. |
+-| G-2 | Payload depth | `old_data`/`new_data` compared as `"present"`/null plus a stable-key check (`id`, `business_id`) per E-2. A bug logging a **wrong but present** payload would pass the golden; content beyond the two stable keys is unverified (accepted by E-2 — SOL awareness only). |
+-| G-3 | Oracle authorship | The golden was authored by Engineering, committed in the **same commit** (`c45949e`) as the runner and wrappers — "written by hand before the first run" is a procedural claim not separable from git history (three S3 logs all post-date the commit). Independence is procedural, not technical. See H below. |
+-| G-4 | AC-112 permissiveness | `anon` scoping accepts error **or** 0 rows — explicitly permitted by AC-112's "either passes". Correct, but the *observed* mode (denied vs empty) is not pinned, so a regression from "denied" to "empty" would be invisible. |
+-| G-5 | `update().select()` probe shape | Tamper probes rely on `42501`/`P0001` **plus** ground-truth re-reads — solid; no weakness found here. Listed for completeness. |
+-
+-**Question H — golden independence:** adequate under E-2 for drift *detection* (any wrapper/shaper change forces a golden diff), but same-author same-commit circularity (G-3) means the oracle cannot certify the *semantics* it encodes — it certifies that producer matches oracle. SOL may accept this under E-2, or require an independently-authored golden / spot-check row in dynamic QA.
+-
+-## 7. DISCREPANCIES (provisional classes only — SOL adjudicates)
+-
+-| # | Observation | Evidence | Affected AC | Provisional class |
+-|---|---|---|---|---|
+-| **D-1** | **Direct-table read bypasses read auditing.** BIM-002's certified `user_data_select_member` (`0021_rls_user_data.sql:28-30`) allows **any junction member** (member or admin) to SELECT `user_data` — the PHI fact table — directly through PostgREST. The `owedbook_*` wrappers are therefore *not* the only read channel: a member reading `user_data` directly leaves **zero** `read_page` rows. The module's mission prose ("every read of patient-shaped data … leaves a row", Brief §1) overstates what the mechanism enforces; R-4/R-7 as written define wrappers but never close direct reads. Implementation matches the contract; the *contract* may under-close the threat. | `supabase/migrations/0021_rls_user_data.sql:28-30` vs `0044–0047` | AC-201…208 (read-audit completeness); mission prose in Brief §1 | **contract-spec** |
+-| **D-2** | `audit_write()` ACL carries `authenticated=X` (from the rig's default-ACL channel, `db-reset.mjs:98`). AC-114's letter ("revoked from public and anon") is literally satisfied, and a trigger function cannot be invoked directly by any caller, so there is **no forge path** — but the implicit authenticated EXECUTE exists on the rig and is visible in Engineering's own evidence. | `S1_catalog.md:83`; `scripts/db-reset.mjs:95-99`; `0030:80-81` | AC-114 (letter satisfied); AC-103/C forge question | informational |
+-| **D-3** | `supabase/.temp/cli-latest` modified (v2.116.0 → v2.117.0) by the Director's types regen; the path is **not** in AC-901's permitted list. | `git diff 0e4e17e..c45949e -- supabase/.temp/cli-latest` | AC-901, AC-307 (E-7) | QA-instrument / informational (likely needs an erratum-lane row) |
+-| **D-4** | `PostgrestVersion` reads `14.5` post-regen vs `14.17` pre-module — a downgrade-looking artifact from the same regen; E-7 rules version-string hunks non-module, but a 5.5-version drop on the same project is worth the Director's one look (regen target/API-path consistency). | `src/types/supabase.ts` diff vs `0e4e17e` | AC-307 (E-7) | informational |
+-| **D-5** | Spec identity note: admin-A's "A" = A1+A2 while `multi`'s "A" = A1+B1 (E-4). Both stated in the session log; counts grade correctly, but the asymmetry is a live reading hazard for QA and later readers. | `S3` report §6.1; `audit-session.mjs:148-156` | AC-109/AC-111 | informational |
+-| — | Known-red `db:verify` AC7 (zero non-baseline policies) | `S1_db-verify.log`; CF-9 | — | pre-existing (BIM-002) — **not a finding** |
+-
+-**Implementation defects found: zero.** Every AC-mechanism claim I could check in code (stamp identities, counts, grants, fence ordering, guard shape, golden diff logic) matches the frozen contract and its erratum lane.
+-
+-## 8. PROPOSED DYNAMIC ATTACKS (next stage — NOT executed)
+-
+-Priority order; each is independent of Engineering's evidence:
+-
+-1. **Independent re-execution of `audit:prove`** on the scratch throwaway (destructive on target — needs authorization): confirms reproducibility, evidence freshness, and that no committed evidence was produced under different conditions. Compare `.normalised.log` twins byte-for-byte.
+-2. **Extended golden-tamper matrix:** beyond row 1 — delete one golden row, append an extra row, mutate `action`, mutate `business_id` symbol, swap two rows. Each must fail non-zero naming the exact row. Proves the diff loop's missing/extra/ordering detection live (G-1/G-2 confidence).
+-3. **Wrapper-bypass probe (D-1, live):** as `member-A` (a *member*, not admin), SELECT `user_data` directly → expect ALLOW per BIM-002 with **zero** new `read_page` rows; as `member-A`, SELECT `audit_logs` → expect 0. Documents the contract-spec gap with live evidence for SOL's ruling.
+-4. **Forge probes as authenticated:** direct `insert` into audit_logs (expect 42501), `update`/`delete` own-visible row (expect 42501 revoke), and a direct attempt to invoke `audit_write()` (expect not-callable/denied — checks D-2's ACL entry is harmless in practice).
+-5. **Wrapper input fuzz on `owedbook_rows`:** `p_page=0/-1/999999`, `p_limit=0/1/1_000_000`, `p_tab` wrong-cased/null, `p_pbms` null — verify no crash, envelope sane, audit context records the *requested* values, no cross-business leakage.
+-6. **Membership-boundary matrix:** member-A→B, admin-A→B, multi→A2 (multiAdmin is NOT in A2 — must raise), admin-B→A1. Confirms `my_business_ids()` is the sole membership channel and the raise fires *before* any insert in every case.
+-7. **Service-role wrapper call:** svc calling `owedbook_kpis(A1)` — expect allowed (no revoke from service_role) and a `read_page` row with `actor_user_id` NULL / `actor_role='service_role'`. Currently untested anywhere.
+-8. **svc tamper breadth:** svc UPDATE of `old_data`/`new_data`/`context` (not just `actor_role`), svc DELETE by non-id predicate, and a live svc `TRUNCATE audit_logs` (catalog smoke proved it rolled-back; dynamic proves it live) — all expect P0001, ground truth unchanged.
+-9. **Attribution probe:** a write through a real signed-in session must carry `actor_role='authenticated'` and the right uuid even after a supabase-js token refresh mid-session (re-pins the session; verifies no `TOKEN_REFRESHED`-class attribution loss).
+-10. **Instrument hygiene re-check:** re-run `audit-catalog.mjs S1|S2` and confirm outputs reproduce green; verify `db:verify` red scope is *exactly* AC7/CF-9 and nothing else.
+-
+-## 9. BLOCKERS / REQUIRED DIRECTOR INPUT
+-
+-- **Destructive-target authorization:** items 1, 2, 4, 8, 10 wipe/replay the scratch throwaway; item 3 writes nothing but reads live data. SOL/Director must confirm the same throwaway (per `evidence/ENV_NOTE.md`) remains authorized, and whether credentials still resident in `.env.local` may be reused for QA runs (rotation status CF-4 is unknown to me).
+-- **New throwaway?** If SOL wants item 1 on a *fresh* project for independence, project creation is Director-only (cloud credential boundary).
+-- **Ruling needed:** D-1 (contract-spec: read-audit bypass) and D-3 (AC-901 erratum for `supabase/.temp/cli-latest`) — erratum-lane rows vs informational, per the erratum process.
+-- None of the above blocks recon; recon is complete.
+-
+-## 10. FINAL STATE
+-
+-`git status --short` at recon close:
+-
+-```
+- M RECOVERY.md
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/CODY_QA_RECON.md
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/QA_WORK_JOURNAL.md
+-?? agent_docs/RESPONSES/response_2026-09-15_122338_session-open-qa-standby.md
+-?? agent_docs/RESPONSES/response_2026-09-15_<recon>.md   (protocol mirror of this report)
+-?? agent_docs/SESSIONS/session_2026-09-15.md
+-(+ session-file update)
+-```
+-
+-No product file, migration, harness file, or AC text was touched. No destructive command was executed. No credential was read or printed.
+-
+-**STOP — recon complete. Awaiting SOL's adjudication before any dynamic execution.**
+-
+----
+-
+-🥄 *I looked at the camera from every angle I could without turning it on. — Cody*
+\ No newline at end of file
+diff --git a/agent_docs/RESPONSES/response_2026-09-15_141710_cody-session-recovery.md b/agent_docs/RESPONSES/response_2026-09-15_141710_cody-session-recovery.md
+deleted file mode 100644
+index b01c5f2..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-15_141710_cody-session-recovery.md
++++ /dev/null
+@@ -1,76 +0,0 @@
+-# CODY BIM-003 SESSION RECOVERY — Orientation Report (read-only)
+-
+-**Date:** 2026-09-15 14:17 · **Agent:** Cody (QA execution) · **For:** Tony (Director) / SOL (QA Lead)
+-**Scope:** orientation only — no dynamic command, no reset, no prove run, no product file touched. Read-only git inspection only.
+-
+-## ENGINE
+-
+-Cody now runs under **glm-5.3:cloud** (Claude Code harness). Previous session also glm-5.3-flash:cloud; its stop cause was a harness safety-classifier timeout, not the model's work product. Harness appears operational this session (all commands executed cleanly).
+-
+-## SPECIMEN
+-
+-- **branch:** `qa/phase-3-bim003` ✅ (matches expected)
+-- **full SHA:** `c45949ece1a17f1a3fbb299f5551f911f869c21e` ✅ (matches pinned candidate)
+-- **working-tree summary:** `M RECOVERY.md` + 6 untracked paths, all QA-session protocol artifacts (recon report, journal, helpers/, two response mirrors, session log). **Zero product files touched.** Identical to the tree the previous Cody left at handoff — no drift since the stop.
+-
+-## HANDOFF RECOVERED
+-
+-Read: `RECOVERY.md` (root, handoff block updated 2026-09-15 14:10 by prior Cody) and `agent_docs/SESSIONS/session_2026-09-15.md`.
+-
+-**Exact stop point:** static recon COMPLETE (`QA/CODY_QA_RECON.md`, 12:36) · dynamic campaign STAGED (helpers written 13:15–13:20, journal row 3 at 14:10) · **Stage A NOT executed** — the first Stage A command never ran (Claude Code Auto Bash safety-classifier timeout; classified QA-EXECUTION-INFRASTRUCTURE blocked, not a BIM-003 defect). No dynamic evidence exists.
+-
+-## QA ARTIFACTS RECOVERED
+-
+-| Artifact | Purpose | State |
+-|---|---|---|
+-| `QA/CODY_QA_RECON.md` | Recon of record: specimen pin, contract read, claim map, implementation delta, attack surface, instrument review (G-1…G-5), D-1…D-5, 10 proposed dynamic attacks | complete, unexecuted beyond static |
+-| `QA/QA_WORK_JOURNAL.md` | Append-only journal (J-13): rows 1 (recon), 2 (helpers staged), 3 (session handoff) | current |
+-| `QA/helpers/qa-reset.mjs` | Stage A canonical reset = `db-reset.mjs reset` with DB_URL/DB_RESET_ALLOW wired via `lib/env.mjs` (identical wiring to `audit-prove.mjs:23`); writes `QA/evidence/QA_A_db_reset.log` | staged, never executed; import depth fixed (5 levels) |
+-| `QA/helpers/qa-golden-attack.mjs` | Stage B oracle attacks (`action\|business\|remove-row\|add-row\|payload\|status`): snapshots committed golden, corrupts one case, runs canonical `audit:prove`, requires non-zero, restores byte-exact + sha256-verified | staged, never executed |
+-| `QA/helpers/qa-probes.mjs` | Stages C–G: C = D-1 direct member read vs wrapper audit delta · D = forgery/immutability (auth + svc + owner TRUNCATE) · E = tenant boundary matrix (self-cancelling-counter defect fixed) · F = service-role wrapper observation · G = attribution incl. session refresh | staged, never executed |
+-| `QA/evidence/`, `QA/rls-prove/` | Destinations for QA-run evidence | **both empty** — confirms zero dynamic evidence |
+-
+-Helper sanity verified read-only this session: all import targets exist on disk (`lib/env.mjs` exports `loadEnv/repoRoot/harnessRoot/CAST_PASSWORD`, `lib/db.mjs` exports `pgClient/serviceClient/anonClient`, `seed-map.json`, `audit-seed-map.json`, `db-reset.mjs`, golden file present). `loadEnv()` reaches the unprefixed SCRATCH block through the A-1 fallback map — the same canonical wiring Engineering's own `audit:prove` uses, so Stage A equivalence holds.
+-
+-## ENVIRONMENT STATE
+-
+-- **SCRATCH:** NOT touched by QA. Prior session ran zero destructive commands — the blocked command never executed. Still at whatever state Engineering's 2026-09-14 runs left it. Authorized destructive target per this prompt + `evidence/ENV_NOTE.md` (credentials rotated 2026-09-14 before P1).
+-- **REPLICA:** untouched, not authorized, not probed this session. I did not open `.env.local`.
+-- **golden:** byte-untouched — `git diff --stat` on `scripts/rls-harness/golden/audit_trail_expected.json` is EMPTY (corruption in qa-golden-attack happens only transiently inside the helper, with snapshot + sha256 restore).
+-- **dynamic campaign executed: NO.** Zero Stage A/B/C–G evidence on disk.
+-
+-## OPEN QA BOARD
+-
+-- **D-1** (contract-spec, needs live proof — Stage C): BIM-002's `user_data_select_member` lets any junction member SELECT `user_data` directly with **zero** `read_page` rows — the wrappers are not the only read channel. SOL class: CONTRACT-SPEC / THREAT-MODEL, not an implementation defect.
+-- **D-2** (informational, Stage D observes): `audit_write()` carries implicit `authenticated=X` EXECUTE from the rig default-ACL (`db-reset.mjs:98`); trigger functions aren't directly invocable, but Stage D probes direct invocation live.
+-- **D-3** (pending SOL adjudication): `supabase/.temp/cli-latest` (v2.116.0→v2.117.0) changed via Director types regen; path outside AC-901's literal permitted list — likely erratum-lane row.
+-- **D-4** (informational): `PostgrestVersion` 14.17→14.5 in the regenerated types — regen artifact, E-7 classes version-string hunks non-module; Director look suggested.
+-- **D-5** (informational): identity nomenclature asymmetry — admin-A's "A" = A1+A2, `multi`'s "A" = A1+B1; reading hazard only.
+-- **Known red:** `db:verify` AC7 / **CF-9** — pre-existing BIM-002 issue, routed to QA Cleanup, **not** a BIM-003 finding. Not reclassified.
+-- **Residuals from recon (context):** G-1 golden scope (post-watermark only, seed rows excluded by design/RISK-3) · G-2 payload depth (E-2 accepts "present"-only) · G-3 oracle same-commit authorship (procedural independence only) · G-4 AC-112 denial-vs-empty mode not pinned.
+-
+-## NEXT RUNG — STAGE A (on SOL release)
+-
+-1. Re-pin specimen (branch / full SHA / `git status --short`).
+-2. `node agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/helpers/qa-reset.mjs` — canonical db:reset + chain replay on SCRATCH (env wired silently; writes `QA/evidence/QA_A_db_reset.log`).
+-3. `npm run rls:prove` → move its timestamped evidence into `QA/rls-prove/`.
+-4. `npm run audit:prove` → move its evidence into `QA/evidence/`.
+-5. Then Stages B–I per SOL prompt #2: golden-oracle attacks (B), D-1 direct-read experiment (C), forgery/immutability (D), tenant boundaries (E), service-role observation (F), attribution (G), BIM-002 regression, final module regression.
+-
+-**Not started. This session is orientation only.**
+-
+-## DISCREPANCIES
+-
+-None material. Three notes, none blocking:
+-
+-1. **Consistent:** prompt, RECOVERY.md, journal, and on-disk state all agree on stop point, untouched SCRATCH/golden, and empty evidence dirs.
+-2. **Minor file-mapping note:** the prompt calls the reset helper `QA/helpers/qa-reset.mjs` relative to the QA folder — the actual path is `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/helpers/qa-reset.mjs` (the prompt's own "locate under" clause gives the right root; this is notation only).
+-3. **Response-mirror gap (bookkeeping observation):** the prior session's 14:10 handoff updated `RECOVERY.md` + journal row 3 but no `response_*` artifact exists for the handoff itself — the last response mirror is 12:36 (recon). Handoff content is fully recoverable from RECOVERY.md, so nothing was lost, but the RESPONSES protocol's "write before display" was not mirrored for the handoff block. Noted for SOL; no action taken.
+-
+-## READINESS
+-
+-**READY FOR SOL RELEASE**
+-
+-— STOP. Awaiting Tony/SOL before executing Stage A. —
+-
+-🥄 *I checked the camera from every angle again. Still haven't turned it on. — Cody*
+\ No newline at end of file
+diff --git a/agent_docs/RESPONSES/response_2026-09-15_144404_cody-stage-a-result.md b/agent_docs/RESPONSES/response_2026-09-15_144404_cody-stage-a-result.md
+deleted file mode 100644
+index f5b943a..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-15_144404_cody-stage-a-result.md
++++ /dev/null
+@@ -1,97 +0,0 @@
+-# CODY BIM-003 — STAGE A RESULT (for SOL adjudication)
+-
+-**Date:** 2026-09-15 14:44 · **Agent:** Cody (QA execution) · **Authorization:** SOL Stage A release (this session) · **Scope:** Stage A only — reset + rls:prove + audit:prove. No Stage B. No repair. No Gate Q.
+-
+----
+-
+-## SPECIMEN
+-
+-Re-pinned immediately before execution — matches the pinned candidate exactly:
+-
+-- **branch:** `qa/phase-3-bim003` ✅
+-- **full HEAD:** `c45949ece1a17f1a3fbb299f5551f911f869c21e` ✅
+-- **pre-execution tree:** `M RECOVERY.md` + untracked QA protocol artifacts only. No product drift. No specimen change → proceeded.
+-
+-## RESET / REPLAY
+-
+-`node agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/helpers/qa-reset.mjs`
+-
+-- **exit code:** 0
+-- **reset result:** drop event trigger → drop schema public → re-grant → bootstrap baseline (scratch-only X0 rider 3) — all ok
+-- **migration replay result:** **47/47 ok**, `0001_baseline_acknowledge.sql` … `0047_owedbook_pbm_options.sql`, zero failures
+-- **inventory:** 16 public tables, matches the expected 16-table chain
+-- **unexpected warnings/errors:** none
+-- **evidence path:** `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/evidence/QA_A_db_reset.log`
+-- **minor observation (instrument, not product):** the evidence log captures only the spawned `db-reset.mjs` child output; the helper process's own `[env] A-1 fallback in use…` provenance line lands on console only. Affects nothing; noted for completeness. The A-1 fallback line itself confirms the run targeted the unprefixed **SCRATCH** block (host `aws-1-us-west-1.pooler.supabase.com`, matches `evidence/ENV_NOTE.md`).
+-
+-## RLS PROOF (BIM-002 security baseline)
+-
+-`npm run rls:prove` — **exit 0**
+-
+-- **verdict:** `✓ ISOLATION PROVEN — chain + 18 policies + AC8 + four laws + 320 cells + scoping + 28 attacks + live-session revocation, from an empty database`
+-- **board/result counts:** 8/8 stages (wipe+chain 0001–0027 … revocation R-C) · **19 policies** in public · **320-cell matrix GREEN** · scoping GREEN · **28 attack cases, 0 breaches, 0 ground-truth mismatches** · live-session revocation + re-grant proven immediate, byte-identical token, no refresh
+-- **unexpected failures:** none. `db:verify` AC7 / CF-9 was **not** encountered by the command.
+-- **no new tenant-security regression** → proceeded.
+-- **evidence (moved from BIM-002's Engineering folder into the QA lane):** `QA/rls-prove/X5_prove_2026-09-15T0638.log` (+ `.normalised.log`) · `X5-matrix_2026-09-15T0639.log` · `X5_ac8_fresh_2026-09-15T0638.log` · `X4_scoping_2026-09-15T0639.log` · `X4_attacks_2026-09-15T0639.log` · `X4_revocation_2026-09-15T0639.log` (7 files)
+-
+-## AUDIT PROOF (BIM-003 baseline)
+-
+-`npm run audit:prove` — **exit 0** (its stage 1 wiped + replayed the chain again on SCRATCH — authorized destructive-on-target)
+-
+-- **verdict:** `✓ TRAIL PROVEN — chain 0001-0047 + immutability (6 probes) + write trail + R-8 + six wrapper reads + cross-tenant deny + admin-only visibility + golden match, from an empty database`
+-- **audit trail row count:** golden comparison — **produced 10, golden 10, 0 differing rows**
+-- **golden comparison result:** `TRAIL EXACT — every probe green and the produced trail matches the golden row-for-row` (rows after the watermark, ordered by id, id/occurred_at excluded, symbolised per E-2)
+-- **catalog/immutability results:** immutability 6 probes all green (svc/admin-A/anon × UPDATE/DELETE: P0001 below-RLS guard for svc; 42501 privilege-denied for admin-A and anon; ground truth unchanged each time)
+-- **failure-path result:** not emitted this run (failure-path is demonstrated by corrupting the golden — that is Stage B, not run)
+-- **other green checks:** AC-116/117 write trail (insert/update/delete, payload shapes, AC-119 attribution) · AC-118 R-8 (business_id NULL + context key) · AC-302 wrappers (6 calls → exactly 6 read_page rows, R-10 shapes non-empty) · AC-206 cross-tenant deny · AC-113 forged INSERT denied · AC-109…112 admin-only visibility scoping (admin-A 421 = A1+A2, member-A 0, admin-B 206, multi 424, anon 0)
+-- **unexpected warnings/errors:** none
+-- **evidence (moved from BIM-003's Engineering folder into the QA lane):** `QA/evidence/S3_audit_prove_2026-09-15T0642.log` (+ `.normalised.log`) · `S3_audit_session_2026-09-15T0643.log` · `S3_audit_session_2026-09-15T0643.produced.json` (4 files)
+-
+-**Reproducibility twin comparison (independent QA check):** QA's fresh `.normalised.log` vs Engineering's committed S3 twin (`evidence/S3_audit_prove_2026-09-14T0738.normalised.log`): **only the timestamp line differs** — same host, every evidence line identical. Engineering's S3 claims reproduce exactly on a fresh QA reset.
+-
+-## EVIDENCE
+-
+-All Stage A evidence now lives in the QA lane (fresh run artifacts were moved out of Engineering's evidence folders; both Engineering folders verified back to committed state):
+-
+-- `QA/evidence/QA_A_db_reset.log` (reset)
+-- `QA/rls-prove/` × 7 (rls:prove)
+-- `QA/evidence/` × 4 audit:prove files
+-
+-## ENVIRONMENT / RESTORATION
+-
+-- **SCRATCH:** reset + chain-replayed 3× total this stage (qa-reset, rls:prove stage 1, audit:prove stage 1) — all within the authorized destructive-on-SCRATCH scope. Now holds audit:prove's final seeded state, which Stage C–G probes expect.
+-- **REPLICA:** untouched — no prefixed env block was loaded by any command (A-1 fallback → unprefixed SCRATCH block only).
+-- **golden:** byte-untouched — `git diff` on `audit_trail_expected.json` empty. (Golden corruption is Stage B's move, not run.)
+-- **credentials:** none read or printed.
+-- **No repair attempted, no product file modified.**
+-
+-## OBSERVATIONS (for SOL — no verdicts issued)
+-
+-1. **Seed maps mutated by design:** `scripts/rls-harness/seed-map.json` + `audit-seed-map.json` show `M` — the seeder recreates rig identities every run and writes fresh UUIDs back (`lib/env.mjs:52`). Committed values were Engineering's 2026-09-14 run. **Left in place intentionally:** `qa-probes.mjs` reads these maps live for fail-closed identity asserts — reverting would break Stages C–G. SOL/Director to decide: commit QA-run values at campaign close, or restore then. Related to recon D-3 class (tracked harness state drifting from committed bytes by running the ritual).
+-2. **Evidence-path hard-coding:** both runners write fresh evidence into Engineering's evidence folders by hard-coded path; QA must relocate each time. Instrument-hygiene note only (candidate for BIM-005 CF-8 list).
+-3. **Evidence log missing the A-1 fallback provenance line** (console-only) — noted under RESET.
+-4. **Classifier timeouts recurred twice this session** (same infrastructure flake that stopped the previous session) — both on first attempt, both succeeded on retry; no command executed twice, no partial state possible (each command is a single atomic Bash invocation).
+-
+-## WORKING TREE (post-execution `git status --short`)
+-
+-```
+- M RECOVERY.md                                        ← prior session handoff (pre-existing)
+- M scripts/rls-harness/audit-seed-map.json             ← by-design seed regeneration (observation 1)
+- M scripts/rls-harness/seed-map.json                   ← by-design seed regeneration (observation 1)
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/         ← recon, journal, helpers, evidence/ (11 files), rls-prove/ (7 files)
+-?? agent_docs/RESPONSES/response_2026-09-15_122338_*.md
+-?? agent_docs/RESPONSES/response_2026-09-15_123634_*.md
+-?? agent_docs/RESPONSES/response_2026-09-15_141710_*.md
+-?? agent_docs/SESSIONS/session_2026-09-15.md
+-```
+-
+-- **Product files modified: NONE** — the only tracked changes are `RECOVERY.md` (pre-existing handoff) and the two seed maps (harness runtime state, observation 1). `src/**`, `app/**`, `components/**`, `services/**`, migrations, golden: all untouched.
+-- **Golden untouched. REPLICA untouched.**
+-
+----
+-
+-**STAGE A COMPLETE — AWAITING SOL**
+-
+-Stage B NOT executed. No Gate Q. No whole-module PASS/FAIL classification. Standing by for SOL's Stage B release (golden-oracle attacks via `qa-golden-attack.mjs`).
+-
+-🥄 *Camera's on now. Everything it saw, it wrote down. — Cody*
+\ No newline at end of file
+diff --git a/agent_docs/RESPONSES/response_2026-09-15_152858_cody-stage-b-result.md b/agent_docs/RESPONSES/response_2026-09-15_152858_cody-stage-b-result.md
+deleted file mode 100644
+index e278238..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-15_152858_cody-stage-b-result.md
++++ /dev/null
+@@ -1,46 +0,0 @@
+-# CODY BIM-003 — STAGE B RESULT (golden-oracle attack battery, for SOL adjudication)
+-
+-**Date:** 2026-09-15 15:28 · **Agent:** Cody (QA execution) · **Authorization:** SOL Stage B release · **Scope:** Stage B only. No Stage C. No repair. No Gate Q.
+-
+-## CASE RESULTS
+-
+-| case | expected | observed | exit | mismatch detected | restored |
+-|---|---|---|---|---|---|
+-| `action` (row 1 insert→delete) | audit:prove non-zero, names the row | exit 8 · `DIFF at row 1` · row count ok 10/10 · `FAIL 1 differing row(s)` | **8** | ✅ yes — row identified | ✅ byte-identical ✓ |
+-| `business` (row 1 A1→B1) | audit:prove non-zero, names the row | exit 8 · `DIFF at row 1` · row count ok · `FAIL 1 differing row(s)` | **8** | ✅ yes — row identified | ✅ byte-identical ✓ |
+-| `remove-row` (row 3 removed, golden 9) | audit:prove non-zero, catches missing row | exit 8 · `FAIL row count: produced 10, golden 9` · DIFF at rows 3–10 · `FAIL 8 differing row(s)` | **8** | ✅ yes — count + rows identified | ✅ byte-identical ✓ |
+-| `add-row` (extra row 11, golden 11) | audit:prove non-zero, catches extra row | exit 8 · `FAIL row count: produced 10, golden 11` · `DIFF at row 11` · `FAIL 1 differing row(s)` | **8** | ✅ yes — count + row identified | ✅ byte-identical ✓ |
+-| `payload` (row 2 old_data present→null) | audit:prove non-zero, names the row | exit 8 · `DIFF at row 2` · row count ok · `FAIL 1 differing row(s)` | **8** | ✅ yes — row identified | ✅ byte-identical ✓ |
+-
+-**All five cases: non-zero, mismatch detected, evidence sufficient to diagnose (row number + count FAIL where applicable), golden restored byte-exact before the next case ran. NO FALSE-GREEN. The HIGH-SEVERITY stop rule never fired.**
+-
+-## SHA / RESTORATION
+-
+-- **Original golden SHA-256:** `c30bfcddf88b164d912f656369edd73e7b0eb79b512f58bc819eb095894ccd4f` (recorded before case 1; `git diff` empty = byte-identical to commit `c45949e`)
+-- **Final golden SHA-256:** `c30bfcddf88b164d912f656369edd73e7b0eb79b512f58bc819eb095894ccd4f`
+-- **Restoration status:** helper's `status` case → `IDENTICAL — golden is byte-for-byte the committed specimen` (exit 0) · `git diff` on the golden → **empty** · SHA identical before/after.
+-
+-## PRODUCT TREE / ENVIRONMENT
+-
+-- **Product-tree status:** unchanged from Stage A — only `M RECOVERY.md` + `M seed-map.json` + `M audit-seed-map.json` (SOL-carried runtime state, untouched this stage beyond by-design regen by each run) + untracked QA/protocol artifacts. **No product file modified. Golden untouched at close.**
+-- **SCRATCH status:** reset + replayed 5 more times (one per corrupted case, via audit:prove stage 1 — authorized destructive-on-target). Now holds the last (payload-case) run's state; Stage C should re-run `audit:prove` or its own reset per SOL's next release — SOL to specify. Seed maps regenerated again per run (SOL disposition carried: preserve for C–G).
+-- **REPLICA status:** untouched — no prefixed env block loaded by any command.
+-
+-## EVIDENCE
+-
+-- `QA/evidence/QA_B_golden_attack_<case>.log` + `QA_B_golden_attack_<case>_full.log` × 5 cases (helper-filtered + full audit:prove console)
+-- `QA/evidence/golden_committed_copy.json` (snapshot taken before case 1, byte-copy of the committed golden — itself re-verified by the `status` case)
+-- 5 corrupted-run `S3_audit_prove_*` / `S3_audit_session_*` evidence sets (timestamps T0714…T0726) — relocated from Engineering's evidence folder into `QA/evidence/`; Engineering folder verified back to committed state.
+-- Journal row 5: `QA/QA_WORK_JOURNAL.md`.
+-
+-## UNEXPECTED OBSERVATIONS
+-
+-1. None affecting the verdict. One instrument-hygiene repeat from Stage A: each of the 5 corrupted runs wrote fresh evidence into Engineering's evidence folder (hard-coded path); relocated to the QA lane after the battery (SOL already carries this as a hygiene observation).
+-2. Shell-glob overlap during relocation briefly errored on already-moved `.normalised.log` files — verified net-zero effect; Engineering folder confirmed at committed state afterward.
+-3. Oracle behavior worth noting (positive): `remove-row` and `add-row` both tripped the **row-count check first** (`FAIL row count`) in addition to row-level diffs — missing/extra-row mutations are caught twice over. Recon's residual-risk confidence for G-1/G-2 (missing/extra detection) is now live-proven.
+-
+-**STAGE B COMPLETE — AWAITING SOL**
+-
+-Stage C (D-1 direct-read experiment via `qa-probes.mjs C`) NOT executed — staged, awaiting SOL release.
+-
+-🥄 *I fed the oracle five lies. It called out every single one by row number. — Cody*
+\ No newline at end of file
+diff --git a/agent_docs/RESPONSES/response_2026-09-15_170730_cody-stages-c-i-preq-report.md b/agent_docs/RESPONSES/response_2026-09-15_170730_cody-stages-c-i-preq-report.md
+deleted file mode 100644
+index 2944ded..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-15_170730_cody-stages-c-i-preq-report.md
++++ /dev/null
+@@ -1,126 +0,0 @@
+-# CODY BIM-003 — STAGES C–I PRE-Q REPORT (consolidated, for SOL adjudication)
+-
+-**Date:** 2026-09-15 17:07 · **Agent:** Cody (QA execution; session resumed after a CLI bounce at ~16:55, Stages H+I completed by the replacement session) · **Authorization:** SOL's autonomous Stages C–I release (Director-carried) · **Scope:** Stages C–I only. No repair. No Gate Q verdict. No git mutation. No REPLICA contact.
+-
+-> **Format note for SOL:** the release text carrying the stop conditions and the 12-section report format did not survive the bounce (not on disk; not re-pasted). The twelve sections below are reconstructed from the Stage A/B artifacts and the recon structure. If SOL's numbering differs, the content maps 1:1 by stage — re-slot, don't re-run.
+-
+-## 1. SPECIMEN
+-
+-| Item | Value |
+-|---|---|
+-| Branch | `qa/phase-3-bim003` ✅ (re-pinned at 17:01 after the bounce and again at 17:06 at close) |
+-| HEAD | `c45949ece1a17f1a3fbb299f5551f911f869c21e` ✅ — unchanged across the whole campaign |
+-| Product tree | **untouched** — tracked changes are exactly `RECOVERY.md` + the two seed maps (harness runtime state, SOL-carried) |
+-| Golden | SHA-256 `c30bfcddf88b164d912f656369edd73e7b0eb79b512f58bc819eb095894ccd4f` at close · `git diff` on `golden/` **EMPTY** |
+-
+-## 2. AUTHORIZATION, STOP CONDITIONS, AND THE BOUNCE
+-
+-- **Release:** Stages C–I autonomous. C–G executed in the prior session (16:35–16:47), H+I in this one (17:02–17:06).
+-- **Stop conditions:** cross-tenant PHI leakage, persistent mutation of audit history through a forbidden channel, golden false-green, rls:prove regression, triad regression. **None fired.**
+-- **The bounce:** Stage H attempted ~16:50 pre-bounce reached the matrix stage then the CLI died. Two partial files (matrix GREEN, ac8 GREEN, no prove/scoping/attacks/revocation) relocated to `QA/rls-prove/ABORTED-*T0855.log` — audit trail only, **not** proof evidence. Engineering's folder verified clean before the real run.
+-- **Instrument repair (pre-C, journal row 6):** `qa-probes.mjs` client-shape bug, 2 lines, instrument only, crash was pre-mutation.
+-
+-## 3. STAGE C — D-1 DIRECT MEMBER READ vs WRAPPER (exit 0)
+-
+-| Channel | Identity | Result | read_page delta | Attribution |
+-|---|---|---|---|---|
+-| DIRECT `user_data` SELECT | member-A (staffA, MEMBER of A1 only) | **ALLOWED — 204 rows** = svc ground truth; every row in staffA's set | **+0** | none |
+-| WRAPPER `owedbook_kpis(A1)` | member-A | **ALLOWED** | **+1** | staffA / authenticated |
+-
+-**D-1 CONFIRMED LIVE.** Implementation matches the frozen contract (BIM-002's `user_data_select_member`); Brief §1 prose overstates. **Class stays CONTRACT-SPEC / THREAT-MODEL — not an implementation defect.**
+-
+-## 4. STAGE D — FORGERY / IMMUTABILITY (exit 0 · 10/10 attack invocations denied · state UNCHANGED after each)
+-
+-| # | Channel | Attack | Observed | Ground truth after |
+-|---|---|---|---|---|
+-| 1 | auth | forged INSERT | **42501** RLS | count unchanged |
+-| 2 | auth | UPDATE row 1 | **42501** privilege revoked (RF-3) | actor_role unchanged |
+-| 3 | auth | DELETE row 1 | **42501** | count unchanged |
+-| 4 | auth | **D-2:** direct RPC `audit_write()` | **PGRST202** function not found in schema cache | never reached SQL |
+-| 5–8 | svc | UPDATE actor_role / old_data / new_data / context | **P0001** "append-only" each | row byte-identical |
+-| 9 | svc | DELETE row 1 | **P0001** | count 640 unchanged |
+-| 10 | owner | `TRUNCATE audit_logs` | **P0001** (R-6a statement guard) | count unchanged |
+-
+-**Zero persistent mutations.** Count note: the log carries 10 attack invocations plus two ground-truth re-reads; journal row 8's "12 attacks" counts the re-reads. The log is authoritative. **D-2 shape:** refused at PostgREST function-resolution, so the implicit `authenticated=X` ACL is unreachable via the API. AC-114's letter satisfied.
+-
+-## 5. STAGE E — TENANT BOUNDARY MATRIX (exit 0 · 8/8 refused · control green)
+-
+-| Caller → target | kpis | rows | PHI | read_page |
+-|---|---|---|---|---|
+-| member-A → B1 · admin-A → B1 · admin-B → A1 · multi → A2 | P0001 "not a member" | P0001 | none | +0 |
+-| **control** member-A → `owedbook_kpis(A1)` | ✅ expected envelope | — | own tenant | **+1** |
+-
+-Every refusal fires pre-read. D-5's asymmetry handled live (multi correctly refused on A2).
+-
+-## 6. STAGE F — SERVICE-ROLE WRAPPER OBSERVATION (exit 0)
+-
+-`svc.rpc owedbook_kpis(A1)` and `(B1)` → **DENIED, P0001**, +0 read_page. **Disproves recon §5 item 3's static expectation.** With service_role, `auth.uid()` is NULL → `my_business_ids()` empty → fence raises before any read. **No unaudited service-role wrapper read channel exists.** Recommend recording as a positive finding.
+-
+-## 7. STAGE G — ATTRIBUTION incl. REAL TOKEN REFRESH (exit 0)
+-
+-Audited write attributed correctly (admin-A / authenticated / A1 / insert / pk). Real `refreshSession()` succeeded. Both wrapper read_page rows carry the **same identity across the refresh**. Tidy delete audited. Residue rows = mechanism working as designed.
+-
+-## 8. STAGE H — `npm run rls:prove` post-destructive — exit 0
+-
+-Evidence: `QA/rls-prove/X5_prove_2026-09-15T0902.log` (+normalised) and 5 siblings (T0903/T0904), relocated; Engineering folder clean.
+-
+-- **Verdict:** `✓ ISOLATION PROVEN` · 17:02:51 → 17:04:23
+-- 8/8 stages: chain **47/47** · AC8 from scratch GREEN · **19 policies** · **320 cells / 0 mismatches** · SCOPING EXACT · **28 attacks / 0 breaches / 0 ground-truth mismatches** · **R-C PROVEN** on a byte-identical token
+-- A8.3: staffA reads `audit_logs` → DENY while svc sees 634 rows.
+-- Twin vs Stage A: one runtime line (`purged 5` vs `4 pre-existing auth.users`); every proof line identical.
+-
+-## 9. STAGE I — TRIAD + FINAL `audit:prove`
+-
+-Exact S3 commands, `QA/evidence/QA_I_triad_2026-09-15T1705.log`:
+-
+-| Command | Expected | Observed | Exit |
+-|---|---|---|---|
+-| `npm run build` | 22 routes | **22 routes**, tree identical to S3 | **0** |
+-| `npx tsc --noEmit` | 0 | 0 | **0** |
+-| `npm test` | 28 / 128 / 0 | **28 passed / 128 passed / 0** | **0** |
+-
+-**Final `npm run audit:prove`** — exit 0 · 17:05:36 → 17:06:38 · `QA/evidence/S3_audit_prove_2026-09-15T0905.log` (+3 siblings), relocated; Engineering folder clean.
+-
+-- **Verdict:** `✓ TRAIL PROVEN` · 6 tamper probes green · write trail + attribution · R-8 · six wrapper calls → six read_page rows · cross-tenant deny · AC-113 · scoping admin-A 421 / member-A 0 / admin-B 206 / multi 424 / anon 0 · **golden produced 10 / golden 10 / 0 diffs → TRAIL EXACT**
+-- **Twins:** vs Stage A (T0642) and vs Engineering committed (T0738) → **timestamp line only, both.** Three from-empty runs across two days, byte-identical evidence bodies.
+-
+-## 10. FINDING BOARD (provisional — SOL adjudicates)
+-
+-| ID | Dynamic outcome | Class | Ask |
+-|---|---|---|---|
+-| **D-1** | CONFIRMED LIVE (Stage C) | **contract-spec / threat-model** | Erratum amending Brief §1 wording, or follow-on module. Not a BIM-003 defect. |
+-| **D-2** | PGRST202; ACL unreachable via API; no forge path | informational | Record shape |
+-| **D-3** | static only | QA-instrument / informational | AC-901 erratum row, Director's call |
+-| **D-4** | static only | informational | Director one-look at regen target |
+-| **D-5** | multi→A2 refused; scoping counts grade correctly | informational, no live hazard | None |
+-| **F-obs** | svc wrapper DENIED, no unaudited channel | positive finding | Note in WRAPPER_CONTRACT |
+-| G-1/G-2 | Stage B live-proved 5/5 | bounded, non-blocking | None |
+-| CF-9 | not encountered | pre-existing BIM-002, not a finding | None |
+-
+-**Implementation defects found across Stages A–I: ZERO.**
+-
+-## 11. ENVIRONMENT / RESTORATION / WORKING TREE
+-
+-- **SCRATCH:** now holds the final audit:prove's seeded state. All wipes authorized. **REPLICA untouched** (A-1 fallback → unprefixed SCRATCH only). **Golden byte-untouched.**
+-- **Seed maps:** regenerated again by Stage H and final audit:prove. Disposition = QA Cleanup, not restored by me.
+-- **Credentials:** none read or printed.
+-- **Working tree:** `M RECOVERY.md` + 2 seed maps; untracked `QA/` (evidence ×47, rls-prove ×16, helpers ×3, recon, journal), `RESPONSES/` ×6, session log. **No product file modified.**
+-- **Infra:** zero classifier timeouts in the resumed session.
+-
+-## 12. EVIDENCE MAP + CLOSE
+-
+-All under `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/`: A → `evidence/QA_A_*`, `rls-prove/*T0638-39*`, `evidence/S3_*T0642-43*` · B → `evidence/QA_B_*`, `S3_*T0714…T0726*` · C–G → `evidence/QA_{C,D,E,F,G}_probes_*` · H → `rls-prove/*T0902-04*` + `ABORTED-*T0855*` · I → `evidence/QA_I_triad_*T1705*`, `S3_*T0905-06*` · journal rows 1–14.
+-
+-**Bookkeeping asks for SOL:** (a) D-1 ruling; (b) D-3 erratum row; (c) seed-map disposition; (d) `ABORTED-*` partials keep/delete; (e) runner evidence-path hard-coding as CF-8 candidate.
+-
+-**PRE-Q C–I COMPLETE — AWAITING SOL ADJUDICATION**
+-
+----
+-
+-```
+-🔔 GIT REMINDER — uncommitted work:
+-  Entire QA lane (campaign A–I evidence, helpers, journal, recon, C–I report),
+-  6 RESPONSES artifacts, session log, RECOVERY.md, 2 seed maps (by-design regen).
+-Suggested: git add -A && git commit -m "15sep2026 - BIM-003 QA - Cody stages A-I green, C-I pre-Q report, awaiting SOL"
+-→ Your call. I will not run it.
+-```
+diff --git a/agent_docs/RESPONSES/response_2026-09-15_172400_qa-cleanup-disposition-j19.md b/agent_docs/RESPONSES/response_2026-09-15_172400_qa-cleanup-disposition-j19.md
+deleted file mode 100644
+index 493fe20..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-15_172400_qa-cleanup-disposition-j19.md
++++ /dev/null
+@@ -1,194 +0,0 @@
+-# BIM-003 — QA CLEANUP DISPOSITION (J-19) · after GATE Q PASS
+-
+-**Date:** 2026-09-15 17:24 · **From:** Fable (Engineer seat, drafting on SOL's instruction) · **To:** SOL (certification authority) · Tony (git authority) · Cody (execution seat)
+-**Certified specimen:** `c45949ece1a17f1a3fbb299f5551f911f869c21e` on `qa/phase-3-bim003` · **Gate Q:** PASS (SOL, 2026-09-15) · **Status of this document:** PROPOSAL — nothing below has been executed. No file deleted, no map restored, no git command run.
+-
+-> J-19 itself is not on disk (`WEB_FACTORY_P1_DOCTRINE_JOURNAL.md` is referenced by `AUTHORITY_POINTER.md` but not present); the on-disk pointer is `QA/README.md`: "ruling packages, adjudication records, and the durable certification package (J-19) live here." BIM-002's Gate Q package is the precedent used throughout.
+-
+----
+-
+-## 0. WORKING TREE AS INSPECTED (17:23)
+-
+-| Path | State | Count |
+-|---|---|---|
+-| `RECOVERY.md` | M | 1 |
+-| `scripts/rls-harness/seed-map.json` · `audit-seed-map.json` | M — ids only (18 uuid lines each way), rewritten by `seed.mjs` / `audit-seed.mjs` on every run | 2 |
+-| `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/` | ?? — README (tracked) + recon + journal + `helpers/` ×3 + `evidence/` ×47 + `rls-prove/` ×16 | 68 |
+-| `agent_docs/RESPONSES/response_2026-09-15_*` | ?? — 6 Cody/Fable artifacts + this one | 7 |
+-| `agent_docs/SESSIONS/session_2026-09-15.md` | ?? | 1 |
+-| `src/**` · `supabase/migrations/**` · `scripts/**` (other than the two maps) · `package.json` · golden | **clean** — `git diff --name-only` minus RECOVERY + maps = empty; golden SHA `c30bfcdd…cd4f` | 0 |
+-| Engineering `evidence/` folders (BIM-002, BIM-003) | **clean** — no untracked files | 0 |
+-
+-## 1. DURABLE — the certification package (keep, commit)
+-
+-| Item | Path | Why durable |
+-|---|---|---|
+-| Recon | `QA/CODY_QA_RECON.md` | Finding board source (D-1…D-5, G-1…G-5); BIM-002 kept `QA_RECON_REPORT.md` |
+-| Journal | `QA/QA_WORK_JOURNAL.md` (rows 1–14) | J-13 record of every helper, mutation, restoration |
+-| Lane README | `QA/README.md` | tracked already |
+-| Helpers | `QA/helpers/qa-reset.mjs` · `qa-golden-attack.mjs` · `qa-probes.mjs` | Reproducibility instruments; journal rows 2/6 point at them; BIM-002 kept `QA/probes/` |
+-| Stage A evidence | `evidence/QA_A_db_reset.log` · `S3_audit_prove_…T0642.log` + `.normalised.log` · `S3_audit_session_…T0643.log` + `.produced.json` · `rls-prove/*T0638*` + `*T0639*` (7) | First independent from-empty reproduction; twin-diff basis |
+-| Stage B evidence | `evidence/QA_B_golden_attack_<action,business,remove-row,add-row,payload>.log` + `_full.log` (10) · `golden_committed_copy.json` | The 5/5 oracle proof; `_full.log` = complete audit:prove console per case |
+-| Stage C–G evidence | `evidence/QA_{C,D,E,F,G}_probes_*.log` (5) | The attack results SOL adjudicated |
+-| Stage H evidence | `rls-prove/*T0902*` · `*T0903*` · `*T0904*` (7) | Post-destructive isolation proof |
+-| Stage I evidence | `evidence/QA_I_triad_…T1705.log` · `S3_audit_prove_…T0905.log` + `.normalised.log` · `S3_audit_session_…T0906.log` + `.produced.json` | Final candidate-green + triad |
+-| SOL's certification | `QA/GATE_Q_REPORT_BIM-003-CYBER-PHARMA_PASS.md` — **SOL writes** (BIM-002 shape: verdict, Final-SHA Integrity with protected-path diff, discrepancies, status) | J-19 package anchor |
+-
+-**Durable QA/ total after cleanup: 47 files** (README 1 + recon 1 + journal 1 + helpers 3 + evidence 27 + rls-prove 14) **+ SOL's Gate Q report = 48.**
+-
+-## 2. DISPOSABLE — execution debris (delete, 22 files)
+-
+-| Files | Count | Why disposable (verified, not assumed) |
+-|---|---|---|
+-| `evidence/S3_audit_prove_2026-09-15T07{14,17,19,22,25}.log` + `.normalised.log` | 10 | Byte-duplicates of the matching `QA_B_*_full.log` — diff on the `action` case differs only in the npm banner and the runner's evidence-pointer line |
+-| `evidence/S3_audit_session_2026-09-15T07{15,18,21,23,26}.log` + `.produced.json` | 10 | Session console is embedded in the `_full.log`; all five `.produced.json` are `cmp`-identical to Stage A's T0643 (the golden was corrupted, the produced trail never was) |
+-| `rls-prove/ABORTED-X5-matrix_…T0855.log` · `ABORTED-X5_ac8_fresh_…T0855.log` | 2 | See §4 |
+-
+-Nothing outside the repo needs action (scratchpad captures are session-scoped and already off-tree).
+-
+-## 3. SEED MAPS — RESTORE to the certified bytes (do not commit QA values)
+-
+-**Disposition:** restore `scripts/rls-harness/seed-map.json` and `audit-seed-map.json` to their `c45949e` content.
+-
+-**Why restore, not commit:**
+-- Both files are ids only. `prove.mjs` runs SEED (stage 2/8) before every consumer (`harness.mjs`, `scoping.mjs`, `revocation.mjs`, `audit-wrappers.mjs`); `audit-prove.mjs` runs SEED + AUDIT-SEED (2/4, 3/4) before the session (4/4). Whatever bytes are on disk are overwritten before they are read. Restoring cannot break a run.
+-- The Gate Q **Final-SHA Integrity** check (BIM-002 precedent) is "protected-path diff between PRE-Q specimen and certification SHA: EMPTY" over `supabase/migrations/`, `scripts/rls-harness/`, `scripts/db-reset.mjs`, `src/`, `package.json`. Committing QA-run ids would put a `scripts/rls-harness/` hunk into the QA-close commit and force SOL to re-explain the fence. Restoring keeps it literally empty.
+-- **How, without git mutation** (read-only `git show` + file write; `git checkout --` is forbidden to the agent): see §11 step 3. Director may equally run `git checkout -- <the two maps>` himself.
+-- **Hygiene carry (CF-8 candidate, BIM-005):** the maps are runtime state that git tracks — ignore them or write them under `evidence/`. Not changed now (harness path is protected).
+-
+-## 4. ABORTED-* PARTIAL RLS LOGS — DELETE
+-
+-The two T0855 files are from the pre-bounce Stage H attempt that died after the matrix stage: no `X5_prove`, scoping, attacks or revocation logs, so no verdict. Their existence, cause and non-proof status are durably recorded in journal row 12 and the C–I report §2. The bytes add nothing SOL graded, and keeping `ABORTED-*` files inside a certification package invites a future reader to mistake them for a failed proof. Delete.
+-
+-## 5. RECOVERY.md / SESSION / RESPONSE ARTIFACTS — KEEP IN THEIR PROTOCOL HOMES
+-
+-- `RECOVERY.md` (root) and `agent_docs/SESSIONS/session_2026-09-15.md` — protocol files, commit as-is with the QA-close commit; RECOVERY gets one more update at cleanup completion.
+-- `agent_docs/RESPONSES/response_2026-09-15_*` ×7 (+1 for the cleanup result) — stay where the RESPONSE LOGGING PROTOCOL puts them. **No copies into `QA/RESPONSE/`.** BIM-002 copied its responses into `QA/RESPONSE/` because `qa/bim002` was a disposable branch that was deleted unmerged; `qa/phase-3-bim003` merges to `main` per module CLAUDE.md §12, so `agent_docs/RESPONSES/` survives on its own. SOL may override for precedent parity — then step 6 in §11 is a plain `cp`.
+-
+-## 6. TEMPORARY QA HELPER SCRIPTS — KEEP, UNCHANGED
+-
+-`QA/helpers/` ×3 stay (durable, §1). They are the only way to re-run C–G; BIM-002 kept `QA/probes/` for the same reason. No edits — the 2-line client-shape fix (journal row 6) is already the version that produced the evidence.
+-
+-## 7. RUNNER EVIDENCE-PATH HARD-CODING — CF-8 (already recorded) + QA corroboration line
+-
+-Already durable: `RULINGS_ADDENDUM.md` "CF-8 additions" bullet and the RETROSPECTIVE ledger row (owner BIM-005). QA adds one fact: **`audit-prove.mjs` also hard-writes into BIM-003's Engineering `evidence/` folder** (the recorded item names only rls-prove → BIM-002's). QA relocated evidence 12 times this campaign. **Proposed append to the CF-8 bullet** (append-only file, SOL/Architect writes):
+-
+-> `— QA corroboration (Gate Q 2026-09-15): audit-prove.mjs likewise hard-writes to ACTIONS/BIM-003-CYBER-PHARMA/evidence/; QA relocated runner output 12× during A–I. Fix in BIM-005 = evidence root by module + env override.`
+-
+-## 8. D-1 — DURABLE RECORD (no AC text, no Brief text changes)
+-
+-D-1 contradicts no AC (every read-audit AC is wrapper-scoped), so the erratum lane is the wrong home. Three appends, all append-only files:
+-
+-**(a) `RULINGS_ADDENDUM.md` — new carried flag, proposed text:**
+-
+-> `- CF-10 (carried flag, QA D-1, SOL Gate Q 2026-09-15 — contract/threat-model gap, NOT a BIM-003 defect): an authorized junction member can SELECT user_data directly via PostgREST (BIM-002's certified user_data_select_member, 0021:28-30) and receive patient-shaped rows with zero read_page audit rows; the owedbook_* wrappers audit correctly (+1 per call, Stage C). Brief §1 "every read of patient-shaped data … leaves a row" is stronger than the frozen architecture guarantees: the DB layer audits wrapper reads only. Routes: (1) Architect — doctrine/campaign-map note that read audit is wrapper-scoped at the DB layer; (2) BIM-005 — the service swap must route every OwedBook read through the wrappers (the app-layer guarantee); (3) Deferred Ledger — closing direct member SELECT on user_data at the DB layer is a permissions-v2 / later-phase decision, not this module's.`
+-
+-**(b) `RETROSPECTIVE.md` Deferred Ledger table — one row:**
+-
+-> `| Direct member SELECT on user_data is unaudited at the DB layer (read audit = wrapper reads only) | QA D-1 / CF-10 — BIM-002's certified member SELECT policy vs Brief §1 prose | BIM-005 (app-layer routing) · permissions-v2 (DB-layer closure, if ever) |`
+-
+-**(c) SOL's Gate Q report** — D-1 disposition paragraph as SOL wrote it in the handoff.
+-
+-Not proposed: an erratum row (nothing literal to correct), a Brief §1 rewrite (frozen), a BIM-003 repair (SOL: not a defect).
+-
+-## 9. D-3 — DURABLE RECORD: erratum row E-8 on AC-901
+-
+-Literal variance against a frozen AC → erratum lane, in the existing column format. **Proposed row (SOL authors; Director approves):**
+-
+-> `| E-8 | AC-901 | QA recon D-3, SOL Gate Q 2026-09-15 | git diff 0e4e17e..c45949e touches supabase/.temp/cli-latest (2.116.0 → 2.117.0), a path outside AC-901's list | Supabase CLI cache file written by the Director-run types regen (AC-307, E-7 class); generator artifact, not a module change. AC-901 graded PASS WITH NOTE. Hygiene: add supabase/.temp/ to .gitignore in a later module (product-tree change, not now). | QA/CODY_QA_RECON.md §7 D-3 · git diff 0e4e17e..c45949e -- supabase/.temp/cli-latest | SOL-ruled · Director-approved (pending) |`
+-
+-## 10. CLEAN-TREE EXPECTATIONS BEFORE THE DIRECTOR COMMITS
+-
+-After §11 runs and the doc rows are appended, `git status --short` must show **exactly**:
+-
+-```
+- M CHANGELOG.md                                                   (cleanup entry)
+- M RECOVERY.md
+- M agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md   (E-8 row only — erratum lane)
+- M agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RETROSPECTIVE.md            (one ledger row)
+- M agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RULINGS_ADDENDUM.md         (CF-10 + CF-8 line)
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/CODY_QA_RECON.md
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/GATE_Q_REPORT_BIM-003-CYBER-PHARMA_PASS.md   (SOL)
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/QA_WORK_JOURNAL.md
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/evidence/        (27 files)
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/helpers/         (3 files)
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/rls-prove/       (14 files)
+-?? agent_docs/RESPONSES/response_2026-09-15_*.md               (8 files)
+-?? agent_docs/SESSIONS/session_2026-09-15.md
+-```
+-
+-**Must be absent:** the two seed maps · anything under `src/`, `supabase/`, `scripts/`, `package.json` · any untracked file in either Engineering `evidence/` folder · any `ABORTED-*` or `S3_*T07xx` file.
+-
+-**Fence check (Final-SHA Integrity, SOL runs or reads):**
+-```
+-git diff c45949e --stat -- supabase/migrations scripts src package.json      → (empty)
+-git status --short -- ".env*"                                                 → (empty)
+-sha256sum scripts/rls-harness/golden/audit_trail_expected.json                → c30bfcdd…cd4f
+-```
+-
+-**Sequence after that (not this document's to execute):** SOL writes the Gate Q report and flips the spec lifecycle to QA-VERIFIED pinning `c45949e` → Director makes **one** QA-close commit (docs + QA package only; the implementation hash under it is unchanged) → Architect closeout instruction → Director merges `qa/phase-3-bim003` → `main`. **Commit wording deliberately withheld here per SOL.**
+-
+-## 11. EXACT CLEANUP INSTRUCTIONS FOR THE EXECUTION SEAT (Cody) — run only after SOL + Director say "go"
+-
+-All paths relative to repo root. Every step is idempotent and verifiable. No git mutation anywhere.
+-
+-**Step 1 — re-pin and pre-verify (read-only):**
+-```
+-git branch --show-current && git rev-parse HEAD        # expect qa/phase-3-bim003 · c45949ece1a17f1a3fbb299f5551f911f869c21e
+-cd agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/evidence
+-for t in 0715 0718 0721 0723 0726; do cmp S3_audit_session_2026-09-15T0643.produced.json S3_audit_session_2026-09-15T${t}.produced.json && echo "T$t dup OK"; done
+-cd - >/dev/null
+-```
+-Stop if any `cmp` reports a difference — that file is then evidence, not debris.
+-
+-**Step 2 — delete the 22 disposable files:**
+-```
+-cd agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA
+-rm evidence/S3_audit_prove_2026-09-15T07{14,17,19,22,25}.log evidence/S3_audit_prove_2026-09-15T07{14,17,19,22,25}.normalised.log
+-rm evidence/S3_audit_session_2026-09-15T07{15,18,21,23,26}.log evidence/S3_audit_session_2026-09-15T07{15,18,21,23,26}.produced.json
+-rm rls-prove/ABORTED-X5-matrix_2026-09-15T0855.log rls-prove/ABORTED-X5_ac8_fresh_2026-09-15T0855.log
+-ls evidence | wc -l    # expect 27
+-ls rls-prove | wc -l   # expect 14
+-cd - >/dev/null
+-```
+-
+-**Step 3 — restore the seed maps to the certified bytes (read-only git + file write):**
+-```
+-git show c45949e:scripts/rls-harness/seed-map.json       > scripts/rls-harness/seed-map.json
+-git show c45949e:scripts/rls-harness/audit-seed-map.json > scripts/rls-harness/audit-seed-map.json
+-git status --short scripts/                               # expect empty
+-```
+-
+-**Step 4 — doc rows (SOL/Architect author; Cody may paste the exact text from §7, §8(a), §8(b), §9 on instruction):** append CF-10 + the CF-8 line to `RULINGS_ADDENDUM.md`; one row to `RETROSPECTIVE.md` ledger table; E-8 to the spec's Erratum Lane (append-only, below E-7). Never touch AC text.
+-
+-**Step 5 — CHANGELOG entry** (`CHANGELOG.md`, top, per protocol): `[CC]` line listing the three doc files + the QA package, reason "BIM-003 QA Cleanup (J-19) after SOL Gate Q PASS 2026-09-15".
+-
+-**Step 6 (only if SOL orders precedent parity):** `mkdir -p agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/RESPONSE && cp agent_docs/RESPONSES/response_2026-09-15_*.md agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/RESPONSE/`
+-
+-**Step 7 — journal row 15 + RECOVERY + response mirror:** journal row 15 = "QA CLEANUP EXECUTED" (files removed, maps restored, counts); RECOVERY → "QA CLEANUP COMPLETE — awaiting SOL certification package + Director commit"; `agent_docs/RESPONSES/response_<ts>_qa-cleanup-result.md`.
+-
+-**Step 8 — clean-tree proof (paste to SOL):** the three fence commands from §10 plus `git status --short`, and `git status --short agent_docs/ACTIONS/BIM-00{2,3}-CYBER-PHARMA/evidence/` (expect empty).
+-
+-## 12. EXPECTED FINAL DURABLE QA PACKAGE
+-
+-```
+-agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/
+-├── README.md                                    (tracked)
+-├── GATE_Q_REPORT_BIM-003-CYBER-PHARMA_PASS.md   (SOL — verdict, Final-SHA Integrity, dispositions D-1…D-5/F-obs/G/CF-9)
+-├── CODY_QA_RECON.md
+-├── QA_WORK_JOURNAL.md                           (rows 1–15)
+-├── helpers/   qa-reset.mjs · qa-golden-attack.mjs · qa-probes.mjs                          (3)
+-├── evidence/  QA_A_db_reset.log · QA_B_* ×10 · golden_committed_copy.json · QA_{C..G}_probes ×5 ·
+-│              QA_I_triad_*T1705.log · S3_*T0642/T0643 ×4 · S3_*T0905/T0906 ×4                (27)
+-└── rls-prove/ Stage A *T0638/T0639 ×7 · Stage H *T0902/T0903/T0904 ×7                       (14)
+-                                                                                    = 48 files
+-+ agent_docs/RESPONSES/response_2026-09-15_* ×8  (protocol home; copies into QA/RESPONSE/ only on SOL's say-so)
+-+ agent_docs/SESSIONS/session_2026-09-15.md · RECOVERY.md
+-+ contract-layer appends: RULINGS_ADDENDUM (CF-10, CF-8 line) · RETROSPECTIVE (ledger row) · spec Erratum Lane (E-8) · CHANGELOG
+-```
+-
+-**Adjudication asks for SOL (this document's own):** (1) approve the 22-file disposable set; (2) approve RESTORE for the seed maps; (3) approve DELETE for the ABORTED partials; (4) confirm no `QA/RESPONSE/` copies; (5) accept or amend the CF-10, E-8, CF-8 and ledger wording; (6) release Cody to run §11 steps 1–3, 5–8 (step 4 = SOL/Architect).
+-
+-**Bookkeeping (Fable, this turn):** session-file PENDING_APPROVAL entry written · RECOVERY.md pointer updated · this artifact filed. Nothing executed.
+-
+-**AWAITING SOL + DIRECTOR APPROVAL — CLEANUP NOT EXECUTED**
+diff --git a/agent_docs/RESPONSES/response_2026-09-15_173300_qa-cleanup-result.md b/agent_docs/RESPONSES/response_2026-09-15_173300_qa-cleanup-result.md
+deleted file mode 100644
+index d0f2300..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-15_173300_qa-cleanup-result.md
++++ /dev/null
+@@ -1,88 +0,0 @@
+-# BIM-003 — QA CLEANUP RESULT (J-19) · return to SOL
+-
+-**Date:** 2026-09-15 17:33 · **Executed by:** Fable on the SOL + Director cleanup release (revised, Director fence) · **Specimen:** `qa/phase-3-bim003` @ `c45949ece1a17f1a3fbb299f5551f911f869c21e` (re-pinned before step 1)
+-
+-## 1. CLEANUP ACTIONS ACTUALLY PERFORMED
+-
+-| # | Action | Result |
+-|---|---|---|
+-| 1 | Pre-verify: `cmp` of the five Stage-B `.produced.json` against Stage A's T0643 | all five identical → confirmed duplicates |
+-| 2 | Deleted 20 duplicate Stage-B runner files: `S3_audit_prove_…T07{14,17,19,22,25}.log` + `.normalised.log`, `S3_audit_session_…T07{15,18,21,23,26}.log` + `.produced.json` | 20 removed |
+-| 3 | Deleted 2 ABORTED partial RLS logs: `rls-prove/ABORTED-X5-matrix_…T0855.log`, `ABORTED-X5_ac8_fresh_…T0855.log` | 2 removed |
+-| 4 | Restored `scripts/rls-harness/seed-map.json` + `audit-seed-map.json` to `c45949e` bytes via read-only `git show c45949e:<path> >` | both clean |
+-| 5 | `RULINGS_ADDENDUM.md` — appended CF-10 (D-1) and CF-8 QA corroboration | +2 lines |
+-| 6 | `RETROSPECTIVE.md` — appended the D-1 / CF-10 Deferred Ledger row | +1 line |
+-| 7 | `BIM003_ACCEPTANCE_SPEC.md` — appended E-8 (D-3) below E-7 in the Erratum Lane | +2 lines; diff shows only the E-8 row + one blank line; **AC text untouched** |
+-| 8 | `CHANGELOG.md` — one bounded `[CC]` entry (QA Cleanup / Gate Q PASS) | +9 lines |
+-| 9 | `QA_WORK_JOURNAL.md` — row 15 (cleanup execution record) + CAMPAIGN POSITION line | Cody's QA lane |
+-
+-**Not done, by the release:** no `QA/RESPONSE/` copies · existing `agent_docs/RESPONSES/**` untouched · no DB / SCRATCH / REPLICA contact · no rls:prove, audit:prove, build, tsc, test · no migration, golden or product change · no git add/commit/push/merge.
+-
+-**Count correction (transparency):** the disposition's headline said "evidence ×27"; its per-item inventory (1 + 4 + 10 + 1 + 5 + 1 + 4) sums to **26**, which is what exists. Arithmetic slip in the headline only; every listed durable file is present.
+-
+-## 2. FINAL DURABLE QA FILE COUNTS — `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/`
+-
+-| Component | Count |
+-|---|---|
+-| `README.md` (tracked) · `CODY_QA_RECON.md` · `QA_WORK_JOURNAL.md` (rows 1–15) | 3 |
+-| `helpers/` (`qa-reset.mjs`, `qa-golden-attack.mjs`, `qa-probes.mjs`) | 3 |
+-| `evidence/` — QA_A ×1 · QA_B ×10 · golden_committed_copy ×1 · QA_C…G ×5 · QA_I_triad ×1 · S3 Stage-A T0642/T0643 ×4 · S3 final T0905/T0906 ×4 | 26 |
+-| `rls-prove/` — Stage A T0638/T0639 ×7 · Stage H T0902/T0903/T0904 ×7 | 14 |
+-| **Total** | **46** (+ SOL's `GATE_Q_REPORT_BIM-003-CYBER-PHARMA_PASS.md` when written = 47) |
+-
+-## 3. `git status --short`
+-
+-```
+- M CHANGELOG.md
+- M RECOVERY.md                                                        ← DIRECTOR-PROTECTED EXISTING STATE (not touched)
+- M agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md  ← E-8 only
+- M agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RETROSPECTIVE.md           ← 1 ledger row
+- M agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/RULINGS_ADDENDUM.md        ← CF-10 + CF-8 line
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/CODY_QA_RECON.md
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/QA_WORK_JOURNAL.md
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/evidence/                 (26)
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/helpers/                  (3)
+-?? agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/rls-prove/                (14)
+-?? agent_docs/RESPONSES/response_2026-09-15_122338_session-open-qa-standby.md
+-?? agent_docs/RESPONSES/response_2026-09-15_123634_cody-qa-recon.md
+-?? agent_docs/RESPONSES/response_2026-09-15_141710_cody-session-recovery.md
+-?? agent_docs/RESPONSES/response_2026-09-15_144404_cody-stage-a-result.md
+-?? agent_docs/RESPONSES/response_2026-09-15_152858_cody-stage-b-result.md
+-?? agent_docs/RESPONSES/response_2026-09-15_170730_cody-stages-c-i-preq-report.md
+-?? agent_docs/RESPONSES/response_2026-09-15_172400_qa-cleanup-disposition-j19.md
+-?? agent_docs/RESPONSES/response_2026-09-15_173300_qa-cleanup-result.md   (this file)
+-?? agent_docs/SESSIONS/session_2026-09-15.md                            ← DIRECTOR-PROTECTED EXISTING STATE (not touched)
+-```
+-
+-The two seed maps no longer appear. Nothing under `src/`, `supabase/`, `scripts/`, `package.json` appears.
+-
+-## 4. PROTECTED PRODUCT-PATH FENCE
+-
+-```
+-git diff c45949e --stat -- src supabase/migrations scripts package.json   → EMPTY
+-git status --short -- ".env*"                                            → EMPTY
+-```
+-
+-## 5. GOLDEN SHA
+-
+-```
+-c30bfcddf88b164d912f656369edd73e7b0eb79b512f58bc819eb095894ccd4f  scripts/rls-harness/golden/audit_trail_expected.json
+-```
+-Matches the required value.
+-
+-## 6. ENGINEERING EVIDENCE-FOLDER STATUS
+-
+-`git status --short` on `agent_docs/ACTIONS/BIM-002-CYBER-PHARMA/evidence/` and `agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/` → **EMPTY** (both at committed state). `find QA -name "ABORTED-*" -o -name "*T07[12]*"` → **0**.
+-
+-## 7. DIRECTOR-PROTECTED FILES
+-
+-**RECOVERY.md: UNTOUCHED BY QA CLEANUP**
+-**agent_docs/SESSIONS/\*\*: UNTOUCHED BY QA CLEANUP**
+-
+-Both mtimes are 17:24:51 (the pre-release disposition write); no read-modify-write occurred during cleanup. Their modified/untracked state is pre-existing and reported as Director-controlled, not as a QA-cleanliness item. The session-file status transition for this cleanup was deliberately **not** written, per the fence.
+-
+-## 8. DRIFT STATEMENT
+-
+-No unintended product or harness drift remains. The only tracked changes on the branch relative to `c45949e` are documentation records (CHANGELOG, spec erratum lane E-8, RULINGS_ADDENDUM, RETROSPECTIVE) plus the Director-protected RECOVERY.md. The implementation, migrations, harness code, seed maps, golden, package.json and env are byte-identical to the certified specimen.
+-
+-**QA CLEANUP COMPLETE — AWAITING SOL MERGE-READY CONFIRMATION**
+diff --git a/agent_docs/RESPONSES/response_2026-09-16_122057_bim003-closeout.md b/agent_docs/RESPONSES/response_2026-09-16_122057_bim003-closeout.md
+deleted file mode 100644
+index 72259e1..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-16_122057_bim003-closeout.md
++++ /dev/null
+@@ -1,69 +0,0 @@
+-# BIM-003-CYBER-PHARMA — REPOSITORY CLOSEOUT · CLOSED — GATE Q PASS @ c45949e
+-
+-**Verdict of record (Sol, 2026-09-15):** GATE Q PASS · QA CLEANUP PASS · MERGE-READY at `c45949e` · zero implementation defects (QA Stages A–I). **Scope of this close:** documents only. Branch `qa/phase-3-bim003` merges to `main` per J-19 — Director's git, sequence in §5.
+-
+-## 1. The five items
+-
+-| # | Item | Done |
+-|---|---|---|
+-| 1 | `RECOVERY.md` | Top block rewritten: **BIM-003 CLOSED**, certified `c45949e`, Gate Q 2026-09-15, module deliverables, campaign board → **next BIM-004**, carried flags with owners, **LIVE APPLY still deferred** to the named APPLY SESSION. Known Good State HEAD refreshed. |
+-| 2 | `agent_docs/SESSIONS/session_2026-09-16.md` | Created — starting state, closeout entry, lessons, end state, files. |
+-| 3 | `CHANGELOG.md` | Close entry on top: audit_logs reshape · 13 write stamps · 4 `owedbook_*` wrappers · `audit:prove` · migrations 0028–0047 (+ types, README/RUN_NOTES, retrospective). |
+-| 4 | `RULINGS_ADDENDUM.md` | Appended **exactly** your CF-10 text and the E-8 note. Note: the 2026-09-15 cleanup session had already appended a longer *draft* CF-10 line (with 0021 line refs). The file is append-only, so the draft stays for the audit trail and your ratified text is marked as the line of record superseding it. |
+-| 5 | Untouched | `src/**` · `supabase/**` · `scripts/**` · `package.json` · `QA/**` · AC text · `agent_docs/AUTHORITY/**`. The 09-15 session's own uncommitted edits (spec E-8 row, retrospective ledger row, 09-15 CHANGELOG entry, RECOVERY resume block — now replaced by the CLOSED block) were read before I touched anything and are otherwise left as found. |
+-
+-**Fence, verified read-only after every edit:**
+-```
+-$ git diff c45949e --stat -- src supabase/migrations scripts package.json
+-(no output — EMPTY)
+-```
+-
+-## 2. Two things you should know
+-
+-1. **No standalone Gate Q report file exists in `QA/`.** The verdict is recorded in `QA/QA_WORK_JOURNAL.md` row 15 and its campaign-position line ("GATE Q = PASS (SOL, certified c45949e)"), and in the 09-15 RECOVERY block. BIM-002 had `GATE_Q_REPORT_…_PASS.md` filed verbatim. If you want the same for BIM-003, paste Sol's text and I file it unchanged (two-seat rule — I don't draft it).
+-2. **`supabase/.temp/cli-latest` is tracked and shows `2.116.0 → 2.117.0` in `0e4e17e..c45949e`** (E-8, generator artifact from your types regen). It is inside the certified SHA, so nothing to do now; the E-8 hygiene note (gitignore `supabase/.temp/`) is a later-module product-tree change.
+-
+-## 3. Proposed map v1.1 status-line change (text only — I did not edit the map)
+-
+-`agent_docs/AUTHORITY/PHASE_3_BIM_CAMPAIGN_MAP.md:15`, current:
+-
+-> **Campaign status at v1.1.** BIM-000 CLOSED · FIX-001 CLOSED · BIM-001 CLOSED (certified `9f8c80d`, 16 tables) · Proto 06 CLOSED (TRANSFERS consumed 08-31) · **BIM-002 NEXT** · BIM-003/004/005 queued.
+-
+-Proposed (Architect to apply; patch-header amendment, body untouched):
+-
+-> **Campaign status (amended 2026-09-16).** BIM-000 CLOSED · FIX-001 CLOSED · BIM-001 CLOSED (certified `9f8c80d`, 16 tables) · Proto 06 CLOSED (TRANSFERS consumed 08-31) · BIM-002 CLOSED (certified `dfc8a6a`, 18 RLS policies + 4 helpers, `rls:prove`) · **BIM-003 CLOSED (certified `c45949e`, 2026-09-15: immutable `audit_logs`, 13 write stamps, 4 `owedbook_*` wrappers, `audit:prove`; CF-10 carried → BIM-005)** · **BIM-004 NEXT** · APPLY SESSION · BIM-005 queued.
+-
+-## 4. Uncommitted paths (one commit on `qa/phase-3-bim003`)
+-
+-```
+-QA lane (2026-09-15, Cody/Sol):  agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/{CODY_QA_RECON.md, QA_WORK_JOURNAL.md, helpers/, evidence/, rls-prove/}
+-                                 agent_docs/RESPONSES/response_2026-09-15_* (×6+) · agent_docs/SESSIONS/session_2026-09-15.md
+-J-19 cleanup (2026-09-15):       BIM003_ACCEPTANCE_SPEC.md (E-8 row) · RETROSPECTIVE.md (ledger row) · CHANGELOG.md (09-15 entry)
+-Closeout (2026-09-16, this):     RECOVERY.md · agent_docs/SESSIONS/session_2026-09-16.md · CHANGELOG.md (close entry) · RULINGS_ADDENDUM.md (CF-10 ratified + E-8 note) · this report
+-```
+-
+-## 5. 🔔 GIT REMINDER — the exact sequence (Director only; I ran none of it)
+-
+-```bash
+-# 0. sanity — you are on the QA branch at the certified SHA
+-git branch --show-current            # qa/phase-3-bim003
+-git log --oneline -1                 # c45949e …
+-
+-# 1. commit the QA package + closeout on the QA branch
+-git add -A
+-git commit -m "16sep2026 - BIM-003 CLOSED - Gate Q PASS @ c45949e, QA package + closeout"
+-git push origin qa/phase-3-bim003
+-
+-# 2. merge to main per J-19 (no fast-forward: the merge commit is the close marker)
+-git checkout main
+-git pull origin main
+-git merge --no-ff qa/phase-3-bim003 -m "16sep2026 - merge qa/phase-3-bim003 - BIM-003 CLOSED (Gate Q PASS @ c45949e)"
+-git push origin main
+-
+-# 3. proof
+-git log --oneline -1
+-```
+-
+-→ Your call. I will not run it. After the merge, paste `git log --oneline -1` and I record the close SHA in RECOVERY the way BIM-002's `6171c54` was.
+-
+-**STOP.**
+diff --git a/agent_docs/RESPONSES/response_2026-09-16_151616_bim003-merged-final.md b/agent_docs/RESPONSES/response_2026-09-16_151616_bim003-merged-final.md
+deleted file mode 100644
+index 347f920..0000000
+--- a/agent_docs/RESPONSES/response_2026-09-16_151616_bim003-merged-final.md
++++ /dev/null
+@@ -1,19 +0,0 @@
+-# BIM-003-CYBER-PHARMA — MERGED · FINAL
+-
+-| | SHA | Where |
+-|---|---|---|
+-| Certified specimen (Gate Q PASS, Sol 2026-09-15) | `c45949e` | ancestor of both branches |
+-| Close batch (QA package + closeout docs) | `60ce6bd` | `qa/phase-3-bim003` = `origin/qa/phase-3-bim003` |
+-| J-19 merge, `--no-ff`, 2 parents | `f7a1d4c` | `main` = `origin/main` |
+-
+-Working tree clean at check time. RECOVERY now names all three SHAs; session log has the merge entry.
+-
+-**Campaign board:** BIM-000 ✅ · FIX-001 ✅ · BIM-001 ✅ · PROTO 06 ✅ · BIM-002 ✅ · **BIM-003 ✅** → **BIM-004 (seed factory) next** → Phase 3 APPLY SESSION → BIM-005 (CRV).
+-
+-**Your call, later, not now:** retire `qa/phase-3-bim003` (and the older `qa/bim002`, `phase-3-proto-6`) · Architect applies the map v1.1 status line proposed in the closeout report · optional verbatim filing of Sol's Gate Q text in `QA/`.
+-
+-🔔 GIT REMINDER — one docs-only commit left (you are on `main`):
+-  RECOVERY.md · agent_docs/SESSIONS/session_2026-09-16.md · agent_docs/RESPONSES/response_2026-09-16_*_bim003-merged-final.md
+-Suggested:
+-  git add -A && git commit -m "16sep2026 - BIM-003 close SHAs recorded (60ce6bd close batch, f7a1d4c merge)" && git push origin main
+-→ Your call. I will not run it.

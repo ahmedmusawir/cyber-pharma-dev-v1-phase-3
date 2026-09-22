@@ -1,0 +1,5 @@
+{
+  "clientBundleContainsScratchUrl": true,
+  "clientBundleContainsMainDevUrl": false,
+  "clientBundleContainsScratchSecret": false
+}

@@ -1,0 +1,5 @@
+rg -n getUserById|addMember|deleteUser|editUser|getUsers src
+exit=0
+src/services/adminDemo.ts:225:    store().addMember(member);
+src/store/useAdminDemoStore.ts:17:  addMember: (member: StoreMember) => void;
+src/store/useAdminDemoStore.ts:30:  addMember: (member) =>

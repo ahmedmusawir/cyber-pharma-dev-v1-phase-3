@@ -1,0 +1,29 @@
+{
+  "candidate": "cad164d62a623a115541c0441302de01ff74da5b",
+  "trackedChangedPaths": [
+    "agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/QA/GOVERNING/README.md",
+    "agent_docs/RESPONSES/BIM003_S1_2026-09-14.md",
+    "agent_docs/RESPONSES/BIM003_S2_2026-09-14.md",
+    "agent_docs/RESPONSES/BIM003_S3_2026-09-14.md",
+    "agent_docs/RESPONSES/response_2026-09-14_123800_session-open.md",
+    "agent_docs/RESPONSES/response_2026-09-14_125225_bim003-plan.md",
+    "agent_docs/RESPONSES/response_2026-09-14_131702_bim003-s1-blocked-disk-mismatch.md",
+    "agent_docs/RESPONSES/response_2026-09-14_135344_bim003-s1-complete.md",
+    "agent_docs/RESPONSES/response_2026-09-14_145430_bim003-s2-complete.md",
+    "agent_docs/RESPONSES/response_2026-09-14_154208_bim003-s3-complete-pending-ac307.md",
+    "agent_docs/RESPONSES/response_2026-09-14_164606_bim003-s3-engineering-complete.md",
+    "agent_docs/RESPONSES/response_2026-09-15_122338_session-open-qa-standby.md",
+    "agent_docs/RESPONSES/response_2026-09-15_123634_cody-qa-recon.md",
+    "agent_docs/RESPONSES/response_2026-09-15_141710_cody-session-recovery.md",
+    "agent_docs/RESPONSES/response_2026-09-15_144404_cody-stage-a-result.md",
+    "agent_docs/RESPONSES/response_2026-09-15_152858_cody-stage-b-result.md",
+    "agent_docs/RESPONSES/response_2026-09-15_170730_cody-stages-c-i-preq-report.md",
+    "agent_docs/RESPONSES/response_2026-09-15_172400_qa-cleanup-disposition-j19.md",
+    "agent_docs/RESPONSES/response_2026-09-15_173300_qa-cleanup-result.md",
+    "agent_docs/RESPONSES/response_2026-09-16_122057_bim003-closeout.md",
+    "agent_docs/RESPONSES/response_2026-09-16_151616_bim003-merged-final.md"
+  ],
+  "archiveProvenance": "Director-confirmed and approved; DIRECTOR_ARCHIVE_RULING.md",
+  "testsRepeated": false,
+  "generatedBuildReused": true
+}

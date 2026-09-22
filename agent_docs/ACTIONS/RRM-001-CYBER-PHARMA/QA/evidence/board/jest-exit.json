@@ -1,0 +1,1 @@
+{"command":["jest","--ci","--no-cache","--maxWorkers=2","--json","--outputFile=/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/QA/evidence/board/jest-results.json"],"exit":0}

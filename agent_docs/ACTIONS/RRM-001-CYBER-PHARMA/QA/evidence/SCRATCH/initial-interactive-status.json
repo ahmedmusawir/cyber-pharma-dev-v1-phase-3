@@ -1,0 +1,10 @@
+{
+  "stage": "awaiting-director-login",
+  "role": "ADMIN",
+  "width": 1440,
+  "theme": "light",
+  "origin": "http://127.0.0.1:34727",
+  "candidate": "cad164d62a623a115541c0441302de01ff74da5b",
+  "buildId": "s4iaFo_APq_hkuAgPqZXi",
+  "credentialsRequestedInChat": false
+}

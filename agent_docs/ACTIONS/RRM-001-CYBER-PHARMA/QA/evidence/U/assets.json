@@ -1,0 +1,92 @@
+[
+  {
+    "path": "/_next/static/media/7c1e39d02e51fd6d-s.p.161-8jf3b5y85.woff2",
+    "status": 200,
+    "contentType": "font/woff2"
+  },
+  {
+    "path": "/_next/static/chunks/3h158c8o2q11u.css",
+    "status": 200,
+    "contentType": "text/css; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/2zjueh7t2vecu.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/24fllkoepd75z.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/29ogi0z7nun76.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/1upe53-127sm4.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/27jktro2p5rq9.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/turbopack-1x5h0xe0202ti.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/2uhd43j4nqfc8.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/3ixnum3-fm047.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/3f7znchzy99g3.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/2lrw6ie_ofbkq.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/40q2xvkpb_orl.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/04sa36x9-705m.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/1bhoyle2ep2iz.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/3pi_0rel7yc63.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/2hzv-z9a5ub1n.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "path": "/_next/static/chunks/0cz1d0mv5g_q7.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  }
+]

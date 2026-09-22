@@ -1,0 +1,2 @@
+rg -n utils/supabase/admin src scripts
+exit=1

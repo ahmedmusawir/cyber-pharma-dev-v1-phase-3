@@ -59,3 +59,4 @@ Every AC needs independent evidence. Ambiguity or failure → SOL; scope → Arc
 | Date | AC | Original requirement | Ruling / rationale | Authority | Verification consequence |
 |---|---|---|---|---|---|
 | | | | | | |
+| 2026-09-22 | AC-304 | "logout returns to `/`" | Logout ends the session and lands on `/auth`, preserving baseline behavior; a subsequent unauthenticated request to `/owedbook` redirects to `/auth`. Naming `/` was an Architect drafting error. No product change. | Ruling A-13 — Architect (Fable), Director-approved; `RULINGS_ADDENDUM.md` | Walk record passes AC-304 when logout lands on `/auth` and unauthenticated `/owedbook` → `/auth`. Landing on `/` is not required and not a defect. |

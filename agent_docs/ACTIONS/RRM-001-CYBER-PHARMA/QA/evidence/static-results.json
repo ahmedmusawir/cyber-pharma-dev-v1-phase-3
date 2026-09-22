@@ -1,0 +1,24 @@
+{
+  "postBytesEqual": true,
+  "preservedDiffEmpty": true,
+  "engineeringToCandidateProductDiffEmpty": true,
+  "removedPaths": [
+    {
+      "path": "src/app/moose-portal",
+      "absent": true
+    },
+    {
+      "path": "src/app/api/auth/signup",
+      "absent": true
+    },
+    {
+      "path": "src/components/auth/RegisterForm.tsx",
+      "absent": true
+    },
+    {
+      "path": "src/components/auth/AuthTabs.tsx",
+      "absent": true
+    }
+  ],
+  "DA2Present": false
+}
