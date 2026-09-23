@@ -3,6 +3,12 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-23 02:33 UTC — [CC] Claude Code
+
+- **RRM-001 merge SHA recorded** — Director merged `qa/phase-3-rrm001` → `main` at `1cd6e46` (`--no-ff`); closeout commit `2ccf450`. Docs only.
+- **Updated:** `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` §0 scoreboard/status · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` resolution rows R-001/R-002/R-011/R-012 · `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/EXECUTION_LOG.md` Closeout table · `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/README.md` · `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/QA/QA_CERTIFICATION.md` (Engineer's identity line only) · `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/CLOSEOUT_CHECKLIST.md` · `RECOVERY.md`
+- **Reason:** Director's `git log --oneline -1` paste, 2026-09-23; P5 instruction "record the merge SHA in the map and ledger on the RRM-002 opening commit".
+
 ## 2026-09-23 01:05 UTC — [CC] Claude Code
 
 - **RRM-001-CYBER-PHARMA closeout (P5).** Gate Q PASS @ `cad164d` (QA Lead 2026-09-22, zero rework); evidence successor `9ab95e5`. Docs and evidence only; no product change, build, test or git mutation.

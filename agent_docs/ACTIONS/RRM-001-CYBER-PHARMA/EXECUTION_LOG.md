@@ -146,8 +146,8 @@ Engineering evidence, not independent QA certification.
 | Pack commit | `88e2c33` |
 | Certified implementation | `cad164d62a623a115541c0441302de01ff74da5b` |
 | Accepted evidence successor | `9ab95e525e6775e5cb38e0ff12922b8ea1b85cc4` (docs/evidence only; product diff empty) |
-| Closeout commit | recorded by Director at merge |
-| Merge SHA | recorded by Director at merge |
+| Closeout commit | `2ccf4503de228e43f00ef03975606cdc05564ce3` (`2ccf450`) |
+| Merge SHA | `1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b` (`1cd6e46`, `--no-ff` into `main`, Director, 2026-09-22) |
 | AC-304 | PASS under ruling A-13 (logout → `/auth`; unauthenticated `/owedbook` → `/auth`); spec erratum lane row 2026-09-22 |
 | AC-206 / DA-2 | **NOT YET** — Director-owned; `evidence/DA-2_SUPABASE_SIGNUP_DISABLED.md` absent; nonblocking under the frozen contract |
 

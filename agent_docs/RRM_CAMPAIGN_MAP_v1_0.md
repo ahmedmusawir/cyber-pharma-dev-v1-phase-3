@@ -16,9 +16,9 @@
 
 **Status at v1.0 (2026-09-20).** Intake CLOSED (reviews reconciled, recon Rev 2, D1–D7 ruled). **RRM-001 pack AUTHORED — NEXT.** RRM-002/003/004 queued; each pack authored after its predecessor merges (verify-then-write, BIM-003 lesson). BIM-004 remains next in the backend campaign after RRM-004 closes (J-02: sequencing, not dependency).
 
-**Status at v1.0.1 (2026-09-22).** RRM-001 CLOSED — Gate Q PASS, zero rework rounds (QA Lead 2026-09-22). **RRM-002 pack authoring NEXT.** Merge of `qa/phase-3-rrm001` → `main` and the merge SHA: Director.
+**Status at v1.0.1 (2026-09-22).** RRM-001 CLOSED — Gate Q PASS, zero rework rounds (QA Lead 2026-09-22). **RRM-002 pack authoring NEXT.** `qa/phase-3-rrm001` merged to `main` by the Director (`--no-ff`, `1cd6e46`, 2026-09-22); closeout commit `2ccf450`. Merge SHA recorded 2026-09-23 on the RRM-002 opening commit.
 
-Scoreboard (Director fills at each close): RRM-001 `CLOSED — Gate Q PASS 2026-09-22 @ cad164d (evidence 9ab95e5); merge SHA: Director` · RRM-002 `—` · RRM-003 `—` · RRM-004 `—`.
+Scoreboard (Director fills at each close): RRM-001 `CLOSED — Gate Q PASS 2026-09-22 @ cad164d (evidence 9ab95e5; closeout 2ccf450; merged to main 1cd6e46)` · RRM-002 `—` · RRM-003 `—` · RRM-004 `—`.
 
 ---
 

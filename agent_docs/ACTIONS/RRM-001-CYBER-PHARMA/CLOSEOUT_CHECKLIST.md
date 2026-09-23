@@ -9,7 +9,7 @@ Created at P5 (2026-09-23) by the Engineer — the pack did not carry one. Ticke
 - [x] Gate Q PASS — QA Lead 2026-09-22, zero rework rounds (`QA/QA_CERTIFICATION.md`)
 - [x] Ruling A-13 + acceptance-spec erratum (AC-304) recorded (`9ab95e5`)
 - [x] Bounded cleanup executed (Cody, SOL release) and verified at P5 (§ QA Cleanup release)
-- [ ] Director ruling: deleted `.cjs` reproduction helpers — keep (restore from `9ab95e5`) or accept removal
+- [x] Director ruling: deleted `.cjs` reproduction helpers — removal accepted by committing `2ccf450` as staged
 - [ ] `QA/GOVERNING/PROVENANCE.md` — Director (provenance currently in `GOVERNING/README.md`)
 
 ## Campaign records
@@ -22,8 +22,8 @@ Created at P5 (2026-09-23) by the Engineer — the pack did not carry one. Ticke
 
 ## Director
 
-- [ ] Selective closeout commit on `qa/phase-3-rrm001`
-- [ ] `git merge --no-ff qa/phase-3-rrm001` → `main`, push
-- [ ] Paste the final `git log --oneline -1` line back → merge SHA recorded in map §0 and ledger on the RRM-002 opening commit
+- [x] Selective closeout commit on `qa/phase-3-rrm001` — `2ccf450`
+- [x] `git merge --no-ff qa/phase-3-rrm001` → `main`, push — `1cd6e46` (origin/main)
+- [x] Merge SHA pasted back and recorded in map §0 + ledger (2026-09-23) — [ ] Director commits it with the RRM-002 opening commit
 - [ ] DA-2 — Supabase "Allow new users to sign up" OFF + `evidence/DA-2_SUPABASE_SIGNUP_DISABLED.md` (AC-206 stays NOT YET until then)
 - [ ] RRM-002 pack authoring (Architect) — NEXT
