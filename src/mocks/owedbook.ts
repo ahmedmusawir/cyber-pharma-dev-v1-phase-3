@@ -5,6 +5,7 @@
  * Demo: expected/owed spread, medicaid_rate/method, status re-cast across all 5
  * chips, new_paid/updated_difference engineered on ~30 rows, dates re-stamped
  * across ~Dec 2025–Jun 2026. DELETABLE — replaced by real Supabase in Phase 3.
+ * expected/owed are a demo spread and do NOT satisfy rule 3 (qty × rate + 10.64); see RRM-002 FIXTURE_AUDIT A-2.
  *
  * Components never import this file (G7) — only owedBookService does.
  */

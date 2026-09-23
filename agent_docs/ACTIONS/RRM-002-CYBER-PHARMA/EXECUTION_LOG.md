@@ -38,7 +38,27 @@ GIT REMINDER — uncommitted paths: `src/components/owedbook/format.ts` · `src/
 
 ## Stage S2 — Audit corrections
 
-(same shape; include the hunk-by-hunk `git diff <baseline> -- src/mocks/owedbook.ts` with erratum IDs at `evidence/S2_fixture_hunks.txt`; AC-202 grep; statement that no existing test was modified)
+Date/time: 2026-09-23 18:09 +08 · Input SHA: `3187546` (Director's S1 commit) · Approved: R-020 · AC-201–204 · P2-S2 · Rulings applied: E-12 (the only correction); E-13, E-14 flag-only
+
+| File / surface | Change and reason | Ledger / AC | Preservation concern |
+|---|---|---|---|
+| `src/mocks/owedbook.ts:8` | **E-12** — one comment line typed verbatim from the ruling: "expected/owed are a demo spread and do NOT satisfy rule 3 (qty × rate + 10.64); see RRM-002 FIXTURE_AUDIT A-2." Inserted after the "Demo:" sentence inside the header block. | E-12 · AC-203 | zero money values changed; 150 rows byte-identical; `+1/−0` |
+| `evidence/FIXTURE_AUDIT.md` | finalized: header FINAL (S2); every row shows its ruling or `flag-only: owner/gate` (AC-204 wording); A-2b → APPLIED at S2 (E-12) | AC-201, AC-204 | — |
+| `evidence/S2_fixture_hunks.txt` | NEW (temp-then-move): full `git diff <baseline> -- src/mocks/owedbook.ts`, single hunk labeled E-12; AC-202 grep; AC-301/302 transcripts | AC-202, AC-203 | — |
+
+| Command/check | Environment | Exit/result | Evidence path |
+|---|---|---|---|
+| `git diff <baseline> -- src/mocks/owedbook.ts` hunk count | repo | **1 hunk** ↔ E-12 · numstat `1 0` | `evidence/S2_fixture_hunks.txt` |
+| AC-202 `grep -rn "11\.85" src/ docs/ README.md` | repo | **0 hits** (`10.64` appears once — inside the E-12 comment naming the rule; not a fee literal in data or copy) | `evidence/S2_fixture_hunks.txt` |
+| `npx tsc --noEmit` | local | **0 errors** | |
+| `npx eslint .` | local | **0 errors / 35 warnings** (unchanged from S1) | |
+| `npx jest --ci` | local, mocks | **31 suites / 144 tests / 0 skipped** (== S1) | |
+| S1 disclosure suites in isolation (`src/__tests__/owedbook` + `services/owedbook.test.ts`) | local, mocks | 8 suites / 34 tests green — derived expectations unchanged by E-12 (comment only) | |
+| AC-301 preserved-path diff | repo | **empty** | `evidence/S2_fixture_hunks.txt` |
+| AC-302 `git diff <baseline> -- src/__tests__/services/owedbook.test.ts` | repo | **empty**; tracked `__tests__` diff vs baseline lists only the two S1 additions | `evidence/S2_fixture_hunks.txt` |
+
+Statement: no existing test was modified in S2; no test broke; no stop condition hit. Allowed exceptions: none · Deviations: none · Env restoration: no build in S2; nothing exported; `.env.local` untouched; no live Supabase call · Director checkpoint SHA: <S2 commit, filled at P3>
+GIT REMINDER — uncommitted paths: `src/mocks/owedbook.ts` · `evidence/FIXTURE_AUDIT.md` · `evidence/S2_fixture_hunks.txt` · this log · `CHANGELOG.md` · session log · S2 report `agent_docs/RESPONSES/response_2026-09-23_180905_rrm002-s2-result.md`
 
 ## Completion claim
 

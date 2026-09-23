@@ -1,24 +1,24 @@
-# RRM-002-CYBER-PHARMA — Fixture and copy audit (AC-201) — rulings applied at P1b (2026-09-23); finalized at S2
+# RRM-002-CYBER-PHARMA — Fixture and copy audit (AC-201) — FINAL (S2, 2026-09-23)
 
-**Engineer** · 2026-09-23 15:01 · baseline `1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b` · `src/mocks/owedbook.ts` 150 rows · nothing edited. Director rulings applied at P1b (`RULINGS_ADDENDUM.md` A-05; campaign errata E-12/E-13/E-14). S2 applies the single ruled hunk (E-12) and re-verifies this file.
+**Engineer** · 2026-09-23 15:01 · baseline `1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b` · `src/mocks/owedbook.ts` 150 rows · nothing edited. Director rulings applied at P1b (`RULINGS_ADDENDUM.md` A-05; campaign errata E-12/E-13/E-14). S2 applied the single ruled hunk (E-12, `src/mocks/owedbook.ts:8`, one comment line; `evidence/S2_fixture_hunks.txt`). Re-verified at S2 against the working tree: rule 1 grep 0 hits; rule 3 counts unchanged (1/149); no money value changed.
 
 ## Summary table (mirrors S0 plan §3)
 
 | # | Rule | Path:line | Current value / text | Classification | Director ruling (P1b) |
 |---|---|---|---|---|---|
 | A-1 | 1 FEE | `src/`, `docs/`, `README.md` | `11.85` 0 hits · `10.64` 0 hits | CORRECT | CORRECT — record only (A-05) |
-| A-2 | 3 EXPECTED | `src/mocks/owedbook.ts:14-162` | expected == round2(qty × medicaid_rate + 10.64): pass 1 / fail 149 (rows below) | VALUE-CONFLICT FLAGGED | FLAG-ONLY (E-13): fixture regeneration with real rates → BIM-004 seed scope; owner Architect; no frontend recomputation |
-| A-2b | 3 (copy) | `src/mocks/owedbook.ts:5-6` | header comment does not state the rule-3 conflict | COPY-CORRECTION PROPOSED (optional) | TAKEN (E-12): one comment line at `src/mocks/owedbook.ts:5-6`, applied in S2 — the only S2 hunk |
+| A-2 | 3 EXPECTED | `src/mocks/owedbook.ts:14-162` | expected == round2(qty × medicaid_rate + 10.64): pass 1 / fail 149 (rows below) | VALUE-CONFLICT FLAGGED | FLAG-ONLY (E-13) — flag-only: Architect / BIM-004 seed (fixture regeneration with real rates; no frontend recomputation) |
+| A-2b | 3 (copy) | `src/mocks/owedbook.ts:5-6` | header comment does not state the rule-3 conflict | COPY-CORRECTION PROPOSED (optional) | APPLIED at S2 (E-12) — one comment line at `src/mocks/owedbook.ts:8`; the only S2 hunk; zero money change |
 | A-3 | 2 OWED (row) | all rows | owed == round2(expected − original_paid): pass 150 / fail 0; negative owed 28, zero 1 | CORRECT | CORRECT — record only (A-05) |
-| A-4 | 2 OWED (aggregate) | `src/services/owedbook.ts:73,116` · `0044:68,71` · `0046` | positive-only aggregates (clamp at aggregate level) | FLAG-ONLY | FLAG-ONLY → Phase 5 parity harness (R-003); owner Architect |
-| A-5 | 2 (presentation) | `src/components/owedbook/columns.tsx:8-9,35,46,58` | posNeg colours negatives destructive | FLAG-ONLY | FLAG-ONLY → Phase 5 UI ruling; owner Director / Frank |
-| A-6 | 4–5 METHOD | `src/mocks/owedbook.ts` method | NADAC 27 · MAC 38 · AAC 61 · WAC 24 vs {AAC, FUL, GWAC, BWAC, Take Action, Manual Override} | FLAG-ONLY | FLAG-ONLY → Frank rider R3 via Coach |
-| A-7 | 3 vs federal | 139 federal rows · `src/types/OwedBook.ts:24` | federal_expected == round2(aac × qty): 137/139; federal_diff == fe − original_paid: 132/139; sign 132 neg / 7 pos | FLAG-ONLY | FLAG-ONLY → Phase 5 federal math; owner Architect / Frank; BIM-005 note |
+| A-4 | 2 OWED (aggregate) | `src/services/owedbook.ts:73,116` · `0044:68,71` · `0046` | positive-only aggregates (clamp at aggregate level) | FLAG-ONLY | FLAG-ONLY — flag-only: Architect / Phase 5 parity harness (R-003) |
+| A-5 | 2 (presentation) | `src/components/owedbook/columns.tsx:8-9,35,46,58` | posNeg colours negatives destructive | FLAG-ONLY | FLAG-ONLY — flag-only: Director & Frank / Phase 5 UI ruling |
+| A-6 | 4–5 METHOD | `src/mocks/owedbook.ts` method | NADAC 27 · MAC 38 · AAC 61 · WAC 24 vs {AAC, FUL, GWAC, BWAC, Take Action, Manual Override} | FLAG-ONLY | FLAG-ONLY — flag-only: Coach → Frank / rider R3 (brand/generic authority) |
+| A-7 | 3 vs federal | 139 federal rows · `src/types/OwedBook.ts:24` | federal_expected == round2(aac × qty): 137/139; federal_diff == fe − original_paid: 132/139; sign 132 neg / 7 pos | FLAG-ONLY | FLAG-ONLY — flag-only: Architect & Frank / Phase 5 federal math; BIM-005 contract note |
 | A-8 | 6 PBM KEY | `src/**` copy | 0 hits (PBM key / BIN / editable) | CORRECT | CORRECT — record only (A-05) |
 | A-9 | 7 POINT-IN-TIME | `src/**` copy | 0 hits (reprice / current price); `FilterRail.tsx:174,180` re-pull copy only | CORRECT | CORRECT — record only (A-05) |
 | A-10 | AC-105 | `src/mocks/owedbook.ts` | 0 money values beyond 2 dp | CORRECT | CORRECT — record only (A-05) |
-| A-11 | 5 vs Frank Ruling 5 | `src/mocks/owedbook.ts:15,27,117,150` · `OwedBook.ts:28-33` | null-PBM rows carry recovered/new/new/underpaid; no "Take Action" status | FLAG-ONLY | FLAG-ONLY (E-14) → Phase 5 pbm_info matching; owner Architect |
-| A-12 | (R-003) | `src/services/owedbook.ts:76,81` · `KpiTiles.tsx:18,21` | Owed tile == Commercial Underpaid tile | FLAG-ONLY | FLAG-ONLY → Phase 5 parity harness (R-003); owner Architect (A-05) |
+| A-11 | 5 vs Frank Ruling 5 | `src/mocks/owedbook.ts:15,27,117,150` · `OwedBook.ts:28-33` | null-PBM rows carry recovered/new/new/underpaid; no "Take Action" status | FLAG-ONLY | FLAG-ONLY (E-14) — flag-only: Architect / Phase 5 pbm_info matching |
+| A-12 | (R-003) | `src/services/owedbook.ts:76,81` · `KpiTiles.tsx:18,21` | Owed tile == Commercial Underpaid tile | FLAG-ONLY | FLAG-ONLY — flag-only: Architect / Phase 5 parity harness (R-003); ledgered |
 
 ## Grep evidence (rule 1, 6, 7)
 
