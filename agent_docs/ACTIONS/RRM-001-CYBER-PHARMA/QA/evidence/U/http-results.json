@@ -1,0 +1,230 @@
+[
+  {
+    "request": {
+      "p": "/moose-portal",
+      "method": "GET"
+    },
+    "status": 404,
+    "headers": {
+      "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bodyFile": "http-01.body.txt",
+    "bytes": 9101
+  },
+  {
+    "request": {
+      "p": "/moose-portal/users",
+      "method": "GET"
+    },
+    "status": 404,
+    "headers": {
+      "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bodyFile": "http-02.body.txt",
+    "bytes": 9101
+  },
+  {
+    "request": {
+      "p": "/moose-portal/users/add-member",
+      "method": "GET"
+    },
+    "status": 404,
+    "headers": {
+      "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bodyFile": "http-03.body.txt",
+    "bytes": 9101
+  },
+  {
+    "request": {
+      "p": "/moose-portal/users/edit/x",
+      "method": "GET"
+    },
+    "status": 404,
+    "headers": {
+      "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bodyFile": "http-04.body.txt",
+    "bytes": 9101
+  },
+  {
+    "request": {
+      "p": "/owedbook",
+      "method": "GET"
+    },
+    "status": 307,
+    "headers": {
+      "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+      "content-type": "text/html; charset=utf-8",
+      "location": "/auth"
+    },
+    "bodyFile": "http-05.body.txt",
+    "bytes": 10532
+  },
+  {
+    "request": {
+      "p": "/api/auth/signup",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{}"
+    },
+    "status": 404,
+    "headers": {
+      "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bodyFile": "http-06.body.txt",
+    "bytes": 9101
+  },
+  {
+    "request": {
+      "p": "/api/auth/login",
+      "method": "POST"
+    },
+    "status": 500,
+    "headers": {
+      "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    },
+    "bodyFile": "http-07.body.txt",
+    "bytes": 0
+  },
+  {
+    "request": {
+      "p": "/api/auth/login",
+      "method": "GET"
+    },
+    "status": 405,
+    "headers": {
+      "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    },
+    "bodyFile": "http-08.body.txt",
+    "bytes": 0
+  },
+  {
+    "request": {
+      "p": "/",
+      "method": "POST",
+      "headers": {
+        "Next-Action": "402dc37b2b824c1412b54c07a6754d1f00f781c2dc",
+        "Content-Type": "text/plain;charset=UTF-8"
+      },
+      "body": "[]"
+    },
+    "status": 404,
+    "headers": {
+      "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+      "content-type": "text/plain",
+      "x-nextjs-action-not-found": "1"
+    },
+    "bodyFile": "http-09.body.txt",
+    "bytes": 24
+  },
+  {
+    "request": {
+      "p": "/",
+      "method": "POST",
+      "headers": {
+        "Next-Action": "404e90d686531af573f3973524ae30e48d42564fdb",
+        "Content-Type": "text/plain;charset=UTF-8"
+      },
+      "body": "[]"
+    },
+    "status": 404,
+    "headers": {
+      "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+      "content-type": "text/plain",
+      "x-nextjs-action-not-found": "1"
+    },
+    "bodyFile": "http-10.body.txt",
+    "bytes": 24
+  },
+  {
+    "request": {
+      "p": "/",
+      "method": "POST",
+      "headers": {
+        "Next-Action": "40d73ff364e71e0ded6e2d8bdbd18d3449dc317cad",
+        "Content-Type": "text/plain;charset=UTF-8"
+      },
+      "body": "[]"
+    },
+    "status": 404,
+    "headers": {
+      "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+      "content-type": "text/plain",
+      "x-nextjs-action-not-found": "1"
+    },
+    "bodyFile": "http-11.body.txt",
+    "bytes": 24
+  },
+  {
+    "request": {
+      "p": "/",
+      "method": "POST",
+      "headers": {
+        "Next-Action": "40e1008514ac7084cf1a567948a2afe66cb4986f22",
+        "Content-Type": "text/plain;charset=UTF-8"
+      },
+      "body": "[]"
+    },
+    "status": 404,
+    "headers": {
+      "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+      "content-type": "text/plain",
+      "x-nextjs-action-not-found": "1"
+    },
+    "bodyFile": "http-12.body.txt",
+    "bytes": 24
+  },
+  {
+    "request": {
+      "p": "/",
+      "method": "POST",
+      "headers": {
+        "Next-Action": "60fe6f04c7baf4ba561914ff2157c6d7071a99ff7e",
+        "Content-Type": "text/plain;charset=UTF-8"
+      },
+      "body": "[]"
+    },
+    "status": 404,
+    "headers": {
+      "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+      "content-type": "text/plain",
+      "x-nextjs-action-not-found": "1"
+    },
+    "bodyFile": "http-13.body.txt",
+    "bytes": 24
+  },
+  {
+    "request": {
+      "p": "/auth",
+      "method": "GET"
+    },
+    "status": 200,
+    "headers": {
+      "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bodyFile": "http-14.body.txt",
+    "bytes": 16821
+  },
+  {
+    "request": {
+      "p": "/auth?tab=register",
+      "method": "GET"
+    },
+    "status": 200,
+    "headers": {
+      "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bodyFile": "http-15.body.txt",
+    "bytes": 16821
+  }
+]

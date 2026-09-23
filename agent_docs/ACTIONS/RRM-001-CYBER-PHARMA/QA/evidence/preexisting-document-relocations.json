@@ -1,0 +1,102 @@
+[
+  {
+    "original": "agent_docs/RESPONSES/BIM003_S1_2026-09-14.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/BIM003_S1_2026-09-14.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/BIM003_S2_2026-09-14.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/BIM003_S2_2026-09-14.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/BIM003_S3_2026-09-14.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/BIM003_S3_2026-09-14.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-14_123800_session-open.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-14_123800_session-open.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-14_125225_bim003-plan.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-14_125225_bim003-plan.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-14_131702_bim003-s1-blocked-disk-mismatch.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-14_131702_bim003-s1-blocked-disk-mismatch.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-14_135344_bim003-s1-complete.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-14_135344_bim003-s1-complete.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-14_145430_bim003-s2-complete.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-14_145430_bim003-s2-complete.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-14_154208_bim003-s3-complete-pending-ac307.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-14_154208_bim003-s3-complete-pending-ac307.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-14_164606_bim003-s3-engineering-complete.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-14_164606_bim003-s3-engineering-complete.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-15_122338_session-open-qa-standby.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-15_122338_session-open-qa-standby.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-15_123634_cody-qa-recon.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-15_123634_cody-qa-recon.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-15_141710_cody-session-recovery.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-15_141710_cody-session-recovery.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-15_144404_cody-stage-a-result.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-15_144404_cody-stage-a-result.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-15_152858_cody-stage-b-result.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-15_152858_cody-stage-b-result.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-15_170730_cody-stages-c-i-preq-report.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-15_170730_cody-stages-c-i-preq-report.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-15_172400_qa-cleanup-disposition-j19.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-15_172400_qa-cleanup-disposition-j19.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-15_173300_qa-cleanup-result.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-15_173300_qa-cleanup-result.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-16_122057_bim003-closeout.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-16_122057_bim003-closeout.md",
+    "byteEqual": true
+  },
+  {
+    "original": "agent_docs/RESPONSES/response_2026-09-16_151616_bim003-merged-final.md",
+    "relocated": "agent_docs/RESPONSES/_OLD/response_2026-09-16_151616_bim003-merged-final.md",
+    "byteEqual": true
+  }
+]

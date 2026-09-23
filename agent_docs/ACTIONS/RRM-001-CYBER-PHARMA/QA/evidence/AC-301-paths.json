@@ -1,0 +1,21 @@
+[
+  "src/proxy.ts",
+  "src/utils/supabase/middleware.ts",
+  "src/utils/supabase/actions.ts",
+  "src/app/api/auth/logout",
+  "src/app/api/auth/confirm",
+  "src/app/(auth)/layout.tsx",
+  "src/app/profile",
+  "src/app/(admin)",
+  "src/app/owedbook",
+  "src/services",
+  "src/mocks",
+  "src/components/owedbook",
+  "src/components/common",
+  "src/instrumentation.ts",
+  "supabase",
+  "scripts",
+  "package.json",
+  "package-lock.json",
+  "next.config.js"
+]

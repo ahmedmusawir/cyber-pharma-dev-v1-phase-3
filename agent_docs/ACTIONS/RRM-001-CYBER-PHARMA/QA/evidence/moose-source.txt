@@ -1,0 +1,3 @@
+rg -n -i moose README.md docs .env.example src
+exit=0
+src/app/(admin)/layout.tsx:20:  // in the shared AuthedShell so /owedbook + /moose-portal are physically out of

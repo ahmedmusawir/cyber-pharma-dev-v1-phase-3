@@ -156,6 +156,7 @@ RBAC starter kit.
   component → service → store → mock flow and the Phase-7 backend swap point.
 - **[ROUTES_AND_SURFACES.md](docs/ROUTES_AND_SURFACES.md)** — the route map, role
   gates, and the shared authed shell.
+- The env-gated operator user-management portal and public self-registration were removed in RRM-001 (2026-09-20).
 
 ### Foundation (RBAC starter kit)
 

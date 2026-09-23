@@ -1,0 +1,9 @@
+{
+  "stage": "awaiting-director-login",
+  "role": "ADMIN",
+  "pathname": "/auth",
+  "viewport": 1440,
+  "theme": "light",
+  "credentialsRecorded": false,
+  "serverStartedByCody": false
+}

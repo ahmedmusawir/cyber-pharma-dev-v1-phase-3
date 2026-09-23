@@ -1,7 +1,7 @@
 import SpinnerLarge from "@/components/common/SpinnerLarge";
 import React from "react";
 
-// Matches the authed routes' loading spinner (moose/admin) so the "/" → /owedbook
+// Matches the authed routes' loading spinner (admin) so the "/" → /owedbook
 // redirect shows the same large centered spinner, not the small one.
 const Loading = () => {
   return (

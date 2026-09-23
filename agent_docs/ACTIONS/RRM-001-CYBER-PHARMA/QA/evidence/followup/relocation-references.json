@@ -1,0 +1,158 @@
+[
+  {
+    "referencingFile": "CHANGELOG.md",
+    "line": 63,
+    "original": "agent_docs/RESPONSES/BIM003_S3_2026-09-14.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "CHANGELOG.md",
+    "line": 71,
+    "original": "agent_docs/RESPONSES/BIM003_S2_2026-09-14.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "CHANGELOG.md",
+    "line": 79,
+    "original": "agent_docs/RESPONSES/BIM003_S1_2026-09-14.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "CHANGELOG.md",
+    "line": 79,
+    "original": "agent_docs/RESPONSES/response_2026-09-14_125225_bim003-plan.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/BIM003_ACCEPTANCE_SPEC.md",
+    "line": 75,
+    "original": "agent_docs/RESPONSES/BIM003_S1_2026-09-14.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/CODY_QA_RECON.md",
+    "line": 19,
+    "original": "agent_docs/RESPONSES/response_2026-09-15_122338_session-open-qa-standby.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/CODY_QA_RECON.md",
+    "line": 152,
+    "original": "agent_docs/RESPONSES/response_2026-09-15_122338_session-open-qa-standby.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/CODY_QA_RECON.md",
+    "line": 155,
+    "original": "agent_docs/RESPONSES/response_2026-09-15_123634_cody-qa-recon.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/QA/QA_WORK_JOURNAL.md",
+    "line": 26,
+    "original": "agent_docs/RESPONSES/response_2026-09-15_170730_cody-stages-c-i-preq-report.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/S3_files.md",
+    "line": 268,
+    "original": "agent_docs/RESPONSES/BIM003_S1_2026-09-14.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/S3_files.md",
+    "line": 269,
+    "original": "agent_docs/RESPONSES/BIM003_S2_2026-09-14.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/S3_files.md",
+    "line": 270,
+    "original": "agent_docs/RESPONSES/BIM003_S2_2026-09-14.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/ACTIONS/BIM-003-CYBER-PHARMA/evidence/S3_files.md",
+    "line": 271,
+    "original": "agent_docs/RESPONSES/BIM003_S1_2026-09-14.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/SESSIONS/session_2026-09-14.md",
+    "line": 32,
+    "original": "agent_docs/RESPONSES/response_2026-09-14_123800_session-open.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/SESSIONS/session_2026-09-14.md",
+    "line": 47,
+    "original": "agent_docs/RESPONSES/response_2026-09-14_123800_session-open.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/SESSIONS/session_2026-09-14.md",
+    "line": 59,
+    "original": "agent_docs/RESPONSES/response_2026-09-14_125225_bim003-plan.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/SESSIONS/session_2026-09-14.md",
+    "line": 71,
+    "original": "agent_docs/RESPONSES/response_2026-09-14_131702_bim003-s1-blocked-disk-mismatch.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/SESSIONS/session_2026-09-14.md",
+    "line": 79,
+    "original": "agent_docs/RESPONSES/BIM003_S1_2026-09-14.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/SESSIONS/session_2026-09-14.md",
+    "line": 92,
+    "original": "agent_docs/RESPONSES/BIM003_S2_2026-09-14.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/SESSIONS/session_2026-09-14.md",
+    "line": 104,
+    "original": "agent_docs/RESPONSES/BIM003_S3_2026-09-14.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/SESSIONS/session_2026-09-15.md",
+    "line": 35,
+    "original": "agent_docs/RESPONSES/response_2026-09-15_123634_cody-qa-recon.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/SESSIONS/session_2026-09-15.md",
+    "line": 41,
+    "original": "agent_docs/RESPONSES/response_2026-09-15_141710_cody-session-recovery.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/SESSIONS/session_2026-09-15.md",
+    "line": 48,
+    "original": "agent_docs/RESPONSES/response_2026-09-15_144404_cody-stage-a-result.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/SESSIONS/session_2026-09-15.md",
+    "line": 54,
+    "original": "agent_docs/RESPONSES/response_2026-09-15_152858_cody-stage-b-result.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/SESSIONS/session_2026-09-15.md",
+    "line": 73,
+    "original": "agent_docs/RESPONSES/response_2026-09-15_170730_cody-stages-c-i-preq-report.md",
+    "originalExists": false
+  },
+  {
+    "referencingFile": "agent_docs/SESSIONS/session_2026-09-15.md",
+    "line": 80,
+    "original": "agent_docs/RESPONSES/response_2026-09-15_172400_qa-cleanup-disposition-j19.md",
+    "originalExists": false
+  }
+]

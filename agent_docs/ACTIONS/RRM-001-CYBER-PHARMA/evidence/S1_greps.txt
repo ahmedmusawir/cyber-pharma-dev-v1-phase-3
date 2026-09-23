@@ -1,0 +1,192 @@
+RRM-001 S1 grep transcript — 2026-09-20 17:59:23 — working tree on top of 447463e; .next = fresh state-U build MJjd0Atu4W8vr6eemZJwK
+
+######## AC-101
+
+$ ls src/app/moose-portal
+ls: cannot access 'src/app/moose-portal': No such file or directory
+[exit 2]
+
+$ ls src/app
+(admin)
+api
+(auth)
+error
+globals.css
+icon.png
+layout.tsx
+not-found.tsx
+owedbook
+profile
+providers
+(public)
+[exit 0]
+
+######## AC-103 (src)
+
+$ grep -rn "getUserById\|addMember\|deleteUser\|editUser" src/
+src/services/adminDemo.ts:225:    store().addMember(member);
+src/store/useAdminDemoStore.ts:17:  addMember: (member: StoreMember) => void;
+src/store/useAdminDemoStore.ts:30:  addMember: (member) =>
+[exit 0]
+# expected: exactly the three A-04 standing exceptions (adminDemo mock store).
+
+######## AC-103 (.next/server, fresh build)
+
+$ grep -rln "getUserById\|addMember\|deleteUser" .next/server/ | sort
+.next/server/chunks/_0llx6m_._.js
+.next/server/chunks/_0llx6m_._.js.map
+.next/server/chunks/[root-of-the-server]__1oht-x8._.js
+.next/server/chunks/[root-of-the-server]__1oht-x8._.js.map
+.next/server/chunks/ssr/_0b9thrh._.js
+.next/server/chunks/ssr/_0b9thrh._.js.map
+.next/server/chunks/ssr/_0p0j8_e._.js
+.next/server/chunks/ssr/_0p0j8_e._.js.map
+.next/server/chunks/ssr/_1h8yg40._.js
+.next/server/chunks/ssr/_1h8yg40._.js.map
+.next/server/chunks/ssr/src_components_0m8ipp1._.js
+.next/server/chunks/ssr/src_components_0m8ipp1._.js.map
+.next/server/chunks/ssr/src_components_0svqujc._.js
+.next/server/chunks/ssr/src_components_0svqujc._.js.map
+.next/server/chunks/ssr/src_components_0vgeznr._.js
+.next/server/chunks/ssr/src_components_0vgeznr._.js.map
+.next/server/chunks/ssr/src_components_0wa-ekr._.js
+.next/server/chunks/ssr/src_components_0wa-ekr._.js.map
+.next/server/chunks/ssr/src_components_1-6yw7x._.js
+.next/server/chunks/ssr/src_components_1-6yw7x._.js.map
+.next/server/chunks/ssr/src_components_1p9shf1._.js
+.next/server/chunks/ssr/src_components_1p9shf1._.js.map
+[exit 0]
+# classification of every hit file:
+.next/server/chunks/_0llx6m_._.js | addMember=0 getUserById=1 deleteUser=1 | sdk(/admin/users)=9 adminDemo(inviteMember)=0
+.next/server/chunks/_0llx6m_._.js.map | addMember=0 getUserById=3 deleteUser=3 | sdk(/admin/users)=9 adminDemo(inviteMember)=0
+.next/server/chunks/[root-of-the-server]__1oht-x8._.js | addMember=0 getUserById=1 deleteUser=1 | sdk(/admin/users)=9 adminDemo(inviteMember)=0
+.next/server/chunks/[root-of-the-server]__1oht-x8._.js.map | addMember=0 getUserById=3 deleteUser=3 | sdk(/admin/users)=9 adminDemo(inviteMember)=0
+.next/server/chunks/ssr/_0b9thrh._.js | addMember=0 getUserById=1 deleteUser=1 | sdk(/admin/users)=9 adminDemo(inviteMember)=0
+.next/server/chunks/ssr/_0b9thrh._.js.map | addMember=0 getUserById=3 deleteUser=3 | sdk(/admin/users)=9 adminDemo(inviteMember)=0
+.next/server/chunks/ssr/_0p0j8_e._.js | addMember=0 getUserById=1 deleteUser=1 | sdk(/admin/users)=9 adminDemo(inviteMember)=0
+.next/server/chunks/ssr/_0p0j8_e._.js.map | addMember=0 getUserById=3 deleteUser=3 | sdk(/admin/users)=9 adminDemo(inviteMember)=0
+.next/server/chunks/ssr/_1h8yg40._.js | addMember=0 getUserById=1 deleteUser=1 | sdk(/admin/users)=9 adminDemo(inviteMember)=0
+.next/server/chunks/ssr/_1h8yg40._.js.map | addMember=0 getUserById=3 deleteUser=3 | sdk(/admin/users)=9 adminDemo(inviteMember)=0
+.next/server/chunks/ssr/src_components_0m8ipp1._.js | addMember=2 getUserById=0 deleteUser=0 | sdk(/admin/users)=0 adminDemo(inviteMember)=1
+.next/server/chunks/ssr/src_components_0m8ipp1._.js.map | addMember=3 getUserById=0 deleteUser=0 | sdk(/admin/users)=0 adminDemo(inviteMember)=3
+.next/server/chunks/ssr/src_components_0svqujc._.js | addMember=2 getUserById=0 deleteUser=0 | sdk(/admin/users)=0 adminDemo(inviteMember)=1
+.next/server/chunks/ssr/src_components_0svqujc._.js.map | addMember=3 getUserById=0 deleteUser=0 | sdk(/admin/users)=0 adminDemo(inviteMember)=3
+.next/server/chunks/ssr/src_components_0vgeznr._.js | addMember=2 getUserById=0 deleteUser=0 | sdk(/admin/users)=0 adminDemo(inviteMember)=2
+.next/server/chunks/ssr/src_components_0vgeznr._.js.map | addMember=3 getUserById=0 deleteUser=0 | sdk(/admin/users)=0 adminDemo(inviteMember)=4
+.next/server/chunks/ssr/src_components_0wa-ekr._.js | addMember=2 getUserById=0 deleteUser=0 | sdk(/admin/users)=0 adminDemo(inviteMember)=1
+.next/server/chunks/ssr/src_components_0wa-ekr._.js.map | addMember=3 getUserById=0 deleteUser=0 | sdk(/admin/users)=0 adminDemo(inviteMember)=3
+.next/server/chunks/ssr/src_components_1-6yw7x._.js | addMember=2 getUserById=0 deleteUser=0 | sdk(/admin/users)=0 adminDemo(inviteMember)=1
+.next/server/chunks/ssr/src_components_1-6yw7x._.js.map | addMember=3 getUserById=0 deleteUser=0 | sdk(/admin/users)=0 adminDemo(inviteMember)=3
+.next/server/chunks/ssr/src_components_1p9shf1._.js | addMember=2 getUserById=0 deleteUser=0 | sdk(/admin/users)=0 adminDemo(inviteMember)=1
+.next/server/chunks/ssr/src_components_1p9shf1._.js.map | addMember=3 getUserById=0 deleteUser=0 | sdk(/admin/users)=0 adminDemo(inviteMember)=3
+
+$ grep -rlE "\.auth\.admin\.(deleteUser|getUserById|createUser|updateUserById|listUsers)" .next/server --include=*.js
+[exit 1]
+
+$ grep -rl "moose-portal/users/actions" .next/server .next/static
+[exit 1]
+
+$ grep -rn "editUser" .next/server/ | wc -l
+0
+[exit 0]
+
+######## AC-103 negative control
+
+$ grep -n "export async function protectPage\|export const protectPage" src/utils/supabase/actions.ts
+8:export async function protectPage(
+[exit 0]
+
+######## AC-104
+
+$ grep -rn "NEXT_PUBLIC_ENABLE_MOOSE_PORTAL" src/ .env.example
+[exit 1]
+
+$ git diff --stat 5f45fb3 -- src/instrumentation.ts
+[exit 0]
+
+$ cat .env.example
+# Copy this file to .env.local and fill in your own values.
+# .env.local is gitignored — never commit real keys.
+
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+
+# Supabase — from your project's API settings
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-ref.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_your_publishable_key
+SUPABASE_SECRET_KEY=sb_secret_your_service_role_key
+[exit 0]
+
+######## AC-105
+
+$ ls src/app/moose-portal/_lib/admin.ts
+ls: cannot access 'src/app/moose-portal/_lib/admin.ts': No such file or directory
+[exit 2]
+
+$ grep -rn "utils/supabase/admin" src/ scripts/
+[exit 1]
+
+$ grep -n "export const createAdminClient" src/utils/supabase/admin.ts
+20:export const createAdminClient = () => {
+[exit 0]
+
+$ head -n 12 src/utils/supabase/admin.ts
+// Service-role Supabase client factory — BLESSED INFRA, currently UNCONSUMED.
+// Ledger E-04 (agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md, 2026-09-20): this is the
+// single service-role factory in the repo. The duplicate copy that lived beside the
+// operator user-management portal was deleted with that portal in RRM-001 (2026-09-20).
+// Zero app consumers: nothing under src/ or scripts/ imports this file, and no route,
+// page, component or Server Action may.
+// FENCED to seeding and system jobs only — BIM-004's seed script decides its own import.
+// CRITICAL: uses the secret (service_role) key — server-side only. NEVER import this in
+// client components or expose the key to the browser.
+
+import { createClient } from '@supabase/supabase-js'
+
+[exit 0]
+
+######## AC-106
+
+$ grep -rni "moose" README.md docs/ .env.example src/
+src/app/(admin)/layout.tsx:20:  // in the shared AuthedShell so /owedbook + /moose-portal are physically out of
+[exit 0]
+# expected: exactly one hit — src/app/(admin)/layout.tsx:20, the A-05 listed exception (AC-301 byte-identity wins).
+
+$ grep -n "RRM-001" README.md agent_docs/KIP_REGISTRY.md docs/*.md
+README.md:159:- The env-gated operator user-management portal was removed in RRM-001 (2026-09-20).
+agent_docs/KIP_REGISTRY.md:14:> **Note:** the env-gated operator user-management portal and its env flag were removed in RRM-001 (2026-09-20) — no KIP may assume it exists.
+docs/AUTHORIZATION.md:196:user-management portal that carried one was removed in RRM-001 (2026-09-20) — see
+docs/ROUTES_AND_SURFACES.md:62:- The env-gated operator user-management portal was removed in RRM-001 (2026-09-20), together with its env flag and navbar link.
+docs/DATABASE_SETUP.md:150:> in SQL (as above); the operator user-management portal was removed in RRM-001 (2026-09-20). The
+docs/PROJECT_OVERVIEW.md:38:The env-gated operator user-management portal was removed in RRM-001 (2026-09-20). See
+[exit 0]
+
+######## AC-303 (Navbar diff touches only the flag wiring)
+
+$ git diff 5f45fb3 -- src/components/global/Navbar.tsx
+diff --git a/src/components/global/Navbar.tsx b/src/components/global/Navbar.tsx
+index 23a24db..942d193 100644
+--- a/src/components/global/Navbar.tsx
++++ b/src/components/global/Navbar.tsx
+@@ -45,10 +45,6 @@ const Navbar = ({ user, role }: NavbarProps) => {
+   const navLinks = [
+     { label: "OwedBook", href: "/owedbook" },
+     ...(isAdmin ? [{ label: "Admin Portal", href: "/admin-portal" }] : []),
+-    // TODO: REMOVE — off-books operator tool (/moose-portal). ADMIN + env flag only.
+-    ...(isAdmin && process.env.NEXT_PUBLIC_ENABLE_MOOSE_PORTAL === "true"
+-      ? [{ label: "Moose", href: "/moose-portal" }]
+-      : []),
+     { label: "Profile", href: "/profile" },
+   ];
+ 
+[exit 0]
+
+$ git diff --stat 5f45fb3 -- src/components/global/NavbarHome.tsx src/components/global/MobileNav.tsx src/components/global/UserMenu.tsx
+[exit 0]
+
+######## AC-301 preserved-path diff (S1 checkpoint)
+
+$ git diff 5f45fb3 --stat -- src/proxy.ts src/utils/supabase/middleware.ts src/utils/supabase/actions.ts src/app/api/auth/logout src/app/api/auth/confirm "src/app/(auth)/layout.tsx" src/app/profile "src/app/(admin)" src/app/owedbook src/services src/mocks src/components/owedbook src/components/common src/instrumentation.ts supabase scripts package.json package-lock.json next.config.js
+[exit 0]
+
+$ git diff --stat 5f45fb3 -- src/__tests__
+[exit 0]

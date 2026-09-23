@@ -37,7 +37,7 @@ const HomePageContent = () => {
             size="lg"
             className="uppercase tracking-wide font-bold"
           >
-            <Link href="/auth?tab=register">
+            <Link href="/auth">
               Start free trial
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

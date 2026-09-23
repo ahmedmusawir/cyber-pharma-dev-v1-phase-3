@@ -1,0 +1,15 @@
+{
+  "date": "2026-09-21T09:15:20.819Z",
+  "candidate": "cad164d62a623a115541c0441302de01ff74da5b",
+  "relocations": 20,
+  "allRelocatedBytesIdentical": true,
+  "allMovesUncommitted": true,
+  "productConfigDiffEmpty": true,
+  "referencingLines": 26,
+  "firstObservation": "First preflight of prior QA execution-release turn, 2026-09-21; exact observation clock time was not captured",
+  "priorPreflightCaptureMtime": "2026-09-21T08:31:41.171Z",
+  "intakeReportMtime": "2026-09-21T08:10:17.496Z",
+  "moveActor": "Unknown; no recorded actor or command",
+  "moveTime": "Unknown; observed after clean intake and before execution build",
+  "DA2Present": false
+}

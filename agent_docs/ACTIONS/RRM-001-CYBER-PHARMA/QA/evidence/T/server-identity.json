@@ -1,0 +1,11 @@
+{
+  "candidate": "cad164d62a623a115541c0441302de01ff74da5b",
+  "state": "T",
+  "buildId": "JqUbQDCm3XRycsZbpFzOA",
+  "port": 37209,
+  "pid": 847701,
+  "entry": "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/.next/standalone/server.js",
+  "entryHash": "1653386eb69ded1328d8f7bbcd5fc15803a5fb3581d299726ba3a8367b98f793",
+  "standaloneBuildId": "JqUbQDCm3XRycsZbpFzOA",
+  "sameFlagAtBuildAndServe": true
+}

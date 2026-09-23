@@ -1,0 +1,29 @@
+▲ Next.js 16.2.12
+- Local:         http://127.0.0.1:37209
+- Network:       http://127.0.0.1:37209
+✓ Ready in 0ms
+✓ Environment validated
+⨯ SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at async C (.next/server/chunks/[root-of-the-server]__0kneulb._.js:1:1333)
+    at async l (.next/server/chunks/[root-of-the-server]__0kneulb._.js:1:5326)
+Error: Failed to find Server Action "402dc37b2b824c1412b54c07a6754d1f00f781c2dc". This request might be from an older or newer deployment.
+Read more: https://nextjs.org/docs/messages/failed-to-find-server-action
+    at i (.next/server/chunks/ssr/[root-of-the-server]__1vfpvus._.js:1:47584)
+    at Object.get (.next/server/chunks/ssr/[root-of-the-server]__1vfpvus._.js:3:2837)
+Error: Failed to find Server Action "404e90d686531af573f3973524ae30e48d42564fdb". This request might be from an older or newer deployment.
+Read more: https://nextjs.org/docs/messages/failed-to-find-server-action
+    at i (.next/server/chunks/ssr/[root-of-the-server]__1vfpvus._.js:1:47584)
+    at Object.get (.next/server/chunks/ssr/[root-of-the-server]__1vfpvus._.js:3:2837)
+Error: Failed to find Server Action "40d73ff364e71e0ded6e2d8bdbd18d3449dc317cad". This request might be from an older or newer deployment.
+Read more: https://nextjs.org/docs/messages/failed-to-find-server-action
+    at i (.next/server/chunks/ssr/[root-of-the-server]__1vfpvus._.js:1:47584)
+    at Object.get (.next/server/chunks/ssr/[root-of-the-server]__1vfpvus._.js:3:2837)
+Error: Failed to find Server Action "40e1008514ac7084cf1a567948a2afe66cb4986f22". This request might be from an older or newer deployment.
+Read more: https://nextjs.org/docs/messages/failed-to-find-server-action
+    at i (.next/server/chunks/ssr/[root-of-the-server]__1vfpvus._.js:1:47584)
+    at Object.get (.next/server/chunks/ssr/[root-of-the-server]__1vfpvus._.js:3:2837)
+Error: Failed to find Server Action "60fe6f04c7baf4ba561914ff2157c6d7071a99ff7e". This request might be from an older or newer deployment.
+Read more: https://nextjs.org/docs/messages/failed-to-find-server-action
+    at i (.next/server/chunks/ssr/[root-of-the-server]__1vfpvus._.js:1:47584)
+    at Object.get (.next/server/chunks/ssr/[root-of-the-server]__1vfpvus._.js:3:2837)

@@ -1,0 +1,50 @@
+[
+  {
+    "path": "src/__tests__/actions.test.ts",
+    "baseline": "c5876654410f06913e8c66ee168beb3f666fe7aa980464058677eb8de2075f34",
+    "candidate": "c5876654410f06913e8c66ee168beb3f666fe7aa980464058677eb8de2075f34",
+    "working": "c5876654410f06913e8c66ee168beb3f666fe7aa980464058677eb8de2075f34"
+  },
+  {
+    "path": "src/__tests__/admin-portal/InviteMemberForm.test.tsx",
+    "baseline": "d0bd885a40757b85e11774ef218e446830ca4a10bb6574b36d23cbfd585ff1f0",
+    "candidate": "d0bd885a40757b85e11774ef218e446830ca4a10bb6574b36d23cbfd585ff1f0",
+    "working": "d0bd885a40757b85e11774ef218e446830ca4a10bb6574b36d23cbfd585ff1f0"
+  },
+  {
+    "path": "src/__tests__/global/MobileNav.test.tsx",
+    "baseline": "32f9a5585b096d6babfc46d38a3a18e741a8da19b25dab7ac66b2787f3ad6dd7",
+    "candidate": "32f9a5585b096d6babfc46d38a3a18e741a8da19b25dab7ac66b2787f3ad6dd7",
+    "working": "32f9a5585b096d6babfc46d38a3a18e741a8da19b25dab7ac66b2787f3ad6dd7"
+  },
+  {
+    "path": "src/__tests__/global/Navbar.invariant.test.tsx",
+    "baseline": "9f70690b1c5e773e28396517a81a6054b10b41685260a110f46db11b43dbe9b6",
+    "candidate": "9f70690b1c5e773e28396517a81a6054b10b41685260a110f46db11b43dbe9b6",
+    "working": "9f70690b1c5e773e28396517a81a6054b10b41685260a110f46db11b43dbe9b6"
+  },
+  {
+    "path": "src/__tests__/global/UserMenu.test.tsx",
+    "baseline": "197ae748575073d80624affd9761e8fab10ca5928f383eb71b56f3bc59a14209",
+    "candidate": "197ae748575073d80624affd9761e8fab10ca5928f383eb71b56f3bc59a14209",
+    "working": "197ae748575073d80624affd9761e8fab10ca5928f383eb71b56f3bc59a14209"
+  },
+  {
+    "path": "src/__tests__/owedbook/drawer-apply.integration.test.tsx",
+    "baseline": "275316c542b895200bb7ee1f6ce5b1790e5eba90f658dc872ae3196504e5fdf6",
+    "candidate": "275316c542b895200bb7ee1f6ce5b1790e5eba90f658dc872ae3196504e5fdf6",
+    "working": "275316c542b895200bb7ee1f6ce5b1790e5eba90f658dc872ae3196504e5fdf6"
+  },
+  {
+    "path": "src/__tests__/proxy.test.ts",
+    "baseline": "44e09b4a705407667c2daedd18ae938912a603fa49299a013b55ce4ed0b7bbba",
+    "candidate": "44e09b4a705407667c2daedd18ae938912a603fa49299a013b55ce4ed0b7bbba",
+    "working": "44e09b4a705407667c2daedd18ae938912a603fa49299a013b55ce4ed0b7bbba"
+  },
+  {
+    "path": "src/__tests__/services/owedbook.test.ts",
+    "baseline": "23f84f29b8a38464d4b5dc98255f85260c2b7dc9df978b5c89017358ae93a2c0",
+    "candidate": "23f84f29b8a38464d4b5dc98255f85260c2b7dc9df978b5c89017358ae93a2c0",
+    "working": "23f84f29b8a38464d4b5dc98255f85260c2b7dc9df978b5c89017358ae93a2c0"
+  }
+]

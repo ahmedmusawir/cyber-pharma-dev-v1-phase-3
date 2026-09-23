@@ -1,0 +1,54 @@
+diff --git a/src/app/(public)/HomePageContent.tsx b/src/app/(public)/HomePageContent.tsx
+index 8a4923f..b0b1519 100644
+--- a/src/app/(public)/HomePageContent.tsx
++++ b/src/app/(public)/HomePageContent.tsx
+@@ -37,7 +37,7 @@ const HomePageContent = () => {
+             size="lg"
+             className="uppercase tracking-wide font-bold"
+           >
+-            <Link href="/auth?tab=register">
++            <Link href="/auth">
+               Start free trial
+               <ArrowRight className="ml-2 h-4 w-4" />
+             </Link>
+diff --git a/src/components/global/MobileNav.tsx b/src/components/global/MobileNav.tsx
+index 7a026d9..d3928dd 100644
+--- a/src/components/global/MobileNav.tsx
++++ b/src/components/global/MobileNav.tsx
+@@ -100,7 +100,7 @@ const MobileNav = ({ user, role }: MobileNavProps) => {
+                   Log in
+                 </Link>
+                 <Link
+-                  href="/auth?tab=register"
++                  href="/auth"
+                   onClick={close}
+                   className="uppercase text-xs font-bold tracking-wide px-7 py-5 bg-primary text-primary-foreground text-center hover:bg-primary/90 transition-colors"
+                 >
+diff --git a/src/components/global/Navbar.tsx b/src/components/global/Navbar.tsx
+index 23a24db..942d193 100644
+--- a/src/components/global/Navbar.tsx
++++ b/src/components/global/Navbar.tsx
+@@ -45,10 +45,6 @@ const Navbar = ({ user, role }: NavbarProps) => {
+   const navLinks = [
+     { label: "OwedBook", href: "/owedbook" },
+     ...(isAdmin ? [{ label: "Admin Portal", href: "/admin-portal" }] : []),
+-    // TODO: REMOVE — off-books operator tool (/moose-portal). ADMIN + env flag only.
+-    ...(isAdmin && process.env.NEXT_PUBLIC_ENABLE_MOOSE_PORTAL === "true"
+-      ? [{ label: "Moose", href: "/moose-portal" }]
+-      : []),
+     { label: "Profile", href: "/profile" },
+   ];
+ 
+diff --git a/src/components/global/UserMenu.tsx b/src/components/global/UserMenu.tsx
+index 4991b26..0464e9a 100644
+--- a/src/components/global/UserMenu.tsx
++++ b/src/components/global/UserMenu.tsx
+@@ -63,7 +63,7 @@ const UserMenu = ({ user, role }: UserMenuProps) => {
+         Log in
+       </Link>
+       <Link
+-        href="/auth?tab=register"
++        href="/auth"
+         className="uppercase px-7 h-full flex items-center bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-colors"
+       >
+         Start free trial

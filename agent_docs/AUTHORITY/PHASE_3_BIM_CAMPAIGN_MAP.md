@@ -173,3 +173,15 @@ BIM-000 STAGE PREP ─► FIX-001 KIP-2 ─► BIM-001 SCHEMA ─► BIM-002 RLS
 ---
 
 🥄 *Stark Industries — seven modules, one vault, zero guesswork.*
+
+---
+
+## Errata — RRM campaign (2026-09-22, pending Director doc-repo sync)
+
+Carried verbatim from `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` §9. Body text above is untouched; the Director stages these into the doc-repo copy.
+
+- **CE-1 — BIM-004 §6 test users:** the five seed identities are created by the seed script (service role, sanctioned exception) via the Auth admin API followed by **explicit** `user_roles`/`profiles` writes — never via `raw_user_meta_data.role`. Interim: DA-5. No public route, no Moose replacement.
+- **CE-2 — BIM-004 pre-flight ruling 8, trigger correction:** installed `handle_new_user()` confirmed (Director, `pg_get_functiondef`, 2026-09-20) to assign role from signup metadata and read `full_name`; 0001–0047 do not replace it. BIM-004 authors a migration (next free number, verified on disk at authoring) redefining it with fixed `member` + `full_name`, SECURITY DEFINER, pinned `search_path`; applied and verified at APPLY SESSION (`pg_get_functiondef` + negative test: signup with `{"role":"admin"}` yields member). Legacy setup SQL files are quarantined by RRM-003 and are not inputs.
+- **CE-3 — BIM-005 §7 AC2/AC5:** AC2 baseline = post-RRM-campaign `main`; AC5 = adminDemo byte-identical to post-RRM `main` **and** `/moose-portal` absent (route table + 404). Parity notes for the swap: Summary tiebreak, empty-string PBM, JS vs SQL rounding (recon R5 D3–D5). Carry R-016 (A-006): BIM-005 brief rules component invalidation and error states before real reads.
+- **CE-4 — status line + carry-forward:** RRM campaign (RRM-001…004) inserted after BIM-003 CLOSED, before BIM-004 NEXT by Director priority; 8-phase plan §2 carried-forward "/moose-portal seeding tool" → removed (RRM-001); "KIP-2 stale-persist" → closed by FIX-001, regression-protected.
+- RRM-001 CLOSED 2026-09-22 @ cad164d; /moose-portal and public signup removed from the frontend.

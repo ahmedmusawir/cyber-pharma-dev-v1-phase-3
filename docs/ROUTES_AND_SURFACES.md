@@ -11,7 +11,7 @@
 | Path                         | Role gate                  | Purpose                                                        | Data source        |
 | ---------------------------- | -------------------------- | ------------------------------------------------------------- | ------------------ |
 | `/`                          | public                     | Marketing / landing page                                      | static             |
-| `/auth`                      | public                     | Login + signup tabs (`AuthTabs`)                              | Supabase Auth      |
+| `/auth`                      | public                     | Login only (`LoginForm`)                                      | Supabase Auth      |
 | `/access-denied`             | public                     | Friendly unauthorized page                                    | static             |
 | `/owedbook`                  | **ADMIN + MEMBER**         | OwedBook reimbursement ledger — **post-login landing for any authed user** | mock service |
 | `/profile`                   | any authed (redirects to `/auth`) | View/edit own profile                                  | Supabase           |
@@ -21,7 +21,6 @@
 | `/admin-portal/billing`      | ADMIN                      | Billing (visual-only; no real charge)                        | mock store         |
 | `/admin-portal/settings`     | ADMIN                      | Pharmacy settings                                            | mock store         |
 | `/admin-portal/audit`        | ADMIN                      | Audit log (one row per admin mutation)                       | mock store         |
-| `/moose-portal/*`            | ADMIN **+ env flag**       | Operator escape hatch — **real** user CRUD                    | real Supabase      |
 
 ---
 
@@ -31,7 +30,7 @@ App Router route groups (`(name)`) organize layouts/gating without adding a URL
 segment.
 
 - **`(public)`** — `/`, `/access-denied`. No auth.
-- **`(auth)`** — `/auth`. The login/signup surface.
+- **`(auth)`** — `/auth`. The login surface (login-only).
 - **`(admin)`** — wraps `/admin-portal/*`. Layout calls
   `protectPage([AppRole.ADMIN], { unauthorizedRedirect: "/owedbook" })` — a MEMBER
   who types an admin URL is bounced to their OwedBook landing, **not** to login.
@@ -58,27 +57,16 @@ overlay shows on primary navigation across all authed surfaces.
 
 ---
 
-## The `/moose-portal` Escape Hatch
+## Removed Surfaces
 
-`/moose-portal` is an **off-books, env-gated, throwaway operator tool** with real
-Supabase user CRUD. It exists because the Phase-2.2 work replaced
-`/admin-portal`'s real user management with a state-only mock, and the operator
-still needs a way to manage real test users.
-
-- **Gating:** if `NEXT_PUBLIC_ENABLE_MOOSE_PORTAL !== "true"`, the entire route
-  `notFound()`s (safe by default). When enabled, it additionally requires ADMIN.
-- **Isolation:** it ships its own shell (`_shell/`) and lib (`_lib/`) — it shares
-  **no** files with the Admin Portal demo, so the demo can evolve without
-  touching it.
-- **Lifecycle:** marked `TODO: REMOVE`. Delete `src/app/moose-portal/` plus the
-  navbar Moose link when it's no longer needed.
+- The env-gated operator user-management portal was removed in RRM-001 (2026-09-20), together with its env flag and navbar link.
+- Public self-registration was removed in RRM-001 (2026-09-20): `/auth` is login-only.
 
 ---
 
 ## Cleanup Flags
 
-- **`/moose-portal`** — intentional temporary tool; remove when test-user
-  management moves elsewhere.
+None open.
 
 These are noted for the architect's call. The docs describe the tree as it is
 today; removing dead routes is a separate, code-touching task.

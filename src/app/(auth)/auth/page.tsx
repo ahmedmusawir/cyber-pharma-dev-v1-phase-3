@@ -1,13 +1,15 @@
 "use client";
 
-import AuthTabs from "@/components/auth/AuthTabs";
-import React, { Suspense } from "react";
+import LoginForm from "@/components/auth/LoginForm";
+import React from "react";
 
 const AuthPage = () => {
   return (
-    <Suspense>
-      <AuthTabs />
-    </Suspense>
+    <div className="w-[400px] mt-16">
+      <div className="p-4 border-t border-border bg-card">
+        <LoginForm />
+      </div>
+    </div>
   );
 };
 

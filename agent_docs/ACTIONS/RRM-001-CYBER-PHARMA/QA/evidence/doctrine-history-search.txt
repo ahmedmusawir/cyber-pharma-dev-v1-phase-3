@@ -1,0 +1,2 @@
+COMMAND: git log --all --name-only --pretty=format: -- agent_docs; case-insensitive filename filter
+

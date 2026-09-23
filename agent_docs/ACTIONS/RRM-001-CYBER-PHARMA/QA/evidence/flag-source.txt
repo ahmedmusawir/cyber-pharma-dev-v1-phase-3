@@ -1,0 +1,2 @@
+rg -n NEXT_PUBLIC_ENABLE_MOOSE_PORTAL src .env.example
+exit=1

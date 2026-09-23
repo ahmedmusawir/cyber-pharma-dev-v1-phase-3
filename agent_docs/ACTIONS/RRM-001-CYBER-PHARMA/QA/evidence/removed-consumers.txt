@@ -1,0 +1,2 @@
+rg -n RegisterForm|AuthTabs|api/auth/signup|moose-portal/users/actions src
+exit=1

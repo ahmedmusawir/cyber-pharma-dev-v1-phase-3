@@ -1,0 +1,165 @@
+RRM-001 S2 grep transcript — 2026-09-20 18:24:46 — working tree on top of 7e2eaeb; .next = fresh state-U build yYaFkHP0_4nXLO0dSvdyE
+
+######## AC-201 / AC-202 (files gone)
+
+$ ls src/app/api/auth/signup
+ls: cannot access 'src/app/api/auth/signup': No such file or directory
+[exit 2]
+
+$ ls src/components/auth
+LoginForm.tsx
+Logout.tsx
+[exit 0]
+
+$ ls src/app/api/auth
+confirm
+login
+logout
+[exit 0]
+
+######## AC-203
+
+$ grep -rniE "sign ?up|register|create (an )?account" src/
+src/instrumentation.ts:18:export function register() {
+src/__tests__/auth/AuthPage.test.tsx:17:const REMOVED_AFFORDANCE = /sign ?up|register|create (an )?account/i;
+[exit 0]
+# expected: ONLY the two A-09 standing exceptions — src/instrumentation.ts:18 (Next.js register() hook, byte-identical) and the AC-202 test file src/__tests__/auth/AuthPage.test.tsx.
+
+$ grep -rniE "sign ?up|register|create (an )?account" src/ | grep -v "^src/instrumentation.ts:18:\|^src/__tests__/auth/AuthPage.test.tsx:"
+[exit 1]
+
+$ grep -rn "tab=" src/
+[exit 1]
+
+######## AC-204 (no test references a removed module)
+
+$ grep -rlnE "RegisterForm|AuthTabs|auth/signup|moose" src/__tests__/
+[exit 1]
+
+######## AC-205
+
+$ grep -n posts src/app/api/auth/login/route.ts
+[exit 1]
+
+$ grep -n "export async function" src/app/api/auth/login/route.ts
+10:export async function POST(req: NextRequest) {
+[exit 0]
+
+$ git diff 5f45fb3 --stat -- src/app/api/auth/login/route.ts
+ src/app/api/auth/login/route.ts | 19 -------------------
+ 1 file changed, 19 deletions(-)
+[exit 0]
+
+$ git diff 5f45fb3 -- src/app/api/auth/login/route.ts | grep -c "^+[^+]"
+0
+[exit 1]
+# ^ added lines vs baseline = 0 → deletions only
+
+$ diff <(git show 5f45fb3:src/app/api/auth/login/route.ts | sed -n "29,\$p") <(sed -n "/^export async function POST/,\$p" src/app/api/auth/login/route.ts) && echo POST-HANDLER-BYTE-IDENTICAL
+POST-HANDLER-BYTE-IDENTICAL
+[exit 0]
+
+######## AC-301 preserved-path diff vs 5f45fb3
+
+$ git diff 5f45fb3 --stat -- src/proxy.ts src/utils/supabase/middleware.ts src/utils/supabase/actions.ts src/app/api/auth/logout src/app/api/auth/confirm "src/app/(auth)/layout.tsx" src/app/profile "src/app/(admin)" src/app/owedbook src/services src/mocks src/components/owedbook src/components/common src/instrumentation.ts supabase scripts package.json package-lock.json next.config.js
+[exit 0]
+
+$ git diff 5f45fb3 --stat -- src/components/auth/LoginForm.tsx src/components/auth/Logout.tsx src/components/global/NavbarLoginReg.tsx src/components/global/NavbarHome.tsx src/store/useAuthStore.ts src/__tests__/jest.setup.ts
+[exit 0]
+
+######## AC-302 (tests: only the new file)
+
+$ git diff --stat 5f45fb3 -- src/__tests__
+[exit 0]
+
+$ git status --porcelain -- src/__tests__
+?? src/__tests__/auth/
+[exit 0]
+
+$ git ls-files --others --exclude-standard src/__tests__
+src/__tests__/auth/AuthPage.test.tsx
+[exit 0]
+
+######## AC-303
+
+$ git diff 5f45fb3 -- src/components/global/Navbar.tsx | grep "^[+-][^+-]"
+-    // TODO: REMOVE — off-books operator tool (/moose-portal). ADMIN + env flag only.
+-    ...(isAdmin && process.env.NEXT_PUBLIC_ENABLE_MOOSE_PORTAL === "true"
+-      ? [{ label: "Moose", href: "/moose-portal" }]
+-      : []),
+[exit 0]
+
+$ git diff 5f45fb3 -- src/components/global/MobileNav.tsx | grep "^[+-][^+-]"
+-                  href="/auth?tab=register"
++                  href="/auth"
+[exit 0]
+
+$ git diff 5f45fb3 -- src/components/global/UserMenu.tsx | grep "^[+-][^+-]"
+-        href="/auth?tab=register"
++        href="/auth"
+[exit 0]
+
+$ git diff 5f45fb3 -- "src/app/(public)/HomePageContent.tsx" | grep "^[+-][^+-]"
+-            <Link href="/auth?tab=register">
++            <Link href="/auth">
+[exit 0]
+
+$ grep -rn "useAuthStore" src/components/global/MobileNav.tsx src/components/global/UserMenu.tsx
+src/components/global/MobileNav.tsx:8:import { useAuthStore } from "@/store/useAuthStore";
+src/components/global/MobileNav.tsx:33:      await useAuthStore.getState().logout();
+[exit 0]
+
+######## S1 regressions re-checked on the S2 tree
+
+$ grep -rni "moose" README.md docs/ .env.example src/
+src/app/(admin)/layout.tsx:20:  // in the shared AuthedShell so /owedbook + /moose-portal are physically out of
+[exit 0]
+
+$ grep -rn "NEXT_PUBLIC_ENABLE_MOOSE_PORTAL" src/ .env.example
+[exit 1]
+
+$ grep -rn "utils/supabase/admin" src/ scripts/
+[exit 1]
+
+$ grep -rn "getUserById\|addMember\|deleteUser\|editUser" src/
+src/services/adminDemo.ts:225:    store().addMember(member);
+src/store/useAdminDemoStore.ts:17:  addMember: (member: StoreMember) => void;
+src/store/useAdminDemoStore.ts:30:  addMember: (member) =>
+[exit 0]
+
+$ grep -rlE "\.auth\.admin\." .next/server --include=*.js
+[exit 1]
+
+$ grep -rl "auth/signup\|RegisterForm" .next/server .next/static
+[exit 1]
+
+######## full change list vs baseline
+
+$ git diff --name-status 5f45fb3 -- src/ .env.example
+M	.env.example
+M	src/app/(auth)/auth/page.tsx
+M	src/app/(public)/HomePageContent.tsx
+M	src/app/(public)/loading.tsx
+M	src/app/api/auth/login/route.ts
+D	src/app/api/auth/signup/route.ts
+D	src/app/moose-portal/_lib/admin.ts
+D	src/app/moose-portal/_shell/MooseShell.tsx
+D	src/app/moose-portal/_shell/MooseSidebar.tsx
+D	src/app/moose-portal/layout.tsx
+D	src/app/moose-portal/loading.tsx
+D	src/app/moose-portal/page.tsx
+D	src/app/moose-portal/users/AdminPortalPageContent.tsx
+D	src/app/moose-portal/users/DeleteUserButton.tsx
+D	src/app/moose-portal/users/actions.ts
+D	src/app/moose-portal/users/add-member/AddMemberForm.tsx
+D	src/app/moose-portal/users/add-member/page.tsx
+D	src/app/moose-portal/users/edit/[id]/EditUserForm.tsx
+D	src/app/moose-portal/users/edit/[id]/page.tsx
+D	src/app/moose-portal/users/page.tsx
+D	src/components/auth/AuthTabs.tsx
+D	src/components/auth/RegisterForm.tsx
+M	src/components/global/MobileNav.tsx
+M	src/components/global/Navbar.tsx
+M	src/components/global/UserMenu.tsx
+M	src/utils/supabase/admin.ts
+[exit 0]

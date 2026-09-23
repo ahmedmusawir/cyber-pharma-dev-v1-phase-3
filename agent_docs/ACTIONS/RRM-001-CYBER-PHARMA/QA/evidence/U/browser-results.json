@@ -1,0 +1,194 @@
+[
+  {
+    "width": 1440,
+    "theme": "light",
+    "route": "/auth",
+    "email": "email",
+    "password": "password",
+    "loginButtons": 1,
+    "tabs": 0,
+    "forbidden": false,
+    "documentWidth": 1440,
+    "themeClass": "saira_30d0f00a-module__F8AMRG__variable light",
+    "localValidation": true,
+    "screenshot": "auth-plain-1440-light.png"
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "route": "/auth?tab=register",
+    "email": "email",
+    "password": "password",
+    "loginButtons": 1,
+    "tabs": 0,
+    "forbidden": false,
+    "documentWidth": 1440,
+    "themeClass": "saira_30d0f00a-module__F8AMRG__variable light",
+    "localValidation": true,
+    "screenshot": "auth-query-1440-light.png"
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "route": "/",
+    "trialLinks": [
+      {
+        "text": "Start free trial",
+        "href": "/auth",
+        "visible": true
+      },
+      {
+        "text": "Start free trial",
+        "href": "/auth",
+        "visible": true
+      }
+    ],
+    "errors": [],
+    "blockedExternalOrigins": [],
+    "screenshot": "cta-1440-light.png"
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "route": "/auth",
+    "email": "email",
+    "password": "password",
+    "loginButtons": 1,
+    "tabs": 0,
+    "forbidden": false,
+    "documentWidth": 1440,
+    "themeClass": "saira_30d0f00a-module__F8AMRG__variable dark",
+    "localValidation": true,
+    "screenshot": "auth-plain-1440-dark.png"
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "route": "/auth?tab=register",
+    "email": "email",
+    "password": "password",
+    "loginButtons": 1,
+    "tabs": 0,
+    "forbidden": false,
+    "documentWidth": 1440,
+    "themeClass": "saira_30d0f00a-module__F8AMRG__variable dark",
+    "localValidation": true,
+    "screenshot": "auth-query-1440-dark.png"
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "route": "/",
+    "trialLinks": [
+      {
+        "text": "Start free trial",
+        "href": "/auth",
+        "visible": true
+      },
+      {
+        "text": "Start free trial",
+        "href": "/auth",
+        "visible": true
+      }
+    ],
+    "errors": [],
+    "blockedExternalOrigins": [],
+    "screenshot": "cta-1440-dark.png"
+  },
+  {
+    "width": 375,
+    "theme": "light",
+    "route": "/auth",
+    "email": "email",
+    "password": "password",
+    "loginButtons": 1,
+    "tabs": 0,
+    "forbidden": false,
+    "documentWidth": 375,
+    "themeClass": "saira_30d0f00a-module__F8AMRG__variable light",
+    "localValidation": true,
+    "screenshot": "auth-plain-375-light.png"
+  },
+  {
+    "width": 375,
+    "theme": "light",
+    "route": "/auth?tab=register",
+    "email": "email",
+    "password": "password",
+    "loginButtons": 1,
+    "tabs": 0,
+    "forbidden": false,
+    "documentWidth": 375,
+    "themeClass": "saira_30d0f00a-module__F8AMRG__variable light",
+    "localValidation": true,
+    "screenshot": "auth-query-375-light.png"
+  },
+  {
+    "width": 375,
+    "theme": "light",
+    "route": "/",
+    "trialLinks": [
+      {
+        "text": "Start free trial",
+        "href": "/auth",
+        "visible": true
+      },
+      {
+        "text": "Start free trial",
+        "href": "/auth",
+        "visible": true
+      }
+    ],
+    "errors": [],
+    "blockedExternalOrigins": [],
+    "screenshot": "cta-375-light.png"
+  },
+  {
+    "width": 375,
+    "theme": "dark",
+    "route": "/auth",
+    "email": "email",
+    "password": "password",
+    "loginButtons": 1,
+    "tabs": 0,
+    "forbidden": false,
+    "documentWidth": 375,
+    "themeClass": "saira_30d0f00a-module__F8AMRG__variable dark",
+    "localValidation": true,
+    "screenshot": "auth-plain-375-dark.png"
+  },
+  {
+    "width": 375,
+    "theme": "dark",
+    "route": "/auth?tab=register",
+    "email": "email",
+    "password": "password",
+    "loginButtons": 1,
+    "tabs": 0,
+    "forbidden": false,
+    "documentWidth": 375,
+    "themeClass": "saira_30d0f00a-module__F8AMRG__variable dark",
+    "localValidation": true,
+    "screenshot": "auth-query-375-dark.png"
+  },
+  {
+    "width": 375,
+    "theme": "dark",
+    "route": "/",
+    "trialLinks": [
+      {
+        "text": "Start free trial",
+        "href": "/auth",
+        "visible": true
+      },
+      {
+        "text": "Start free trial",
+        "href": "/auth",
+        "visible": true
+      }
+    ],
+    "errors": [],
+    "blockedExternalOrigins": [],
+    "screenshot": "cta-375-dark.png"
+  }
+]

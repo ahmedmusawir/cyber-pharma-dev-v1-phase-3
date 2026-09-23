@@ -1,0 +1,60 @@
+{
+  "node": [
+    {
+      "id": "60a936db40abb9c12de8618f145e12fba1de97ca8c",
+      "filename": "src/utils/supabase/actions.ts",
+      "exportedName": "protectPage",
+      "workers": {
+        "app/(admin)/admin-portal/audit/page": {
+          "moduleId": 86465,
+          "async": false,
+          "exportedName": "protectPage",
+          "filename": "src/utils/supabase/actions.ts"
+        },
+        "app/(admin)/admin-portal/billing/page": {
+          "moduleId": 62656,
+          "async": false,
+          "exportedName": "protectPage",
+          "filename": "src/utils/supabase/actions.ts"
+        },
+        "app/(admin)/admin-portal/page": {
+          "moduleId": 89513,
+          "async": false,
+          "exportedName": "protectPage",
+          "filename": "src/utils/supabase/actions.ts"
+        },
+        "app/(admin)/admin-portal/settings/page": {
+          "moduleId": 62300,
+          "async": false,
+          "exportedName": "protectPage",
+          "filename": "src/utils/supabase/actions.ts"
+        },
+        "app/(admin)/admin-portal/stores/[id]/invite/page": {
+          "moduleId": 95329,
+          "async": false,
+          "exportedName": "protectPage",
+          "filename": "src/utils/supabase/actions.ts"
+        },
+        "app/(admin)/admin-portal/stores/[id]/page": {
+          "moduleId": 55402,
+          "async": false,
+          "exportedName": "protectPage",
+          "filename": "src/utils/supabase/actions.ts"
+        },
+        "app/owedbook/page": {
+          "moduleId": 42914,
+          "async": false,
+          "exportedName": "protectPage",
+          "filename": "src/utils/supabase/actions.ts"
+        },
+        "app/profile/page": {
+          "moduleId": 56153,
+          "async": false,
+          "exportedName": "protectPage",
+          "filename": "src/utils/supabase/actions.ts"
+        }
+      }
+    }
+  ],
+  "edge": []
+}

@@ -56,6 +56,8 @@ This pair refreshes the auth session during requests before protected layouts ru
 
 ### 1. Signup
 
+> **Removed in RRM-001 (2026-09-20):** public self-registration — its API route, form and `/auth` tab — no longer exists; `/auth` is login-only. The description below is historical.
+
 The registration UI posts to:
 
 - `POST /api/auth/signup`

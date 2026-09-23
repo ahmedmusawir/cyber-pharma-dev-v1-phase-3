@@ -1,0 +1,14 @@
+{
+  "next": {
+    "path": "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/.next",
+    "state": "SCRATCH candidate build; QA-owned server stopped; interactive login not completed",
+    "files": 2005,
+    "bytes": 57214365
+  },
+  "typescriptCache": {
+    "path": "tsconfig.tsbuildinfo",
+    "present": true
+  },
+  "earlierStandaloneAssets": "T/U public and static copies were under .next only and replaced with the next authorized fresh build",
+  "noCleanupSweep": true
+}

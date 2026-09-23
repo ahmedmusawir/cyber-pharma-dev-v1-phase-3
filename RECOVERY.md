@@ -4,7 +4,19 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-09-16 — **BIM-003-CYBER-PHARMA · CLOSED — GATE Q PASS (Sol, 2026-09-15) · MERGED TO `main`**
+**Last updated:** 2026-09-23 — **RRM-001-CYBER-PHARMA · CLOSED — GATE Q PASS (QA Lead, 2026-09-22, zero rework rounds) · PENDING DIRECTOR MERGE**
+**Branch:** `qa/phase-3-rrm001` @ `9ab95e525e6775e5cb38e0ff12922b8ea1b85cc4` (accepted evidence successor). **Certified implementation:** `cad164d62a623a115541c0441302de01ff74da5b`. Code baseline `5f45fb3`, pack commit `88e2c33`. Closeout commit and merge SHA: recorded by Director at merge.
+**Last action:** P5 closeout (docs/evidence only, 2026-09-23): QA cleanup verified + "QA Cleanup release" section · ledger rows R-001/002/011/012 RESOLVED, R-014 note, errata E-10/E-11 · campaign map §0 + v1.0.1 · Phase 3 map errata section · journal (Architect entry, friction log; QA-logged entry awaits SOL) · `EXECUTION_LOG.md` Closeout · pack README CLOSED · `CLOSEOUT_CHECKLIST.md`. Session log: `agent_docs/SESSIONS/session_2026-09-23.md`.
+**Pending (Director):** (1) rule on the nine deleted `.cjs` QA reproduction helpers (Cody removed under SOL release; P5 keep-list says keep; recoverable from `9ab95e5`) · (2) selective closeout commit (block in the P5 response artifact) · (3) `git merge --no-ff qa/phase-3-rrm001` → `main`, push, paste `git log --oneline -1` back · (4) DA-2 Supabase signup OFF + evidence file (AC-206 stays NOT YET) · (5) doc-repo sync of the Phase 3 map errata.
+**Next step:** Director merges `qa/phase-3-rrm001` → `main`; RRM-002 pack authoring (Architect). Merge SHA recorded in map §0 + ledger on the RRM-002 opening commit.
+**⚠️ UNCOMMITTED:** the whole closeout + Cody's cleanup (see porcelain in `agent_docs/RESPONSES/response_2026-09-23_*_rrm001-p5-closeout.md`). Dev backend still at the 2-table baseline (LIVE APPLY DEFERRED through BIM-004).
+
+**Prior state (2026-09-18):** **RRM-001 RECON AUGMENT delivered** (read-only) on `phase-3-rrm-ffm` @ `5f45fb3` (== `main`). Report: `agent_docs/RECON/RRM001_RECON_2026-09-18.md`. Session log: `agent_docs/SESSIONS/session_2026-09-18.md`.
+**Pending:** Director — (1) live `handle_new_user` body: run `select pg_get_functiondef('public.handle_new_user()'::regprocedure);` in the Supabase SQL editor (settles A-002/A-008) · (2) later Phase-2.1 spec versions — on-disk copies are v1.0, code cites v1.3/v1.4 · (3) email-confirmation setting (F11/A-007). Recon **Revision 2** done: F1..F13 + A-001..A-008 mapped; deploy facts waived.
+**Next step:** Architect reviews the recon → RRM-001 packet authoring. No source touched; nothing approved for implementation. **Session closed for restart** — full write-up in the session log's "End of Session State".
+**⚠️ UNCOMMITTED:** `RECOVERY.md` · `agent_docs/RECON/RRM001_RECON_2026-09-18.md` · `agent_docs/SESSIONS/session_2026-09-18.md` · Operator-dropped `agent_docs/FABLE_CODE_REVIEW.md`, `ASTRA_CODE_REVIEW.md`, `PHASE_2.1/`, `PHASE_2.2/`. HEAD still `5f45fb3`.
+
+**Prior state (2026-09-16):** **BIM-003-CYBER-PHARMA · CLOSED — GATE Q PASS (Sol, 2026-09-15) · MERGED TO `main`**
 **Certified SHA:** **`c45949ece1a17f1a3fbb299f5551f911f869c21e`** (`c45949e`) — zero implementation defects across QA Stages A–I; engineering S1 `011eada` · S2 `c2d9348` · S3 `c45949e`.
 **Branch:** **`main`** @ **`f7a1d4c`** — the J-19 merge commit ("16sep2026 - merge qa/phase-3-bim003 - BIM-003 CLOSED (Gate Q PASS @ c45949e)"), pushed. **Close batch `60ce6bd`** on `qa/phase-3-bim003` (QA package + closeout docs), pushed. Certified specimen `c45949e` is an ancestor of both. `qa/phase-3-bim003` retirement is the Director's call (as `qa/bim002`).
 **Session log:** `agent_docs/SESSIONS/session_2026-09-16.md` (QA day: `session_2026-09-15.md` · engineering: `session_2026-09-14.md`)

@@ -3,6 +3,51 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-23 01:05 UTC — [CC] Claude Code
+
+- **RRM-001-CYBER-PHARMA closeout (P5).** Gate Q PASS @ `cad164d` (QA Lead 2026-09-22, zero rework); evidence successor `9ab95e5`. Docs and evidence only; no product change, build, test or git mutation.
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/QA/QA_CERTIFICATION.md` — "QA Cleanup release" section (Engineer verification; QA Lead text untouched) · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` — R-001/R-002/R-011/R-012 resolution columns, R-014 closeout note, errata E-10 (A-13) + E-11 (governing bodies) · `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` — §0 scoreboard/status, version 1.0.1 · `agent_docs/AUTHORITY/PHASE_3_BIM_CAMPAIGN_MAP.md` — appended "Errata — RRM campaign" (CE-1…CE-4 + RRM-001 close line) · `agent_docs/RRM_CAMPAIGN_JOURNAL.md` — Architect entry, QA-logged placeholder heading, friction log · `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/EXECUTION_LOG.md` — Closeout section · `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/README.md` — status CLOSED · `RECOVERY.md` — current state (A-10 lifted at P5)
+- **Created:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/CLOSEOUT_CHECKLIST.md` (pack carried none) · `agent_docs/SESSIONS/session_2026-09-23.md` · closeout report in `agent_docs/RESPONSES/`
+- **Reason:** Architect P5 closeout instruction, Director-relayed, 2026-09-23.
+
+## 2026-09-22 07:58 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/RULINGS_ADDENDUM.md` — appended ruling A-13 (AC-304: logout lands on `/auth`, not `/`; Architect drafting error; no product change)
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/ACCEPTANCE_SPEC.md` — erratum lane row for AC-304 citing A-13; frozen AC-304 text untouched
+- **Reason:** Director-approved documentation correction relayed via CLAUDY, 2026-09-22. Docs only; no product change, build, test, or git mutation.
+
+## 2026-09-20 10:34 UTC — [CC] Claude Code
+
+- **RRM-001 P3 — engineering completion handoff.** Candidate `4965c0c`. Docs and evidence only.
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/QA_HANDOFF.md` — every field filled · `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/EXECUTION_LOG.md` — completion claim + AC→evidence map · `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/RULINGS_ADDENDUM.md` — OBS-2 appended · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` — resolution-evidence rows R-001, R-002, R-011, R-012
+- **Created:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/evidence/changed_files.txt`, `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/evidence/repair.diff`, `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/QA/GOVERNING/README.md` (QA playbook snapshot NOT YET — file not on disk)
+- **Reason:** Director P3 instruction, 2026-09-20.
+
+## 2026-09-20 10:25 UTC — [CC] Claude Code
+
+- **RRM-001 S2 — public self-registration removed** (D1, R-011 by removal) and the login `GET` probe removed (R-002): `src/app/api/auth/signup/`, `RegisterForm.tsx`, `AuthTabs.tsx` deleted; `/auth` is login-only; three "Start free trial" hrefs now point at `/auth` (ruling A-03); new `src/__tests__/auth/AuthPage.test.tsx` (AC-202).
+- **Updated:** `docs/AUTHENTICATION.md`, `docs/ROUTES_AND_SURFACES.md`, `README.md` — "removed in RRM-001 (2026-09-20)" notes (ruling A-06)
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/EXECUTION_LOG.md` — Stage S2 section; evidence `S2_404_matrix.txt`, `S2_greps.txt`
+- **Reason:** Director P2-S2 instruction, 2026-09-20. Board: tsc 0 · eslint 0 errors · jest 29/130/0 · build 17 routes.
+
+## 2026-09-20 10:19 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/RULINGS_ADDENDUM.md` — appended ruling A-12 (O-1: AC-103 `.next/server` pass test) and OBS-1 (`protectPage` registered as a Server Action → RRM-003)
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/EXECUTION_LOG.md` — S1: AC-103 marked GREEN citing A-12; Director checkpoint SHA `9d5fe22` recorded
+- **Reason:** Director documentation instruction after RRM-001 S1 (2026-09-20). Docs only; no product change.
+
+## 2026-09-20 10:01 UTC — [CC] Claude Code
+
+- **RRM-001 S1 — operator user-management portal removed** (R-001, R-012): 14 files under `src/app/moose-portal/` deleted; navbar flag wiring and `.env.example` key removed; `src/utils/supabase/admin.ts` header now cites ledger E-04.
+- **Updated:** `README.md`, `docs/ROUTES_AND_SURFACES.md`, `docs/PROJECT_OVERVIEW.md`, `docs/AUTHORIZATION.md`, `docs/DATABASE_SETUP.md`, `agent_docs/KIP_REGISTRY.md` — "removed in RRM-001 (2026-09-20)" notes (ruling A-06)
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/EXECUTION_LOG.md` — Stage S1 section; evidence `S1_404_matrix.txt`, `S1_action_ids.txt`, `S1_greps.txt`
+- **Reason:** Director P2-S1 instruction, 2026-09-20. Board: tsc 0 · eslint 0 errors · jest 28/128/0 · build 18 routes.
+
+## 2026-09-20 09:52 UTC — [CC] Claude Code
+
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/RULINGS_ADDENDUM.md` — appended Architect rulings A-02…A-11 (Director-approved, verbatim); removed the empty placeholder row and the blank line that split the table; A-01 byte-identical
+- **Reason:** Director documentation-prep instruction before RRM-001 S1 (2026-09-20). Docs only; no product change.
+
 ## 2026-09-16 04:20 UTC — [CC] Claude Code
 
 - **BIM-003-CYBER-PHARMA CLOSED** — Sol Gate Q PASS 2026-09-15, QA Cleanup PASS, MERGE-READY, certified `c45949e`, zero implementation defects. Delivered: `audit_logs` reshape (0028: Brief §3 shape, immutability guard incl. R-6a TRUNCATE, FORCE RLS, RF-3 revokes) · one admin SELECT policy (0029) · `audit_write()` (0030) · 13 write stamps (0031–0043) · 4 `owedbook_*` read wrappers (0044–0047) · `npm run audit:prove` with symbolic golden · migrations 0028–0047 · regenerated types · README/RUN_NOTES · retrospective.

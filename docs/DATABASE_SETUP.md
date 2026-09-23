@@ -147,7 +147,7 @@ Find your UUID in Supabase → **Authentication → Users**.
 
 > **Note:** the starter kit promoted further admins through a Superadmin Portal UI.
 > Cyber Pharma removed that portal in Phase 2 — role changes are now done directly
-> in SQL (as above) or via the env-gated `/moose-portal` operator tool. The
+> in SQL (as above); the operator user-management portal was removed in RRM-001 (2026-09-20). The
 > `superadmin` role and this promotion step are retained for completeness.
 
 ---

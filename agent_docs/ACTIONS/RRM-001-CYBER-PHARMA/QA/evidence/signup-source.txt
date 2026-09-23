@@ -1,0 +1,4 @@
+rg -n -i sign ?up|register|create (an )?account src
+exit=0
+src/__tests__/auth/AuthPage.test.tsx:17:const REMOVED_AFFORDANCE = /sign ?up|register|create (an )?account/i;
+src/instrumentation.ts:18:export function register() {
