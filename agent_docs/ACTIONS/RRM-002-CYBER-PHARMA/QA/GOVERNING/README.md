@@ -1,0 +1,1 @@
+Engineer copies the QA playbook snapshot here at P3 from agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/QA/GOVERNING/ and writes PROVENANCE.md (source path, copy date, original provenance per RRM-001's file). No Director step required this time.
