@@ -6,7 +6,7 @@ One section per stage and per QA repair round. Every fixture/copy hunk cites its
 
 ## Stage S0 — Plan Mode (record only)
 
-Baseline SHA recorded: <...> · Precision premise result (AC-105): <...> · Audit rows proposed: <n> · Rulings applied at P1b: <E-NN…>
+Baseline SHA recorded: `1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b` (RRM-001 `--no-ff` merge; ancestor of HEAD `91a951e`; product-path diff empty) · Precision premise result (AC-105): HOLDS — 0 of 150 `owed` values beyond 2 dp, 0 in any money field; unfiltered `round2(K − S)` = 20.27 = Σ positive null-PBM `owed` (`evidence/S0_PRECISION.txt`) · Audit rows proposed: 13 (A-1…A-12 + A-2b; `evidence/FIXTURE_AUDIT.md`) · Rulings applied at P1b: addendum A-01…A-05; spec erratum lane AC-106, AC-104; campaign errata E-12 (A-2b taken — the single S2 hunk), E-13 (rule-3 fixtures → BIM-004 seed), E-14 (Ruling 5 status vocabulary → Phase 5); ledger placeholder `E-10…` removed · S0 plan: `agent_docs/RESPONSES/response_2026-09-23_150109_rrm002-s0-plan.md`
 
 ## Stage S1 — Disclosure
 

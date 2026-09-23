@@ -39,9 +39,11 @@
 | 2026-09-20 / Tony | E-07 | Dependency bump as separate mini-module vs inside | Own module, last in campaign (D4) | Director | RRM-004 |
 | 2026-09-20 / Fable | E-08 | Signup-recovery / confirmation robustness proposed | Withdrawn (feature removed) | Director standing direction | none |
 | 2026-09-20 / Tony | E-09 | Single RRM with five stages; register file in `ACTIONS/` | Campaign of four modules; map + journal at campaign level; only module packs in `ACTIONS/` | Director | this ledger's Module column |
-| _RRM-002 audit rows_ | E-10… | fixture/copy items | per Director ruling | Director | RRM-002 |
 | 2026-09-22 / Fable | E-10 | RRM-001 `ACCEPTANCE_SPEC.md` AC-304: "logout returns to `/`" | Logout ends the session and lands on `/auth` (baseline behavior); a subsequent unauthenticated `/owedbook` request redirects to `/auth`. Naming `/` was an Architect drafting error. No product change (ruling A-13; spec erratum lane 2026-09-22). | Architect, Director-approved | AC-304 pass test = `/auth` landing + redirect; RRM-001 walk record |
 | 2026-09-22 / Fable | E-11 | Pack README / P3: `QA/GOVERNING/` receives a repo-local copy of the project QA playbook | QA_PLAYBOOK v1.1 / WEB_FACTORY_P1_DOCTRINE_JOURNAL v0.3 are doc-repo bodies; QA/GOVERNING/ is a Director copy step with PROVENANCE.md — original source revision unavailable, bodies used as supplied | Architect / Director | RRM-001 governing snapshot (`QA/GOVERNING/README.md` records SHA-256 + declared versions); pack templates from RRM-002 |
+| 2026-09-23 / Tony | E-12 | `src/mocks/owedbook.ts:5-6` header describes the spread as demo only | One comment line added: "expected/owed are a demo spread and do NOT satisfy rule 3 (qty × rate + 10.64); see RRM-002 FIXTURE_AUDIT A-2." Code comment; zero money change. | Director | RRM-002 AC-203, one hunk |
+| 2026-09-23 / Tony | E-13 | Rule 3 vs fixtures: 149/150 rows fail `expected = qty × medicaid_rate + 10.64` | Flag-only in RRM-002. Fixture regeneration with real rates is BIM-004 seed scope (map §6: one fixture source of truth for mock and seed). No money recomputed in the frontend. | Director | BIM-004 pre-flight input |
+| 2026-09-23 / Tony | E-14 | Frank Ruling 5 says unmatched claims sit in "Take Action"; `OwedStatus` has no such value; 4 null-PBM fixtures carry recovered/new/underpaid | Flag-only. Status vocabulary vs matching state → Phase 5 pbm_info matching (WRAPPER_CONTRACT.md:15). `src/types/**` out of RRM authority. | Director | Phase 5 authoring |
 
 ## Resolution evidence — appended per module at closeout
 

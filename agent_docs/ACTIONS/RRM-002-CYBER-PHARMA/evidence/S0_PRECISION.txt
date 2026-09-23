@@ -1,0 +1,23 @@
+RRM-002-CYBER-PHARMA — S0 precision premise (AC-105)
+Engineer · 2026-09-23 15:01 · baseline 1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b · branch phase-3-rrm002 @ 91a951e
+Source: src/mocks/owedbook.ts (owedBookFixtures, 150 rows). Method: decimal places counted on the literal as written in the file.
+
+Fixture rows whose `owed` has more than 2 decimal places: 0  (none)
+
+Other money fields beyond 2 dp:
+  expected: 0
+  original_paid: 0
+  new_paid: 0
+  updated_difference: 0
+  federal_expected: 0
+  federal_diff: 0
+
+Rates (not money, do not enter gap): medicaid_rate dp ∈ {2,3,4}; aac dp ∈ {2,3,4}.
+
+K = commercial_underpaid (unfiltered)                = 4088.54
+S = Σ getSummary().commercial_dollars (unfiltered)   = 4068.27   (raw sum 4068.2700000000004)
+raw K − S                                            = 20.269999999999527
+round2(K − S)                                        = 20.27
+Σ owed where pbm === null && owed > 0 (derived X)    = 20.27
+
+Statement: every fixture money value is an exact 2-dp number, so K and S are exact sums; float noise appears only in the raw subtraction and is removed by round2. With the current fixtures, gap carries no rounding noise. Carry to BIM-005: re-verify against owedbook_kpis / owedbook_summary (SQL round(numeric,2), divergence D5).

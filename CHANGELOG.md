@@ -3,6 +3,12 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-23 08:03 UTC — [CC] Claude Code
+
+- **RRM-002 P1b — Director rulings applied (documentation-only).** S0 plan approved. No product change, build, test or git mutation.
+- **Updated:** `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/RULINGS_ADDENDUM.md` — rows A-01…A-05 · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/ACCEPTANCE_SPEC.md` — erratum lane AC-106, AC-104 (frozen text untouched) · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` — placeholder `E-10…` removed; E-12/E-13/E-14 appended · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/FIXTURE_AUDIT.md` — ruling column filled (owner/gate per AC-204) · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md` — Stage S0 line
+- **Reason:** Architect P1b instruction, Director-relayed, 2026-09-23.
+
 ## 2026-09-23 02:33 UTC — [CC] Claude Code
 
 - **RRM-001 merge SHA recorded** — Director merged `qa/phase-3-rrm001` → `main` at `1cd6e46` (`--no-ff`); closeout commit `2ccf450`. Docs only.

@@ -66,3 +66,5 @@ Every AC needs independent evidence. Ambiguity or failure → QA Lead; scope →
 
 | Date | AC | Original requirement | Ruling / rationale | Authority | Verification consequence |
 |---|---|---|---|---|---|
+| 2026-09-23 | AC-106 | "no new rounding helper" | `round2` exported from `format.ts` with the service's exact expression; no new logic. See A-01. | Director | AC-106 graded on the service/types diff being empty |
+| 2026-09-23 | AC-104 | "without a new request (or with one)" | With one; pinned per A-03. | Director | AC-104 test asserts skeleton then footer |
