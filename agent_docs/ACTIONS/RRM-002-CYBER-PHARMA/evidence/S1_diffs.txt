@@ -1,0 +1,149 @@
+RRM-002 S1 — diff/grep evidence (AC-301, AC-302, AC-303, AC-106) · baseline 1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b · working tree on phase-3-rrm002 after S1, input SHA 6f543a8 · 2026-09-23 16:40 +08
+Board: next build blank env exit 0 / 17 routes · placeholder env exit 0 / 17 routes · tsc 0 errors (after fresh build) · eslint 0 errors / 35 warnings · jest 31 suites / 144 tests / 0 skipped
+
+##### AC-301 — preserved paths, git diff --stat (expected: empty)
+$ git diff --stat 1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b -- src/services src/types src/components/owedbook/columns.tsx src/components/owedbook/KpiTiles.tsx src/components/owedbook/FilterRail.tsx src/components/owedbook/OwedBookContext.tsx src/components/common 'src/app/(admin)' src/app src/utils src/proxy.ts supabase scripts package.json package-lock.json next.config.js
+(end of output — empty = PASS)
+
+##### AC-106 — service/types diff (expected: empty)
+$ git diff 1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b -- src/services/owedbook.ts src/types/OwedBook.ts
+(end of output — empty = PASS)
+$ grep -rn 'round2' src/ — every rounding site (expected: service :56 + format.ts export + note component + tests)
+src/components/owedbook/SummaryUnattributedNote.tsx:2:import { round2, usd } from "./format";
+src/components/owedbook/SummaryUnattributedNote.tsx:7://   gap = round2(K − S), K = getKpis().commercial_underpaid,
+src/components/owedbook/SummaryUnattributedNote.tsx:22:  const gap = round2(underpaid - attributed);
+src/components/owedbook/format.ts:16:/** 2-dp rounding, byte-identical to the service's `round2` (services/owedbook.ts:56).
+src/components/owedbook/format.ts:18:export const round2 = (n: number): number => +n.toFixed(2);
+src/services/owedbook.ts:56:const round2 = (n: number) => +n.toFixed(2);
+src/services/owedbook.ts:72:    const underpaid = round2(
+src/services/owedbook.ts:78:      updated_difference: round2(
+src/services/owedbook.ts:123:        commercial_dollars: round2(e.commercial_dollars),
+src/services/owedbook.ts:124:        federal_dollars: round2(e.federal_dollars),
+src/__tests__/owedbook/OwedBookScreen.disclosure.test.tsx:9:import { round2, usd } from "@/components/owedbook/format";
+src/__tests__/owedbook/OwedBookScreen.disclosure.test.tsx:25:    round2(
+src/__tests__/owedbook/OwedBookScreen.disclosure.test.tsx:83:    const namedOnlyK = round2(
+
+##### AC-302 — owedbook.test.ts unmodified; __tests__ diff added-only
+$ git diff 1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b -- src/__tests__/services/owedbook.test.ts
+(end of output — empty = PASS)
+$ git status --short src/__tests__   (?? = added, untracked at this point)
+?? src/__tests__/owedbook/OwedBookScreen.disclosure.test.tsx
+?? src/__tests__/owedbook/SummaryUnattributedNote.test.tsx
+$ git diff --stat 1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b -- src/__tests__   (tracked test files changed: expected none)
+(end of output)
+
+##### AC-303 — cancelled-flag pattern on every read effect; sort block untouched
+$ grep -n 'cancelled' src/components/owedbook/OwedBookScreen.tsx
+84:    let cancelled = false;
+88:        if (cancelled) return;
+93:        if (cancelled) return;
+98:      cancelled = true;
+104:    let cancelled = false;
+111:          if (!cancelled) {
+118:          if (!cancelled) setPageData(p);
+121:        if (!cancelled) setError(e instanceof Error ? e.message : "Failed to load data");
+123:        if (!cancelled) setLoading(false);
+127:      cancelled = true;
+$ grep -n 'useEffect' src/components/owedbook/OwedBookScreen.tsx
+3:import { useCallback, useEffect, useState } from "react";
+78:  useEffect(() => {
+83:  useEffect(() => {
+103:  useEffect(() => {
+$ git diff 1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b -- src/components/owedbook/OwedBookScreen.tsx | grep -nE '^[-+].*(sort|Sort)'   (expected: nothing)
+(end of output — empty = sort block untouched)
+
+##### OwedBookScreen.tsx — full diff vs baseline (for the QA Lead)
+diff --git a/src/components/owedbook/OwedBookScreen.tsx b/src/components/owedbook/OwedBookScreen.tsx
+index 88a23da..6c951f8 100644
+--- a/src/components/owedbook/OwedBookScreen.tsx
++++ b/src/components/owedbook/OwedBookScreen.tsx
+@@ -7,6 +7,7 @@ import DataTable from "@/components/common/DataTable";
+ import EmptyState from "@/components/common/EmptyState";
+ import { owedBookService } from "@/services/owedbook";
+ import type {
++  OwedBookFilters,
+   OwedBookKpis,
+   OwedBookPage,
+   OwedBookRow,
+@@ -14,6 +15,7 @@ import type {
+   OwedTab,
+ } from "@/types/OwedBook";
+ import KpiTiles from "./KpiTiles";
++import SummaryUnattributedNote from "./SummaryUnattributedNote";
+ import { useOwedBook, countActiveFilters } from "./OwedBookContext";
+ import {
+   COMMERCIAL_COLUMNS,
+@@ -62,6 +64,10 @@ const OwedBookScreen = () => {
+   const [kpis, setKpis] = useState<OwedBookKpis>(ZERO_KPIS);
+   const [pageData, setPageData] = useState<OwedBookPage | null>(null);
+   const [summaryRows, setSummaryRows] = useState<OwedBookSummaryRow[]>([]);
++  // RRM-002 AC-103: which `filters` reference each aggregate was resolved for.
++  // The disclosure renders only when both tags === the current `filters`.
++  const [kpiFilters, setKpiFilters] = useState<OwedBookFilters | null>(null);
++  const [summaryFilters, setSummaryFilters] = useState<OwedBookFilters | null>(null);
+   const [loading, setLoading] = useState(true);
+   const [error, setError] = useState<string | null>(null);
+   const [reloadKey, setReloadKey] = useState(0);
+@@ -78,8 +84,16 @@ const OwedBookScreen = () => {
+     let cancelled = false;
+     owedBookService
+       .getKpis(filters)
+-      .then((k) => !cancelled && setKpis(k))
+-      .catch(() => !cancelled && setKpis(ZERO_KPIS));
++      .then((k) => {
++        if (cancelled) return;
++        setKpis(k);
++        setKpiFilters(filters);
++      })
++      .catch(() => {
++        if (cancelled) return;
++        setKpis(ZERO_KPIS);
++        setKpiFilters(null);
++      });
+     return () => {
+       cancelled = true;
+     };
+@@ -97,6 +111,7 @@ const OwedBookScreen = () => {
+           if (!cancelled) {
+             setSummaryRows(s);
+             setPageData(null);
++            setSummaryFilters(filters);
+           }
+         } else {
+           const p = await owedBookService.getRows(activeTab, filters, page);
+@@ -250,6 +265,11 @@ const OwedBookScreen = () => {
+           />
+         )}
+       </div>
++
++      {/* RRM-002 D3 disclosure — Summary tab only, same-filters pair only (AC-101–104). */}
++      {isSummary && !loading && !error && kpiFilters === filters && summaryFilters === filters && (
++        <SummaryUnattributedNote underpaid={kpis.commercial_underpaid} summary={summaryRows} />
++      )}
+     </div>
+   );
+ };
+
+##### format.ts — diff vs baseline (A-01)
+diff --git a/src/components/owedbook/format.ts b/src/components/owedbook/format.ts
+index cc35115..6b616ae 100644
+--- a/src/components/owedbook/format.ts
++++ b/src/components/owedbook/format.ts
+@@ -12,3 +12,7 @@ export const usd = (n: number): string => USD.format(n ?? 0);
+ 
+ /** Whole-number count, e.g. 2631 → "2,631". */
+ export const count = (n: number): string => (n ?? 0).toLocaleString("en-US");
++
++/** 2-dp rounding, byte-identical to the service's `round2` (services/owedbook.ts:56).
++ *  Exported here per RRM-002 ruling A-01 — the service file is frozen. */
++export const round2 = (n: number): number => +n.toFixed(2);
+
+##### New files
+?? src/__tests__/owedbook/OwedBookScreen.disclosure.test.tsx
+?? src/__tests__/owedbook/SummaryUnattributedNote.test.tsx
+?? src/components/owedbook/SummaryUnattributedNote.tsx
+
+##### git diff --stat 1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b -- src/  (whole src tree)
+ src/components/owedbook/OwedBookScreen.tsx | 24 ++++++++++++++++++++++--
+ src/components/owedbook/format.ts          |  4 ++++
+ 2 files changed, 26 insertions(+), 2 deletions(-)

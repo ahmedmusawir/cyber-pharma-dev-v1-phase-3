@@ -7,6 +7,7 @@ import DataTable from "@/components/common/DataTable";
 import EmptyState from "@/components/common/EmptyState";
 import { owedBookService } from "@/services/owedbook";
 import type {
+  OwedBookFilters,
   OwedBookKpis,
   OwedBookPage,
   OwedBookRow,
@@ -14,6 +15,7 @@ import type {
   OwedTab,
 } from "@/types/OwedBook";
 import KpiTiles from "./KpiTiles";
+import SummaryUnattributedNote from "./SummaryUnattributedNote";
 import { useOwedBook, countActiveFilters } from "./OwedBookContext";
 import {
   COMMERCIAL_COLUMNS,
@@ -62,6 +64,10 @@ const OwedBookScreen = () => {
   const [kpis, setKpis] = useState<OwedBookKpis>(ZERO_KPIS);
   const [pageData, setPageData] = useState<OwedBookPage | null>(null);
   const [summaryRows, setSummaryRows] = useState<OwedBookSummaryRow[]>([]);
+  // RRM-002 AC-103: which `filters` reference each aggregate was resolved for.
+  // The disclosure renders only when both tags === the current `filters`.
+  const [kpiFilters, setKpiFilters] = useState<OwedBookFilters | null>(null);
+  const [summaryFilters, setSummaryFilters] = useState<OwedBookFilters | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [reloadKey, setReloadKey] = useState(0);
@@ -78,8 +84,16 @@ const OwedBookScreen = () => {
     let cancelled = false;
     owedBookService
       .getKpis(filters)
-      .then((k) => !cancelled && setKpis(k))
-      .catch(() => !cancelled && setKpis(ZERO_KPIS));
+      .then((k) => {
+        if (cancelled) return;
+        setKpis(k);
+        setKpiFilters(filters);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setKpis(ZERO_KPIS);
+        setKpiFilters(null);
+      });
     return () => {
       cancelled = true;
     };
@@ -97,6 +111,7 @@ const OwedBookScreen = () => {
           if (!cancelled) {
             setSummaryRows(s);
             setPageData(null);
+            setSummaryFilters(filters);
           }
         } else {
           const p = await owedBookService.getRows(activeTab, filters, page);
@@ -250,6 +265,11 @@ const OwedBookScreen = () => {
           />
         )}
       </div>
+
+      {/* RRM-002 D3 disclosure — Summary tab only, same-filters pair only (AC-101–104). */}
+      {isSummary && !loading && !error && kpiFilters === filters && summaryFilters === filters && (
+        <SummaryUnattributedNote underpaid={kpis.commercial_underpaid} summary={summaryRows} />
+      )}
     </div>
   );
 };

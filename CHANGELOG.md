@@ -3,6 +3,12 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-23 08:41 UTC — [CC] Claude Code
+
+- **RRM-002 Stage S1 — Summary-tab missing-PBM disclosure (R-015, D3).** Product: `src/components/owedbook/format.ts` (+`round2`, A-01) · new `src/components/owedbook/SummaryUnattributedNote.tsx` · `src/components/owedbook/OwedBookScreen.tsx` (two filters tags + one render block). Tests: new `src/__tests__/owedbook/SummaryUnattributedNote.test.tsx`, `OwedBookScreen.disclosure.test.tsx`. Board: builds 17 routes ×2 · tsc 0 · eslint 0/35 · jest 31/144/0.
+- **Updated:** `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md` — Stage S1 · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/S1_diffs.txt` (new)
+- **Reason:** Architect P2-S1 instruction, Director-relayed, 2026-09-23.
+
 ## 2026-09-23 08:03 UTC — [CC] Claude Code
 
 - **RRM-002 P1b — Director rulings applied (documentation-only).** S0 plan approved. No product change, build, test or git mutation.

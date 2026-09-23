@@ -10,22 +10,31 @@ Baseline SHA recorded: `1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b` (RRM-001 `--no
 
 ## Stage S1 — Disclosure
 
-Date/time: <...> · Input SHA: <...> · Approved: R-015 · AC-101–106 · P2-S1
+Date/time: 2026-09-23 16:41 +08 · Input SHA: `6f543a8` (S0 plan + P1b rulings commit; product paths == baseline `1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b`) · Approved: R-015 · AC-101–106 · P2-S1 · Rulings applied: A-01 (`round2` in `format.ts`), A-03 (AC-104 re-requests)
 
 | File / surface | Change and reason | Ledger / AC | Preservation concern |
 |---|---|---|---|
+| `src/components/owedbook/format.ts` | +`export const round2` — byte-identical expression to `services/owedbook.ts:56`; the service is frozen | A-01 · AC-106 | no new rounding logic; `usd`/`count` untouched |
+| `src/components/owedbook/SummaryUnattributedNote.tsx` | NEW presentational note: `S = Σ commercial_dollars`, `gap = round2(underpaid − S)`, null when `gap < 0.01`, one `<p data-testid="summary-unattributed-note">` with the D3 copy in one constant | R-015 · AC-101, AC-102 | only arithmetic is `round2(K − S)`; no service call |
+| `src/components/owedbook/OwedBookScreen.tsx` | +2 imports · +2 state tags (`kpiFilters`, `summaryFilters`) · KPI effect `.then/.catch` rewritten to set the tag beside the value (catch keeps `ZERO_KPIS`, tag → null) · summary branch +`setSummaryFilters(filters)` · +1 render block after the table: `isSummary && !loading && !error && kpiFilters === filters && summaryFilters === filters` | AC-103, AC-104, AC-303 | sort block untouched (diff grep empty); `cancelled` guard on both read effects; no new request |
+| `src/__tests__/owedbook/SummaryUnattributedNote.test.tsx` | NEW, 6 tests: text/testid, 0.01 boundary, gap 0, S > K by 0.004, K − S = 0.004, gap −5.00 | AC-101, AC-102 | — |
+| `src/__tests__/owedbook/OwedBookScreen.disclosure.test.tsx` | NEW, 8 tests: real service — AC-101 unfiltered + filtered (expected DERIVED from fixtures), AC-102 named-PBM-only, AC-104 tabs/switch/back-after-skeleton; spied service — rejected KPI, loading, stale summary across a filters change, K for A with S for B | AC-101–104 | existing suites untouched |
 
 | Command/check | Environment | Exit/result | Evidence path |
 |---|---|---|---|
-| fresh build, blank env / placeholder env | local, no live Supabase | <exit; routes> | |
-| `npx tsc --noEmit` (after build) | local | <...> | |
-| `npx eslint .` | local | <errors / warnings> | |
-| `npx jest --ci` | local, mocks | <suites/tests, skipped=0> | |
-| AC-301 preserved-path diff | repo | <empty> | `evidence/S1_diffs.txt` |
-| AC-302 test diff (added files only) | repo | <...> | `evidence/S1_diffs.txt` |
+| `rm -rf .next && env <blank Supabase env> npx next build` | local, no live Supabase | exit 0 · **17 routes** | `evidence/S1_diffs.txt` header |
+| `rm -rf .next && env <placeholder env> npx next build` | local, `https://placeholder.invalid` etc. | exit 0 · **17 routes** (table recorded in the S1 report) | `evidence/S1_diffs.txt` header |
+| `npx tsc --noEmit` (after the fresh build) | local | **0 errors** | |
+| `npx eslint .` | local | **0 errors / 35 warnings** — identical count to RRM-001's board; the two warnings in `OwedBookScreen.tsx` (`set-state-in-effect`, :79/:105) exist at baseline (:73/:91) and are the same rule, shifted by additions | |
+| `npx jest --ci` | local, mocks | **31 suites / 144 tests / 0 skipped** (baseline 29/130; +2 suites, +14 tests, all new) | |
+| AC-301 preserved-path diff | repo | **empty** | `evidence/S1_diffs.txt` |
+| AC-106 service/types diff | repo | **empty**; `round2` sites: service :56, `format.ts` export, note component, tests | `evidence/S1_diffs.txt` |
+| AC-302 `owedbook.test.ts` diff · `__tests__` tracked diff | repo | **empty** · **empty** (only 2 untracked additions) | `evidence/S1_diffs.txt` |
+| AC-303 cancelled-flag grep · sort-line diff grep | repo | both read effects guarded · **no sort line in the diff** | `evidence/S1_diffs.txt` |
+| whole-`src/` diff stat vs baseline | repo | `OwedBookScreen.tsx` +24/−2 · `format.ts` +4 · 3 new files | `evidence/S1_diffs.txt` |
 
-Allowed exceptions: <none / list> · Deviations: <...> · Env restoration: <...> · Director checkpoint SHA: <...>
-GIT REMINDER — uncommitted paths: <...>
+Allowed exceptions: none · Deviations: two `findByText` → `findAllByText` in the screen test after first run (DataTable paints table + card layouts; two KPI tiles share the R-003 value) — test-only · Env restoration: placeholder/blank env scoped per command, nothing exported, `.env.local` not read for values, not edited; no live Supabase call; `.next/` (gitignored) left as the placeholder-env build · Director checkpoint SHA: <S1 commit, filled at P3>
+GIT REMINDER — uncommitted paths: `src/components/owedbook/format.ts` · `src/components/owedbook/OwedBookScreen.tsx` · new `src/components/owedbook/SummaryUnattributedNote.tsx` · new `src/__tests__/owedbook/SummaryUnattributedNote.test.tsx` · new `src/__tests__/owedbook/OwedBookScreen.disclosure.test.tsx` · `evidence/S1_diffs.txt` · this log · `CHANGELOG.md` · session log · S1 report `agent_docs/RESPONSES/response_2026-09-23_164131_rrm002-s1-result.md`
 
 ## Stage S2 — Audit corrections
 
