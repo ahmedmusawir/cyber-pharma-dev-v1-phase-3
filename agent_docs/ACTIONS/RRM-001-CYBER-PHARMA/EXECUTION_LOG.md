@@ -135,3 +135,31 @@ Limitations / not run: browser walk and real-auth login (QA); Gate M; no live Su
 QA handoff: `QA_HANDOFF.md`
 
 Engineering evidence, not independent QA certification.
+
+## Closeout (P5, 2026-09-23 — docs and evidence only)
+
+| Field | Value |
+|---|---|
+| Verdict | **Gate Q PASS** — zero rework rounds — QA Lead (SOL), 2026-09-22 (`QA/QA_CERTIFICATION.md`) |
+| Repo | `cyber-pharma-dev-v1-phase-3` |
+| Code baseline | `5f45fb3db7ed0aa7d38dc6802c3a877c3f119dd9` |
+| Pack commit | `88e2c33` |
+| Certified implementation | `cad164d62a623a115541c0441302de01ff74da5b` |
+| Accepted evidence successor | `9ab95e525e6775e5cb38e0ff12922b8ea1b85cc4` (docs/evidence only; product diff empty) |
+| Closeout commit | recorded by Director at merge |
+| Merge SHA | recorded by Director at merge |
+| AC-304 | PASS under ruling A-13 (logout → `/auth`; unauthenticated `/owedbook` → `/auth`); spec erratum lane row 2026-09-22 |
+| AC-206 / DA-2 | **NOT YET** — Director-owned; `evidence/DA-2_SUPABASE_SIGNUP_DISABLED.md` absent; nonblocking under the frozen contract |
+
+**Cleanup summary (J-19):** executed by Cody under SOL's release (`QA/QA_CLEANUP_REPORT.md`): ten one-use helpers, `AC304_LOGIN_DIAGNOSTIC.md`, `SOL_HANDOFF_NOTE.md`, `evidence/SCRATCH/` (17), `evidence/AC304_RESUME/` (13), the TypeScript cache and both ZIP exports removed; all matrix-cited evidence retained. Engineer verification at P5 (`QA/QA_CERTIFICATION.md` § QA Cleanup release): product/config/harness diff vs `cad164d` empty; no secrets/keys/PHI in retained evidence; three cited byte-duplicate raw logs retained; no further removals. Open for Director ruling: the deleted `.cjs` reproduction helpers (keep-list conflict) — recoverable from `9ab95e5`.
+
+**Deferred items and owners:**
+
+| Item | Owner / gate |
+|---|---|
+| OBS-1 — `protectPage` registered as a Server Action (`"use server"` module) | RRM-003 authoring |
+| OBS-2 — orphans `TabsContent` export, `PaginationControls.tsx` | RRM-003 authoring (hygiene pass) |
+| "Start free trial" CTA destination / label (A-03) | onboarding module (deferred ledger) |
+| R-014 — signup trigger assigns role from metadata | containment DA-2 (Director, NOT YET) + permanent correction BIM-004 CE-2 (APPLY SESSION) |
+| AC-206 evidence file | Director (DA-2) |
+| QA Lead journal entry (`RRM_CAMPAIGN_JOURNAL.md`, QA-logged) | SOL |

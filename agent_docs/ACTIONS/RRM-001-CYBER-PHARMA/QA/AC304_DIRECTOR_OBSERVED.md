@@ -1,32 +1,34 @@
 # AC-304 Director-observed evidence
 
-Date: 2026-09-21. Evidence class: **CLAIM / Director-observed**, not independent Cody browser evidence.
+Date: 2026-09-22. Evidence attribution: **Director-observed manual walk**, reported to Cody checkpoint by checkpoint. This is not Cody-controlled browser telemetry and contains no credentials, cookies, tokens or environment values.
 
-Tony confirms that he manually logged in successfully using the repository app on port 3000. The retained QA browser checkpoint identifies the requested account context as **ADMIN**, viewport 1440px, light mode, but it stopped at `/auth` before login and contains zero completed journey records. Therefore the evidence supports only: an existing account successfully authenticated in Tony's manual run. It does not independently prove the resolved role, landing pathname, admin portal, profile/password form, logout destination, session termination, MEMBER behavior, 375px, or dark mode.
+Tony started the repository development server on port 3000 with the normal local configuration and confirmed that this was the intended Supabase project before authentication. Cody did not start, stop or reconfigure the server. Read-only preflight tied the served repository to branch `qa/phase-3-rrm001`, HEAD `9ab95e525e6775e5cb38e0ff12922b8ea1b85cc4`, whose changes from tested implementation `cad164d62a623a115541c0441302de01ff74da5b` are documentation/evidence only; the product/configuration diff is empty.
 
-The manual port-3000 run used the normal `.env.local` Supabase URL/key. The earlier Director-authorized QA SCRATCH standalone used distinct `RLS_REPLICA_*` mappings. The successful manual login is not represented as a successful SCRATCH walk, and no cause is assigned to the failed SCRATCH login attempt.
+Tony used existing ADMIN and MEMBER accounts and kept all credentials inside his own browser. Cody requested bounded observations one at a time. No account was created, no password was changed or submitted, and no migration or business-data change was requested.
 
-## Completed versus outstanding
+## Completed walk
 
-| AC-304 step | Evidence state |
+| AC-304 step | Director-observed result |
 |---|---|
-| Existing account authenticates at `/auth` | Director-observed successful login; account checkpoint was designated ADMIN |
-| Lands on `/owedbook` | Not recorded |
-| Runtime role resolves as ADMIN | Not recorded; ADMIN is the requested checkpoint label only |
-| ADMIN reaches `/admin-portal` | Not recorded |
-| ADMIN reaches `/profile`; password-update form renders | Not recorded |
-| Existing MEMBER login and `/owedbook` landing | Not recorded |
-| MEMBER reaches `/profile`; password-update form renders | Not recorded |
-| Logout actual destination | Not recorded |
-| Session ended; unauthenticated `/owedbook` redirects `/auth` | Not recorded |
-| Desktop + 375px, light + dark authenticated journey | Not recorded |
+| Existing ADMIN login at `/auth` | Login succeeded and landed on `/owedbook`. |
+| ADMIN authorization | `/admin-portal` loaded successfully. |
+| ADMIN profile | `/profile` loaded and the password-update form rendered; nothing was submitted. |
+| ADMIN presentation matrix | Desktop and 375px, light and dark, remained usable. `/profile` was checked in all four combinations; `/admin-portal` was explicitly checked at 375px in light and dark after the desktop authorization check. |
+| ADMIN logout/session end | Logout landed on `/auth`; manually opening `/owedbook` afterward ended on `/auth`. |
+| Existing MEMBER login at `/auth` | Login succeeded and landed on `/owedbook`. |
+| MEMBER authorization boundary | No ADMIN portal entry was available, as expected for the MEMBER role. |
+| MEMBER profile | `/profile` loaded and the password-update form rendered; nothing was submitted. |
+| MEMBER presentation matrix | Tony completed and explicitly confirmed desktop and 375px, light and dark. |
+| MEMBER logout/session end | Logout landed on `/auth`; manually opening `/owedbook` afterward redirected to `/auth`. |
 
-## Next operator-assisted checkpoint
+The ADMIN observations were reported at each checkpoint. Tony then performed the corresponding MEMBER routine and explicitly confirmed the six-item record: desktop and 375px in light/dark; login landing `/owedbook`; `/profile` password form; no ADMIN portal entry; logout to `/auth`; and post-logout `/owedbook` redirect to `/auth`.
 
-Per QA_PLAYBOOK v1.1 §15, proceed one test at a time. Tony must start the app exactly as in the successful port-3000 run, log in with the existing **ADMIN** account, stop immediately after the landing navigation, and report the pathname visible in the address bar. Do not navigate or log out until that observation is recorded. Credentials remain browser-only.
-
-After `/owedbook` is established, the remaining bounded sequence is ADMIN `/admin-portal` → `/profile` password form; viewport/theme confirmations; logout destination/session termination; then the corresponding existing MEMBER walk. No password update, user creation, migration or business-data mutation is permitted.
+An intermediate screenshot showed ADMIN `/profile` in dark responsive mode at 400px. It was used only to notice and correct the width; it is not claimed as the required 375px evidence. Tony changed DevTools to exactly 375px and separately confirmed the required dark and light observations. No authenticated screenshot was copied into durable QA evidence.
 
 ## Logout authority
 
-No `A-13` row exists in `RULINGS_ADDENDUM.md`, and the frozen acceptance spec's erratum lane remains empty. The only recorded instruction says the frozen homepage-destination requirement remains pending Architect/Director ruling. Candidate and baseline source navigate to `/auth`. Under Doctrine Journal v0.3 J-20/J-21, this remains **PASS-PENDING-ADJUDICATION** if all other logout/session behavior passes; no product correction or contract rewrite is authorized here.
+Ruling A-13 is recorded in `RULINGS_ADDENDUM.md`, and the matching acceptance-spec erratum is recorded in `ACCEPTANCE_SPEC.md` dated 2026-09-22. A-13 corrects the drafting error: logout must end the session and land on `/auth`, then an unauthenticated `/owedbook` request must redirect to `/auth`. Both roles produced that result. No product correction was required.
+
+## Scope boundary
+
+This completes the released AC-304 live-walk observations. It does not adjudicate or certify RRM-001; SOL retains those authorities. It also does not satisfy AC-206, whose separate Director-owned Supabase toggle and direct-signup-denial evidence remains NOT YET.

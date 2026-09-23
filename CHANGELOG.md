@@ -3,6 +3,13 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-23 01:05 UTC — [CC] Claude Code
+
+- **RRM-001-CYBER-PHARMA closeout (P5).** Gate Q PASS @ `cad164d` (QA Lead 2026-09-22, zero rework); evidence successor `9ab95e5`. Docs and evidence only; no product change, build, test or git mutation.
+- **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/QA/QA_CERTIFICATION.md` — "QA Cleanup release" section (Engineer verification; QA Lead text untouched) · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` — R-001/R-002/R-011/R-012 resolution columns, R-014 closeout note, errata E-10 (A-13) + E-11 (governing bodies) · `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` — §0 scoreboard/status, version 1.0.1 · `agent_docs/AUTHORITY/PHASE_3_BIM_CAMPAIGN_MAP.md` — appended "Errata — RRM campaign" (CE-1…CE-4 + RRM-001 close line) · `agent_docs/RRM_CAMPAIGN_JOURNAL.md` — Architect entry, QA-logged placeholder heading, friction log · `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/EXECUTION_LOG.md` — Closeout section · `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/README.md` — status CLOSED · `RECOVERY.md` — current state (A-10 lifted at P5)
+- **Created:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/CLOSEOUT_CHECKLIST.md` (pack carried none) · `agent_docs/SESSIONS/session_2026-09-23.md` · closeout report in `agent_docs/RESPONSES/`
+- **Reason:** Architect P5 closeout instruction, Director-relayed, 2026-09-23.
+
 ## 2026-09-22 07:58 UTC — [CC] Claude Code
 
 - **Updated:** `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/RULINGS_ADDENDUM.md` — appended ruling A-13 (AC-304: logout lands on `/auth`, not `/`; Architect drafting error; no product change)

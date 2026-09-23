@@ -1,0 +1,11 @@
+{
+  "branch": "qa/phase-3-rrm001",
+  "head": "9ab95e525e6775e5cb38e0ff12922b8ea1b85cc4",
+  "testedImplementation": "cad164d62a623a115541c0441302de01ff74da5b",
+  "successorDocumentationOnly": true,
+  "productDiffEmpty": true,
+  "serverOrigin": "http://127.0.0.1:3000",
+  "serverStartedBy": "Director",
+  "configuration": "normal local .env.local; values withheld; Director-confirmed target",
+  "authStatus": 200
+}

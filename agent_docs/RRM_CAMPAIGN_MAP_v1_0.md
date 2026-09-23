@@ -16,7 +16,9 @@
 
 **Status at v1.0 (2026-09-20).** Intake CLOSED (reviews reconciled, recon Rev 2, D1–D7 ruled). **RRM-001 pack AUTHORED — NEXT.** RRM-002/003/004 queued; each pack authored after its predecessor merges (verify-then-write, BIM-003 lesson). BIM-004 remains next in the backend campaign after RRM-004 closes (J-02: sequencing, not dependency).
 
-Scoreboard (Director fills at each close): RRM-001 `—` · RRM-002 `—` · RRM-003 `—` · RRM-004 `—`.
+**Status at v1.0.1 (2026-09-22).** RRM-001 CLOSED — Gate Q PASS, zero rework rounds (QA Lead 2026-09-22). **RRM-002 pack authoring NEXT.** Merge of `qa/phase-3-rrm001` → `main` and the merge SHA: Director.
+
+Scoreboard (Director fills at each close): RRM-001 `CLOSED — Gate Q PASS 2026-09-22 @ cad164d (evidence 9ab95e5); merge SHA: Director` · RRM-002 `—` · RRM-003 `—` · RRM-004 `—`.
 
 ---
 
@@ -162,3 +164,4 @@ Deferred by Director ruling (not modules here): R-003 Owed KPI aggregate → Pha
 | Ver | Date | Change |
 |---|---|---|
 | 1.0 | 2026-09-20 | Initial map: four-module decomposition from ruled ledger; lifecycle mirrors BIM practice; Director runway; Phase 3 map errata CE-1…4; deferred ledger. |
+| 1.0.1 | 2026-09-22 | §0 status only; §3 'candidate future triggers' language superseded by Director ruling 2026-09-21 (no further reviews until all phases complete) |

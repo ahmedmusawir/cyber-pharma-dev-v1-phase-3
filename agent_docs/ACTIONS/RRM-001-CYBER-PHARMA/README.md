@@ -1,5 +1,7 @@
 # RRM-001-CYBER-PHARMA — Removal
 
+**Status: CLOSED** — Gate Q PASS 2026-09-22 (QA Lead, zero rework rounds) · certified implementation `cad164d62a623a115541c0441302de01ff74da5b` · evidence successor `9ab95e5` · closeout commit / merge SHA: recorded by Director at merge · AC-206 (DA-2) NOT YET.
+
 Module 1 of the RRM campaign (`RRM_CAMPAIGN_MAP_v1_0.md` §4). Start at `CLAUDE.md`. Director runway in `DIRECTOR_ACTIONS.md`.
 
 | File | Owner |

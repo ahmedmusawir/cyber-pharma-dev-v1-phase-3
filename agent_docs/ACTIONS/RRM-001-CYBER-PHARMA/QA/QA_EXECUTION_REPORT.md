@@ -1,12 +1,13 @@
 # RRM-001 QA execution report
 
-To SOL through Tony · Cody, execution/evidence only · 2026-09-21.
+To SOL through Tony · Cody, execution/evidence only · updated 2026-09-22.
 
-The released independent static, fresh-build, HTTP, Server Action, regression and placeholder-browser checks are complete. Tony supplies Director-observed evidence that one manual login succeeded; AC-304 remains partial because no post-login journey step is recorded. AC-206 is NOT YET. Both requested governing bodies are now present and read; original source revision remains unavailable. No verdict, certification, repair or final cleanup approval is issued.
+The released independent static, fresh-build, HTTP, Server Action, regression and placeholder-browser checks remain complete without rerun. The released AC-304 live walk is now fully observed for existing ADMIN and MEMBER accounts across desktop/375px and light/dark, including A-13 logout and the post-logout guard. Evidence is Director-observed manual interaction, not Cody-controlled browser telemetry. AC-206 remains NOT YET. Both requested governing bodies are present and read; original source revision remains unavailable. No verdict, certification, repair or final cleanup approval is issued.
 
 ## Authority and identity
 
-- Selected candidate, HEAD and qa/phase-3-rrm001: **cad164d62a623a115541c0441302de01ff74da5b**.
+- Tested immutable implementation: **cad164d62a623a115541c0441302de01ff74da5b**.
+- Current HEAD and `qa/phase-3-rrm001`: **9ab95e525e6775e5cb38e0ff12922b8ea1b85cc4**. The successor changes documentation/evidence only; product/configuration diff from the tested implementation is empty.
 - Engineering reference: **4965c0c56ae7f658995d8b7cd634b5cdbc697f56**.
 - Code baseline: **5f45fb3db7ed0aa7d38dc6802c3a877c3f119dd9**.
 - Repository: /home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3.
@@ -24,19 +25,19 @@ Both bodies were read in full:
 
 The playbook's v1.1 version history says AC numbering was synchronized in that version; no separate AC-sync patch file was supplied. The files do not embed an original source repository path or commit, so the honest provenance is Director-supplied into this module on 2026-09-21; original source revision remains unavailable. Relevant governing consequences: evidence remains EVIDENCE/INFERENCE/CLAIM/GAP/QUESTION; findings use Acceptance Failure, Regression, Environment/Setup, Pre-Existing Defect, Follow-Up, Architecture Enhancement, or Observation; SOL owns verdict/classification; J-20 adds PASS-PENDING-ADJUDICATION and PASS WITH NOTE; J-19 requires a separate post-Gate-Q cleanup and clean-tree gate selected/released by SOL. No cleanup or certification is performed here.
 
-Concrete unmet requirements after applying the supplied doctrine: AC-304 manual acceptance is incomplete beyond one Director-observed successful login; AC-206 remains NOT YET; no A-13/erratum exists for the logout destination; and original doctrine source revision/provenance was not supplied. The working tree is intentionally not represented as cleanup-complete or clean.
+Concrete unmet requirements after applying the supplied doctrine: AC-206 remains NOT YET, and original doctrine source revision/provenance was not supplied. AC-304's released live-walk evidence is complete, while adjudication/certification remains SOL's. A-13 and its acceptance-spec erratum are now recorded. The working tree is intentionally not represented as cleanup-complete or clean.
 
-The intake arrived clean, then created its permitted report. Execution preflight found 20 tracked BIM-003 responses deleted at their original paths with byte-identical untracked copies in agent_docs/RESPONSES/_OLD/. Exact mapping/equality evidence is in evidence/preexisting-document-relocations.json; arrival status is in evidence/preflight-identity.txt. No product drift was found. The Director has now confirmed personally moving these files as intentional archive cleanup and approved their relocation (DIRECTOR_ARCHIVE_RULING.md). Provenance and disposition are resolved. They remain unstaged changes under Director Git control, not a product defect or rerun trigger. This report does not call the working tree clean.
+The intake arrived clean, then created its permitted report. Execution preflight found 20 tracked BIM-003 responses deleted at their original paths with byte-identical untracked copies in agent_docs/RESPONSES/_OLD/. Exact mapping/equality evidence is in evidence/preexisting-document-relocations.json; arrival status is in evidence/preflight-identity.txt. No product drift was found. The Director confirmed personally moving these files as intentional archive cleanup and approved their relocation (DIRECTOR_ARCHIVE_RULING.md). Provenance and disposition are resolved. The documentation-only successor HEAD now commits all 20 as byte-identical R100 moves. They are not a product defect or rerun trigger.
 
 ## Document relocations — exact accounting
 
 **Latest Director ruling (AC-304 resume, 2026-09-21):** the Director explicitly confirms personally moving all 20 byte-identical files as intentional archive cleanup and approves their relocation. They must remain in RESPONSES/_OLD/. Use the verified mapping below for historical citations. This resolves the earlier unknown-actor/unapproved-disposition observations retained below as historical context; they are no longer current gaps. These moves are not a product defect or rerun trigger. Git remains under Director control. See DIRECTOR_ARCHIVE_RULING.md for the exact ruling. No frozen AC or protected file was changed by this ruling.
 
-All 20 pairs below were rechecked against the selected candidate. Every original is missing, every destination is untracked, and destination bytes equal committed original bytes. No move is staged or committed; Git represents unstaged deletions plus untracked files. Provenance is Director-confirmed and relocation explicitly approved. Cody did not perform, revert, stage or commit these changes; archived files must stay in place.
+All 20 pairs below were rechecked against the tested candidate. At first observation, every original was missing, every destination was untracked, and destination bytes equaled committed original bytes. In current HEAD `9ab95e5`, Git records each pair as an R100 rename. Provenance is Director-confirmed and relocation explicitly approved. Cody did not perform, revert, stage or commit these changes; archived files remain in place.
 
 First observed: initial execution-release preflight on 2026-09-21, after clean intake. Exact first-observation clock time was not recorded. Intake report mtime: 2026-09-21T08:10:17.496Z; execution preflight capture mtime: 2026-09-21T08:31:41.171Z. These are artifact times, not the move time. Attribution was initially unavailable; it is now supported by the Director's explicit first-person confirmation, not inferred from timestamps.
 
-| Original path | Current untracked path | Contents versus candidate |
+| Original path | Approved archive path | Contents versus candidate |
 |---|---|---|
 | `agent_docs/RESPONSES/BIM003_S1_2026-09-14.md` | `agent_docs/RESPONSES/_OLD/BIM003_S1_2026-09-14.md` | Identical |
 | `agent_docs/RESPONSES/BIM003_S2_2026-09-14.md` | `agent_docs/RESPONSES/_OLD/BIM003_S2_2026-09-14.md` | Identical |
@@ -143,11 +144,28 @@ HomePageContent and desktop UserMenu trial links both target /auth; opening the 
 
 OBS-1/OBS-2 and the ruled CTA label were not promoted into new RRM-001 defects. No repair was attempted.
 
-## SCRATCH live-auth follow-up and remaining prerequisites
+## AC-304 final live-auth result and historical SCRATCH context
+
+Tony confirmed the intended normal local Supabase project before authentication and started the application on port 3000. Cody did not start, stop or reconfigure that server. The served repository was tied to current HEAD `9ab95e525e6775e5cb38e0ff12922b8ea1b85cc4`; its diff from tested implementation `cad164d62a623a115541c0441302de01ff74da5b` is documentation/evidence only, with an empty product/configuration diff.
+
+Using existing accounts and browser-only credential entry, the Director-observed walk produced:
+
+| Role | Login | Authorized routes | Presentation coverage | Logout/session |
+|---|---|---|---|---|
+| ADMIN | `/auth` → `/owedbook` | `/admin-portal`; `/profile` with password-update form | Desktop and 375px; light and dark | Logout → `/auth`; subsequent `/owedbook` → `/auth` |
+| MEMBER | `/auth` → `/owedbook` | `/profile` with password-update form; no ADMIN portal entry | Desktop and 375px; light and dark | Logout → `/auth`; subsequent `/owedbook` → `/auth` |
+
+No password was submitted or changed, and no user, migration or business-data operation occurred. Evidence attribution and checkpoint detail are in AC304_DIRECTOR_OBSERVED.md, AC304_WALK_RECORD.md and evidence/AC304_FINAL/director-observed-walk.json. This completes the released AC-304 observations; SOL retains adjudication and certification.
+
+A-13 is recorded in `RULINGS_ADDENDUM.md`, and the matching 2026-09-22 erratum is recorded in `ACCEPTANCE_SPEC.md`. It requires logout to end the session and land on `/auth`, followed by unauthenticated `/owedbook` → `/auth`. Both roles matched it; the former `/` wording is an Architect drafting error and no product correction is required.
+
+### Historical SCRATCH checkpoints — superseded for AC-304 completion
+
+The following paragraphs preserve the earlier SCRATCH attempt and diagnostic trail. They are not current gaps and are not the basis for the completed normal-local walk.
 
 Final handoff evidence: Tony now confirms he manually logged in successfully on port 3000. This is recorded as Director-observed evidence in AC304_DIRECTOR_OBSERVED.md. The existing QA checkpoint identifies the requested context as ADMIN / 1440px / light, but it captured `/auth` and zero completed journey records. Therefore the completed evidence is limited to successful authentication of an existing account in Tony's manual run. Runtime role, `/owedbook` landing, `/admin-portal`, both roles' `/profile` password form, 375px/dark variants, logout destination, session termination, and post-logout `/owedbook` redirect remain unrecorded. No port-3000 server currently listens. The exact next Director action is: start the app as in the successful run, log in with the existing ADMIN account, stop after navigation, and report the address-bar pathname; do not navigate or logout yet.
 
-Logout authority check: `RULINGS_ADDENDUM.md` ends at A-12 plus OBS-1/OBS-2; the frozen spec's erratum lane is empty. A-13 and its erratum are absent. The only current recorded instruction leaves the homepage-destination requirement pending Architect/Director ruling. Baseline and candidate source target `/auth`. Per Journal J-20/J-21, that literal discrepancy remains PASS-PENDING-ADJUDICATION if the remaining logout/session behavior passes. No product repair or silent requirement rewrite is authorized.
+Historical authority check at that checkpoint: the addendum then ended at A-12 and the erratum lane was empty, so the logout destination remained pending adjudication. This was later superseded by recorded A-13 and the 2026-09-22 acceptance-spec erratum described above; no product correction was required.
 
 Current disposition after manual comparison: QA server PID 854804 stopped at the Director's request, exited, and port 37169 is free. The Director reports successful manual login on port 3000. That repository development build's compiled artifacts contain the normal .env.local Supabase URL/key, not the distinct RLS_REPLICA URL/key intentionally used for QA SCRATCH. This establishes differing configured endpoints, not why SCRATCH authentication failed. No successful SCRATCH journey is claimed, and the Director's running server was left untouched. AC304_LOGIN_DIAGNOSTIC.md records the comparison. Subsequent paragraphs describe earlier checkpoints. No product repair or broad rerun occurred.
 
@@ -171,24 +189,30 @@ The exhausted governing-document search was not repeated. Its earlier missing-bo
 
 Keep these three claims separate:
 
-1. **Application entry points removed:** independent source, fresh-build, HTTP, action and browser evidence collected as above; authenticated preservation walk remains pending.
-2. **Supabase public signup disabled:** AC-206 NOT YET; Director's DA-2 evidence file absent. Needed observations remain toggle disabled, direct signup denial and existing-account login. Application 404 proves none of these.
+1. **Application entry points removed:** independent source, fresh-build, HTTP, action and browser evidence collected as above; the authenticated preservation walk is now Director-observed complete.
+2. **Supabase public signup disabled:** AC-206 remains NOT YET. Existing-account login is now observed, but the Director's DA-2 evidence file is absent and the required disabled-toggle and direct signup-denial observations remain unavailable. Application 404 proves neither.
 3. **Permanent handle_new_user correction:** outside this module, still BIM-004 CE-2/APPLY SESSION. Not tested, applied or certified.
 
 ## Final state and artifact inventory
 
-Latest handoff inventory supersedes earlier counts below: ARTIFACT_INVENTORY.json lists **189 files excluding itself**, including 24 placeholder screenshots and no authenticated screenshots. Current identity/status/tracked diff are in evidence/AC304_RESUME/current-*. The reused SCRATCH server is stopped, and no port-3000 server was listening at final handoff. No broad reruns or archive changes occurred. See AC304_DIRECTOR_OBSERVED.md, AC304_WALK_RECORD.md and AC304_LOGIN_DIAGNOSTIC.md.
+Latest 2026-09-22 AC-304 update: current HEAD and QA branch are `9ab95e525e6775e5cb38e0ff12922b8ea1b85cc4`; tested implementation remains `cad164d62a623a115541c0441302de01ff74da5b`. The successor is documentation/evidence only with no product/configuration change. The 20 Director-approved archive relocations are committed R100 moves and remain untouched. Cody's inactive QA browser was closed; it never started or stopped the application. Tony's port-3000 server remains Director-owned and was left untouched. No completed check or regression board was rerun.
+
+ARTIFACT_INVENTORY.json now lists **195 files excluding itself**, including 24 placeholder screenshots and no retained authenticated screenshot. Current identity/status/tracked diff are in evidence/AC304_RESUME/current-*. Historical SCRATCH servers are stopped. Tony's current port-3000 server is Director-owned and was left untouched. No broad rerun occurred. See AC304_DIRECTOR_OBSERVED.md, AC304_WALK_RECORD.md and AC304_LOGIN_DIAGNOSTIC.md.
 
 Only QA-created durable files under this module's QA/** were written. Normal generated outputs: .next was replaced by the authorized builds and now contains the separately prepared SCRATCH build, including generated standalone assets; tsconfig.tsbuildinfo was generated/updated by the prior TypeScript check and build tooling. The previous placeholder/blank/board evidence remains preserved: all 99 files recorded for those runs match their prior SHA-256 inventory. No dependency installation, product/config/test-suite edit, environment-file edit, session/RECOVERY edit, live DB operation or Git mutation.
 
 QA server T PID 847701 (port 37209) and U PID 848369 (port 35851) were stopped by this run. Both exited and each port was confirmed free immediately afterward (server-stop.json). SCRATCH server lifecycle is recorded separately in evidence/SCRATCH/server-identity.json and server-stop.json, including the initial closed-input launch. No unrelated server was stopped. No final cleanup sweep was performed; durable evidence remains for SOL.
 
-The latest identity/working-tree recheck is also recorded under evidence/followup/: HEAD and qa/phase-3-rrm001 remain cad164d62a623a115541c0441302de01ff74da5b; product/configuration and applicable-authority diffs are empty. No candidate or authority change required stopping otherwise authorized work.
+The final identity/working-tree recheck is recorded under evidence/AC304_RESUME/current-*: HEAD and `qa/phase-3-rrm001` equal `9ab95e525e6775e5cb38e0ff12922b8ea1b85cc4`; product/configuration diff against tested implementation `cad164d62a623a115541c0441302de01ff74da5b` is empty. A-13 and its erratum are the applicable authority additions.
 
-Final HEAD/QA ref, exact tracked diff, porcelain status, aggregate evidence validation and artifact hashes are recorded in evidence/final-identity.txt, final-tracked.diff, final-status.txt, validation-summary.json and ARTIFACT_INVENTORY.json. Tracked changes remain the 20 external document deletions; their _OLD counterparts remain untracked, plus QA output. No product diff appeared during execution. Artifact inventory distinguishes the pre-existing intake and governing/README from newly created plan, report, matrix, helpers, search record, raw evidence and screenshots. Generated output inventory is separate and does not copy sensitive build manifests.
+Historical arrival/finalization snapshots remain in evidence/final-* and evidence/followup/*. The current HEAD/QA ref, exact successor diff and porcelain status are recorded in evidence/AC304_RESUME/current-*; artifact hashes are in ARTIFACT_INVENTORY.json. The 20 external documents are now committed R100 archive moves. Current unstaged/untracked items are QA/reporting outputs under Tony's Git control. No product diff appeared. Generated output inventory is separate and does not copy sensitive build manifests.
 
-Current artifact inventory: 189 files excluding the inventory's recursive checksum. It includes 24 placeholder screenshots, 99 integrity-checked prior T/U/blank/board evidence files, both supplied governing bodies and checksums, Director-observed login scope, reports/matrix, exact archive mapping and SCRATCH lifecycle records. It contains no credential screenshot, cookie/session export or raw environment file. ARTIFACT_INVENTORY.json supplies current hashes; generated-output-inventory.json separately describes generated output. Current porcelain is captured in evidence/AC304_RESUME/current-status.txt; the 20 Director-approved response relocations remain untouched and Git-controlled by the Director.
+Current artifact inventory: 195 files excluding the inventory's recursive checksum. It includes 24 placeholder screenshots, 99 integrity-checked prior T/U/blank/board evidence files, both supplied governing bodies and checksums, the complete Director-observed AC-304 record, reports/matrix, exact archive mapping and SCRATCH lifecycle records. It contains no credential screenshot, cookie/session export, token or raw environment file. ARTIFACT_INVENTORY.json supplies current hashes; generated-output-inventory.json separately describes generated output. Current porcelain is captured in evidence/AC304_RESUME/current-status.txt.
 
-Remaining evidence gaps: AC-304 post-login ADMIN/MEMBER journey results itemized in AC304_DIRECTOR_OBSERVED.md; A-13/logout erratum; Director AC-206 three-part evidence; and original source path/revision for the supplied doctrine (no separate AC-sync patch file). The doctrine bodies themselves are no longer missing. The 20 document relocations are Director-confirmed and approved. No extra historical-action-manifest requirement is imposed.
+Remaining evidence gaps: AC-206 still lacks the Director-owned disabled-toggle and direct Supabase signup-denial evidence; the original source path/revision for the supplied doctrine remains unavailable (and no separate AC-sync patch file was supplied). The doctrine bodies themselves are present. AC-304 has no remaining released walk gap, and A-13 plus its erratum are recorded. The 20 document relocations are Director-confirmed, approved and committed. No extra historical-action-manifest requirement is imposed.
 
-Return to SOL through Tony. Independent released checks remain complete; AC-304 stops at one Director-observed successful login and the explicit next checkpoint. No Cody verdict, certification or final cleanup sweep.
+Return to SOL through Tony. Independent released checks remain complete, and the AC-304 live walk is Director-observed complete. No Cody verdict, certification or final cleanup sweep.
+
+## Post-Gate-Q disposition — 2026-09-22
+
+SOL subsequently issued **Gate Q = PASS** for tested implementation `cad164d62a623a115541c0441302de01ff74da5b` and accepted current HEAD `9ab95e525e6775e5cb38e0ff12922b8ea1b85cc4` as a documentation/evidence-only successor. AC-304 is PASS under A-13. AC-206 remains NOT YET and explicitly nonblocking. Gate D is not applicable. The permanent `handle_new_user` trigger correction remains outside this certification under BIM-004 CE-2/APPLY SESSION. The bounded cleanup and retained-evidence disposition are recorded in QA_CLEANUP_REPORT.md and QA_CERTIFICATION.md; this note records SOL's verdict without replacing the execution evidence above.

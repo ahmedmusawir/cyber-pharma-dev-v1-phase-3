@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-22",
+  "evidenceAttribution": "Director-observed manual walk reported checkpoint by checkpoint",
+  "testedImplementation": "cad164d62a623a115541c0441302de01ff74da5b",
+  "currentHead": "9ab95e525e6775e5cb38e0ff12922b8ea1b85cc4",
+  "successorDocumentationEvidenceOnly": true,
+  "productConfigurationDiffEmpty": true,
+  "serverStartedBy": "Director",
+  "serverLifecycleTouchedByCody": false,
+  "target": "Director-confirmed intended normal local Supabase project; configuration values withheld",
+  "credentialsRecorded": false,
+  "roles": {
+    "ADMIN": {
+      "loginLanding": "/owedbook",
+      "adminPortal": "/admin-portal",
+      "profile": "/profile",
+      "passwordUpdateFormRendered": true,
+      "passwordSubmitted": false,
+      "viewports": ["desktop", "375px"],
+      "themes": ["light", "dark"],
+      "logoutLanding": "/auth",
+      "postLogoutOwedbookLanding": "/auth"
+    },
+    "MEMBER": {
+      "loginLanding": "/owedbook",
+      "adminPortalEntryAvailable": false,
+      "profile": "/profile",
+      "passwordUpdateFormRendered": true,
+      "passwordSubmitted": false,
+      "viewports": ["desktop", "375px"],
+      "themes": ["light", "dark"],
+      "logoutLanding": "/auth",
+      "postLogoutOwedbookLanding": "/auth"
+    }
+  },
+  "a13Observed": true,
+  "databaseWritesRequested": false,
+  "certificationIssuedByCody": false
+}

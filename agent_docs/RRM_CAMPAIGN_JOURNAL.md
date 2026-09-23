@@ -37,3 +37,31 @@
 **`### RRM-00N-CYBER-PHARMA — QA engagement closed <date> (QA-logged (Sol))`** — same headings, SOL's seat, never edited by the Architect.
 
 **`### Friction log — RRM-00N (Director-observed, filed by Architect)`** — dated one-liners.
+
+---
+
+### RRM-001-CYBER-PHARMA — closed 2026-09-22 (Architect)
+
+- Playbook prescribed: pack → Plan Mode → Director rulings on disk → two build stages each green/reported/committed → handoff of execution log + unchanged acceptance spec + QA handoff → Director cuts qa/ line → QA Lead plans, QA Executor executes, repairs on the QA line → Gate Q → bounded cleanup → Architect closeout → Director --no-ff merge.
+- Actually happened: Pack committed 88e2c33 on 2026-09-20; Plan Mode surfaced eleven contradictions (three blocking: CTA hrefs vs byte-identity, adminDemo's own addMember vs a literal-zero grep, comment-only "moose" hits in preserved files) — all ruled the same day as A-02…A-11 and applied by the Engineer, none by hand. S1 removed the 14-file operator portal, flag wiring and the Moose-only admin client (route count 22→18); the Engineer added a Server-Action-ID probe (AC-103b) that proved the five historical action IDs are absent and rejected, and caught that the .next/server grep matched the Supabase SDK's own admin class (A-12). S2 removed public signup, the register tab and the login GET probe (18→17); three "Start free trial" links now land on /auth per A-03. QA entry 2026-09-21: the governing QA bodies were never repo-local (Director doc-repo copy + PROVENANCE, E-11) and AC-304's logout destination was an Architect drafting error ("/" vs baseline /auth, A-13/E-10). Gate Q PASS 2026-09-22 at cad164d, zero rework, evidence successor 9ab95e5 with empty product diff.
+- Divergence + why: (1) First packet was one module with five stages; Director corrected to a four-module campaign — decompose by proof type and rollback boundary. (2) P1's HEAD check cited a literal baseline SHA and would have blocked on the pack commit itself; reference "the pack commit's parent". (3) Pack allowed-files omitted root-protocol files (session log, CHANGELOG, RESPONSES); root CLAUDE.md wins (A-10). (4) Governing QA bodies assumed repo-local; they are Director-held. (5) One frozen AC stated a destination the baseline never had; erratum, no product change.
+- Gate Q cycles: 1 — PASS.
+- Handoff friction: rulings initially handed to the Director as paste-by-hand rows; corrected to Engineer-applied docs-only prompts. Authenticated QA matrix (two roles × routes × two viewports × two themes × logout/redirect) was executed manually and cost Director time.
+- Director overhead: seven rulings + seven money rules in one sitting; branch rename; ~6 stage/closeout commits; one QA-branch cut; governing-doc copy; the manual auth matrix; DA-2 still owed.
+- Time shape: intake 17–20 Sep (three sessions); pack + plan + S1 + S2 all on 20 Sep; QA 21–22 Sep; closeout 22 Sep.
+- Keep: disk re-verification with file:line as review equivalence · Plan Mode contradictions ruled before any deletion · Server-Action-ID probe as the direct proof of "unreachable" · three separately-evidenced items (removal / containment / correction) for an exposure the module cannot fix · Engineer-applied rulings, Director-only commits.
+- Change: pack templates carry root-protocol files in allowed lists and "pack commit's parent" as the HEAD check · QA/GOVERNING/ is a Director copy step with PROVENANCE.md · authenticated QA matrices run under Playwright (repeated role/route/viewport/theme/logout/redirect/screenshot/trace), Director supplies browser-only credentials when needed and performs one ADMIN and one MEMBER visual spot-check; repetitive manual matrix execution is not routine Director work — recorded as an evidence-based campaign lesson and a candidate QA playbook amendment.
+- Drop: literal-zero greps against build output without an SDK-aware pass test · "copy the playbook from the repo" instructions · manual auth matrices as the default.
+- Doctrine-harvest seeds: RRM decomposition rule · pack-commit-parent HEAD check · root-protocol precedence over packs · Director-held governing bodies · Playwright for authenticated QA matrices · removal-as-repair with unreachability proof.
+
+### RRM-001-CYBER-PHARMA — QA engagement closed 2026-09-22 (QA-logged (QA Lead))
+
+[entry to be supplied by the QA Lead; not authored by another seat]
+
+### Friction log — RRM-001 (Director-observed, filed by Architect)
+
+- 2026-09-20 — P1's HEAD check cited a literal baseline SHA and would have blocked on the pack commit itself; ruled A-01, corrected by A-02 to "the pack commit's parent".
+- 2026-09-20 — Rulings first handed to the Director as paste-by-hand addendum rows; corrected to Engineer-applied docs-only prompts, Director commits only.
+- 2026-09-21 — Governing QA bodies (QA_PLAYBOOK v1.1, WEB_FACTORY_P1_DOCTRINE_JOURNAL v0.3) were never repo-local; Director copied them into `QA/GOVERNING/` with provenance, original source revision unavailable (E-11).
+- 2026-09-21 — AC-304 named `/` as the logout destination; the baseline lands on `/auth`. Architect drafting error, ruled A-13 / E-10, no product change.
+- 2026-09-22 — The authenticated AC-304 matrix (two roles × routes × two viewports × two themes × logout/redirect) was executed manually and cost Director time; Playwright recorded as the candidate QA playbook amendment.
