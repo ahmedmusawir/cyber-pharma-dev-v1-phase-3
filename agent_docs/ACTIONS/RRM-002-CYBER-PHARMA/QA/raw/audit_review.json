@@ -1,0 +1,51 @@
+{
+  "11_85_hits": [],
+  "10_64_hits": [
+    "src/mocks/owedbook.ts:8: * expected/owed are a demo spread and do NOT satisfy rule 3 (qty \u00d7 rate + 10.64); see RRM-002 FIXTURE_AUDIT A-2."
+  ],
+  "copy_term_hits_tsx_md": [],
+  "audit_rows_present": {
+    "A-1": true,
+    "A-2": true,
+    "A-2b": true,
+    "A-3": true,
+    "A-4": true,
+    "A-5": true,
+    "A-6": true,
+    "A-7": true,
+    "A-8": true,
+    "A-9": true,
+    "A-10": true,
+    "A-11": true,
+    "A-12": true
+  },
+  "flag_only_rows_present": {
+    "A-2": true,
+    "A-4": true,
+    "A-5": true,
+    "A-6": true,
+    "A-7": true,
+    "A-11": true,
+    "A-12": true
+  },
+  "errata_in_ledger": {
+    "E-12": true,
+    "E-13": true,
+    "E-14": true
+  },
+  "campaign_map_deferred_section": "| Item | Destination | Owner |\n|---|---|---|\n| Owed KPI aggregate semantics; `commercial_scripts` federal exclusion; legacy demo formula as candidate | Phase 5 parity harness (mock and wrapper move together) | Architect |\n| Federal sign convention; one-cent rounding; rounding law | Phase 5, before validation week | Architect / Frank |\n| Negative-owed / overpayment display | Phase 5 UI ruling | Director / Frank |\n| Brand/generic authority \u00b7 reversals/partial fills \u00b7 U&C | Frank riders R3, R5, R4 / Golden Data | Coach \u2192 Frank |\n| Unattributed PBM bucket (wrapper change) | Phase 5 | Architect |\n| Global/server sort | Phase 5c | Architect |\n| Component invalidation + error states before real reads (A-006) | BIM-005 authoring | Architect |\n| Tenant scoping, upload validation, signed report URLs, billing seams | BIM-005 / Phase 5\u20137 (existing gates) | Architect |\n| Playwright config/specs (installed, unused) | QA doctrine / Phase 8 | SOL |\n| Permanent `handle_new_user` correction | BIM-004 rider (CE-2), APPLY SESSION verify | Architect / Director |",
+  "fixture_cross_checks": {
+    "fixture_rows": 150,
+    "rule3_pass_count": 1,
+    "rule3_fail_count": 149,
+    "negative_owed_count": 28,
+    "method_counts": {
+      "NADAC": 27,
+      "MAC": 38,
+      "AAC": 61,
+      "WAC": 24
+    },
+    "money_value_changes": [],
+    "money_over_two_decimal_places": []
+  }
+}

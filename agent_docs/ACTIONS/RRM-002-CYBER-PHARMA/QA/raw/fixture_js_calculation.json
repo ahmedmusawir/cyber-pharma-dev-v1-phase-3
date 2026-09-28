@@ -1,0 +1,65 @@
+{
+  "rows": 150,
+  "baselineRows": 150,
+  "moneyChanges": [],
+  "K": 4088.54,
+  "S": 4068.2700000000004,
+  "rawDifference": 20.269999999999527,
+  "gap": 20.27,
+  "positiveNullPbm": [
+    {
+      "id": "claim_134",
+      "owed": 0.31
+    },
+    {
+      "id": "claim_088",
+      "owed": 12.94
+    },
+    {
+      "id": "claim_006",
+      "owed": 5.25
+    },
+    {
+      "id": "claim_001",
+      "owed": 1.77
+    }
+  ],
+  "nullPbmSum": 20.27,
+  "namedPbmCount": 7,
+  "rule3": {
+    "pass": 1,
+    "fail": 149,
+    "passingIds": [
+      "claim_100"
+    ]
+  },
+  "rule2": {
+    "pass": 150,
+    "fail": 0
+  },
+  "negativeOwedRows": 28,
+  "federal": {
+    "rows": 139,
+    "expectedPass": 137,
+    "expectedFailIds": [
+      "claim_018",
+      "claim_121"
+    ],
+    "diffPass": 132,
+    "diffFailIds": [
+      "claim_120",
+      "claim_018",
+      "claim_043",
+      "claim_109",
+      "claim_015",
+      "claim_121",
+      "claim_002"
+    ]
+  },
+  "methodCounts": {
+    "AAC": 61,
+    "MAC": 38,
+    "NADAC": 27,
+    "WAC": 24
+  }
+}

@@ -4,7 +4,13 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-09-23 — **RRM-001-CYBER-PHARMA · CLOSED — GATE Q PASS (QA Lead, 2026-09-22, zero rework rounds) · MERGED TO `main`**
+**Last updated:** 2026-09-28 — **RRM-002-CYBER-PHARMA · CLOSED — GATE Q PASS (QA Lead, 2026-09-28, zero defects, zero repair rounds) · PENDING MERGE**
+**Branch:** `qa/phase-3-rrm002` @ `cb9f7b7e707f206f019b40c7079487888cc14d03` (QA evidence HEAD) + uncommitted P5 closeout. **Certified candidate:** `34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731` · code baseline `1cd6e46` · closeout commit and merge SHA: recorded by Director at merge.
+**Last action:** P5 closeout (docs, evidence, bounded QA cleanup): ledger R-015/R-020 RESOLVED + E-15 · map §0 v1.0.2 · journal (Architect, QA Lead verbatim, friction log) · EXECUTION_LOG Closeout · pack README · QA cleanup (18 never-committed helper/harness files removed, archived outside the repo first; inventory rebuilt; citations resolve). Session log: `agent_docs/SESSIONS/session_2026-09-28.md`.
+**Pending (Director):** commit the closeout · `--no-ff` merge `qa/phase-3-rrm002` → `main` · paste `git log --oneline -1` back for the map/ledger on the RRM-003 opening commit · carried from RRM-001: DA-2 Supabase signup OFF (AC-206 NOT YET).
+**Next step:** Director merges `qa/phase-3-rrm002` → `main`; **RRM-003 DA-1** (pack authored as a one-shot pilot, mandatory environment preflight).
+
+**Prior state (2026-09-23):** **RRM-001-CYBER-PHARMA · CLOSED — GATE Q PASS (QA Lead, 2026-09-22, zero rework rounds) · MERGED TO `main`**
 **Branch:** `main` @ `1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b` (`1cd6e46`, `--no-ff` merge of `qa/phase-3-rrm001`, pushed to `origin/main`). **Certified implementation:** `cad164d62a623a115541c0441302de01ff74da5b` · evidence successor `9ab95e5` · closeout commit `2ccf450` · code baseline `5f45fb3` · pack commit `88e2c33`.
 **Last action:** merge SHA recorded (2026-09-23) in campaign map §0, ledger resolution rows, `EXECUTION_LOG.md` Closeout, pack README, `QA_CERTIFICATION.md` § QA Cleanup release, `CLOSEOUT_CHECKLIST.md`. The nine deleted `.cjs` QA helpers: removal accepted by the Director (committed as staged in `2ccf450`). Session log: `agent_docs/SESSIONS/session_2026-09-23.md`.
 **Pending (Director):** (1) commit this SHA-recording touch with the RRM-002 opening commit · (2) DA-2 Supabase signup OFF + `evidence/DA-2_SUPABASE_SIGNUP_DISABLED.md` (AC-206 stays NOT YET) · (3) doc-repo sync of the Phase 3 map errata · (4) `qa/phase-3-rrm001` retirement is the Director's call.

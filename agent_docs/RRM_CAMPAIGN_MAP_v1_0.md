@@ -18,7 +18,9 @@
 
 **Status at v1.0.1 (2026-09-22).** RRM-001 CLOSED — Gate Q PASS, zero rework rounds (QA Lead 2026-09-22). **RRM-002 pack authoring NEXT.** `qa/phase-3-rrm001` merged to `main` by the Director (`--no-ff`, `1cd6e46`, 2026-09-22); closeout commit `2ccf450`. Merge SHA recorded 2026-09-23 on the RRM-002 opening commit.
 
-Scoreboard (Director fills at each close): RRM-001 `CLOSED — Gate Q PASS 2026-09-22 @ cad164d (evidence 9ab95e5; closeout 2ccf450; merged to main 1cd6e46)` · RRM-002 `—` · RRM-003 `—` · RRM-004 `—`.
+**Status at v1.0.2 (2026-09-28).** RRM-002 CLOSED — Gate Q PASS, zero defects, zero repair rounds (QA Lead 2026-09-28) @ `34e6fb6` (evidence `cb9f7b7`); merge SHA recorded by the Director at merge. **RRM-003 pack AUTHORED (one-shot pilot) — NEXT.**
+
+Scoreboard (Director fills at each close): RRM-001 `CLOSED — Gate Q PASS 2026-09-22 @ cad164d (evidence 9ab95e5; closeout 2ccf450; merged to main 1cd6e46)` · RRM-002 `CLOSED — Gate Q PASS 2026-09-28 @ 34e6fb6 (evidence cb9f7b7); merge SHA: Director` · RRM-003 `—` · RRM-004 `—`.
 
 ---
 
@@ -165,3 +167,4 @@ Deferred by Director ruling (not modules here): R-003 Owed KPI aggregate → Pha
 |---|---|---|
 | 1.0 | 2026-09-20 | Initial map: four-module decomposition from ruled ledger; lifecycle mirrors BIM practice; Director runway; Phase 3 map errata CE-1…4; deferred ledger. |
 | 1.0.1 | 2026-09-22 | §0 status only; §3 'candidate future triggers' language superseded by Director ruling 2026-09-21 (no further reviews until all phases complete) |
+| 1.0.2 | 2026-09-28 | §0 status only; RRM-003 run shape = controlled one-shot per QA Lead field note 2026-09-28 |

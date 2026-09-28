@@ -1,0 +1,5 @@
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.685 s
+Ran all test suites within paths "agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/helpers/qa_edges.test.tsx".

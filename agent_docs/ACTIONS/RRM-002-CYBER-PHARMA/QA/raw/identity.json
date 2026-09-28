@@ -1,0 +1,11 @@
+{
+  "branch": "qa/phase-3-rrm002",
+  "head": "cb9f7b7e707f206f019b40c7079487888cc14d03",
+  "candidate": "34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731",
+  "candidate_parent_of_head": true,
+  "head_commit": "cb9f7b7e707f206f019b40c7079487888cc14d03 34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731 28sep2026 - RRM-002 P3: QA handoff, ledger resolution rows, governing QA snapshot",
+  "candidate_commit": "34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731 3187546f23a74f36630147706427c26c34972dbe 23sep2026 - RRM-002 S2: E-12 fixture comment + final audit (R-020)",
+  "candidate_to_head_product_config_name_status": "",
+  "candidate_to_head_all_name_status": "M\tCHANGELOG.md\nM\tagent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md\nA\tagent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/GOVERNING/PROVENANCE.md\nA\tagent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/GOVERNING/QA_PLAYBOOK.md\nM\tagent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/GOVERNING/README.md\nA\tagent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/GOVERNING/SEARCH_RECORD.md\nA\tagent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/GOVERNING/WEB_FACTORY_P1_DOCTRINE_JOURNAL.md\nM\tagent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA_HANDOFF.md\nA\tagent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/changed_files.txt\nA\tagent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/repair.diff\nA\tagent_docs/RESPONSES/response_2026-09-23_193258_rrm002-p3-handoff.md\nM\tagent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md\nM\tagent_docs/SESSIONS/session_2026-09-23.md\n",
+  "initial_porcelain": "?? agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/QA_TEST_PLAN.md\n?? agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/helpers/\n?? agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/raw/\n"
+}

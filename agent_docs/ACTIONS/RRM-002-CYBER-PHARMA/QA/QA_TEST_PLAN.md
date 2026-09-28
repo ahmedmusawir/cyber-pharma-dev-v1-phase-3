@@ -1,0 +1,30 @@
+# RRM-002-CYBER-PHARMA — QA execution plan
+
+QA Executor: Cody · 2026-09-28 · SOL owns adjudication and Gate Q. This plan is for candidate `34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731` on `qa/phase-3-rrm002`, subject to identity proof. No product repair or Git mutation is authorized.
+
+## Specimen and method
+
+Pin branch, HEAD, ancestry, commit range, clean/dirty state, and the full candidate-to-HEAD product/configuration diff. Stop if that diff changes product/configuration. Use baseline `1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b`. Treat engineering artifacts as claims. Run read-only Git, static inspection, independently derived fixture calculations, Jest/TypeScript/ESLint/build, and a controlled browser race. Authenticated AC-304 uses the Director's SCRATCH project and existing ADMIN/MEMBER accounts; credentials and storage states remain outside evidence.
+
+| AC | Independent instrument | Expected result | Negative control | Evidence path under `QA/` |
+|---|---|---|---|---|
+| 101 | Fixture parser + service evaluation; browser and DOM assertions on Summary | One accessible note with exact copy and `usd(round2(K-S))`; unfiltered and isolated-date amounts independently derived | Named-PBM-only filter removes note | `raw/fixture_calculation.json`, `raw/disclosure_browser.json`, screenshots |
+| 102 | Direct component boundary tests plus browser named-PBM state | Note only at rounded gap ≥ $0.01 | Zero, +$0.004, S>K by $0.004, and −$5; no `$0.00` | `raw/jest.txt`, `raw/disclosure_browser.json` |
+| 103 | Source state/effect inspection, deferred-response Jest, QA-only browser Summary delay | No note for pending/rejected/stale/mixed filters; matching current pair restores it | Change filter during pending Summary; late old result; Clear Filters twice | `raw/source_inspection.txt`, `raw/race_browser.json`, trace |
+| 104 | Browser tab cycle and screen tests | Only Summary shows note; return to Summary re-requests, skeleton then note per A-03 | Commercial, Updated, Federal show none | `raw/disclosure_browser.json`, `raw/jest.txt`, screenshots |
+| 105 | Independently parse every fixture `owed` and money literal for decimal precision | No `owed` or money value beyond 2 dp; compare S0 record | Rates with >2 dp do not count as money | `raw/fixture_calculation.json`, `raw/precision.txt` |
+| 106 | Baseline diff of service/types; exact expression comparison | Both files unchanged; format `round2` expression byte-equivalent per A-01 | Search for any other new rounding/service method | `raw/scope.txt`, `raw/source_inspection.txt` |
+| 201 | Recompute 150-row audit counts and compare every audit row/ruling | Audit covers rules 1–7, classifications, owner/gate, row failures and copy; E-12/13/14 mapped | Any omitted finding or unruled value edit | `raw/fixture_calculation.json`, `raw/audit_review.txt` |
+| 202 | Literal `11.85` search across `src/`, `docs/`, README | Zero hits or a specific ruled exception | Search `10.64` to distinguish E-12 code comment from product copy | `raw/audit_review.txt` |
+| 203 | Hunk-by-hunk mock/copy diff and baseline row/value comparison | One E-12 comment hunk; all 150 rows and money values unchanged | Any additional mock/copy hunk lacking an erratum | `raw/scope.txt`, `raw/fixture_calculation.json` |
+| 204 | Match flag-only audit/ledger rows to campaign map §10 | Recorded owners and gates retained | Search for deferred item silently changed in product diff | `raw/audit_review.txt`, `raw/scope.txt` |
+| 301 | Exact preserved-path baseline diff plus all changed-file enumeration | Empty; exactly six intended `src/` paths | Search forbidden service/type/wrapper/columns/Supabase/scripts/config paths | `raw/identity.txt`, `raw/scope.txt` |
+| 302 | Blob hash comparison and named Jest suite | `owedbook.test.ts` byte-identical and green, including seven PBMs/equality pin; existing suites unchanged | Test-file baseline diff and zero skipped/pending/todo | `raw/scope.txt`, `raw/jest.txt` |
+| 303 | Full screen diff and effect/sort inspection | Only permitted screen additions and two KPI filter-tag line rewrites; sort untouched; read effects cancelled | Late response after filter/tab change | `raw/source_inspection.txt`, `raw/race_browser.json` |
+| 304 | Playwright authenticated ADMIN/MEMBER matrix on SCRATCH | Both reach Summary; default/changed filters at desktop/375px in light/dark; amount and no stale note; other tabs stable | Named-PBM-only filter, transition while Summary pending, repeated Clear Filters | `raw/auth_browser.json`, screenshots, trace inventory |
+| 401 | Fresh board: TypeScript, ESLint, Jest, blank and placeholder builds | Commands exit 0; exact versions, warnings, suites/tests/skips/routes captured | Explicit skipped/pending/todo detection and required named regression suites | `raw/versions.txt`, `raw/tsc.txt`, `raw/eslint.txt`, `raw/jest.txt`, `raw/build_blank.txt`, `raw/build_placeholder.txt` |
+| 402 | Read-only history/status inspection | Candidate SHA and Director stage commits recorded; current QA branch documentation successor identified | Any product/configuration diff above candidate or unexpected tracked modification | `raw/identity.txt`, `raw/scope.txt` |
+
+The browser instrument must live inside `QA/`. It may intercept or delay only local mock-service requests, never edit product source or business data. Capture screenshots and a Playwright trace without cookies, tokens, storage-state files, or configuration values. Tony's login checkpoint is requested once per role if the environment needs credentials. Final reporting records observations and classification input for SOL, without a QA verdict or cleanup.
+
+**Director target amendment, recorded after the original plan:** The Director superseded the SCRATCH/replica target for AC-304 and authorized the existing base CyberPharma auth environment used in RRM-001. Only AC-304 was resumed. Its per-role evidence paths are `raw/auth_admin_matrix.json` and `raw/auth_member_matrix.json`, with authenticated main-pane screenshots and sanitized action traces inventoried in `SCREENSHOT_TRACE_INVENTORY.json`. The original plan above remains intact as the pre-execution record.

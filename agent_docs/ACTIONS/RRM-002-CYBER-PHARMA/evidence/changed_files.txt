@@ -1,0 +1,99 @@
+# RRM-002 changed files — git diff --name-status 1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b..34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731  (2026-09-23 19:31 +08)
+# baseline = RRM-001 --no-ff merge · candidate = Director's S2 commit 34e6fb6 · product paths are the 6 entries under src/
+M	CHANGELOG.md
+M	RECOVERY.md
+M	agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/CLOSEOUT_CHECKLIST.md
+M	agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/EXECUTION_LOG.md
+M	agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/QA/QA_CERTIFICATION.md
+M	agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/README.md
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/ACCEPTANCE_SPEC.md
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/AUTHORITY_POINTER.md
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/CLAUDE.md
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/CLAUDY_PROMPTS.md
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/DIRECTOR_ACTIONS.md
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/GOVERNING/README.md
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/README.md
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA_HANDOFF.md
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/RRM_BRIEF.md
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/RULINGS_ADDENDUM.md
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/FIXTURE_AUDIT.md
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/S0_PRECISION.txt
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/S1_diffs.txt
+A	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/S2_fixture_hunks.txt
+D	agent_docs/RESPONSES/_OLD/BIM003_S1_2026-09-14.md
+D	agent_docs/RESPONSES/_OLD/BIM003_S2_2026-09-14.md
+D	agent_docs/RESPONSES/_OLD/BIM003_S3_2026-09-14.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-11_192600_scaffold-plan.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-13_161118_bim000-launch-plan.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-13_163000_bim000-handoff.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-14_123000_bim000-final-cleanup.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-27_114500_fix001-plan.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-27_130000_fix001-handoff.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-28_154126_bim001-x0-verdict.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-28_164220_bim001-x2-closed.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-28_170129_bim001-handoff.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-28_bim001-chain-authored.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-28_bim001-gate-run-report.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-28_bim001-launch-plan.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-28_bim001-prebuild-status.md
+D	agent_docs/RESPONSES/_OLD/response_2026-08-31_bim001-closeout.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-01_102200_bim002-launch-plan.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-01_105500_bim002-X1-gate-report.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-01_113000_bim002-X1-green-X2-report.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-01_120500_bim002-X2-final.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-01_133000_bim002-X3-complete.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-01_141500_bim002-X4-complete.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-01_150000_bim002-X5-complete.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-01_153000_bim002-X6-complete.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-01_161500_bim002-X7-handoff.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-02_175920_bim002-final-certification-support.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-02_181500_bim002-documentation-close.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-02_bim002-qa-target-map.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-07_122801_bim002-close-pastes-filed.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-14_123800_session-open.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-14_125225_bim003-plan.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-14_131702_bim003-s1-blocked-disk-mismatch.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-14_135344_bim003-s1-complete.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-14_145430_bim003-s2-complete.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-14_154208_bim003-s3-complete-pending-ac307.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-14_164606_bim003-s3-engineering-complete.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-15_122338_session-open-qa-standby.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-15_123634_cody-qa-recon.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-15_141710_cody-session-recovery.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-15_144404_cody-stage-a-result.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-15_152858_cody-stage-b-result.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-15_170730_cody-stages-c-i-preq-report.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-15_172400_qa-cleanup-disposition-j19.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-15_173300_qa-cleanup-result.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-16_122057_bim003-closeout.md
+D	agent_docs/RESPONSES/_OLD/response_2026-09-16_151616_bim003-merged-final.md
+R100	agent_docs/RESPONSES/response_2026-09-20_155547_rrm001-s0-plan.md	agent_docs/RESPONSES/_OLD/response_2026-09-20_155547_rrm001-s0-plan.md
+R100	agent_docs/RESPONSES/response_2026-09-20_175243_rrm001-addendum-a02-a11.md	agent_docs/RESPONSES/_OLD/response_2026-09-20_175243_rrm001-addendum-a02-a11.md
+R100	agent_docs/RESPONSES/response_2026-09-20_180124_rrm001-s1-result.md	agent_docs/RESPONSES/_OLD/response_2026-09-20_180124_rrm001-s1-result.md
+R100	agent_docs/RESPONSES/response_2026-09-20_181908_rrm001-a12-obs1.md	agent_docs/RESPONSES/_OLD/response_2026-09-20_181908_rrm001-a12-obs1.md
+R100	agent_docs/RESPONSES/response_2026-09-20_182509_rrm001-s2-result.md	agent_docs/RESPONSES/_OLD/response_2026-09-20_182509_rrm001-s2-result.md
+R100	agent_docs/RESPONSES/response_2026-09-20_183418_rrm001-p3-handoff.md	agent_docs/RESPONSES/_OLD/response_2026-09-20_183418_rrm001-p3-handoff.md
+R100	agent_docs/RESPONSES/response_2026-09-22_135307_rrm001-qa-handoff.md	agent_docs/RESPONSES/_OLD/response_2026-09-22_135307_rrm001-qa-handoff.md
+R100	agent_docs/RESPONSES/response_2026-09-22_143121_rrm001-final-qa-export.md	agent_docs/RESPONSES/_OLD/response_2026-09-22_143121_rrm001-final-qa-export.md
+R100	agent_docs/RESPONSES/response_2026-09-22_155744_rrm001-a13-ac304-erratum.md	agent_docs/RESPONSES/_OLD/response_2026-09-22_155744_rrm001-a13-ac304-erratum.md
+R100	agent_docs/RESPONSES/response_2026-09-22_164207_rrm001-ac304-target-confirmation.md	agent_docs/RESPONSES/_OLD/response_2026-09-22_164207_rrm001-ac304-target-confirmation.md
+R100	agent_docs/RESPONSES/response_2026-09-22_164446_server-authority-ruling.md	agent_docs/RESPONSES/_OLD/response_2026-09-22_164446_server-authority-ruling.md
+R100	agent_docs/RESPONSES/response_2026-09-22_175203_rrm001-ac304-complete.md	agent_docs/RESPONSES/_OLD/response_2026-09-22_175203_rrm001-ac304-complete.md
+R100	agent_docs/RESPONSES/response_2026-09-22_181208_rrm001-final-qa-zip-ac304.md	agent_docs/RESPONSES/_OLD/response_2026-09-22_181208_rrm001-final-qa-zip-ac304.md
+R100	agent_docs/RESPONSES/response_2026-09-22_230042_rrm001-gate-q-cleanup.md	agent_docs/RESPONSES/_OLD/response_2026-09-22_230042_rrm001-gate-q-cleanup.md
+R100	agent_docs/RESPONSES/response_2026-09-23_090112_rrm001-p5-closeout.md	agent_docs/RESPONSES/_OLD/response_2026-09-23_090112_rrm001-p5-closeout.md
+A	agent_docs/RESPONSES/_OLD/response_2026-09-23_103241_rrm001-merge-sha-recorded.md
+A	agent_docs/RESPONSES/response_2026-09-23_150109_rrm002-s0-plan.md
+A	agent_docs/RESPONSES/response_2026-09-23_160316_rrm002-p1b-rulings.md
+A	agent_docs/RESPONSES/response_2026-09-23_164131_rrm002-s1-result.md
+A	agent_docs/RESPONSES/response_2026-09-23_180905_rrm002-s2-result.md
+M	agent_docs/RRM_CAMPAIGN_MAP_v1_0.md
+M	agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md
+M	agent_docs/SESSIONS/session_2026-09-23.md
+A	src/__tests__/owedbook/OwedBookScreen.disclosure.test.tsx
+A	src/__tests__/owedbook/SummaryUnattributedNote.test.tsx
+M	src/components/owedbook/OwedBookScreen.tsx
+A	src/components/owedbook/SummaryUnattributedNote.tsx
+M	src/components/owedbook/format.ts
+M	src/mocks/owedbook.ts

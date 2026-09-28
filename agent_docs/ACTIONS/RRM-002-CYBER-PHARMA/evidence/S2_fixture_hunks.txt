@@ -1,0 +1,43 @@
+RRM-002 S2 — src/mocks/owedbook.ts hunks vs baseline 1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b (AC-203) · 2026-09-23 18:08 +08
+Every hunk below carries its erratum ID. Expected: exactly one hunk.
+
+##### HUNK 1 — E-12 (Director, 2026-09-23; RULINGS_ADDENDUM A-05; spec erratum lane n/a — fixture header comment, no money value): one comment line after the Demo sentence, path src/mocks/owedbook.ts:8. Prior: no such line. Ruled value: typed from the ruling verbatim.
+$ git diff 1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b -- src/mocks/owedbook.ts
+diff --git a/src/mocks/owedbook.ts b/src/mocks/owedbook.ts
+index a7dda34..7697235 100644
+--- a/src/mocks/owedbook.ts
++++ b/src/mocks/owedbook.ts
+@@ -5,6 +5,7 @@
+  * Demo: expected/owed spread, medicaid_rate/method, status re-cast across all 5
+  * chips, new_paid/updated_difference engineered on ~30 rows, dates re-stamped
+  * across ~Dec 2025–Jun 2026. DELETABLE — replaced by real Supabase in Phase 3.
++ * expected/owed are a demo spread and do NOT satisfy rule 3 (qty × rate + 10.64); see RRM-002 FIXTURE_AUDIT A-2.
+  *
+  * Components never import this file (G7) — only owedBookService does.
+  */
+(end — hunks: 1; money values changed: 0; lines changed: 1	0	src/mocks/owedbook.ts)
+
+##### AC-202
+$ grep -rn "11\.85" src/ docs/ README.md
+(end — hits: 0)
+$ grep -rn "10\.64" src/ docs/ README.md   (the E-12 comment is the only hit; it names the rule, it is not a fee literal in data or copy)
+src/mocks/owedbook.ts:8: * expected/owed are a demo spread and do NOT satisfy rule 3 (qty × rate + 10.64); see RRM-002 FIXTURE_AUDIT A-2.
+
+##### AC-301 preserved-path diff (expected empty)
+(end)
+
+##### AC-302 owedbook.test.ts diff (expected empty)
+(end)
+$ git diff --stat 1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b -- src/__tests__   (tracked: none; S1 additions are now tracked at 3187546)
+ .../owedbook/OwedBookScreen.disclosure.test.tsx    | 204 +++++++++++++++++++++
+ .../owedbook/SummaryUnattributedNote.test.tsx      |  50 +++++
+ 2 files changed, 254 insertions(+)
+
+##### whole src/ diff stat vs baseline
+ .../owedbook/OwedBookScreen.disclosure.test.tsx    | 204 +++++++++++++++++++++
+ .../owedbook/SummaryUnattributedNote.test.tsx      |  50 +++++
+ src/components/owedbook/OwedBookScreen.tsx         |  24 ++-
+ .../owedbook/SummaryUnattributedNote.tsx           |  32 ++++
+ src/components/owedbook/format.ts                  |   4 +
+ src/mocks/owedbook.ts                              |   1 +
+ 6 files changed, 313 insertions(+), 2 deletions(-)

@@ -1,0 +1,11 @@
+{
+  "targetClass": "Director-authorized replica",
+  "healthy": true,
+  "attempts": [
+    {
+      "at": "2026-09-28T06:41:03.060Z",
+      "httpStatus": 200,
+      "elapsedMs": 268
+    }
+  ]
+}

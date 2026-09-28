@@ -65,3 +65,45 @@
 - 2026-09-21 — Governing QA bodies (QA_PLAYBOOK v1.1, WEB_FACTORY_P1_DOCTRINE_JOURNAL v0.3) were never repo-local; Director copied them into `QA/GOVERNING/` with provenance, original source revision unavailable (E-11).
 - 2026-09-21 — AC-304 named `/` as the logout destination; the baseline lands on `/auth`. Architect drafting error, ruled A-13 / E-10, no product change.
 - 2026-09-22 — The authenticated AC-304 matrix (two roles × routes × two viewports × two themes × logout/redirect) was executed manually and cost Director time; Playwright recorded as the candidate QA playbook amendment.
+
+### RRM-002-CYBER-PHARMA — closed 2026-09-28 (Architect)
+
+- Playbook prescribed: pack → Plan Mode with a report-only fixture audit → Director rules every audit row → Engineer applies rulings as docs-only rows → S1 disclosure, S2 ruled corrections → handoff → Director cuts qa/ line → QA Lead plans, QA Executor runs an agent-driven browser matrix → Gate Q → cleanup → closeout → merge.
+- Actually happened: Pack authored 23 Sep with every RRM-001 lesson applied (no literal baseline SHA; root-protocol files allowed; governing snapshot copied from RRM-001 with provenance; seats by position). Plan Mode the same day found the pack assumed `round2` was exported (it was private in the frozen service), found the ledger errata placeholder sitting above real rows, and — the material finding — proved 149 of 150 mock claims fail the Director's rule 3 (expected = qty × rate + $10.64). Ruled flag-only: fixture regeneration is BIM-004 seed scope (E-13); method labels MAC/NADAC need Frank's brand/generic authority (rider R3); status vocabulary vs Ruling 5 → Phase 5 (E-14). One correction ruled (E-12: a single comment line). S1 built the Summary disclosure with object-identity filter tags and derived-expectation tests (14 new tests, expected $20.27 never hard-coded); S2 applied the one comment. Handoff 23 Sep. QA 28 Sep: the QA Executor pinned, derived the value independently, raced the slow-summary/filter-change path in a real browser, ran a 16-state authenticated matrix (ADMIN/MEMBER × desktop/375px × light/dark × default/named-PBM) via adaptive Playwright, stopped for credential entry only. The run was interrupted once by a paused free replica with drifted test identities (QA-F01, environment). Gate Q PASS at 34e6fb6, zero defects, zero repair rounds.
+- Divergence + why: (1) Spec assumed a helper's export status; verify-then-write applies to helpers, not only tables and counts. (2) The audit produced exactly one correction and eleven flags — correct outcome: the demo predates the rules, and money is regenerated with real rates, never patched by hand. (3) `repair.diff` over the literal baseline..candidate range swept in Director docs commits; the handoff had to point at the `-- src/` subset. (4) QA environment readiness was discovered mid-run; became the field note and RRM-003's mandatory preflight. (5) The Engineer omitted staging blocks on two stages; the Architect supplied them — pack prompts now say "end with a selective staging block" explicitly.
+- Gate Q cycles: 1 — PASS.
+- Handoff friction: Ubuntu VM clipboard failure cost a session (bounce open-vm-tools; fallback http.server). Director asked for one command per block after a long one-liner — adopted as the norm.
+- Director overhead: twelve audit rulings in one sitting; five commits; QA-branch cut; credential entry in the QA Executor's browser; one environment authorization when the replica was paused.
+- Time shape: pack + plan + P1b + S1 + S2 + P3 all on 23 Sep (one working day); QA 28 Sep (two-part run); closeout 28 Sep.
+- Keep: report-then-rule audits · derived expectations in tests · same-filters tagging as the staleness guard · precision premise recorded and carried to BIM-005 · agent-driven Playwright QA with Director-only credential entry · flag-only with owner and gate instead of manufactured fixes.
+- Change: mandatory machine-checkable environment preflight before any autonomous run (Engineering and QA) · repair.diff produced for the product subset · prompts end with an explicit staging-block instruction · RRM-003 runs as a controlled one-shot with enumerated stop conditions and declared Director checkpoints.
+- Drop: manual role × viewport × theme matrices · assuming private helpers are importable · re-running passing evidence after a resolved environment interruption.
+- Doctrine-harvest seeds: verify-then-write for helpers and exports · mock fixtures obey locked business rules or carry a written disclaimer until regenerated · environment preflight as a gate, not a checklist · one-shot = prepared authority package + one session + enumerated stops + one handoff.
+
+### RRM-002-CYBER-PHARMA — QA engagement closed 2026-09-28 (QA-logged (QA Lead))
+
+# RRM-002 — SOL QA Campaign Journal Entry
+
+## QA seat — Gate Q closeout, 2026-09-28
+
+- **Module:** RRM-002-CYBER-PHARMA — Ledger Truth.
+- **Certified candidate:** `34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731`.
+- **Verdict:** Gate Q PASS.
+- **Acceptance:** All frozen RRM-002 criteria accepted; no product defect, release blocker, or repair round.
+- **Independent proof:** $20.27 fixture derivation; stale-result race; repeated Clear Filters; two fresh 17-route builds; TypeScript; ESLint; 31 Jest suites / 144 tests; authenticated ADMIN and MEMBER browser matrix across desktop/375px, light/dark, and default/named-PBM states.
+- **Environment event:** The paused/drifted free replica was classified as a resolved Environment / Setup Issue. The Director authorized the base CyberPharma authentication environment for the read-only walk.
+- **Scope protection:** All 150 fixture rows and money values remained byte-identical to baseline; only the ruled E-12 comment changed. Deferred money-rule items retained their existing owners and future gates.
+- **Factory lesson — keep:** Adaptive Playwright execution converted a manual role × viewport × theme × filter matrix into repeatable agent-run evidence while the Director handled credentials only.
+- **Factory lesson — change:** Add a mandatory machine-checkable preflight for external-service availability, target environment, test identities, role readiness, browser tooling, and Director checkpoints before Cody starts.
+- **Factory lesson — drop:** Do not rerun passing evidence or reopen product work because of a resolved environment interruption.
+- **QAM implication:** RRM-002 is strong production evidence for a prepared one-shot QA module, but it was a two-part run because environment readiness was discovered late. Preflight is the difference between agent capability and a true one-shot operation.
+- **Closeout:** Authorized for bounded QA cleanup and Architect closeout. This entry does not certify Gate D or deployment.
+
+### Friction log — RRM-002 (Director-observed, filed by Architect)
+
+- 2026-09-23 — `round2` not exported from the frozen service; ruled A-01 (exported from `format.ts` with the identical expression).
+- 2026-09-23 — Ledger errata placeholder `E-10…` sat above the real E-10/E-11 rows; removed under A-02, next free erratum E-12.
+- 2026-09-23 — Ubuntu VM clipboard failure cost a session (bounce open-vm-tools; fallback http.server).
+- 2026-09-23 — One-command-per-block adopted as the norm after a long one-liner.
+- 2026-09-28 — Free replica paused and test identities drifted (QA-F01); QA completed on the Director-authorized base environment.
+- 2026-09-28 — `repair.diff` over the literal baseline..candidate range swept in Director docs commits; the product subset is `-- src/`.

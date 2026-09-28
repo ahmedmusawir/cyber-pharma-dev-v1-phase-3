@@ -1,0 +1,54 @@
+{
+  "format_round2_expression": "+n.toFixed(2)",
+  "service_round2_expression": "+n.toFixed(2)",
+  "round2_expression_byte_equal": true,
+  "mock_hunk_count": 1,
+  "mock_added_lines": [
+    " * expected/owed are a demo spread and do NOT satisfy rule 3 (qty \u00d7 rate + 10.64); see RRM-002 FIXTURE_AUDIT A-2."
+  ],
+  "mock_removed_lines": [],
+  "screen_added_lines": [
+    "  OwedBookFilters,",
+    "import SummaryUnattributedNote from \"./SummaryUnattributedNote\";",
+    "  // RRM-002 AC-103: which `filters` reference each aggregate was resolved for.",
+    "  // The disclosure renders only when both tags === the current `filters`.",
+    "  const [kpiFilters, setKpiFilters] = useState<OwedBookFilters | null>(null);",
+    "  const [summaryFilters, setSummaryFilters] = useState<OwedBookFilters | null>(null);",
+    "      .then((k) => {",
+    "        if (cancelled) return;",
+    "        setKpis(k);",
+    "        setKpiFilters(filters);",
+    "      })",
+    "      .catch(() => {",
+    "        if (cancelled) return;",
+    "        setKpis(ZERO_KPIS);",
+    "        setKpiFilters(null);",
+    "      });",
+    "            setSummaryFilters(filters);",
+    "",
+    "      {/* RRM-002 D3 disclosure \u2014 Summary tab only, same-filters pair only (AC-101\u2013104). */}",
+    "      {isSummary && !loading && !error && kpiFilters === filters && summaryFilters === filters && (",
+    "        <SummaryUnattributedNote underpaid={kpis.commercial_underpaid} summary={summaryRows} />",
+    "      )}"
+  ],
+  "screen_removed_lines": [
+    "      .then((k) => !cancelled && setKpis(k))",
+    "      .catch(() => !cancelled && setKpis(ZERO_KPIS));"
+  ],
+  "screen_sort_changed_lines": [],
+  "screen_service_getRows_call": [
+    "getRows(activeTab, filters, page)"
+  ],
+  "screen_useEffect_count": 3,
+  "screen_cancelled_effect_count": 2,
+  "screen_cancelled_cleanup_count": 2,
+  "same_filter_guard": true,
+  "summary_pending_guard": true,
+  "summary_tab_guard": true,
+  "negative_gap_guard": true,
+  "one_note_testid": 1,
+  "exact_copy": true,
+  "gap_expression": true,
+  "kpi_rejection_zero_fallback": true,
+  "summary_cancellation_guard": true
+}

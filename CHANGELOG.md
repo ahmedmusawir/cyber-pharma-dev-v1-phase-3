@@ -3,6 +3,39 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-28 12:01 UTC — [CC] Claude Code
+
+- **RRM-002-CYBER-PHARMA closeout (P5).** Gate Q PASS @ `34e6fb6` (QA Lead 2026-09-28, zero defects, zero repair rounds); evidence HEAD `cb9f7b7`. Docs, evidence and bounded QA cleanup only; no product change, build, test or git mutation.
+- **Updated:** `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` (R-015/R-020 independent check + RESOLVED; E-15) · `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` (§0 status/scoreboard; version 1.0.2) · `agent_docs/RRM_CAMPAIGN_JOURNAL.md` (Architect entry, QA Lead entry verbatim, friction log) · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md` (Closeout) · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/ARTIFACT_INVENTORY.json` (rebuilt) · `RECOVERY.md`
+- **Created:** `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/README.md` (pack carried none) · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/QA_CLEANUP_REPORT.md` · `agent_docs/SESSIONS/session_2026-09-28.md` · closeout report in `agent_docs/RESPONSES/`
+- **Removed (QA lane, J-19):** `QA/helpers/` (16) and `QA/browser_harness/` (2) — never committed; archived outside the repo before removal.
+- **Reason:** Architect P5 closeout instruction, Director-relayed, 2026-09-28.
+
+## 2026-09-23 11:32 UTC — [CC] Claude Code
+
+- **RRM-002 P3 — engineering completion handoff.** Candidate `34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731`; baseline `1cd6e46`. Docs/evidence only; no product change, build or git mutation.
+- **Updated:** `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA_HANDOFF.md` (every field filled) · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md` (Completion claim; S1/S2 checkpoint SHAs) · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` (resolution rows R-015, R-020; R-003/R-008 rationale annotated, dispositions unchanged)
+- **Created:** `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/changed_files.txt` · `evidence/repair.diff` · `QA/GOVERNING/{QA_PLAYBOOK.md, WEB_FACTORY_P1_DOCTRINE_JOURNAL.md, SEARCH_RECORD.md}` + `README.md` replaced (copied from RRM-001) · `QA/GOVERNING/PROVENANCE.md`
+- **Reason:** Architect P3 instruction, Director-relayed, 2026-09-23.
+
+## 2026-09-23 10:09 UTC — [CC] Claude Code
+
+- **RRM-002 Stage S2 — audit corrections.** Single ruled hunk E-12: one comment line at `src/mocks/owedbook.ts:8` (no money value changed). Board: tsc 0 · eslint 0/35 · jest 31/144/0 · AC-202 0 hits · AC-301/302 diffs empty.
+- **Updated:** `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md` — Stage S2 · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/FIXTURE_AUDIT.md` — FINAL, rulings/owner-gate per AC-204 · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/S2_fixture_hunks.txt` (new)
+- **Reason:** Architect P2-S2 instruction, Director-relayed, 2026-09-23.
+
+## 2026-09-23 08:41 UTC — [CC] Claude Code
+
+- **RRM-002 Stage S1 — Summary-tab missing-PBM disclosure (R-015, D3).** Product: `src/components/owedbook/format.ts` (+`round2`, A-01) · new `src/components/owedbook/SummaryUnattributedNote.tsx` · `src/components/owedbook/OwedBookScreen.tsx` (two filters tags + one render block). Tests: new `src/__tests__/owedbook/SummaryUnattributedNote.test.tsx`, `OwedBookScreen.disclosure.test.tsx`. Board: builds 17 routes ×2 · tsc 0 · eslint 0/35 · jest 31/144/0.
+- **Updated:** `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md` — Stage S1 · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/S1_diffs.txt` (new)
+- **Reason:** Architect P2-S1 instruction, Director-relayed, 2026-09-23.
+
+## 2026-09-23 08:03 UTC — [CC] Claude Code
+
+- **RRM-002 P1b — Director rulings applied (documentation-only).** S0 plan approved. No product change, build, test or git mutation.
+- **Updated:** `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/RULINGS_ADDENDUM.md` — rows A-01…A-05 · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/ACCEPTANCE_SPEC.md` — erratum lane AC-106, AC-104 (frozen text untouched) · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` — placeholder `E-10…` removed; E-12/E-13/E-14 appended · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/FIXTURE_AUDIT.md` — ruling column filled (owner/gate per AC-204) · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md` — Stage S0 line
+- **Reason:** Architect P1b instruction, Director-relayed, 2026-09-23.
+
 ## 2026-09-23 02:33 UTC — [CC] Claude Code
 
 - **RRM-001 merge SHA recorded** — Director merged `qa/phase-3-rrm001` → `main` at `1cd6e46` (`--no-ff`); closeout commit `2ccf450`. Docs only.
