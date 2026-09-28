@@ -1,0 +1,7 @@
+
+Test Suites: 31 passed, 31 total
+Tests:       144 passed, 144 total
+Snapshots:   0 total
+Time:        7.844 s, estimated 11 s
+Ran all test suites.
+Test results written to: agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA/raw/jest.json

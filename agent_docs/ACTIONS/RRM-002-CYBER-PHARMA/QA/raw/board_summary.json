@@ -1,0 +1,103 @@
+{
+  "exit_codes": {
+    "versions": 0,
+    "build_blank": 0,
+    "build_placeholder": 0,
+    "tsc": 0,
+    "eslint": 0,
+    "jest": 0
+  },
+  "build_blank": {
+    "route_count": 17,
+    "route_table": [
+      "\u250c \u0192 /",
+      "\u251c \u25cb /_not-found",
+      "\u251c \u0192 /access-denied",
+      "\u251c \u0192 /admin-portal",
+      "\u251c \u0192 /admin-portal/audit",
+      "\u251c \u0192 /admin-portal/billing",
+      "\u251c \u0192 /admin-portal/settings",
+      "\u251c \u0192 /admin-portal/stores/[id]",
+      "\u251c \u0192 /admin-portal/stores/[id]/invite",
+      "\u251c \u0192 /api/auth/confirm",
+      "\u251c \u0192 /api/auth/login",
+      "\u251c \u0192 /api/auth/logout",
+      "\u251c \u25cb /auth",
+      "\u251c \u25cb /error",
+      "\u251c \u25cb /icon.png",
+      "\u251c \u0192 /owedbook",
+      "\u2514 \u0192 /profile"
+    ]
+  },
+  "build_placeholder": {
+    "route_count": 17,
+    "route_table": [
+      "\u250c \u0192 /",
+      "\u251c \u25cb /_not-found",
+      "\u251c \u0192 /access-denied",
+      "\u251c \u0192 /admin-portal",
+      "\u251c \u0192 /admin-portal/audit",
+      "\u251c \u0192 /admin-portal/billing",
+      "\u251c \u0192 /admin-portal/settings",
+      "\u251c \u0192 /admin-portal/stores/[id]",
+      "\u251c \u0192 /admin-portal/stores/[id]/invite",
+      "\u251c \u0192 /api/auth/confirm",
+      "\u251c \u0192 /api/auth/login",
+      "\u251c \u0192 /api/auth/logout",
+      "\u251c \u25cb /auth",
+      "\u251c \u25cb /error",
+      "\u251c \u25cb /icon.png",
+      "\u251c \u0192 /owedbook",
+      "\u2514 \u0192 /profile"
+    ]
+  },
+  "eslint": {
+    "warning_lines": 35,
+    "summary": [
+      "35 problems (0 errors, 35 warnings)"
+    ]
+  },
+  "jest": {
+    "numTotalTestSuites": 31,
+    "numPassedTestSuites": 31,
+    "numFailedTestSuites": 0,
+    "numTotalTests": 144,
+    "numPassedTests": 144,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "numTodoTests": 0,
+    "suite_names": [
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/owedbook/OwedBookScreen.disclosure.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/member/ProfileForm.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/owedbook/FilterRail.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/owedbook/drawer-apply.integration.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/layout/AuthedShell.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/global/Navbar.mobile.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/admin-portal/InviteMemberForm.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/admin-portal/AddStoreButton.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/global/UserMenu.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/owedbook/OwedBookScreen.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/global/Navbar.invariant.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/layout/AdminSidebar.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/global/Navbar.switcher.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/common/MultiSelect.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/admin-portal/SettingsForm.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/common/DataTable.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/admin-portal/MemberRow.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/owedbook/SummaryUnattributedNote.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/admin-portal/MyStoresScreen.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/global/MobileNav.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/auth/AuthPage.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/owedbook/KpiTiles.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/common/EmptyState.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/common/DataTable.render.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/owedbook/StatusChip.test.tsx",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/services/adminDemo.test.ts",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/actions.test.ts",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/services/owedbook.test.ts",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/mocks/adminDemo.seed.test.ts",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/get-user-role.test.ts",
+      "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/src/__tests__/proxy.test.ts"
+    ]
+  }
+}

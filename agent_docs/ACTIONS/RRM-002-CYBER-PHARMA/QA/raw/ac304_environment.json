@@ -1,0 +1,24 @@
+{
+  "target": "Director-authorized base CyberPharma auth environment",
+  "replicaSessionStopped": true,
+  "baseConfigurationLoadedNormally": true,
+  "basePublicTargetDiffersFromReplica": true,
+  "configurationValuesRecorded": false,
+  "supabaseSecretKeyUsed": false,
+  "adminApiSqlOrServiceRoleUsed": false,
+  "freshBaseBuild": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "nextVersion": "16.2.12",
+    "reason": "Recompile build-time public variables for base environment"
+  },
+  "localAuthPage": {
+    "route": "/auth",
+    "httpStatus": 200
+  },
+  "priorAuthenticationUnavailability": {
+    "classificationInput": "Environment / Setup Issue",
+    "reason": "The previously authorized replica was paused under the free-tier lifecycle before the Director reactivated it; the Director subsequently ruled AC-304 must use the base environment.",
+    "productCauseAssigned": false
+  }
+}

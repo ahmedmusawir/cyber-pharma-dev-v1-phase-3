@@ -1,0 +1,123 @@
+{
+  "role": "MEMBER",
+  "routeReached": true,
+  "rows": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "state": "default",
+      "noteText": "$20.27 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown.",
+      "count": 1,
+      "pageWidth": {
+        "scrollWidth": 1440,
+        "viewport": 1440
+      }
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "state": "named_OptumRx",
+      "noteCount": 0,
+      "activeFilters": "1 filter active\nClear filters",
+      "transitionProbe": {
+        "sawChangedFilters": true,
+        "staleNoteAfterChange": false,
+        "checks": 2
+      }
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "state": "default",
+      "noteText": "$20.27 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown.",
+      "count": 1,
+      "pageWidth": {
+        "scrollWidth": 1440,
+        "viewport": 1440
+      }
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "state": "named_OptumRx",
+      "noteCount": 0,
+      "activeFilters": "1 filter active\nClear filters",
+      "transitionProbe": {
+        "sawChangedFilters": true,
+        "staleNoteAfterChange": false,
+        "checks": 2
+      }
+    },
+    {
+      "width": 375,
+      "theme": "light",
+      "state": "default",
+      "noteText": "$20.27 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown.",
+      "count": 1,
+      "pageWidth": {
+        "scrollWidth": 375,
+        "viewport": 375
+      }
+    },
+    {
+      "width": 375,
+      "theme": "light",
+      "state": "named_OptumRx",
+      "noteCount": 0,
+      "activeFilters": "1 filter active\nClear filters",
+      "transitionProbe": {
+        "sawChangedFilters": true,
+        "staleNoteAfterChange": false,
+        "checks": 2
+      }
+    },
+    {
+      "width": 375,
+      "theme": "dark",
+      "state": "default",
+      "noteText": "$20.27 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown.",
+      "count": 1,
+      "pageWidth": {
+        "scrollWidth": 375,
+        "viewport": 375
+      }
+    },
+    {
+      "width": 375,
+      "theme": "dark",
+      "state": "named_OptumRx",
+      "noteCount": 0,
+      "activeFilters": "1 filter active\nClear filters",
+      "transitionProbe": {
+        "sawChangedFilters": true,
+        "staleNoteAfterChange": false,
+        "checks": 2
+      }
+    }
+  ],
+  "tabChecks": [
+    {
+      "tab": "Commercial Dollars",
+      "noteCount": 0
+    },
+    {
+      "tab": "Updated Payments",
+      "noteCount": 0
+    },
+    {
+      "tab": "Federal Dollars",
+      "noteCount": 0
+    },
+    {
+      "tab": "Summary return",
+      "noteCount": 1,
+      "text": "$20.27 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown."
+    }
+  ],
+  "doubleClear": {
+    "firstClear": true,
+    "secondClear": true,
+    "noteCount": 1
+  },
+  "errors": []
+}

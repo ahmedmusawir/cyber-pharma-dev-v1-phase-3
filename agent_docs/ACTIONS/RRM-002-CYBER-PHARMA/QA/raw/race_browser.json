@@ -1,0 +1,98 @@
+{
+  "instrument": "QA-only webpack bundle of candidate OwedBookScreen and service; no product source edit, no auth or project call",
+  "expectedDefault": "$20.27 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown.",
+  "expectedJune": "$12.94 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown.",
+  "expectedJanuary": "$18.50 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown.",
+  "steps": [
+    {
+      "name": "default Summary resolved",
+      "note": "$20.27 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown.",
+      "count": 1
+    },
+    {
+      "name": "June Summary pending",
+      "noteCount": 0,
+      "pending": [
+        "{\"from\":\"2026-06-01\",\"to\":\"2026-06-01\",\"pbms\":[]}"
+      ]
+    },
+    {
+      "name": "January Summary pending; June superseded",
+      "noteCount": 0,
+      "pending": [
+        "{\"from\":\"2026-06-01\",\"to\":\"2026-06-01\",\"pbms\":[]}",
+        "{\"from\":\"2026-01-01\",\"pbms\":[]}"
+      ]
+    },
+    {
+      "name": "late June result released",
+      "noteCount": 0,
+      "pending": [
+        "{\"from\":\"2026-01-01\",\"pbms\":[]}"
+      ]
+    },
+    {
+      "name": "matching January pair resolved",
+      "note": "$18.50 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown.",
+      "count": 1
+    },
+    {
+      "name": "Clear Filters twice with shared EMPTY reference",
+      "note": "$20.27 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown.",
+      "count": 1
+    }
+  ],
+  "mutationTimeline": [
+    {
+      "at": 532.0999999046326,
+      "label": "observer start",
+      "note": "$20.27 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown."
+    },
+    {
+      "at": 568.0999999046326,
+      "label": "DOM mutation",
+      "note": null
+    },
+    {
+      "at": 601.4000000953674,
+      "label": "June pending",
+      "note": null
+    },
+    {
+      "at": 698.2000000476837,
+      "label": "January pending; June superseded",
+      "note": null
+    },
+    {
+      "at": 807.2000000476837,
+      "label": "late June released",
+      "note": null
+    },
+    {
+      "at": 855.5999999046326,
+      "label": "DOM mutation",
+      "note": "$18.50 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown."
+    },
+    {
+      "at": 864.4000000953674,
+      "label": "matching January resolved",
+      "note": "$18.50 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown."
+    },
+    {
+      "at": 980.7000000476837,
+      "label": "DOM mutation",
+      "note": null
+    },
+    {
+      "at": 994.2000000476837,
+      "label": "DOM mutation",
+      "note": "$20.27 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown."
+    },
+    {
+      "at": 1154.2999999523163,
+      "label": "Clear twice completed",
+      "note": "$20.27 in underpaid dollars belongs to claims awaiting a PBM match and isn't shown in this breakdown."
+    }
+  ],
+  "pageErrors": []
+}

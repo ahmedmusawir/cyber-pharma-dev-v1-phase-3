@@ -1,0 +1,69 @@
+{
+  "fixture_rows": 150,
+  "baseline_rows": 150,
+  "all_row_lines_identical_to_baseline": true,
+  "money_value_changes": [],
+  "money_over_two_decimal_places": [],
+  "pbm_count": 7,
+  "pbm_names": [
+    "Capital RX",
+    "Caremark",
+    "DST",
+    "Express Scripts",
+    "Navitus Health Solutions",
+    "OptumRx",
+    "Prime Therapeutics"
+  ],
+  "K_positive_owed_all": "4088.54",
+  "S_named_pbm_positive_owed": "4068.27",
+  "per_pbm_summary": {
+    "Capital RX": "12.06",
+    "Caremark": "409.40",
+    "DST": "235.28",
+    "Express Scripts": "357.53",
+    "Navitus Health Solutions": "150.41",
+    "OptumRx": "2757.34",
+    "Prime Therapeutics": "146.25"
+  },
+  "gap_K_minus_S": "20.27",
+  "positive_null_pbm_rows": [
+    {
+      "id": "claim_134",
+      "date": "2026-06-15",
+      "owed": "0.31"
+    },
+    {
+      "id": "claim_088",
+      "date": "2026-06-01",
+      "owed": "12.94"
+    },
+    {
+      "id": "claim_006",
+      "date": "2026-01-29",
+      "owed": "5.25"
+    },
+    {
+      "id": "claim_001",
+      "date": "2025-12-28",
+      "owed": "1.77"
+    }
+  ],
+  "sum_positive_null_pbm_owed": "20.27",
+  "date_2026_06_01": {
+    "K": "15.79",
+    "S": "2.85",
+    "gap": "12.94"
+  },
+  "rule3_pass_count": 1,
+  "rule3_fail_count": 149,
+  "rule3_pass_ids": [
+    "claim_100"
+  ],
+  "negative_owed_count": 28,
+  "method_counts": {
+    "NADAC": 27,
+    "MAC": 38,
+    "AAC": 61,
+    "WAC": 24
+  }
+}

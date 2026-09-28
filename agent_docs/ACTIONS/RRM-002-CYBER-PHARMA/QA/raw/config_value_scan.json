@@ -1,0 +1,30 @@
+{
+  "configurationValuesExamined": 20,
+  "qaFilesScanned": 74,
+  "protectedAuthenticationValueMatches": [],
+  "priorPublicPlaceholderCoincidences": [
+    {
+      "file": "helpers/run_board.sh",
+      "variableName": "NEXT_PUBLIC_SITE_URL"
+    },
+    {
+      "file": "helpers/run_board.sh",
+      "variableName": "NEXT_PUBLIC_API_BASE_URL"
+    }
+  ],
+  "browserStateCookieTokenFilesInQa": 0,
+  "sanitizedTraces": {
+    "admin": {
+      "zipValid": true,
+      "entryNamesSafe": true,
+      "eventCount": 255,
+      "allowlistedFieldsOnly": true
+    },
+    "member": {
+      "zipValid": true,
+      "entryNamesSafe": true,
+      "eventCount": 255,
+      "allowlistedFieldsOnly": true
+    }
+  }
+}

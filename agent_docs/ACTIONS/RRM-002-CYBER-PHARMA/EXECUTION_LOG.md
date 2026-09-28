@@ -67,3 +67,31 @@ Limitations / not run: authenticated browser check (QA); wrapper-side precision 
 QA handoff: `QA_HANDOFF.md`
 
 Engineering evidence, not independent QA certification.
+
+## Closeout (P5, 2026-09-28 — docs, evidence and bounded QA cleanup only)
+
+| Field | Value |
+|---|---|
+| Verdict | **Gate Q PASS** — zero defects, zero repair rounds — QA Lead (SOL), 2026-09-28 (`QA/QA_CERTIFICATION.md`) |
+| Repo | `cyber-pharma-dev-v1-phase-3` |
+| Code baseline | `1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b` |
+| Pack commit | `91a951e` |
+| Certified candidate | `34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731` |
+| QA evidence HEAD | `cb9f7b7e707f206f019b40c7079487888cc14d03` (docs-only successor; product diff empty) |
+| Closeout commit | _recorded by Director at merge_ |
+| Merge SHA | _recorded by Director at merge_ |
+| QA-F01 | CLOSED — Environment / Setup Issue (paused free replica, drifted identities); AC-304 completed on the Director-authorized base environment; ledger E-15 |
+| QA cleanup (J-19) | 18 files removed: `QA/helpers/` (16 disposable instruments) + `QA/browser_harness/` (2 generated bundle files), cited only by the pre-Gate-Q inventory. They were never committed, so a verified archive was written outside the repo before removal. 7 cited byte-duplicate screenshot pairs retained. `QA/ARTIFACT_INVENTORY.json` rebuilt (58 entries); every certificate/report/matrix/handoff citation resolves; secrets scan clean. Detail: `QA/QA_CLEANUP_REPORT.md` |
+
+**Deferred, with owners (unchanged by this module):**
+
+| Item | Owner | Gate |
+|---|---|---|
+| R-003 aggregate Owed KPI / positive-only aggregates (A-4, A-12) | Architect | Phase 5 parity harness |
+| R-008 federal sign, fee, one-cent rounding (A-7) | Architect / Frank | Phase 5, before validation week |
+| E-13 rule-3 fixture regeneration with real rates (A-2) | Architect | BIM-004 seed |
+| E-14 status vocabulary vs Ruling 5 (A-11) | Architect | Phase 5 pbm_info matching |
+| Negative-owed display (A-5) · method vocabulary / brand-generic (A-6) | Director & Frank · Coach → Frank | Phase 5 UI ruling · rider R3 |
+| Precision premise (AC-105) + mock↔wrapper divergences D3–D5 | Architect | BIM-005 contract note, re-verify against `owedbook_kpis` / `owedbook_summary` before the swap |
+
+No product, configuration, contract or fixture byte changed at P5. No build or test was rerun.

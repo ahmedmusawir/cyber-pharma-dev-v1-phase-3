@@ -1,0 +1,153 @@
+{
+  "authenticated_screenshots": [
+    {
+      "path": "screenshots/admin_1440_dark_default.png",
+      "kind": "screenshot",
+      "bytes": 59755,
+      "sha256": "c602fed4e19bcf80f1134c080aaae9d3e29bf7c1ef294d4783d83d05b8e4e43a"
+    },
+    {
+      "path": "screenshots/admin_1440_dark_named.png",
+      "kind": "screenshot",
+      "bytes": 39603,
+      "sha256": "931c268c321fd6bc8f4a11d0d7cfc4984ca55210e29dea653983c8c4c7c37b0f"
+    },
+    {
+      "path": "screenshots/admin_1440_light_default.png",
+      "kind": "screenshot",
+      "bytes": 59272,
+      "sha256": "0c1ec7cd7a45bb4530c737b022d6d78c64f7705522e13a924da36937f157e619"
+    },
+    {
+      "path": "screenshots/admin_1440_light_named.png",
+      "kind": "screenshot",
+      "bytes": 39661,
+      "sha256": "f0ae7b55283aaaf9270f77affd88c8df263b2f5dd7356c5c06f9f451bfbfae1f"
+    },
+    {
+      "path": "screenshots/admin_375_dark_default.png",
+      "kind": "screenshot",
+      "bytes": 83879,
+      "sha256": "1486a0a288e9b48b8596e790352710de0f84a6ec88d93561273c6e524159623b"
+    },
+    {
+      "path": "screenshots/admin_375_dark_named.png",
+      "kind": "screenshot",
+      "bytes": 35334,
+      "sha256": "d5dac17f7f220a183a88352cb86b33bcff32bc53f3305f91d1e414eb43c53c77"
+    },
+    {
+      "path": "screenshots/admin_375_light_default.png",
+      "kind": "screenshot",
+      "bytes": 83743,
+      "sha256": "f49709c392c5c6e44503befb8e3f62759a9657556d2c6d6f0fca6a26db0733ff"
+    },
+    {
+      "path": "screenshots/admin_375_light_named.png",
+      "kind": "screenshot",
+      "bytes": 35458,
+      "sha256": "9252bbbe56b5001c7fe49cda96df57bcc0b09e9c91eeccb036f3abef466dd622"
+    },
+    {
+      "path": "screenshots/member_1440_dark_default.png",
+      "kind": "screenshot",
+      "bytes": 59755,
+      "sha256": "c602fed4e19bcf80f1134c080aaae9d3e29bf7c1ef294d4783d83d05b8e4e43a"
+    },
+    {
+      "path": "screenshots/member_1440_dark_named.png",
+      "kind": "screenshot",
+      "bytes": 39603,
+      "sha256": "931c268c321fd6bc8f4a11d0d7cfc4984ca55210e29dea653983c8c4c7c37b0f"
+    },
+    {
+      "path": "screenshots/member_1440_light_default.png",
+      "kind": "screenshot",
+      "bytes": 59272,
+      "sha256": "0c1ec7cd7a45bb4530c737b022d6d78c64f7705522e13a924da36937f157e619"
+    },
+    {
+      "path": "screenshots/member_1440_light_named.png",
+      "kind": "screenshot",
+      "bytes": 39661,
+      "sha256": "f0ae7b55283aaaf9270f77affd88c8df263b2f5dd7356c5c06f9f451bfbfae1f"
+    },
+    {
+      "path": "screenshots/member_375_dark_default.png",
+      "kind": "screenshot",
+      "bytes": 83879,
+      "sha256": "1486a0a288e9b48b8596e790352710de0f84a6ec88d93561273c6e524159623b"
+    },
+    {
+      "path": "screenshots/member_375_dark_named.png",
+      "kind": "screenshot",
+      "bytes": 35334,
+      "sha256": "d5dac17f7f220a183a88352cb86b33bcff32bc53f3305f91d1e414eb43c53c77"
+    },
+    {
+      "path": "screenshots/member_375_light_default.png",
+      "kind": "screenshot",
+      "bytes": 83745,
+      "sha256": "828e0521ec1124fc6d0f5d0120a65721a8bf68dd84aff6832aa0a67f0e01af53"
+    },
+    {
+      "path": "screenshots/member_375_light_named.png",
+      "kind": "screenshot",
+      "bytes": 35458,
+      "sha256": "9252bbbe56b5001c7fe49cda96df57bcc0b09e9c91eeccb036f3abef466dd622"
+    }
+  ],
+  "authenticated_traces": [
+    {
+      "path": "traces/auth_admin_sanitized_trace.zip",
+      "kind": "trace",
+      "bytes": 3328,
+      "sha256": "babce679b4e1bd054f12cd015dcd70d6e04a2c084ce29e11f3a1e185028a4619"
+    },
+    {
+      "path": "traces/auth_member_sanitized_trace.zip",
+      "kind": "trace",
+      "bytes": 3291,
+      "sha256": "76836405b75adc6919e3d00e703f05538cc16aadb26bbd2b147f4c43a20a6b21"
+    }
+  ],
+  "race_visuals": [
+    {
+      "path": "screenshots/race_clear_twice.png",
+      "kind": "screenshot",
+      "bytes": 76597,
+      "sha256": "3fed8fc4ff1449e83339f2fdfdb06b0d12d3ff28dc9ae807130c678ba762ed36"
+    },
+    {
+      "path": "screenshots/race_initial_default.png",
+      "kind": "screenshot",
+      "bytes": 76062,
+      "sha256": "3b744e3dd089f6b5798819cb0fc36639354c0fbe07a75a07104af12cec7e4fe5"
+    },
+    {
+      "path": "screenshots/race_june_pending.png",
+      "kind": "screenshot",
+      "bytes": 35748,
+      "sha256": "b350bdafd52bfcdb43a8b496bd498bd749caf30aeb13ec4a3972af50c3593978"
+    },
+    {
+      "path": "screenshots/race_matching_january.png",
+      "kind": "screenshot",
+      "bytes": 77253,
+      "sha256": "d823597a76c302b53c44ae7f5e9fda3639aa7a6e25389d8a075406a486c80a44"
+    },
+    {
+      "path": "screenshots/race_stale_released.png",
+      "kind": "screenshot",
+      "bytes": 36334,
+      "sha256": "d420fa9feff36820a8537452380f407ba6b77709fd6385f96538afed6f537ff5"
+    },
+    {
+      "path": "traces/race_browser.zip",
+      "kind": "trace",
+      "bytes": 5405,
+      "sha256": "1be11bccc40e0e3dd94c1de21ca5fa289fab7bb722e1a3c9fb9dd2b8a2974ae0"
+    }
+  ],
+  "note": "Authenticated screenshots show only the OwedBook main pane. Authenticated traces retain a sanitized Playwright action timeline only. Browser storage and raw traces remain outside repository evidence."
+}
