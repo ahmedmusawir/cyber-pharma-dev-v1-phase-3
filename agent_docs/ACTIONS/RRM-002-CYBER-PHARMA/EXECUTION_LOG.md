@@ -33,7 +33,7 @@ Date/time: 2026-09-23 16:41 +08 · Input SHA: `6f543a8` (S0 plan + P1b rulings c
 | AC-303 cancelled-flag grep · sort-line diff grep | repo | both read effects guarded · **no sort line in the diff** | `evidence/S1_diffs.txt` |
 | whole-`src/` diff stat vs baseline | repo | `OwedBookScreen.tsx` +24/−2 · `format.ts` +4 · 3 new files | `evidence/S1_diffs.txt` |
 
-Allowed exceptions: none · Deviations: two `findByText` → `findAllByText` in the screen test after first run (DataTable paints table + card layouts; two KPI tiles share the R-003 value) — test-only · Env restoration: placeholder/blank env scoped per command, nothing exported, `.env.local` not read for values, not edited; no live Supabase call; `.next/` (gitignored) left as the placeholder-env build · Director checkpoint SHA: <S1 commit, filled at P3>
+Allowed exceptions: none · Deviations: two `findByText` → `findAllByText` in the screen test after first run (DataTable paints table + card layouts; two KPI tiles share the R-003 value) — test-only · Env restoration: placeholder/blank env scoped per command, nothing exported, `.env.local` not read for values, not edited; no live Supabase call; `.next/` (gitignored) left as the placeholder-env build · Director checkpoint SHA: `3187546` (S1 commit, observed on disk at S2 open)
 GIT REMINDER — uncommitted paths: `src/components/owedbook/format.ts` · `src/components/owedbook/OwedBookScreen.tsx` · new `src/components/owedbook/SummaryUnattributedNote.tsx` · new `src/__tests__/owedbook/SummaryUnattributedNote.test.tsx` · new `src/__tests__/owedbook/OwedBookScreen.disclosure.test.tsx` · `evidence/S1_diffs.txt` · this log · `CHANGELOG.md` · session log · S1 report `agent_docs/RESPONSES/response_2026-09-23_164131_rrm002-s1-result.md`
 
 ## Stage S2 — Audit corrections
@@ -57,12 +57,12 @@ Date/time: 2026-09-23 18:09 +08 · Input SHA: `3187546` (Director's S1 commit) �
 | AC-301 preserved-path diff | repo | **empty** | `evidence/S2_fixture_hunks.txt` |
 | AC-302 `git diff <baseline> -- src/__tests__/services/owedbook.test.ts` | repo | **empty**; tracked `__tests__` diff vs baseline lists only the two S1 additions | `evidence/S2_fixture_hunks.txt` |
 
-Statement: no existing test was modified in S2; no test broke; no stop condition hit. Allowed exceptions: none · Deviations: none · Env restoration: no build in S2; nothing exported; `.env.local` untouched; no live Supabase call · Director checkpoint SHA: <S2 commit, filled at P3>
+Statement: no existing test was modified in S2; no test broke; no stop condition hit. Allowed exceptions: none · Deviations: none · Env restoration: no build in S2; nothing exported; `.env.local` untouched; no live Supabase call · Director checkpoint SHA: `34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731` (S2 commit = candidate, observed on disk at P3 open)
 GIT REMINDER — uncommitted paths: `src/mocks/owedbook.ts` · `evidence/FIXTURE_AUDIT.md` · `evidence/S2_fixture_hunks.txt` · this log · `CHANGELOG.md` · session log · S2 report `agent_docs/RESPONSES/response_2026-09-23_180905_rrm002-s2-result.md`
 
 ## Completion claim
 
-Candidate SHA: <...> · Repair diff: `evidence/repair.diff` · Changed files: `evidence/changed_files.txt` · AC coverage claims: <AC IDs → evidence paths>
+Candidate SHA: `34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731` (Director's S2 commit, 2026-09-23; S1 checkpoint `3187546`; P1b checkpoint `6f543a8`) · Baseline: `1cd6e465ebbfeb0842738fcbab1ffbe65e2dbe6b` · Repair diff: `evidence/repair.diff` (full `git diff <baseline>..<candidate>`; includes the Operator's RESPONSES archive reshuffle — product subset is `-- src/`, 6 files: `format.ts`, `OwedBookScreen.tsx`, new `SummaryUnattributedNote.tsx`, 2 new tests, `mocks/owedbook.ts` +1 comment) · Changed files: `evidence/changed_files.txt` · AC coverage claims: AC-101–104 → the two S1 test files + `evidence/S1_diffs.txt` · AC-105 → `evidence/S0_PRECISION.txt` · AC-106, AC-301, AC-302, AC-303 → `evidence/S1_diffs.txt`, `evidence/S2_fixture_hunks.txt` · AC-201, AC-204 → `evidence/FIXTURE_AUDIT.md` · AC-202, AC-203 → `evidence/S2_fixture_hunks.txt` · AC-401 → S1/S2 command tables above · AC-402 → porcelain empty at each Director commit (observed before S1, S2, P3) · AC-304 → QA (unrun)
 Limitations / not run: authenticated browser check (QA); wrapper-side precision (BIM-005 note)
 QA handoff: `QA_HANDOFF.md`
 

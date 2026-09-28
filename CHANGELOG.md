@@ -3,6 +3,13 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-23 11:32 UTC — [CC] Claude Code
+
+- **RRM-002 P3 — engineering completion handoff.** Candidate `34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731`; baseline `1cd6e46`. Docs/evidence only; no product change, build or git mutation.
+- **Updated:** `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/QA_HANDOFF.md` (every field filled) · `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md` (Completion claim; S1/S2 checkpoint SHAs) · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` (resolution rows R-015, R-020; R-003/R-008 rationale annotated, dispositions unchanged)
+- **Created:** `agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/evidence/changed_files.txt` · `evidence/repair.diff` · `QA/GOVERNING/{QA_PLAYBOOK.md, WEB_FACTORY_P1_DOCTRINE_JOURNAL.md, SEARCH_RECORD.md}` + `README.md` replaced (copied from RRM-001) · `QA/GOVERNING/PROVENANCE.md`
+- **Reason:** Architect P3 instruction, Director-relayed, 2026-09-23.
+
 ## 2026-09-23 10:09 UTC — [CC] Claude Code
 
 - **RRM-002 Stage S2 — audit corrections.** Single ruled hunk E-12: one comment line at `src/mocks/owedbook.ts:8` (no money value changed). Board: tsc 0 · eslint 0/35 · jest 31/144/0 · AC-202 0 hits · AC-301/302 diffs empty.
