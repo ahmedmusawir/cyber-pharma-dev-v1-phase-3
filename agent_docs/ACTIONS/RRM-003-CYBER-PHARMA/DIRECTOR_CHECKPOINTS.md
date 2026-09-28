@@ -4,7 +4,7 @@ The human stops in this module, declared before the run so none is discovered mi
 
 | ID | When | What the Director does | Status |
 |---|---|---|---|
-| DC-1 | After P1, before P2 | Reads the plan; approves; rules any contradictions and the OBS-1 disposition; the Architect turns rulings into P1b rows; the Engineer applies them; the Director commits P1b | pending |
+| DC-1 | After P1, before P2 | Reads the plan; approves; rules any contradictions and the OBS-1 disposition; the Architect turns rulings into P1b rows; the Engineer applies them; the Director commits P1b | satisfied 2026-09-28 |
 | DC-2 | End of P2 | Reviews the changed-file inventory and `git status --short`; runs the Engineer's single staging block as-is; commits once; pushes | pending |
 | DC-3 | After DC-2 | Cuts `qa/phase-3-rrm003` from the committed candidate; pushes; hands the QA Lead the entry brief | pending |
 | DC-4 | During QA, when the QA Executor reaches the authenticated walk | Enters SCRATCH credentials directly into the browser the QA Executor opened (never into a file or chat); performs at most one ADMIN and one MEMBER visual spot-check if asked | pending |

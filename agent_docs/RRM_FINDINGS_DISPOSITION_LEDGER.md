@@ -45,6 +45,7 @@
 | 2026-09-23 / Tony | E-13 | Rule 3 vs fixtures: 149/150 rows fail `expected = qty × medicaid_rate + 10.64` | Flag-only in RRM-002. Fixture regeneration with real rates is BIM-004 seed scope (map §6: one fixture source of truth for mock and seed). No money recomputed in the frontend. | Director | BIM-004 pre-flight input |
 | 2026-09-23 / Tony | E-14 | Frank Ruling 5 says unmatched claims sit in "Take Action"; `OwedStatus` has no such value; 4 null-PBM fixtures carry recovered/new/underpaid | Flag-only. Status vocabulary vs matching state → Phase 5 pbm_info matching (WRAPPER_CONTRACT.md:15). `src/types/**` out of RRM authority. | Director | Phase 5 authoring |
 | 2026-09-28 / Fable | E-15 | RRM-002 QA-F01: free replica paused and test identities drifted | Environment/Setup, not product; QA completed on the Director-authorized base environment. Lesson → mandatory environment preflight before autonomous QA runs (adopted for RRM-003). | QA Lead classification (Gate Q 2026-09-28); Director | RRM-002 AC-304 scheduling only; RRM-003 preflight gate |
+| 2026-09-28 / Tony | E-16 | RRM-001 OBS-1: `protectPage` is a callable Server Action | Flag-only → Phase 8 hardening; no data exposure beyond the caller's own identity. Auth path stays byte-identical through the RRM campaign. | Director | Phase 8 authoring |
 
 ## Resolution evidence — appended per module at closeout
 

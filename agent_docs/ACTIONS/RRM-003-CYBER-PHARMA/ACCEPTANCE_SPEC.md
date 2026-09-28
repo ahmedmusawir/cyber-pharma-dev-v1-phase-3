@@ -71,3 +71,6 @@ Every AC needs independent evidence. Ambiguity or failure → QA Lead; scope →
 
 | Date | AC | Original requirement | Ruling / rationale | Authority | Verification consequence |
 |---|---|---|---|---|---|
+| 2026-09-28 | AC-102 | "(preventDefault)" | Native button activation; no explicit handler. See A-05. | Director | AC-107 adds the no-scroll check |
+| 2026-09-28 | AC-202 | served from the standalone build | Standalone requires `.next/static` and `public/` copied in; chunk capture must be HTTP 200. See A-02. | Director | S2 captures record status |
+| 2026-09-28 | AC-304 | `TESTING.md` | `docs/TESTING.md`. See A-04. | Director | none |

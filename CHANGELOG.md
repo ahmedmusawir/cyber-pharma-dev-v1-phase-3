@@ -3,6 +3,13 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-28 13:24 UTC — [CC] Claude Code
+
+- **RRM-003-CYBER-PHARMA P1 + P1b.** P1 plan approved in full by the Director; P1b rulings applied (documentation only; no product change, build, test or git mutation).
+- **Updated:** `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/RULINGS_ADDENDUM.md` (A-01…A-12) · `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/ACCEPTANCE_SPEC.md` (erratum lane: AC-102, AC-202, AC-304) · `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/DIRECTOR_CHECKPOINTS.md` (DC-1 satisfied 2026-09-28) · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` (E-16, OBS-1 flag-only → Phase 8) · `agent_docs/SESSIONS/session_2026-09-28.md`.
+- **Created:** `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/PREFLIGHT_P1.txt` · `evidence/S2_headers_before.txt` · `agent_docs/RESPONSES/response_2026-09-28_210200_rrm003-p1-plan.md` · `agent_docs/RESPONSES/response_2026-09-28_205049_session-start-protocol-ack.md`.
+- **Reason:** Director P1 / P1b instructions, 2026-09-28.
+
 ## 2026-09-28 12:01 UTC — [CC] Claude Code
 
 - **RRM-002-CYBER-PHARMA closeout (P5).** Gate Q PASS @ `34e6fb6` (QA Lead 2026-09-28, zero defects, zero repair rounds); evidence HEAD `cb9f7b7`. Docs, evidence and bounded QA cleanup only; no product change, build, test or git mutation.
