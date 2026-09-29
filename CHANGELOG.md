@@ -3,6 +3,12 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-29 06:43 UTC — [CC] Claude Code
+
+- **RRM-003-CYBER-PHARMA — QA-entry sync** (docs only; candidate `21ea108bb27b965ddc5edae29dc3b1d6971ae576` preserved).
+- **Updated:** `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/DIRECTOR_CHECKPOINTS.md` (DC-2 satisfied 2026-09-28, DC-3 satisfied 2026-09-29) · `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA_HANDOFF.md` (A-01…A-14; erratum list + AC-401; QA branch confirmed 2026-09-29) · `agent_docs/SESSIONS/session_2026-09-29.md`.
+- **Reason:** Director confirmation of DC-2 and DC-3, 2026-09-29.
+
 ## 2026-09-29 06:11 UTC — [CC] Claude Code
 
 - **RRM-003-CYBER-PHARMA — QA-branch docs step** (`qa/phase-3-rrm003`; no product change, build or git mutation).
