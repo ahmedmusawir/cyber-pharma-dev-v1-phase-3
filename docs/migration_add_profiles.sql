@@ -1,3 +1,4 @@
+-- SUPERSEDED (RRM-003, 2026-09-28): not the installed schema. Canonical chain: supabase/migrations/. Do not run. Trigger correction: see agent_docs/DB_BASELINE.md.
 -- =============================================================================
 -- MIGRATION: Add profiles table + Smart Trigger + Superadmin RLS
 -- Mark IV — run this if you already have user_roles + app_role enum

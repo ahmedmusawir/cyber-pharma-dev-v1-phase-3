@@ -54,7 +54,7 @@ This is the difference between **UI authorization** and **real security enforcem
 ### Next.js Responsibilities
 
 - Render public and protected portals
-- Call auth APIs for signup, login, logout
+- Call auth APIs for login and logout (public self-registration was removed in RRM-001)
 - Refresh layouts after auth state changes
 - Read the caller's role via server-side Supabase queries
 - Redirect users away from unauthorized portals
@@ -153,7 +153,7 @@ performs a server-side role check before rendering children.
 
 Cyber Pharma's current groups:
 
-- `(public)` / `(auth)` — unauthenticated landing + login/signup
+- `(public)` / `(auth)` — unauthenticated landing + login
 - `(admin)` — the Admin Portal (`protectPage([AppRole.ADMIN])`)
 
 Plus the ungrouped authed surfaces `/owedbook` (gates ADMIN + MEMBER) and
@@ -177,7 +177,7 @@ This keeps the route contract simple:
 
 ## Cache Invalidation Model
 
-To avoid stale role/session data after login, signup, logout, or role changes, this starter uses a two-layer invalidation strategy.
+To avoid stale role/session data after login, logout, or role changes, this starter uses a two-layer invalidation strategy.
 
 ### Server-side invalidation
 

@@ -51,7 +51,7 @@ The env-gated operator user-management portal was removed in RRM-001 (2026-09-20
 **Phase 2 is complete.** Both surfaces are built to visual fidelity and are
 mock-functional end to end:
 
-- **Auth is real.** Supabase login / signup / logout, role-gated layouts, and
+- **Auth is real.** Supabase login / logout, role-gated layouts, and
   the session-refresh proxy all run against a real Supabase project.
 - **Domain data is mock.** OwedBook reads from fixtures; the Admin Portal reads
   and mutates an in-memory Zustand store seeded from mock data. Mutations (invite

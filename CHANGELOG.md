@@ -3,6 +3,13 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-28 13:41 UTC — [CC] Claude Code
+
+- **RRM-003-CYBER-PHARMA P2 (one-shot build + QA handoff).** Candidate = Director's P2 commit. Preflight 17/17; S1 keyboard/focus (R-010), S2 cache header (R-006), S3 hygiene + docs quarantine (R-013, R-014/R-017 docs, R-018 README, OBS-2). Board: 17 routes · tsc 0 · eslint 0/35 · jest 34/164/0.
+- **Updated (docs):** `docs/DATABASE_SETUP.md` (pointers to `supabase/migrations/`; Step-4 labelled historical) · `docs/setup.sql`, `supabase/setup.sql`, `docs/migration_add_profiles.sql` (SUPERSEDED banner, line 1) · `docs/ARCHITECTURE.md`, `docs/AUTHORIZATION.md`, `docs/PROJECT_OVERVIEW.md`, `docs/AUTHENTICATION.md` (signup prose; A-08/A-09) · `agent_docs/DB_BASELINE.md` (§ Installed `handle_new_user`, DA-2 NOT YET) · `README.md`, `docs/TESTING.md` (34 suites / 164 tests) · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` (resolution rows R-006, R-010, R-013, R-014, R-017, R-018 — awaiting Gate Q).
+- **Pack:** `EXECUTION_LOG.md`, `QA_HANDOFF.md`, `evidence/**`, `QA/GOVERNING/` (copied from RRM-002 + `PROVENANCE.md`).
+- **Reason:** Director P2 instruction, 2026-09-28.
+
 ## 2026-09-28 13:24 UTC — [CC] Claude Code
 
 - **RRM-003-CYBER-PHARMA P1 + P1b.** P1 plan approved in full by the Director; P1b rulings applied (documentation only; no product change, build, test or git mutation).

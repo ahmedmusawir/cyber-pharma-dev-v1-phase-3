@@ -1,0 +1,42 @@
+# RRM-003 changed files — P2 working tree vs HEAD 6655f95 (uncommitted; candidate = Director's P2 commit, SHA assigned at DC-2) · 2026-09-28T21:41:39+08:00
+# Scope: what the Director's single P2 commit will contain. Baseline for AC diffs remains 3d2e65565d820ecc8b89bc5813959a4e324b3acd (pack commits a59f069 + 6655f95 sit between).
+# Product paths: the entries under src/ and next.config.js.
+M	CHANGELOG.md
+M	README.md
+M	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md
+M	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/GOVERNING/README.md
+M	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA_HANDOFF.md
+M	agent_docs/DB_BASELINE.md
+M	agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md
+M	agent_docs/SESSIONS/session_2026-09-28.md
+M	docs/ARCHITECTURE.md
+M	docs/AUTHENTICATION.md
+M	docs/AUTHORIZATION.md
+M	docs/DATABASE_SETUP.md
+M	docs/PROJECT_OVERVIEW.md
+M	docs/TESTING.md
+M	docs/migration_add_profiles.sql
+M	docs/setup.sql
+M	next.config.js
+M	src/app/(admin)/not-found.tsx
+M	src/app/not-found.tsx
+M	src/components/common/DataTable.tsx
+M	src/components/common/MultiSelect.tsx
+D	src/components/common/PaginationControls.tsx
+M	src/components/layout/AuthedShell.tsx
+M	supabase/setup.sql
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/GOVERNING/PROVENANCE.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/GOVERNING/QA_PLAYBOOK.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/GOVERNING/SEARCH_RECORD.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/GOVERNING/WEB_FACTORY_P1_DOCTRINE_JOURNAL.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/S1_diffs.txt
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/S2_headers_after.txt
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/S3_docs_diffs.txt
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/S3_greps.txt
+A	src/__tests__/common/DataTable.keyboard.test.tsx
+A	src/__tests__/common/MultiSelect.focus.test.tsx
+A	src/__tests__/layout/AuthedShell.focus.test.tsx
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/changed_files.txt
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/repair.diff
+A	agent_docs/RESPONSES/response_2026-09-28_214117_rrm003-p2-completion.md

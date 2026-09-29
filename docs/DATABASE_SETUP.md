@@ -4,8 +4,7 @@
 
 This document is the SQL blueprint for provisioning a fresh Supabase instance for the Pro RBAC starter kit.
 
-> **The complete runnable SQL file is at [`docs/setup.sql`](./setup.sql).**
-> Copy its contents and paste into the Supabase SQL Editor. Run top to bottom.
+> **Historical.** `docs/setup.sql` is the starter kit's original schema, superseded — see the note under How to Apply.
 
 It provisions:
 
@@ -19,18 +18,11 @@ It provisions:
 
 ## How to Apply
 
-> ### Already have `user_roles` with existing data?
-> **Do NOT run `setup.sql`** — it will fail on `CREATE TABLE` and `CREATE TYPE` for things that already exist.
-> Run **[`docs/migration_add_profiles.sql`](./migration_add_profiles.sql)** instead.
-> It only adds the `profiles` table, backfills existing users, and updates the trigger. Safe to run on a live database.
+> **Superseded (RRM-003, 2026-09-28).** The canonical schema is the migration chain in [`supabase/migrations/`](../supabase/migrations/); what is installed is recorded in [`agent_docs/DB_BASELINE.md`](../agent_docs/DB_BASELINE.md). Do not run any SQL file from this folder or `supabase/setup.sql`. The installed `handle_new_user()` correction is owned by the BIM-004 pre-flight rider (CE-2).
 
-### Fresh database (no existing tables)
+### Fresh database
 
-1. Open your Supabase project → **SQL Editor**
-2. Open `docs/setup.sql` from this repo
-3. Paste the entire file into the editor
-4. Click **Run**
-5. After it succeeds, promote your first superadmin (see Step 5 below)
+Apply `supabase/migrations/` in order (Director-run). Do not paste `docs/setup.sql`.
 
 ---
 
@@ -98,6 +90,8 @@ CREATE POLICY "Users can update their own profile"
 ---
 
 ## Step 4 — `handle_new_user()` Trigger
+
+> **Historical (starter kit) — not the installed body.** See `agent_docs/DB_BASELINE.md` § Installed `handle_new_user`.
 
 Fires automatically on every new auth user creation. Inserts into **both** `user_roles` (default `member`) and `profiles` (email + name from metadata).
 

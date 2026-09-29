@@ -1,0 +1,40 @@
+RRM-003 S2 — AFTER capture · baseline 3d2e65565d820ecc8b89bc5813959a4e324b3acd · 2026-09-28T21:35:04+08:00
+Change: next.config.js:16 source "/(.*)" → "/((?!_next/static/).*)" (only line changed; AC-201/203)
+Procedure (A-02): rm -rf .next · placeholder-env next build (exit 0, 17 routes) · cp .next/static → .next/standalone/.next/static · cp public → .next/standalone/public · node .next/standalone/server.js on 127.0.0.1:36055 · 5 curls · server stopped
+Before: evidence/S2_headers_before.txt (P1) and evidence/PREFLIGHT_P2.txt PF-14 (P2) — chunk was 200 with no-store.
+
+GET / status: 200
+$ curl -sI http://127.0.0.1:36055/ | grep -iE '^HTTP|cache-control'
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+$ curl -sI http://127.0.0.1:36055/_next/static/chunks/04sa36x9-705m.js | grep -iE '^HTTP|cache-control'
+HTTP/1.1 200 OK
+Cache-Control: public, max-age=31536000, immutable
+$ curl -sI http://127.0.0.1:36055/auth | grep -iE '^HTTP|cache-control'
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+$ curl -sI http://127.0.0.1:36055/owedbook | grep -iE '^HTTP|cache-control|^location'
+HTTP/1.1 307 Temporary Redirect
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+location: /auth
+$ curl -s -o /dev/null -D - -X POST http://127.0.0.1:36055/api/auth/login | grep -iE '^HTTP|cache-control'
+HTTP/1.1 500 Internal Server Error
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+server stopped (pid 1027176); port count: 0
+
+Verdict: chunk 200 + 'public, max-age=31536000, immutable', no no-store · /, /auth, /owedbook (307), POST /api/auth/login (500, pre-existing A-12 R3) all carry no-store · port 0.
+
+$ git diff 3d2e655 -- next.config.js
+diff --git a/next.config.js b/next.config.js
+index 3558144..5db114d 100644
+--- a/next.config.js
++++ b/next.config.js
+@@ -13,7 +13,7 @@ const nextConfig = {
+   async headers() {
+     return [
+       {
+-        source: "/(.*)",
++        source: "/((?!_next/static/).*)",
+         headers: [
+           {
+             key: "Cache-Control",
