@@ -3,6 +3,12 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-29 06:11 UTC — [CC] Claude Code
+
+- **RRM-003-CYBER-PHARMA — QA-branch docs step** (`qa/phase-3-rrm003`; no product change, build or git mutation).
+- **Updated:** `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/RULINGS_ADDENDUM.md` (A-13 AC-401 path list, A-14 P2 flags 2–3) · `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/ACCEPTANCE_SPEC.md` (erratum AC-401) · candidate SHA `21ea108bb27b965ddc5edae29dc3b1d6971ae576` filled in `QA_HANDOFF.md`, `EXECUTION_LOG.md` and ledger resolution rows R-006/R-010/R-013/R-014/R-017/R-018 · `agent_docs/SESSIONS/session_2026-09-29.md` (new).
+- **Reason:** Architect/Director instruction, 2026-09-29.
+
 ## 2026-09-28 13:41 UTC — [CC] Claude Code
 
 - **RRM-003-CYBER-PHARMA P2 (one-shot build + QA handoff).** Candidate = Director's P2 commit. Preflight 17/17; S1 keyboard/focus (R-010), S2 cache header (R-006), S3 hygiene + docs quarantine (R-013, R-014/R-017 docs, R-018 README, OBS-2). Board: 17 routes · tsc 0 · eslint 0/35 · jest 34/164/0.
