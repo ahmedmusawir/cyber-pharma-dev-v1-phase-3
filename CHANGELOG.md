@@ -3,6 +3,13 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-29 14:35 UTC — [CC] Claude Code
+
+- **RRM-003-CYBER-PHARMA — P5 closeout** (docs and evidence only; Director-approved plan, Architect unavailable; certified candidate `21ea108bb27b965ddc5edae29dc3b1d6971ae576`, QA HEAD `1a94277`).
+- **Added:** `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/QA_CERTIFICATION.md` (SOL Gate Q PASS, verbatim) · `QA/QA_CLEANUP_REPORT.md` (nothing removed; helpers retained per D2; inventory 76/76; secrets 0).
+- **Updated:** `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` (R-006/010/013/014/017/018 certified + final dispositions; E-17 QA-F01; E-18 QA-F02) · `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` (§0 v1.0.3; scoreboard RRM-003; RRM-002 merge `3d2e655`) · `agent_docs/RRM_CAMPAIGN_JOURNAL.md` (RRM-003 seat placeholders only) · RRM-003 `EXECUTION_LOG.md` (§ Closeout), `README.md` (status), `DIRECTOR_CHECKPOINTS.md` (DC-4 satisfied) · `RECOVERY.md` · session log.
+- **Reason:** QA Lead Gate Q PASS 2026-09-29; Director rulings D1–D3.
+
 ## 2026-09-29 06:43 UTC — [CC] Claude Code
 
 - **RRM-003-CYBER-PHARMA — QA-entry sync** (docs only; candidate `21ea108bb27b965ddc5edae29dc3b1d6971ae576` preserved).

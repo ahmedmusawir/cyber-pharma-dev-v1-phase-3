@@ -1,0 +1,2 @@
+$ git diff --stat 3d2e65565d820ecc8b89bc5813959a4e324b3acd 21ea108bb27b965ddc5edae29dc3b1d6971ae576 -- src/services src/types src/mocks src/components/owedbook src/app/api src/app/(auth) src/app/profile src/app/owedbook src/proxy.ts src/utils supabase/migrations scripts package.json package-lock.json src/components/ui
+exit=0

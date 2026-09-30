@@ -1,0 +1,14 @@
+$ git diff 3d2e65565d820ecc8b89bc5813959a4e324b3acd 21ea108bb27b965ddc5edae29dc3b1d6971ae576 -- src/app/(admin)
+exit=0
+diff --git a/src/app/(admin)/not-found.tsx b/src/app/(admin)/not-found.tsx
+index 29c4c51..489e1f1 100644
+--- a/src/app/(admin)/not-found.tsx
++++ b/src/app/(admin)/not-found.tsx
+@@ -11,7 +11,6 @@ const NotFoundPage = () => {
+       <Link href="/" className="mt-6 text-primary hover:underline">
+         Go back to Home
+       </Link>
+-      <p>This is coming from /main</p>
+     </div>
+   );
+ };

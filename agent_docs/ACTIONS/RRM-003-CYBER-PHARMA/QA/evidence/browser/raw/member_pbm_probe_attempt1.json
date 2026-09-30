@@ -1,0 +1,71 @@
+{
+  "role": "MEMBER",
+  "target": "main development Supabase",
+  "phases": [
+    {
+      "label": "fresh_drawer",
+      "before": {
+        "expanded": "false",
+        "panelCount": 0,
+        "focused": true
+      },
+      "afterEnter": {
+        "expanded": "false",
+        "panelCount": 0,
+        "focused": true
+      },
+      "events": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "defaultPrevented": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "defaultPrevented": false
+        }
+      ],
+      "clickFallbackPanelCount": 1
+    },
+    {
+      "label": "after_20_tabs",
+      "before": {
+        "expanded": "false",
+        "panelCount": 0,
+        "focused": true
+      },
+      "afterEnter": {
+        "expanded": "false",
+        "panelCount": 0,
+        "focused": true
+      },
+      "events": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "defaultPrevented": true
+        },
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "defaultPrevented": true
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "defaultPrevented": false
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "defaultPrevented": false
+        }
+      ],
+      "clickFallbackPanelCount": 1
+    }
+  ],
+  "credentialValuesRecorded": false,
+  "authStateSaved": false,
+  "drawerClosed": true
+}

@@ -107,3 +107,15 @@
 - 2026-09-23 — One-command-per-block adopted as the norm after a long one-liner.
 - 2026-09-28 — Free replica paused and test identities drifted (QA-F01); QA completed on the Director-authorized base environment.
 - 2026-09-28 — `repair.diff` over the literal baseline..candidate range swept in Director docs commits; the product subset is `-- src/`.
+
+### RRM-003-CYBER-PHARMA — closed 2026-09-29 (Architect)
+
+[entry to be supplied by the Architect; not authored by another seat]
+
+### RRM-003-CYBER-PHARMA — QA engagement closed 2026-09-29 (QA-logged (QA Lead))
+
+[entry to be supplied by the QA Lead; not authored by another seat]
+
+### Friction log — RRM-003 (Director-observed, filed by Architect)
+
+[to be filed by the Architect; not authored by another seat]

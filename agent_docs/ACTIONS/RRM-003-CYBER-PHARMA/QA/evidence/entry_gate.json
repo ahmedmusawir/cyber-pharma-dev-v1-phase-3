@@ -1,0 +1,23 @@
+{
+  "entry_time": "2026-09-29T15:33:56+08:00",
+  "branch": "qa/phase-3-rrm003",
+  "head": "1a94277b73c9ee61eab1ed74991f54fcd4771afe",
+  "candidate": "21ea108bb27b965ddc5edae29dc3b1d6971ae576",
+  "baseline": "3d2e65565d820ecc8b89bc5813959a4e324b3acd",
+  "starting_git_status_short": "",
+  "candidate_object_type": "commit",
+  "candidate_ancestor_of_head": true,
+  "candidate_to_head_changed_paths": [
+    "CHANGELOG.md",
+    "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/ACCEPTANCE_SPEC.md",
+    "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/DIRECTOR_CHECKPOINTS.md",
+    "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md",
+    "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA_HANDOFF.md",
+    "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/RULINGS_ADDENDUM.md",
+    "agent_docs/RESPONSES/response_2026-09-29_141122_rrm003-a13-sha-fill.md",
+    "agent_docs/RESPONSES/response_2026-09-29_144307_rrm003-qa-entry-sync.md",
+    "agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md",
+    "agent_docs/SESSIONS/session_2026-09-29.md"
+  ],
+  "candidate_to_head_product_test_dependency_config_change": false
+}

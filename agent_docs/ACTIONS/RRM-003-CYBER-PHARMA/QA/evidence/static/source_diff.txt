@@ -1,0 +1,255 @@
+$ git diff 3d2e65565d820ecc8b89bc5813959a4e324b3acd 21ea108bb27b965ddc5edae29dc3b1d6971ae576 -- next.config.js src/components/common/DataTable.tsx src/components/common/MultiSelect.tsx src/components/layout/AuthedShell.tsx
+exit=0
+diff --git a/next.config.js b/next.config.js
+index 3558144..5db114d 100644
+--- a/next.config.js
++++ b/next.config.js
+@@ -13,7 +13,7 @@ const nextConfig = {
+   async headers() {
+     return [
+       {
+-        source: "/(.*)",
++        source: "/((?!_next/static/).*)",
+         headers: [
+           {
+             key: "Cache-Control",
+diff --git a/src/components/common/DataTable.tsx b/src/components/common/DataTable.tsx
+index 93bb1b5..6858e46 100644
+--- a/src/components/common/DataTable.tsx
++++ b/src/components/common/DataTable.tsx
+@@ -81,8 +81,23 @@ export function DataTable<TRow extends Record<string, unknown>>({
+                         : undefined
+                     }
+                   >
+-                    {col.label}
+-                    {sortIcon}
++                    {/* Keyboard access (R-010): a native button, only when sortable.
++                        No handler of its own — its click (incl. Enter/Space
++                        activation) bubbles to the <th> onClick, so sort fires once. */}
++                    {onSort ? (
++                      <button
++                        type="button"
++                        className="inline-flex items-center uppercase font-bold tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
++                      >
++                        {col.label}
++                        {sortIcon}
++                      </button>
++                    ) : (
++                      <>
++                        {col.label}
++                        {sortIcon}
++                      </>
++                    )}
+                   </th>
+                 );
+               })}
+diff --git a/src/components/common/MultiSelect.tsx b/src/components/common/MultiSelect.tsx
+index 9befc36..1f25382 100644
+--- a/src/components/common/MultiSelect.tsx
++++ b/src/components/common/MultiSelect.tsx
+@@ -1,6 +1,12 @@
+ "use client";
+ 
+-import { useState, useEffect, useRef, useMemo } from "react";
++import {
++  useState,
++  useEffect,
++  useRef,
++  useMemo,
++  type KeyboardEvent as ReactKeyboardEvent,
++} from "react";
+ import { ChevronDown, Search } from "lucide-react";
+ import { Input } from "@/components/ui/input";
+ import { Button } from "@/components/ui/button";
+@@ -23,6 +29,8 @@ const MultiSelect = ({
+   const [open, setOpen] = useState(false);
+   const [search, setSearch] = useState("");
+   const containerRef = useRef<HTMLDivElement>(null);
++  const triggerRef = useRef<HTMLButtonElement>(null);
++  const panelRef = useRef<HTMLDivElement>(null);
+ 
+   useEffect(() => {
+     if (!open) return;
+@@ -34,17 +42,45 @@ const MultiSelect = ({
+         setOpen(false);
+       }
+     };
+-    const handleEscape = (e: KeyboardEvent) => {
+-      if (e.key === "Escape") setOpen(false);
+-    };
+     document.addEventListener("mousedown", handleClickOutside);
+-    document.addEventListener("keydown", handleEscape);
+     return () => {
+       document.removeEventListener("mousedown", handleClickOutside);
+-      document.removeEventListener("keydown", handleEscape);
+     };
+   }, [open]);
+ 
++  // Keyboard (R-010). Escape closes the picker only and returns focus to the
++  // trigger; preventDefault + stopPropagation keep an enclosing drawer open
++  // (its handler skips defaultPrevented events, A-06). Tab wraps inside the panel.
++  const onKeyDown = (e: ReactKeyboardEvent<HTMLDivElement>) => {
++    if (!open) return;
++    if (e.key === "Escape") {
++      e.preventDefault();
++      e.stopPropagation();
++      setOpen(false);
++      triggerRef.current?.focus();
++      return;
++    }
++    if (e.key !== "Tab" || !panelRef.current) return;
++    const items = Array.from(
++      panelRef.current.querySelectorAll<HTMLElement>("input, button"),
++    ).filter((el) => el.tabIndex >= 0 && !el.hasAttribute("disabled"));
++    if (items.length === 0) return;
++    const first = items[0];
++    const last = items[items.length - 1];
++    // Always stop here so an enclosing drawer's trap never double-handles.
++    e.stopPropagation();
++    if (e.shiftKey && document.activeElement === first) {
++      e.preventDefault();
++      last.focus();
++    } else if (!e.shiftKey && document.activeElement === last) {
++      e.preventDefault();
++      first.focus();
++    } else if (!panelRef.current.contains(document.activeElement)) {
++      e.preventDefault();
++      first.focus();
++    }
++  };
++
+   const filtered = useMemo(() => {
+     if (!search) return options;
+     const q = search.toLowerCase();
+@@ -62,8 +98,9 @@ const MultiSelect = ({
+   };
+ 
+   return (
+-    <div ref={containerRef} className="relative">
++    <div ref={containerRef} className="relative" onKeyDown={onKeyDown}>
+       <Button
++        ref={triggerRef}
+         type="button"
+         variant="outline"
+         onClick={() => setOpen((s) => !s)}
+@@ -81,6 +118,7 @@ const MultiSelect = ({
+ 
+       {open && (
+         <div
++          ref={panelRef}
+           data-testid="multiselect-panel"
+           role="listbox"
+           aria-label={triggerLabel}
+diff --git a/src/components/layout/AuthedShell.tsx b/src/components/layout/AuthedShell.tsx
+index 9e95d59..1fa0ef0 100644
+--- a/src/components/layout/AuthedShell.tsx
++++ b/src/components/layout/AuthedShell.tsx
+@@ -1,6 +1,12 @@
+ "use client";
+ 
+-import { useEffect, useState, type ReactNode } from "react";
++import {
++  useEffect,
++  useRef,
++  useState,
++  type KeyboardEvent as ReactKeyboardEvent,
++  type ReactNode,
++} from "react";
+ import { Menu, X } from "lucide-react";
+ import { usePathname } from "next/navigation";
+ import type { User as SupabaseUser } from "@supabase/auth-js";
+@@ -15,6 +21,11 @@ import type { AppRole } from "@/utils/app-role";
+ // AdminSidebar (nav items on /admin-portal, filter rail on /owedbook).
+ // user/role come from the server layout's protectPage — forwarded to the Navbar
+ // so nav identity is server-truth (no client fetch window).
++// Tabbable candidates inside the drawer; filtered by tabIndex at use (drops
++// tabindex=-1 helpers such as Radix's hidden native <select>).
++const FOCUSABLE =
++  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]';
++
+ interface AuthedShellProps {
+   user: SupabaseUser;
+   role: AppRole;
+@@ -23,6 +34,9 @@ interface AuthedShellProps {
+ 
+ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
+   const [drawerOpen, setDrawerOpen] = useState(false);
++  const triggerRef = useRef<HTMLButtonElement>(null);
++  const drawerRef = useRef<HTMLDivElement>(null);
++  const wasOpen = useRef(false);
+   const pathname = usePathname() ?? "";
+   // /owedbook's filter rail is wide (KPI row + wide table) → it stays
+   // two-column only at xl+ and collapses to the drawer below xl. /admin-portal's
+@@ -46,6 +60,7 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
+   useEffect(() => {
+     if (!drawerOpen) return;
+     const onKey = (e: KeyboardEvent) => {
++      if (e.defaultPrevented) return; // a nested picker already handled it (A-06)
+       if (e.key === "Escape") setDrawerOpen(false);
+     };
+     document.addEventListener("keydown", onKey);
+@@ -56,6 +71,35 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
+     };
+   }, [drawerOpen]);
+ 
++  // Focus management (R-010): on open, move focus to the first control inside
++  // the drawer; on close (any path), return it to the trigger that opened it.
++  useEffect(() => {
++    if (drawerOpen) {
++      wasOpen.current = true;
++      tabbables(drawerRef.current)[0]?.focus();
++    } else if (wasOpen.current) {
++      wasOpen.current = false;
++      if (triggerRef.current?.isConnected) triggerRef.current.focus();
++    }
++  }, [drawerOpen]);
++
++  // Contain Tab/Shift-Tab inside the open drawer (wrap at the ends). Acts only
++  // when focus sits on the first/last control, so focus in a portal is left alone.
++  const onDrawerKeyDown = (e: ReactKeyboardEvent<HTMLDivElement>) => {
++    if (e.key !== "Tab") return;
++    const items = tabbables(drawerRef.current);
++    if (items.length === 0) return;
++    const first = items[0];
++    const last = items[items.length - 1];
++    if (e.shiftKey && document.activeElement === first) {
++      e.preventDefault();
++      last.focus();
++    } else if (!e.shiftKey && document.activeElement === last) {
++      e.preventDefault();
++      first.focus();
++    }
++  };
++
+   return (
+     <div className="flex flex-col min-h-screen">
+       <Navbar user={user} role={role} />
+@@ -63,6 +107,7 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
+       {/* Mobile sidebar trigger (< lg) */}
+       <div className={`${collapsedBelow} border-b border-border px-4 py-2`}>
+         <button
++          ref={triggerRef}
+           type="button"
+           onClick={() => setDrawerOpen(true)}
+           aria-label={`Open ${triggerLabel}`}
+@@ -98,6 +143,8 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
+           />
+           {/* Drawer width: 75% of viewport on phone (< md), 50% on tablet (md–<lg). */}
+           <div
++            ref={drawerRef}
++            onKeyDown={onDrawerKeyDown}
+             data-testid="sidebar-drawer"
+             className="absolute inset-y-0 left-0 w-3/4 md:w-1/2 bg-secondary shadow-xl overflow-y-auto"
+           >
+@@ -119,4 +166,11 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
+   );
+ };
+ 
++function tabbables(root: HTMLElement | null): HTMLElement[] {
++  if (!root) return [];
++  return Array.from(root.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
++    (el) => el.tabIndex >= 0,
++  );
++}
++
+ export default AuthedShell;

@@ -1,0 +1,3 @@
+$ rg -n console\.log src -g *.ts -g *.tsx -g !src/__tests__/**
+exit=0
+src/instrumentation.ts:34:  console.log("✓ Environment validated");

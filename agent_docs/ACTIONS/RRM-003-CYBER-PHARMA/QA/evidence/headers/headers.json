@@ -1,0 +1,65 @@
+{
+  "copies": [
+    {
+      "command": [
+        "cp",
+        "-r",
+        ".next/static",
+        ".next/standalone/.next/static"
+      ],
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cp",
+        "-r",
+        "public",
+        ".next/standalone/public"
+      ],
+      "exit": 0,
+      "stderr": ""
+    }
+  ],
+  "port": 33629,
+  "chunk": "/_next/static/chunks/04sa36x9-705m.js",
+  "responses": [
+    {
+      "path": "/",
+      "method": "HEAD",
+      "exit": 0,
+      "status": 200,
+      "cache_control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    },
+    {
+      "path": "/auth",
+      "method": "HEAD",
+      "exit": 18,
+      "status": 200,
+      "cache_control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    },
+    {
+      "path": "/owedbook",
+      "method": "HEAD",
+      "exit": 0,
+      "status": 307,
+      "cache_control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    },
+    {
+      "path": "/api/auth/login",
+      "method": "POST",
+      "exit": 0,
+      "status": 500,
+      "cache_control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    },
+    {
+      "path": "/_next/static/chunks/04sa36x9-705m.js",
+      "method": "HEAD",
+      "exit": 18,
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable"
+    }
+  ],
+  "server_exit": 143,
+  "port_closed": true
+}

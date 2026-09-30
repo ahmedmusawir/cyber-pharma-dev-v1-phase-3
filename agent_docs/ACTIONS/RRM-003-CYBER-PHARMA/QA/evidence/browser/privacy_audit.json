@@ -1,0 +1,10 @@
+{
+  "browser_artifact_files": 31,
+  "env_copy_files": 0,
+  "storage_state_files": 0,
+  "raw_trace_zip_files_in_qa": 0,
+  "raw_trace_zip_files_in_tmp": 0,
+  "final_trace_field_allowlist_pass": true,
+  "screenshots_exclude_navbar_by_capture_selector": true,
+  "credentials_entered_only_in_browser": true
+}

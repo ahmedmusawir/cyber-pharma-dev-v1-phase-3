@@ -1,0 +1,19 @@
+{
+  "playwright_version": "1.59.1",
+  "chromium_binary_present": true,
+  "display_present": true,
+  "workspace_env_files": [
+    ".env.local",
+    ".env.example"
+  ],
+  "workspace_env_local_prior_classification": "base CyberPharma auth target, per RRM-002 QA/raw/ac304_environment.json; not independently reclassified today",
+  "scratch_specific_environment_provisioned": false,
+  "scratch_admin_account_verified": false,
+  "scratch_member_account_verified": false,
+  "director_browser_credential_entries": 0,
+  "authenticated_matrix_started": false,
+  "reason": "SCRATCH-specific public configuration and account readiness have not been provided or independently established; Director direct browser login pending. No credentials or auth state were accessed.",
+  "snapshot": "initial QA entry before Director substitution",
+  "superseded_by": "director_authorization.json",
+  "final_matrix": "final_matrix_summary.json"
+}

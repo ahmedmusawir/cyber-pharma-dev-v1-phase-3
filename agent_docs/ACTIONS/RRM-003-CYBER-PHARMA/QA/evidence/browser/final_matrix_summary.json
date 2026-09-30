@@ -1,0 +1,69 @@
+{
+  "authorized_target": "main development Supabase, Director substitution on 2026-09-29",
+  "candidate": "21ea108bb27b965ddc5edae29dc3b1d6971ae576",
+  "qa_head": "1a94277b73c9ee61eab1ed74991f54fcd4771afe",
+  "roles": {
+    "ADMIN": {
+      "checks": 125,
+      "failed_checks": [],
+      "screenshots": [
+        "screenshots/admin_desktop_light_table.png",
+        "screenshots/admin_mobile_light_drawer.png",
+        "screenshots/admin_desktop_dark_table.png",
+        "screenshots/admin_mobile_dark_drawer.png"
+      ],
+      "screenshots_all_exist": true,
+      "trace": "traces/admin_sanitized_trace.zip",
+      "trace_allowlist_pass": true,
+      "trace_events": 865,
+      "trace_manifest": {
+        "role": "ADMIN",
+        "format": "sanitized Playwright action timeline",
+        "sourceEvents": 1586,
+        "retainedEvents": 865,
+        "removed": "network, logs, input coordinates, browser state, URLs, parameters, results, DOM text",
+        "credentialsOrConfigurationValuesRecorded": false
+      },
+      "console_errors": 0,
+      "page_errors": 0,
+      "hydration_errors": 0,
+      "failed_local_routes": [],
+      "logout_destination_auth": true,
+      "logout_session_terminated": true
+    },
+    "MEMBER": {
+      "checks": 124,
+      "failed_checks": [],
+      "screenshots": [
+        "screenshots/member_desktop_light_table.png",
+        "screenshots/member_mobile_light_drawer.png",
+        "screenshots/member_desktop_dark_table.png",
+        "screenshots/member_mobile_dark_drawer.png"
+      ],
+      "screenshots_all_exist": true,
+      "trace": "traces/member_sanitized_trace.zip",
+      "trace_allowlist_pass": true,
+      "trace_events": 855,
+      "trace_manifest": {
+        "role": "MEMBER",
+        "format": "sanitized Playwright action timeline",
+        "sourceEvents": 1574,
+        "retainedEvents": 855,
+        "removed": "network, logs, input coordinates, browser state, URLs, parameters, results, DOM text",
+        "credentialsOrConfigurationValuesRecorded": false
+      },
+      "console_errors": 0,
+      "page_errors": 0,
+      "hydration_errors": 0,
+      "failed_local_routes": [],
+      "logout_destination_auth": true,
+      "logout_session_terminated": true
+    }
+  },
+  "total_checks": 249,
+  "total_failed_checks": 0,
+  "raw_authenticated_traces_remaining": [],
+  "credential_values_recorded": false,
+  "auth_state_saved": false,
+  "screenshot_scope": "OwedBook table or filter drawer only; navbar identity excluded"
+}

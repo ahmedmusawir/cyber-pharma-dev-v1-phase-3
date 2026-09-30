@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-29",
+  "authority": "Director message in active QA conversation",
+  "original_target": "SCRATCH",
+  "authorized_substitute": "main development Supabase via existing repository base .env values",
+  "reason": "SCRATCH and replica do not contain required ADMIN and MEMBER accounts",
+  "scope": "AC-107 login-only authenticated browser QA",
+  "forbidden": [
+    "application data changes",
+    "user creation",
+    "role changes",
+    "Supabase configuration changes",
+    "environment or credential values in evidence"
+  ],
+  "credential_entry": "Director directly in visible browser"
+}

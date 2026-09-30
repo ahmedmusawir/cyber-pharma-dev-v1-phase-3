@@ -1,0 +1,77 @@
+{
+  "port": 51499,
+  "chunk": "/_next/static/chunks/04sa36x9-705m.js",
+  "responses": [
+    {
+      "path": "/",
+      "method": "HEAD",
+      "command": [
+        "curl",
+        "-sS",
+        "-I",
+        "http://127.0.0.1:51499/"
+      ],
+      "exit": 0,
+      "status": 200,
+      "cache_control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    },
+    {
+      "path": "/auth",
+      "method": "HEAD",
+      "command": [
+        "curl",
+        "-sS",
+        "-I",
+        "http://127.0.0.1:51499/auth"
+      ],
+      "exit": 0,
+      "status": 200,
+      "cache_control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    },
+    {
+      "path": "/owedbook",
+      "method": "HEAD",
+      "command": [
+        "curl",
+        "-sS",
+        "-I",
+        "http://127.0.0.1:51499/owedbook"
+      ],
+      "exit": 0,
+      "status": 307,
+      "cache_control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    },
+    {
+      "path": "/api/auth/login",
+      "method": "POST",
+      "command": [
+        "curl",
+        "-sS",
+        "-o",
+        "/dev/null",
+        "-D",
+        "-",
+        "-X",
+        "POST",
+        "http://127.0.0.1:51499/api/auth/login"
+      ],
+      "exit": 0,
+      "status": 500,
+      "cache_control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    },
+    {
+      "path": "/_next/static/chunks/04sa36x9-705m.js",
+      "method": "HEAD",
+      "command": [
+        "curl",
+        "-sS",
+        "-I",
+        "http://127.0.0.1:51499/_next/static/chunks/04sa36x9-705m.js"
+      ],
+      "exit": 0,
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable"
+    }
+  ],
+  "port_closed": true
+}

@@ -1,0 +1,5 @@
+$ git diff --name-status 3d2e65565d820ecc8b89bc5813959a4e324b3acd 21ea108bb27b965ddc5edae29dc3b1d6971ae576 -- src/__tests__
+exit=0
+A	src/__tests__/common/DataTable.keyboard.test.tsx
+A	src/__tests__/common/MultiSelect.focus.test.tsx
+A	src/__tests__/layout/AuthedShell.focus.test.tsx

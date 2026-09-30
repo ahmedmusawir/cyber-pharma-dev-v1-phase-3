@@ -1,0 +1,32 @@
+[
+  {
+    "name": "typescript",
+    "command": [
+      "./node_modules/.bin/tsc",
+      "--noEmit"
+    ],
+    "exit": 0,
+    "duration_seconds": 4.42,
+    "log": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/board/typescript.txt"
+  },
+  {
+    "name": "eslint",
+    "command": [
+      "./node_modules/.bin/eslint",
+      "."
+    ],
+    "exit": 0,
+    "duration_seconds": 9.9,
+    "log": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/board/eslint.txt"
+  },
+  {
+    "name": "jest",
+    "command": [
+      "./node_modules/.bin/jest",
+      "--ci"
+    ],
+    "exit": 0,
+    "duration_seconds": 8.39,
+    "log": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/board/jest.txt"
+  }
+]

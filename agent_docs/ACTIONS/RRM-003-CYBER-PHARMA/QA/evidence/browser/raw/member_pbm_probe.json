@@ -1,0 +1,233 @@
+{
+  "role": "MEMBER",
+  "target": "main development Supabase",
+  "phases": [
+    {
+      "label": "fresh_drawer",
+      "before": {
+        "expanded": "false",
+        "panelCount": 0,
+        "focused": true,
+        "radixSelectState": "closed",
+        "radixPopperCount": 0
+      },
+      "afterEnter": {
+        "expanded": "false",
+        "panelCount": 0,
+        "focused": true
+      },
+      "afterSpace": {
+        "expanded": "true",
+        "panelCount": 1,
+        "focused": false
+      },
+      "events": [
+        {
+          "phase": "capture",
+          "type": "keydown",
+          "key": "Enter",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "keydown",
+          "key": "Enter",
+          "defaultPrevented": true
+        },
+        {
+          "phase": "capture",
+          "type": "keyup",
+          "key": "Enter",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "keyup",
+          "key": "Enter",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "capture",
+          "type": "keydown",
+          "key": " ",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "keydown",
+          "key": " ",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "capture",
+          "type": "keyup",
+          "key": " ",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "keyup",
+          "key": " ",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "capture",
+          "type": "click",
+          "key": null,
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "click",
+          "key": null,
+          "defaultPrevented": false
+        }
+      ]
+    },
+    {
+      "label": "after_20_tabs",
+      "before": {
+        "expanded": "false",
+        "panelCount": 0,
+        "focused": true,
+        "radixSelectState": "closed",
+        "radixPopperCount": 0
+      },
+      "afterEnter": {
+        "expanded": "false",
+        "panelCount": 0,
+        "focused": true
+      },
+      "afterSpace": {
+        "expanded": "true",
+        "panelCount": 1,
+        "focused": false
+      },
+      "events": [
+        {
+          "phase": "capture",
+          "type": "keydown",
+          "key": "Enter",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "capture",
+          "type": "keydown",
+          "key": "Enter",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "keydown",
+          "key": "Enter",
+          "defaultPrevented": true
+        },
+        {
+          "phase": "bubble",
+          "type": "keydown",
+          "key": "Enter",
+          "defaultPrevented": true
+        },
+        {
+          "phase": "capture",
+          "type": "keyup",
+          "key": "Enter",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "capture",
+          "type": "keyup",
+          "key": "Enter",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "keyup",
+          "key": "Enter",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "keyup",
+          "key": "Enter",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "capture",
+          "type": "keydown",
+          "key": " ",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "capture",
+          "type": "keydown",
+          "key": " ",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "keydown",
+          "key": " ",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "keydown",
+          "key": " ",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "capture",
+          "type": "keyup",
+          "key": " ",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "capture",
+          "type": "keyup",
+          "key": " ",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "keyup",
+          "key": " ",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "keyup",
+          "key": " ",
+          "defaultPrevented": false
+        },
+        {
+          "phase": "capture",
+          "type": "click",
+          "key": null,
+          "defaultPrevented": false
+        },
+        {
+          "phase": "capture",
+          "type": "click",
+          "key": null,
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "click",
+          "key": null,
+          "defaultPrevented": false
+        },
+        {
+          "phase": "bubble",
+          "type": "click",
+          "key": null,
+          "defaultPrevented": false
+        }
+      ]
+    }
+  ],
+  "credentialValuesRecorded": false,
+  "authStateSaved": false,
+  "drawerClosed": true
+}

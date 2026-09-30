@@ -1,0 +1,6 @@
+{
+  "port": 38417,
+  "server_stop_signal": "SIGINT",
+  "server_session_exit": 130,
+  "port_closed": true
+}

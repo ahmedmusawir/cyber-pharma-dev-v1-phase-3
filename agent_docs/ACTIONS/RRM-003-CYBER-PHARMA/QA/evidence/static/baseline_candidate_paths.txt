@@ -1,0 +1,67 @@
+$ git diff --name-status 3d2e65565d820ecc8b89bc5813959a4e324b3acd 21ea108bb27b965ddc5edae29dc3b1d6971ae576
+exit=0
+M	CHANGELOG.md
+M	README.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/ACCEPTANCE_SPEC.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/AUTHORITY_POINTER.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/CLAUDE.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/CLAUDY_PROMPTS.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/DIRECTOR_ACTIONS.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/DIRECTOR_CHECKPOINTS.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/ENVIRONMENT_PREFLIGHT.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/GOVERNING/PROVENANCE.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/GOVERNING/QA_PLAYBOOK.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/GOVERNING/README.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/GOVERNING/SEARCH_RECORD.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/GOVERNING/WEB_FACTORY_P1_DOCTRINE_JOURNAL.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/README.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA_HANDOFF.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/RRM_BRIEF.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/RULINGS_ADDENDUM.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/PREFLIGHT_P1.txt
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/README.md
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/S1_diffs.txt
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/S2_headers_after.txt
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/S2_headers_before.txt
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/S3_docs_diffs.txt
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/S3_greps.txt
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/changed_files.txt
+A	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/repair.diff
+M	agent_docs/DB_BASELINE.md
+R100	agent_docs/RESPONSES/response_2026-09-23_150109_rrm002-s0-plan.md	agent_docs/RESPONSES/_OLD/response_2026-09-23_150109_rrm002-s0-plan.md
+R100	agent_docs/RESPONSES/response_2026-09-23_160316_rrm002-p1b-rulings.md	agent_docs/RESPONSES/_OLD/response_2026-09-23_160316_rrm002-p1b-rulings.md
+R100	agent_docs/RESPONSES/response_2026-09-23_164131_rrm002-s1-result.md	agent_docs/RESPONSES/_OLD/response_2026-09-23_164131_rrm002-s1-result.md
+R100	agent_docs/RESPONSES/response_2026-09-23_180905_rrm002-s2-result.md	agent_docs/RESPONSES/_OLD/response_2026-09-23_180905_rrm002-s2-result.md
+R100	agent_docs/RESPONSES/response_2026-09-23_193258_rrm002-p3-handoff.md	agent_docs/RESPONSES/_OLD/response_2026-09-23_193258_rrm002-p3-handoff.md
+R100	agent_docs/RESPONSES/response_2026-09-28_142403_rrm002-qa-execution-status.md	agent_docs/RESPONSES/_OLD/response_2026-09-28_142403_rrm002-qa-execution-status.md
+R100	agent_docs/RESPONSES/response_2026-09-28_153210_rrm002-ac304-sol-handoff.md	agent_docs/RESPONSES/_OLD/response_2026-09-28_153210_rrm002-ac304-sol-handoff.md
+R100	agent_docs/RESPONSES/response_2026-09-28_200250_rrm002-p5-closeout.md	agent_docs/RESPONSES/_OLD/response_2026-09-28_200250_rrm002-p5-closeout.md
+R100	agent_docs/RESPONSES/response_2026-09-28_rrm002-final-qa-export.md	agent_docs/RESPONSES/_OLD/response_2026-09-28_rrm002-final-qa-export.md
+A	agent_docs/RESPONSES/response_2026-09-28_205049_session-start-protocol-ack.md
+A	agent_docs/RESPONSES/response_2026-09-28_210200_rrm003-p1-plan.md
+A	agent_docs/RESPONSES/response_2026-09-28_212503_rrm003-p1b-rulings.md
+A	agent_docs/RESPONSES/response_2026-09-28_214117_rrm003-p2-completion.md
+M	agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md
+M	agent_docs/SESSIONS/session_2026-09-28.md
+M	docs/ARCHITECTURE.md
+M	docs/AUTHENTICATION.md
+M	docs/AUTHORIZATION.md
+M	docs/DATABASE_SETUP.md
+M	docs/PROJECT_OVERVIEW.md
+M	docs/TESTING.md
+M	docs/migration_add_profiles.sql
+M	docs/setup.sql
+M	next.config.js
+A	src/__tests__/common/DataTable.keyboard.test.tsx
+A	src/__tests__/common/MultiSelect.focus.test.tsx
+A	src/__tests__/layout/AuthedShell.focus.test.tsx
+M	src/app/(admin)/not-found.tsx
+M	src/app/not-found.tsx
+M	src/components/common/DataTable.tsx
+M	src/components/common/MultiSelect.tsx
+D	src/components/common/PaginationControls.tsx
+M	src/components/layout/AuthedShell.tsx
+M	supabase/setup.sql
