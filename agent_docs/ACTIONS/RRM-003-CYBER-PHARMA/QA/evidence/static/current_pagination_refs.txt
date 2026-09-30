@@ -1,0 +1,2 @@
+$ rg -n PaginationControls src
+exit=1

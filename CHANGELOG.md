@@ -3,6 +3,39 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-29 14:35 UTC — [CC] Claude Code
+
+- **RRM-003-CYBER-PHARMA — P5 closeout** (docs and evidence only; Director-approved plan, Architect unavailable; certified candidate `21ea108bb27b965ddc5edae29dc3b1d6971ae576`, QA HEAD `1a94277`).
+- **Added:** `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/QA_CERTIFICATION.md` (SOL Gate Q PASS, verbatim) · `QA/QA_CLEANUP_REPORT.md` (nothing removed; helpers retained per D2; inventory 76/76; secrets 0).
+- **Updated:** `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` (R-006/010/013/014/017/018 certified + final dispositions; E-17 QA-F01; E-18 QA-F02) · `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` (§0 v1.0.3; scoreboard RRM-003; RRM-002 merge `3d2e655`) · `agent_docs/RRM_CAMPAIGN_JOURNAL.md` (RRM-003 seat placeholders only) · RRM-003 `EXECUTION_LOG.md` (§ Closeout), `README.md` (status), `DIRECTOR_CHECKPOINTS.md` (DC-4 satisfied) · `RECOVERY.md` · session log.
+- **Reason:** QA Lead Gate Q PASS 2026-09-29; Director rulings D1–D3.
+
+## 2026-09-29 06:43 UTC — [CC] Claude Code
+
+- **RRM-003-CYBER-PHARMA — QA-entry sync** (docs only; candidate `21ea108bb27b965ddc5edae29dc3b1d6971ae576` preserved).
+- **Updated:** `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/DIRECTOR_CHECKPOINTS.md` (DC-2 satisfied 2026-09-28, DC-3 satisfied 2026-09-29) · `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA_HANDOFF.md` (A-01…A-14; erratum list + AC-401; QA branch confirmed 2026-09-29) · `agent_docs/SESSIONS/session_2026-09-29.md`.
+- **Reason:** Director confirmation of DC-2 and DC-3, 2026-09-29.
+
+## 2026-09-29 06:11 UTC — [CC] Claude Code
+
+- **RRM-003-CYBER-PHARMA — QA-branch docs step** (`qa/phase-3-rrm003`; no product change, build or git mutation).
+- **Updated:** `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/RULINGS_ADDENDUM.md` (A-13 AC-401 path list, A-14 P2 flags 2–3) · `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/ACCEPTANCE_SPEC.md` (erratum AC-401) · candidate SHA `21ea108bb27b965ddc5edae29dc3b1d6971ae576` filled in `QA_HANDOFF.md`, `EXECUTION_LOG.md` and ledger resolution rows R-006/R-010/R-013/R-014/R-017/R-018 · `agent_docs/SESSIONS/session_2026-09-29.md` (new).
+- **Reason:** Architect/Director instruction, 2026-09-29.
+
+## 2026-09-28 13:41 UTC — [CC] Claude Code
+
+- **RRM-003-CYBER-PHARMA P2 (one-shot build + QA handoff).** Candidate = Director's P2 commit. Preflight 17/17; S1 keyboard/focus (R-010), S2 cache header (R-006), S3 hygiene + docs quarantine (R-013, R-014/R-017 docs, R-018 README, OBS-2). Board: 17 routes · tsc 0 · eslint 0/35 · jest 34/164/0.
+- **Updated (docs):** `docs/DATABASE_SETUP.md` (pointers to `supabase/migrations/`; Step-4 labelled historical) · `docs/setup.sql`, `supabase/setup.sql`, `docs/migration_add_profiles.sql` (SUPERSEDED banner, line 1) · `docs/ARCHITECTURE.md`, `docs/AUTHORIZATION.md`, `docs/PROJECT_OVERVIEW.md`, `docs/AUTHENTICATION.md` (signup prose; A-08/A-09) · `agent_docs/DB_BASELINE.md` (§ Installed `handle_new_user`, DA-2 NOT YET) · `README.md`, `docs/TESTING.md` (34 suites / 164 tests) · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` (resolution rows R-006, R-010, R-013, R-014, R-017, R-018 — awaiting Gate Q).
+- **Pack:** `EXECUTION_LOG.md`, `QA_HANDOFF.md`, `evidence/**`, `QA/GOVERNING/` (copied from RRM-002 + `PROVENANCE.md`).
+- **Reason:** Director P2 instruction, 2026-09-28.
+
+## 2026-09-28 13:24 UTC — [CC] Claude Code
+
+- **RRM-003-CYBER-PHARMA P1 + P1b.** P1 plan approved in full by the Director; P1b rulings applied (documentation only; no product change, build, test or git mutation).
+- **Updated:** `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/RULINGS_ADDENDUM.md` (A-01…A-12) · `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/ACCEPTANCE_SPEC.md` (erratum lane: AC-102, AC-202, AC-304) · `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/DIRECTOR_CHECKPOINTS.md` (DC-1 satisfied 2026-09-28) · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` (E-16, OBS-1 flag-only → Phase 8) · `agent_docs/SESSIONS/session_2026-09-28.md`.
+- **Created:** `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/PREFLIGHT_P1.txt` · `evidence/S2_headers_before.txt` · `agent_docs/RESPONSES/response_2026-09-28_210200_rrm003-p1-plan.md` · `agent_docs/RESPONSES/response_2026-09-28_205049_session-start-protocol-ack.md`.
+- **Reason:** Director P1 / P1b instructions, 2026-09-28.
+
 ## 2026-09-28 12:01 UTC — [CC] Claude Code
 
 - **RRM-002-CYBER-PHARMA closeout (P5).** Gate Q PASS @ `34e6fb6` (QA Lead 2026-09-28, zero defects, zero repair rounds); evidence HEAD `cb9f7b7`. Docs, evidence and bounded QA cleanup only; no product change, build, test or git mutation.

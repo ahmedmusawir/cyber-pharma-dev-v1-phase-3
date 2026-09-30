@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type ReactNode,
+} from "react";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import type { User as SupabaseUser } from "@supabase/auth-js";
@@ -15,6 +21,11 @@ import type { AppRole } from "@/utils/app-role";
 // AdminSidebar (nav items on /admin-portal, filter rail on /owedbook).
 // user/role come from the server layout's protectPage — forwarded to the Navbar
 // so nav identity is server-truth (no client fetch window).
+// Tabbable candidates inside the drawer; filtered by tabIndex at use (drops
+// tabindex=-1 helpers such as Radix's hidden native <select>).
+const FOCUSABLE =
+  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]';
+
 interface AuthedShellProps {
   user: SupabaseUser;
   role: AppRole;
@@ -23,6 +34,9 @@ interface AuthedShellProps {
 
 const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const wasOpen = useRef(false);
   const pathname = usePathname() ?? "";
   // /owedbook's filter rail is wide (KPI row + wide table) → it stays
   // two-column only at xl+ and collapses to the drawer below xl. /admin-portal's
@@ -46,6 +60,7 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
   useEffect(() => {
     if (!drawerOpen) return;
     const onKey = (e: KeyboardEvent) => {
+      if (e.defaultPrevented) return; // a nested picker already handled it (A-06)
       if (e.key === "Escape") setDrawerOpen(false);
     };
     document.addEventListener("keydown", onKey);
@@ -56,6 +71,35 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
     };
   }, [drawerOpen]);
 
+  // Focus management (R-010): on open, move focus to the first control inside
+  // the drawer; on close (any path), return it to the trigger that opened it.
+  useEffect(() => {
+    if (drawerOpen) {
+      wasOpen.current = true;
+      tabbables(drawerRef.current)[0]?.focus();
+    } else if (wasOpen.current) {
+      wasOpen.current = false;
+      if (triggerRef.current?.isConnected) triggerRef.current.focus();
+    }
+  }, [drawerOpen]);
+
+  // Contain Tab/Shift-Tab inside the open drawer (wrap at the ends). Acts only
+  // when focus sits on the first/last control, so focus in a portal is left alone.
+  const onDrawerKeyDown = (e: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== "Tab") return;
+    const items = tabbables(drawerRef.current);
+    if (items.length === 0) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar user={user} role={role} />
@@ -63,6 +107,7 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
       {/* Mobile sidebar trigger (< lg) */}
       <div className={`${collapsedBelow} border-b border-border px-4 py-2`}>
         <button
+          ref={triggerRef}
           type="button"
           onClick={() => setDrawerOpen(true)}
           aria-label={`Open ${triggerLabel}`}
@@ -98,6 +143,8 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
           />
           {/* Drawer width: 75% of viewport on phone (< md), 50% on tablet (md–<lg). */}
           <div
+            ref={drawerRef}
+            onKeyDown={onDrawerKeyDown}
             data-testid="sidebar-drawer"
             className="absolute inset-y-0 left-0 w-3/4 md:w-1/2 bg-secondary shadow-xl overflow-y-auto"
           >
@@ -118,5 +165,12 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
     </div>
   );
 };
+
+function tabbables(root: HTMLElement | null): HTMLElement[] {
+  if (!root) return [];
+  return Array.from(root.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
+    (el) => el.tabIndex >= 0,
+  );
+}
 
 export default AuthedShell;

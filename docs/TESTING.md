@@ -7,7 +7,7 @@ RBAC/auth security boundaries (foundation) and the Phase-2 application surfaces 
 OwedBook and the Admin Portal Demo Shell (services, components, and the mock
 seed). A **Playwright** e2e scaffold exists for browser-level flows.
 
-> **Current inventory: 26 test suites, 120 passing tests** (run `npm test`).
+> **Current inventory: 34 test suites, 164 passing tests** (run `npm test`).
 
 The goal is not coverage for its own sake. Foundation tests prove unauthorized
 access fails safely; app tests encode the **intent** behind each surface —

@@ -1,0 +1,979 @@
+# RRM-003 repair.diff — baseline 3d2e65565d820ecc8b89bc5813959a4e324b3acd → P2 working tree (product + docs paths; pack/evidence/session/response bookkeeping excluded). Candidate SHA assigned at the Director's P2 commit. 2026-09-28T21:41:39+08:00
+diff --git a/README.md b/README.md
+index 4c09545..8750126 100644
+--- a/README.md
++++ b/README.md
+@@ -5,7 +5,7 @@
+ ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat-square&logo=typescript&logoColor=white)
+ ![Supabase](https://img.shields.io/badge/Supabase-Auth%20%2B%20RLS-3FCF8E?style=flat-square&logo=supabase&logoColor=white)
+ ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4%20%2B%20shadcn-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+-![Tests](https://img.shields.io/badge/Jest-120%20passed%20%2F%2026%20suites-success?style=flat-square&logo=jest&logoColor=white)
++![Tests](https://img.shields.io/badge/Jest-164%20passed%20%2F%2034%20suites-success?style=flat-square&logo=jest&logoColor=white)
+ ![Playwright](https://img.shields.io/badge/Playwright-e2e-2EAD33?style=flat-square&logo=playwright&logoColor=white)
+ 
+ A pharmacy reimbursement application — it surfaces what a pharmacy is **owed**
+@@ -131,7 +131,7 @@ one). See [docs/DATABASE_SETUP.md](docs/DATABASE_SETUP.md).
+ | `npm run build`             | Production build                      |
+ | `npm start`                 | Serve the production build            |
+ | `npm run lint`              | ESLint (flat config)                  |
+-| `npm test`                  | Jest suite (120 tests / 26 suites)    |
++| `npm test`                  | Jest suite (164 tests / 34 suites)    |
+ | `npm run test:e2e`          | Playwright end-to-end                 |
+ | `npm run test:e2e:ui`       | Playwright in UI mode                 |
+ | `npm run rls:prove`         | BIM-002 RLS isolation proof — wipes the throwaway, replays the chain, 320-cell matrix + attacks (see `RUN_NOTES.md`) |
+diff --git a/agent_docs/DB_BASELINE.md b/agent_docs/DB_BASELINE.md
+index 89314c0..3c45642 100644
+--- a/agent_docs/DB_BASELINE.md
++++ b/agent_docs/DB_BASELINE.md
+@@ -49,3 +49,15 @@ _Known baseline facts adjacent to schema: 0 `user_metadata` role smells in produ
+ code (roles live in `public.user_roles`, DB is role truth); backend-swap tables
+ (`user_data`, reference tables, `business_id` RLS) exist ONLY as BACKEND_SWAP_NOTES
+ comments in `src/services/` — no SQL on disk. That schema is Phase 3's to author._
++
++---
++
++## Installed `handle_new_user` — confirmed 2026-09-20
++
++_Appended by RRM-003-CYBER-PHARMA, 2026-09-28. Source: Director `pg_get_functiondef` on the dev database, 2026-09-20 (`agent_docs/RRM_DIRECTOR_DECISIONS.md`; ledger R-014, R-017)._
++
++- **Role:** taken from `raw_user_meta_data->>'role'` when present, else `member`.
++- **Name:** taken from `raw_user_meta_data->>'full_name'`.
++- **Containment:** Supabase "Allow new users to sign up" disabled — Director action DA-2 (RRM-001). Status at 2026-09-28: **NOT YET** (no `DA-2_SUPABASE_SIGNUP_DISABLED.md` in `agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/evidence/`).
++- **Permanent correction:** a backend migration that fixes role to `member` and reads `full_name` — BIM-004 pre-flight rider (CE-2), verified at the Phase 3 APPLY SESSION.
++- **Nothing here is applied.** This section records the installed body; it does not claim the correction exists.
+diff --git a/docs/ARCHITECTURE.md b/docs/ARCHITECTURE.md
+index 64fc666..8ead813 100644
+--- a/docs/ARCHITECTURE.md
++++ b/docs/ARCHITECTURE.md
+@@ -54,7 +54,7 @@ This is the difference between **UI authorization** and **real security enforcem
+ ### Next.js Responsibilities
+ 
+ - Render public and protected portals
+-- Call auth APIs for signup, login, logout
++- Call auth APIs for login and logout (public self-registration was removed in RRM-001)
+ - Refresh layouts after auth state changes
+ - Read the caller's role via server-side Supabase queries
+ - Redirect users away from unauthorized portals
+@@ -153,7 +153,7 @@ performs a server-side role check before rendering children.
+ 
+ Cyber Pharma's current groups:
+ 
+-- `(public)` / `(auth)` — unauthenticated landing + login/signup
++- `(public)` / `(auth)` — unauthenticated landing + login
+ - `(admin)` — the Admin Portal (`protectPage([AppRole.ADMIN])`)
+ 
+ Plus the ungrouped authed surfaces `/owedbook` (gates ADMIN + MEMBER) and
+@@ -177,7 +177,7 @@ This keeps the route contract simple:
+ 
+ ## Cache Invalidation Model
+ 
+-To avoid stale role/session data after login, signup, logout, or role changes, this starter uses a two-layer invalidation strategy.
++To avoid stale role/session data after login, logout, or role changes, this starter uses a two-layer invalidation strategy.
+ 
+ ### Server-side invalidation
+ 
+diff --git a/docs/AUTHENTICATION.md b/docs/AUTHENTICATION.md
+index c26f961..1513382 100644
+--- a/docs/AUTHENTICATION.md
++++ b/docs/AUTHENTICATION.md
+@@ -21,7 +21,7 @@ That second question belongs to authorization and the database role model.
+ The authentication system is built from four parts:
+ 
+ - **Supabase Auth** for user identity and session issuance
+-- **Next.js API routes** for login, signup, logout, and confirmation flows
++- **Next.js API routes** for login, logout, and confirmation flows
+ - **`proxy.ts`** for request-time session refresh
+ - **Supabase SSR clients** for server and browser contexts
+ 
+@@ -56,33 +56,7 @@ This pair refreshes the auth session during requests before protected layouts ru
+ 
+ ### 1. Signup
+ 
+-> **Removed in RRM-001 (2026-09-20):** public self-registration — its API route, form and `/auth` tab — no longer exists; `/auth` is login-only. The description below is historical.
+-
+-The registration UI posts to:
+-
+-- `POST /api/auth/signup`
+-
+-The route calls:
+-
+-```ts
+-supabase.auth.signUp({
+-  email,
+-  password,
+-  options: {
+-    data: {
+-      name,
+-    },
+-  },
+-})
+-```
+-
+-After a successful signup:
+-
+-- Supabase creates the auth user
+-- user metadata stores a display name only
+-- a Postgres trigger assigns the default `member` role in `public.user_roles`
+-- Next.js cache is invalidated with `revalidatePath('/', 'layout')`
+-- the client calls `router.refresh()` before navigation
++> **Removed in RRM-001 (2026-09-20):** public self-registration — its API route, form and `/auth` tab — no longer exists; `/auth` is login-only.
+ 
+ ### 2. Login
+ 
+@@ -222,7 +196,6 @@ router.refresh()
+ 
+ This ensures users do not need hard refreshes after:
+ 
+-- signup
+ - login
+ - logout
+ - role changes
+diff --git a/docs/AUTHORIZATION.md b/docs/AUTHORIZATION.md
+index 61b30d1..80d1deb 100644
+--- a/docs/AUTHORIZATION.md
++++ b/docs/AUTHORIZATION.md
+@@ -76,16 +76,16 @@ The enum values map directly to the Postgres enum values.
+ 
+ ## Default member assignment
+ 
+-New public signups are not manually assigned in application code.
++New users are not assigned a role in application code (public self-registration was removed in RRM-001).
+ 
+-Instead, a **Postgres trigger** automatically inserts a `member` role row when a new auth user is created.
++For what the installed trigger actually assigns, see `agent_docs/DB_BASELINE.md` § Installed `handle_new_user`.
+ 
+ This is the factory default behavior.
+ 
+ ### Why this is important
+ 
+ - role assignment is centralized in the database
+-- signup route remains simple
++- auth routes stay simple
+ - every new user gets a deterministic baseline role
+ - no frontend role flags are required
+ 
+@@ -174,7 +174,7 @@ That means every page under that route group inherits the same gate.
+ > **Status in Cyber Pharma:** the starter kit's `POST /api/auth/superadmin-add-user`
+ > route — which created users with the service-role key — was **removed in Phase 2**
+ > along with the superadmin portal. Cyber Pharma's `/api/auth/*` routes are now
+-> just `login`, `logout`, `signup`, and `confirm`. The principle below is retained
++> just `login`, `logout`, and `confirm` (signup removed in RRM-001). The principle below is retained
+ > as doctrine for **any** future service-role operation.
+ 
+ The pattern for any privileged, service-role-key operation is a **two-stage
+diff --git a/docs/DATABASE_SETUP.md b/docs/DATABASE_SETUP.md
+index 2733e9d..5d0df15 100644
+--- a/docs/DATABASE_SETUP.md
++++ b/docs/DATABASE_SETUP.md
+@@ -4,8 +4,7 @@
+ 
+ This document is the SQL blueprint for provisioning a fresh Supabase instance for the Pro RBAC starter kit.
+ 
+-> **The complete runnable SQL file is at [`docs/setup.sql`](./setup.sql).**
+-> Copy its contents and paste into the Supabase SQL Editor. Run top to bottom.
++> **Historical.** `docs/setup.sql` is the starter kit's original schema, superseded — see the note under How to Apply.
+ 
+ It provisions:
+ 
+@@ -19,18 +18,11 @@ It provisions:
+ 
+ ## How to Apply
+ 
+-> ### Already have `user_roles` with existing data?
+-> **Do NOT run `setup.sql`** — it will fail on `CREATE TABLE` and `CREATE TYPE` for things that already exist.
+-> Run **[`docs/migration_add_profiles.sql`](./migration_add_profiles.sql)** instead.
+-> It only adds the `profiles` table, backfills existing users, and updates the trigger. Safe to run on a live database.
++> **Superseded (RRM-003, 2026-09-28).** The canonical schema is the migration chain in [`supabase/migrations/`](../supabase/migrations/); what is installed is recorded in [`agent_docs/DB_BASELINE.md`](../agent_docs/DB_BASELINE.md). Do not run any SQL file from this folder or `supabase/setup.sql`. The installed `handle_new_user()` correction is owned by the BIM-004 pre-flight rider (CE-2).
+ 
+-### Fresh database (no existing tables)
++### Fresh database
+ 
+-1. Open your Supabase project → **SQL Editor**
+-2. Open `docs/setup.sql` from this repo
+-3. Paste the entire file into the editor
+-4. Click **Run**
+-5. After it succeeds, promote your first superadmin (see Step 5 below)
++Apply `supabase/migrations/` in order (Director-run). Do not paste `docs/setup.sql`.
+ 
+ ---
+ 
+@@ -99,6 +91,8 @@ CREATE POLICY "Users can update their own profile"
+ 
+ ## Step 4 — `handle_new_user()` Trigger
+ 
++> **Historical (starter kit) — not the installed body.** See `agent_docs/DB_BASELINE.md` § Installed `handle_new_user`.
++
+ Fires automatically on every new auth user creation. Inserts into **both** `user_roles` (default `member`) and `profiles` (email + name from metadata).
+ 
+ ```sql
+diff --git a/docs/PROJECT_OVERVIEW.md b/docs/PROJECT_OVERVIEW.md
+index 4f0716a..813b400 100644
+--- a/docs/PROJECT_OVERVIEW.md
++++ b/docs/PROJECT_OVERVIEW.md
+@@ -51,7 +51,7 @@ The env-gated operator user-management portal was removed in RRM-001 (2026-09-20
+ **Phase 2 is complete.** Both surfaces are built to visual fidelity and are
+ mock-functional end to end:
+ 
+-- **Auth is real.** Supabase login / signup / logout, role-gated layouts, and
++- **Auth is real.** Supabase login / logout, role-gated layouts, and
+   the session-refresh proxy all run against a real Supabase project.
+ - **Domain data is mock.** OwedBook reads from fixtures; the Admin Portal reads
+   and mutates an in-memory Zustand store seeded from mock data. Mutations (invite
+diff --git a/docs/TESTING.md b/docs/TESTING.md
+index a8eabab..6679c20 100644
+--- a/docs/TESTING.md
++++ b/docs/TESTING.md
+@@ -7,7 +7,7 @@ RBAC/auth security boundaries (foundation) and the Phase-2 application surfaces
+ OwedBook and the Admin Portal Demo Shell (services, components, and the mock
+ seed). A **Playwright** e2e scaffold exists for browser-level flows.
+ 
+-> **Current inventory: 26 test suites, 120 passing tests** (run `npm test`).
++> **Current inventory: 34 test suites, 164 passing tests** (run `npm test`).
+ 
+ The goal is not coverage for its own sake. Foundation tests prove unauthorized
+ access fails safely; app tests encode the **intent** behind each surface —
+diff --git a/docs/migration_add_profiles.sql b/docs/migration_add_profiles.sql
+index c418f9e..049a3fe 100644
+--- a/docs/migration_add_profiles.sql
++++ b/docs/migration_add_profiles.sql
+@@ -1,3 +1,4 @@
++-- SUPERSEDED (RRM-003, 2026-09-28): not the installed schema. Canonical chain: supabase/migrations/. Do not run. Trigger correction: see agent_docs/DB_BASELINE.md.
+ -- =============================================================================
+ -- MIGRATION: Add profiles table + Smart Trigger + Superadmin RLS
+ -- Mark IV — run this if you already have user_roles + app_role enum
+diff --git a/docs/setup.sql b/docs/setup.sql
+index 5218089..73a1bf3 100644
+--- a/docs/setup.sql
++++ b/docs/setup.sql
+@@ -1,3 +1,4 @@
++-- SUPERSEDED (RRM-003, 2026-09-28): not the installed schema. Canonical chain: supabase/migrations/. Do not run. Trigger correction: see agent_docs/DB_BASELINE.md.
+ -- =============================================================================
+ -- Pro RBAC Next.js Starter Kit — Supabase Database Setup
+ -- =============================================================================
+diff --git a/next.config.js b/next.config.js
+index 3558144..5db114d 100644
+--- a/next.config.js
++++ b/next.config.js
+@@ -13,7 +13,7 @@ const nextConfig = {
+   async headers() {
+     return [
+       {
+-        source: "/(.*)",
++        source: "/((?!_next/static/).*)",
+         headers: [
+           {
+             key: "Cache-Control",
+diff --git a/src/app/(admin)/not-found.tsx b/src/app/(admin)/not-found.tsx
+index 29c4c51..489e1f1 100644
+--- a/src/app/(admin)/not-found.tsx
++++ b/src/app/(admin)/not-found.tsx
+@@ -11,7 +11,6 @@ const NotFoundPage = () => {
+       <Link href="/" className="mt-6 text-primary hover:underline">
+         Go back to Home
+       </Link>
+-      <p>This is coming from /main</p>
+     </div>
+   );
+ };
+diff --git a/src/app/not-found.tsx b/src/app/not-found.tsx
+index 9d4fa9f..489e1f1 100644
+--- a/src/app/not-found.tsx
++++ b/src/app/not-found.tsx
+@@ -11,7 +11,6 @@ const NotFoundPage = () => {
+       <Link href="/" className="mt-6 text-primary hover:underline">
+         Go back to Home
+       </Link>
+-      <p>This is coming from /app</p>
+     </div>
+   );
+ };
+diff --git a/src/components/common/DataTable.tsx b/src/components/common/DataTable.tsx
+index 93bb1b5..6858e46 100644
+--- a/src/components/common/DataTable.tsx
++++ b/src/components/common/DataTable.tsx
+@@ -81,8 +81,23 @@ export function DataTable<TRow extends Record<string, unknown>>({
+                         : undefined
+                     }
+                   >
+-                    {col.label}
+-                    {sortIcon}
++                    {/* Keyboard access (R-010): a native button, only when sortable.
++                        No handler of its own — its click (incl. Enter/Space
++                        activation) bubbles to the <th> onClick, so sort fires once. */}
++                    {onSort ? (
++                      <button
++                        type="button"
++                        className="inline-flex items-center uppercase font-bold tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
++                      >
++                        {col.label}
++                        {sortIcon}
++                      </button>
++                    ) : (
++                      <>
++                        {col.label}
++                        {sortIcon}
++                      </>
++                    )}
+                   </th>
+                 );
+               })}
+diff --git a/src/components/common/MultiSelect.tsx b/src/components/common/MultiSelect.tsx
+index 9befc36..1f25382 100644
+--- a/src/components/common/MultiSelect.tsx
++++ b/src/components/common/MultiSelect.tsx
+@@ -1,6 +1,12 @@
+ "use client";
+ 
+-import { useState, useEffect, useRef, useMemo } from "react";
++import {
++  useState,
++  useEffect,
++  useRef,
++  useMemo,
++  type KeyboardEvent as ReactKeyboardEvent,
++} from "react";
+ import { ChevronDown, Search } from "lucide-react";
+ import { Input } from "@/components/ui/input";
+ import { Button } from "@/components/ui/button";
+@@ -23,6 +29,8 @@ const MultiSelect = ({
+   const [open, setOpen] = useState(false);
+   const [search, setSearch] = useState("");
+   const containerRef = useRef<HTMLDivElement>(null);
++  const triggerRef = useRef<HTMLButtonElement>(null);
++  const panelRef = useRef<HTMLDivElement>(null);
+ 
+   useEffect(() => {
+     if (!open) return;
+@@ -34,17 +42,45 @@ const MultiSelect = ({
+         setOpen(false);
+       }
+     };
+-    const handleEscape = (e: KeyboardEvent) => {
+-      if (e.key === "Escape") setOpen(false);
+-    };
+     document.addEventListener("mousedown", handleClickOutside);
+-    document.addEventListener("keydown", handleEscape);
+     return () => {
+       document.removeEventListener("mousedown", handleClickOutside);
+-      document.removeEventListener("keydown", handleEscape);
+     };
+   }, [open]);
+ 
++  // Keyboard (R-010). Escape closes the picker only and returns focus to the
++  // trigger; preventDefault + stopPropagation keep an enclosing drawer open
++  // (its handler skips defaultPrevented events, A-06). Tab wraps inside the panel.
++  const onKeyDown = (e: ReactKeyboardEvent<HTMLDivElement>) => {
++    if (!open) return;
++    if (e.key === "Escape") {
++      e.preventDefault();
++      e.stopPropagation();
++      setOpen(false);
++      triggerRef.current?.focus();
++      return;
++    }
++    if (e.key !== "Tab" || !panelRef.current) return;
++    const items = Array.from(
++      panelRef.current.querySelectorAll<HTMLElement>("input, button"),
++    ).filter((el) => el.tabIndex >= 0 && !el.hasAttribute("disabled"));
++    if (items.length === 0) return;
++    const first = items[0];
++    const last = items[items.length - 1];
++    // Always stop here so an enclosing drawer's trap never double-handles.
++    e.stopPropagation();
++    if (e.shiftKey && document.activeElement === first) {
++      e.preventDefault();
++      last.focus();
++    } else if (!e.shiftKey && document.activeElement === last) {
++      e.preventDefault();
++      first.focus();
++    } else if (!panelRef.current.contains(document.activeElement)) {
++      e.preventDefault();
++      first.focus();
++    }
++  };
++
+   const filtered = useMemo(() => {
+     if (!search) return options;
+     const q = search.toLowerCase();
+@@ -62,8 +98,9 @@ const MultiSelect = ({
+   };
+ 
+   return (
+-    <div ref={containerRef} className="relative">
++    <div ref={containerRef} className="relative" onKeyDown={onKeyDown}>
+       <Button
++        ref={triggerRef}
+         type="button"
+         variant="outline"
+         onClick={() => setOpen((s) => !s)}
+@@ -81,6 +118,7 @@ const MultiSelect = ({
+ 
+       {open && (
+         <div
++          ref={panelRef}
+           data-testid="multiselect-panel"
+           role="listbox"
+           aria-label={triggerLabel}
+diff --git a/src/components/common/PaginationControls.tsx b/src/components/common/PaginationControls.tsx
+deleted file mode 100644
+index 0e0fd0e..0000000
+--- a/src/components/common/PaginationControls.tsx
++++ /dev/null
+@@ -1,54 +0,0 @@
+-"use client";
+-
+-import { useRouter } from "next/navigation";
+-import { useTransition } from "react";
+-import { Button } from "@/components/ui/button";
+-import { Loader2 } from "lucide-react";
+-
+-interface PaginationControlsProps {
+-  page: number;
+-  totalPages: number;
+-  baseUrl: string;
+-}
+-
+-const PaginationControls = ({ page, totalPages, baseUrl }: PaginationControlsProps) => {
+-  const router = useRouter();
+-  const [isPending, startTransition] = useTransition();
+-
+-  const navigateToPage = (targetPage: number) => {
+-    startTransition(() => {
+-      router.push(`${baseUrl}?page=${targetPage}`);
+-    });
+-  };
+-
+-  return (
+-    <div className="flex items-center justify-center gap-2 mt-8">
+-      {page > 1 && (
+-        <Button
+-          variant="outline"
+-          size="sm"
+-          disabled={isPending}
+-          onClick={() => navigateToPage(page - 1)}
+-        >
+-          Previous
+-        </Button>
+-      )}
+-      <span className="text-sm text-muted-foreground flex items-center gap-2">
+-        {isPending && <Loader2 className="h-4 w-4 animate-spin" />}
+-        Page {page} of {totalPages}
+-      </span>
+-      {page < totalPages && (
+-        <Button
+-          variant="outline"
+-          size="sm"
+-          disabled={isPending}
+-          onClick={() => navigateToPage(page + 1)}
+-        >
+-          Next
+-        </Button>
+-      )}
+-    </div>
+-  );
+-};
+-
+-export default PaginationControls;
+diff --git a/src/components/layout/AuthedShell.tsx b/src/components/layout/AuthedShell.tsx
+index 9e95d59..1fa0ef0 100644
+--- a/src/components/layout/AuthedShell.tsx
++++ b/src/components/layout/AuthedShell.tsx
+@@ -1,6 +1,12 @@
+ "use client";
+ 
+-import { useEffect, useState, type ReactNode } from "react";
++import {
++  useEffect,
++  useRef,
++  useState,
++  type KeyboardEvent as ReactKeyboardEvent,
++  type ReactNode,
++} from "react";
+ import { Menu, X } from "lucide-react";
+ import { usePathname } from "next/navigation";
+ import type { User as SupabaseUser } from "@supabase/auth-js";
+@@ -15,6 +21,11 @@ import type { AppRole } from "@/utils/app-role";
+ // AdminSidebar (nav items on /admin-portal, filter rail on /owedbook).
+ // user/role come from the server layout's protectPage — forwarded to the Navbar
+ // so nav identity is server-truth (no client fetch window).
++// Tabbable candidates inside the drawer; filtered by tabIndex at use (drops
++// tabindex=-1 helpers such as Radix's hidden native <select>).
++const FOCUSABLE =
++  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]';
++
+ interface AuthedShellProps {
+   user: SupabaseUser;
+   role: AppRole;
+@@ -23,6 +34,9 @@ interface AuthedShellProps {
+ 
+ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
+   const [drawerOpen, setDrawerOpen] = useState(false);
++  const triggerRef = useRef<HTMLButtonElement>(null);
++  const drawerRef = useRef<HTMLDivElement>(null);
++  const wasOpen = useRef(false);
+   const pathname = usePathname() ?? "";
+   // /owedbook's filter rail is wide (KPI row + wide table) → it stays
+   // two-column only at xl+ and collapses to the drawer below xl. /admin-portal's
+@@ -46,6 +60,7 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
+   useEffect(() => {
+     if (!drawerOpen) return;
+     const onKey = (e: KeyboardEvent) => {
++      if (e.defaultPrevented) return; // a nested picker already handled it (A-06)
+       if (e.key === "Escape") setDrawerOpen(false);
+     };
+     document.addEventListener("keydown", onKey);
+@@ -56,6 +71,35 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
+     };
+   }, [drawerOpen]);
+ 
++  // Focus management (R-010): on open, move focus to the first control inside
++  // the drawer; on close (any path), return it to the trigger that opened it.
++  useEffect(() => {
++    if (drawerOpen) {
++      wasOpen.current = true;
++      tabbables(drawerRef.current)[0]?.focus();
++    } else if (wasOpen.current) {
++      wasOpen.current = false;
++      if (triggerRef.current?.isConnected) triggerRef.current.focus();
++    }
++  }, [drawerOpen]);
++
++  // Contain Tab/Shift-Tab inside the open drawer (wrap at the ends). Acts only
++  // when focus sits on the first/last control, so focus in a portal is left alone.
++  const onDrawerKeyDown = (e: ReactKeyboardEvent<HTMLDivElement>) => {
++    if (e.key !== "Tab") return;
++    const items = tabbables(drawerRef.current);
++    if (items.length === 0) return;
++    const first = items[0];
++    const last = items[items.length - 1];
++    if (e.shiftKey && document.activeElement === first) {
++      e.preventDefault();
++      last.focus();
++    } else if (!e.shiftKey && document.activeElement === last) {
++      e.preventDefault();
++      first.focus();
++    }
++  };
++
+   return (
+     <div className="flex flex-col min-h-screen">
+       <Navbar user={user} role={role} />
+@@ -63,6 +107,7 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
+       {/* Mobile sidebar trigger (< lg) */}
+       <div className={`${collapsedBelow} border-b border-border px-4 py-2`}>
+         <button
++          ref={triggerRef}
+           type="button"
+           onClick={() => setDrawerOpen(true)}
+           aria-label={`Open ${triggerLabel}`}
+@@ -98,6 +143,8 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
+           />
+           {/* Drawer width: 75% of viewport on phone (< md), 50% on tablet (md–<lg). */}
+           <div
++            ref={drawerRef}
++            onKeyDown={onDrawerKeyDown}
+             data-testid="sidebar-drawer"
+             className="absolute inset-y-0 left-0 w-3/4 md:w-1/2 bg-secondary shadow-xl overflow-y-auto"
+           >
+@@ -119,4 +166,11 @@ const AuthedShell = ({ user, role, children }: AuthedShellProps) => {
+   );
+ };
+ 
++function tabbables(root: HTMLElement | null): HTMLElement[] {
++  if (!root) return [];
++  return Array.from(root.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
++    (el) => el.tabIndex >= 0,
++  );
++}
++
+ export default AuthedShell;
+diff --git a/supabase/setup.sql b/supabase/setup.sql
+index 5218089..73a1bf3 100644
+--- a/supabase/setup.sql
++++ b/supabase/setup.sql
+@@ -1,3 +1,4 @@
++-- SUPERSEDED (RRM-003, 2026-09-28): not the installed schema. Canonical chain: supabase/migrations/. Do not run. Trigger correction: see agent_docs/DB_BASELINE.md.
+ -- =============================================================================
+ -- Pro RBAC Next.js Starter Kit — Supabase Database Setup
+ -- =============================================================================
+diff --git a/src/__tests__/common/DataTable.keyboard.test.tsx b/src/__tests__/common/DataTable.keyboard.test.tsx
+new file mode 100644
+index 0000000..08e34f6
+--- /dev/null
++++ b/src/__tests__/common/DataTable.keyboard.test.tsx
+@@ -0,0 +1,120 @@
++/**
++ * @jest-environment jsdom
++ */
++
++import { useState } from "react";
++import { render, screen, fireEvent, within } from "@testing-library/react";
++import userEvent from "@testing-library/user-event";
++import "@testing-library/jest-dom";
++import { DataTable, type ColumnDef } from "@/components/common/DataTable";
++
++// RRM-003 AC-101/102 (R-010): sortable headers are keyboard-operable through a
++// native <button> inside the <th>; non-sortable tables keep plain headers.
++
++interface TestRow extends Record<string, unknown> {
++  id: string;
++  name: string;
++  amount: number;
++}
++
++const columns: ColumnDef<TestRow>[] = [
++  { key: "name", label: "Name" },
++  { key: "amount", label: "Amount", align: "right", numeric: true, hero: true },
++];
++
++const rows: TestRow[] = [
++  { id: "1", name: "Alice", amount: 100 },
++  { id: "2", name: "Bob", amount: -50 },
++];
++
++// Mirrors the page-local toggle (asc ↔ desc on the same key) so aria-sort can
++// be compared between click and keyboard.
++const SortHarness = () => {
++  const [sort, setSort] = useState<{ key: string; direction: "asc" | "desc" }>({
++    key: "amount",
++    direction: "desc",
++  });
++  const onSort = (key: string) =>
++    setSort((s) =>
++      s.key === key
++        ? { key, direction: s.direction === "asc" ? "desc" : "asc" }
++        : { key, direction: "desc" },
++    );
++  return <DataTable<TestRow> columns={columns} rows={rows} sort={sort} onSort={onSort} />;
++};
++
++describe("DataTable keyboard access (AC-101/102)", () => {
++  it("renders one type=button control per sortable header; columnheader role kept", () => {
++    render(<DataTable<TestRow> columns={columns} rows={rows} onSort={() => {}} />);
++    for (const name of [/name/i, /amount/i]) {
++      const th = screen.getByRole("columnheader", { name });
++      const buttons = within(th).getAllByRole("button");
++      expect(buttons).toHaveLength(1);
++      expect(buttons[0]).toHaveAttribute("type", "button");
++    }
++  });
++
++  it("Tab reaches the sortable headers in column order", async () => {
++    const user = userEvent.setup();
++    render(<DataTable<TestRow> columns={columns} rows={rows} onSort={() => {}} />);
++    await user.tab();
++    expect(document.activeElement).toBe(
++      within(screen.getByRole("columnheader", { name: /name/i })).getByRole("button"),
++    );
++    await user.tab();
++    expect(document.activeElement).toBe(
++      within(screen.getByRole("columnheader", { name: /amount/i })).getByRole("button"),
++    );
++  });
++
++  it("without onSort, headers are not focusable (no button, no tabIndex, no role)", () => {
++    const { container } = render(<DataTable<TestRow> columns={columns} rows={rows} />);
++    expect(screen.queryAllByRole("button")).toHaveLength(0);
++    container.querySelectorAll("th").forEach((th) => {
++      expect(th).not.toHaveAttribute("tabindex");
++      expect(th).not.toHaveAttribute("role");
++    });
++  });
++
++  it("Enter and Space each call onSort exactly once with the column key", async () => {
++    const user = userEvent.setup();
++    const onSort = jest.fn();
++    render(<DataTable<TestRow> columns={columns} rows={rows} onSort={onSort} />);
++    await user.tab(); // Name header
++    await user.keyboard("{Enter}");
++    expect(onSort).toHaveBeenCalledTimes(1);
++    expect(onSort).toHaveBeenLastCalledWith("name");
++    await user.keyboard(" ");
++    expect(onSort).toHaveBeenCalledTimes(2);
++    expect(onSort).toHaveBeenLastCalledWith("name");
++  });
++
++  it("keyboard produces the same aria-sort sequence as click", async () => {
++    const user = userEvent.setup();
++    const ariaSortAfter = async (activate: (th: HTMLElement) => Promise<void>) => {
++      const { unmount } = render(<SortHarness />);
++      const seq: (string | null)[] = [];
++      for (let i = 0; i < 3; i++) {
++        await activate(screen.getByRole("columnheader", { name: /name/i }));
++        seq.push(screen.getByRole("columnheader", { name: /name/i }).getAttribute("aria-sort"));
++      }
++      unmount();
++      return seq;
++    };
++    const byClick = await ariaSortAfter(async (th) => {
++      fireEvent.click(th);
++    });
++    const byEnter = await ariaSortAfter(async (th) => {
++      within(th).getByRole("button").focus();
++      await user.keyboard("{Enter}");
++    });
++    expect(byEnter).toEqual(byClick);
++    expect(byClick).toEqual(["descending", "ascending", "descending"]);
++  });
++
++  it("mobile card mode carries no header buttons or tab stops", () => {
++    render(<DataTable<TestRow> columns={columns} rows={rows} onSort={() => {}} />);
++    const mobile = screen.getByTestId("datatable-mobile");
++    expect(mobile.querySelectorAll("button, [tabindex]")).toHaveLength(0);
++  });
++});
+diff --git a/src/__tests__/common/MultiSelect.focus.test.tsx b/src/__tests__/common/MultiSelect.focus.test.tsx
+new file mode 100644
+index 0000000..6832e24
+--- /dev/null
++++ b/src/__tests__/common/MultiSelect.focus.test.tsx
+@@ -0,0 +1,88 @@
++/**
++ * @jest-environment jsdom
++ */
++
++import { render, screen, fireEvent } from "@testing-library/react";
++import userEvent from "@testing-library/user-event";
++import "@testing-library/jest-dom";
++import MultiSelect from "@/components/common/MultiSelect";
++
++// RRM-003 AC-104 (R-010): the PBM picker moves focus in, keeps Tab inside the
++// panel, and Escape closes it and returns focus to the trigger.
++
++const options = ["AssistRx", "Caremark", "OptumRx"];
++
++const openPicker = () => {
++  fireEvent.click(screen.getByTestId("multiselect-trigger"));
++  return screen.getByTestId("multiselect-panel");
++};
++
++describe("MultiSelect focus management (AC-104)", () => {
++  it("opening the panel focuses the search input", () => {
++    render(<MultiSelect options={options} selected={[]} onChange={() => {}} />);
++    openPicker();
++    expect(document.activeElement).toBe(screen.getByPlaceholderText("Search..."));
++  });
++
++  it("Tab from the last control wraps to the search input; Shift-Tab wraps back", async () => {
++    const user = userEvent.setup();
++    render(<MultiSelect options={options} selected={[]} onChange={() => {}} />);
++    openPicker();
++    const search = screen.getByPlaceholderText("Search...");
++    const lastBox = screen.getByLabelText("OptumRx");
++
++    await user.tab({ shift: true });
++    expect(document.activeElement).toBe(lastBox);
++    await user.tab();
++    expect(document.activeElement).toBe(search);
++  });
++
++  it("Tab never leaves the panel", async () => {
++    const user = userEvent.setup();
++    render(
++      <div>
++        <MultiSelect options={options} selected={["Caremark"]} onChange={() => {}} />
++        <button type="button">after</button>
++      </div>,
++    );
++    const panel = openPicker();
++    for (let i = 0; i < 8; i++) {
++      await user.tab();
++      expect(panel).toContainElement(document.activeElement as HTMLElement);
++    }
++  });
++
++  it("Escape closes the panel and returns focus to the trigger", async () => {
++    const user = userEvent.setup();
++    render(<MultiSelect options={options} selected={[]} onChange={() => {}} />);
++    openPicker();
++    await user.keyboard("{Escape}");
++    expect(screen.queryByTestId("multiselect-panel")).not.toBeInTheDocument();
++    expect(document.activeElement).toBe(screen.getByTestId("multiselect-trigger"));
++  });
++
++  // A-06: an enclosing drawer skips Escape events already defaultPrevented.
++  it("Escape is marked handled (defaultPrevented) for enclosing listeners", () => {
++    render(<MultiSelect options={options} selected={[]} onChange={() => {}} />);
++    openPicker();
++    // fireEvent returns false when the event's default was prevented.
++    const notPrevented = fireEvent.keyDown(screen.getByPlaceholderText("Search..."), {
++      key: "Escape",
++    });
++    expect(notPrevented).toBe(false);
++    expect(screen.queryByTestId("multiselect-panel")).not.toBeInTheDocument();
++  });
++
++  it("click-outside still closes without pulling focus to the trigger", () => {
++    render(
++      <div>
++        <MultiSelect options={options} selected={[]} onChange={() => {}} />
++        <div data-testid="outside">outside</div>
++      </div>,
++    );
++    openPicker();
++    fireEvent.mouseDown(screen.getByTestId("outside"));
++    expect(screen.queryByTestId("multiselect-panel")).not.toBeInTheDocument();
++    expect(document.activeElement).not.toBe(screen.getByTestId("multiselect-trigger"));
++  });
++});
+diff --git a/src/__tests__/layout/AuthedShell.focus.test.tsx b/src/__tests__/layout/AuthedShell.focus.test.tsx
+new file mode 100644
+index 0000000..ccfd2b0
+--- /dev/null
++++ b/src/__tests__/layout/AuthedShell.focus.test.tsx
+@@ -0,0 +1,155 @@
++/**
++ * @jest-environment jsdom
++ */
++
++import { render, screen, fireEvent, within } from "@testing-library/react";
++import userEvent from "@testing-library/user-event";
++import "@testing-library/jest-dom";
++import { usePathname } from "next/navigation";
++
++// RRM-003 AC-103/104 (R-010): the collapsed-breakpoint drawer moves focus in,
++// contains Tab, closes on Escape and returns focus to its trigger; a PBM picker
++// nested inside closes first on Escape (A-06).
++
++jest.mock("@/components/global/Navbar", () => ({
++  __esModule: true,
++  default: () => <div data-testid="navbar" />,
++}));
++// The sidebar hosts a real MultiSelect so the nested-Escape order is exercised
++// against the real picker.
++jest.mock("@/components/layout/AdminSidebar", () => {
++  const MultiSelect = jest.requireActual("@/components/common/MultiSelect").default;
++  const { useState } = jest.requireActual("react");
++  const Sidebar = () => {
++    const [selected, setSelected] = useState([] as string[]);
++    return (
++      <div data-testid="sidebar-content">
++        <MultiSelect options={["Caremark", "OptumRx"]} selected={selected} onChange={setSelected} />
++        <button type="button">Apply</button>
++      </div>
++    );
++  };
++  return { __esModule: true, default: Sidebar };
++});
++jest.mock("@/components/owedbook/OwedBookContext", () => ({
++  useOwedBook: () => ({
++    appliedTick: 0,
++    filters: { pbms: [] },
++    pbmOptions: [],
++    applyFilters: () => {},
++    clearFilters: () => {},
++  }),
++}));
++
++import AuthedShell from "@/components/layout/AuthedShell";
++import { AppRole } from "@/utils/app-role";
++import type { User as SupabaseUser } from "@supabase/auth-js";
++
++const mockUsePathname = usePathname as jest.Mock;
++const tony = { email: "tony@stark.com" } as SupabaseUser;
++
++const renderShell = () => {
++  mockUsePathname.mockReturnValue("/owedbook");
++  return render(
++    <AuthedShell user={tony} role={AppRole.MEMBER}>
++      <p>main</p>
++    </AuthedShell>,
++  );
++};
++
++const openDrawer = () => {
++  const trigger = screen.getByRole("button", { name: "Open Filters" });
++  fireEvent.click(trigger);
++  return { trigger, drawer: screen.getByTestId("sidebar-drawer") };
++};
++
++describe("AuthedShell drawer focus management (AC-103)", () => {
++  it("on mount nothing moves focus and nothing is inert (desktop rail untouched)", () => {
++    const { container } = renderShell();
++    expect(document.activeElement).toBe(document.body);
++    expect(container.querySelector("[inert]")).toBeNull();
++  });
++
++  it("opening moves focus to the first control inside the drawer (Close)", () => {
++    renderShell();
++    openDrawer();
++    expect(document.activeElement).toBe(screen.getByRole("button", { name: "Close" }));
++  });
++
++  it("Tab from the last control wraps to the first; Shift-Tab from the first wraps to the last", async () => {
++    const user = userEvent.setup();
++    renderShell();
++    const { drawer } = openDrawer();
++    const close = screen.getByRole("button", { name: "Close" });
++    const buttons = drawer.querySelectorAll("button");
++    const last = buttons[buttons.length - 1];
++
++    await user.tab({ shift: true });
++    expect(document.activeElement).toBe(last);
++    await user.tab();
++    expect(document.activeElement).toBe(close);
++  });
++
++  it("Escape closes the drawer and returns focus to the trigger", async () => {
++    const user = userEvent.setup();
++    renderShell();
++    const { trigger } = openDrawer();
++    await user.keyboard("{Escape}");
++    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
++    expect(document.activeElement).toBe(trigger);
++  });
++
++  it("closing via the Close button or the backdrop also returns focus to the trigger", () => {
++    renderShell();
++    const { trigger } = openDrawer();
++    fireEvent.click(screen.getByRole("button", { name: "Close" }));
++    expect(document.activeElement).toBe(trigger);
++
++    openDrawer();
++    fireEvent.click(screen.getByRole("dialog").querySelector("[aria-hidden]")!);
++    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
++    expect(document.activeElement).toBe(trigger);
++  });
++
++  it("body scroll lock is unchanged: hidden while open, cleared on close", () => {
++    renderShell();
++    openDrawer();
++    expect(document.body.style.overflow).toBe("hidden");
++    fireEvent.click(screen.getByRole("button", { name: "Close" }));
++    expect(document.body.style.overflow).toBe("");
++  });
++
++  it("an Escape already defaultPrevented by an inner handler leaves the drawer open (A-06 guard)", () => {
++    renderShell();
++    openDrawer();
++    const preventEscape = (e: KeyboardEvent) => {
++      if (e.key === "Escape") e.preventDefault();
++    };
++    document.addEventListener("keydown", preventEscape, true);
++    fireEvent.keyDown(document.body, { key: "Escape" });
++    document.removeEventListener("keydown", preventEscape, true);
++    expect(screen.getByRole("dialog")).toBeInTheDocument();
++  });
++});
++
++describe("Nested Escape: PBM picker inside the drawer (AC-104)", () => {
++  it("Escape #1 closes only the picker; Escape #2 closes the drawer and focuses its trigger", async () => {
++    const user = userEvent.setup();
++    renderShell();
++    const { trigger, drawer } = openDrawer();
++    // A second sidebar instance lives in the (hidden) desktop rail — scope to the drawer.
++    const picker = within(drawer).getByTestId("multiselect-trigger");
++
++    fireEvent.click(picker);
++    expect(within(drawer).getByTestId("multiselect-panel")).toBeInTheDocument();
++
++    await user.keyboard("{Escape}");
++    expect(screen.queryByTestId("multiselect-panel")).not.toBeInTheDocument();
++    expect(screen.getByRole("dialog")).toBeInTheDocument();
++    expect(document.activeElement).toBe(picker);
++
++    await user.keyboard("{Escape}");
++    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
++    expect(document.activeElement).toBe(trigger);
++  });
++});

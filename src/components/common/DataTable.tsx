@@ -81,8 +81,23 @@ export function DataTable<TRow extends Record<string, unknown>>({
                         : undefined
                     }
                   >
-                    {col.label}
-                    {sortIcon}
+                    {/* Keyboard access (R-010): a native button, only when sortable.
+                        No handler of its own — its click (incl. Enter/Space
+                        activation) bubbles to the <th> onClick, so sort fires once. */}
+                    {onSort ? (
+                      <button
+                        type="button"
+                        className="inline-flex items-center uppercase font-bold tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        {col.label}
+                        {sortIcon}
+                      </button>
+                    ) : (
+                      <>
+                        {col.label}
+                        {sortIcon}
+                      </>
+                    )}
                   </th>
                 );
               })}

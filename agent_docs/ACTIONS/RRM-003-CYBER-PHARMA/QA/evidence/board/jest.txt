@@ -1,0 +1,8 @@
+command: ./node_modules/.bin/jest --ci
+exit: 0
+
+Test Suites: 34 passed, 34 total
+Tests:       164 passed, 164 total
+Snapshots:   0 total
+Time:        7.594 s
+Ran all test suites.

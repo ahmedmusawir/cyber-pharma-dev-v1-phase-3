@@ -4,7 +4,14 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-09-28 — **RRM-002-CYBER-PHARMA · CLOSED — GATE Q PASS (QA Lead, 2026-09-28, zero defects, zero repair rounds) · PENDING MERGE**
+**Last updated:** 2026-09-29 — **RRM-003-CYBER-PHARMA · CLOSED — GATE Q PASS (QA Lead SOL, 2026-09-29, 26/26 ACs, zero repair rounds) · PENDING COMMIT + MERGE**
+**Branch:** `qa/phase-3-rrm003` @ `1a94277b73c9ee61eab1ed74991f54fcd4771afe` (QA HEAD) + uncommitted P5 closeout and the whole QA lane (never committed yet). **Certified candidate:** `21ea108bb27b965ddc5edae29dc3b1d6971ae576` · code baseline `3d2e655` (RRM-002 merge) · pack `a59f069` · closeout commit and merge SHA: recorded by Director at merge.
+**Last action:** P5 closeout (docs/evidence only, Director-approved plan; Architect unavailable): `QA/QA_CERTIFICATION.md` (SOL verbatim) · `QA/QA_CLEANUP_REPORT.md` (nothing removed; 3 helpers retained per D2) · ledger R-006/010/013/014/017/018 RESOLVED + E-17 (QA-F01) + E-18 (QA-F02) · map §0 v1.0.3 (+ RRM-002 merge `3d2e655`) · journal seat placeholders · EXECUTION_LOG § Closeout · DC-4 satisfied. Session log: `agent_docs/SESSIONS/session_2026-09-29.md`.
+**Pending (Director):** run the staging/commit block in the latest `agent_docs/RESPONSES/response_2026-09-29_*_rrm003-p5-closeout.md` · `--no-ff` merge `qa/phase-3-rrm003` → `main` · paste `git log --oneline -1` back · DA-2 still owed.
+**Pending (seats):** Architect journal entry + RRM-003 friction log (Fable) · QA-logged entry (SOL) — placeholders on disk.
+**Next step:** Director merges; **RRM-004 pack authoring (Architect)**.
+
+**Prior state (2026-09-28):** **RRM-002-CYBER-PHARMA · CLOSED — GATE Q PASS (QA Lead, 2026-09-28, zero defects, zero repair rounds) · PENDING MERGE**
 **Branch:** `qa/phase-3-rrm002` @ `cb9f7b7e707f206f019b40c7079487888cc14d03` (QA evidence HEAD) + uncommitted P5 closeout. **Certified candidate:** `34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731` · code baseline `1cd6e46` · closeout commit and merge SHA: recorded by Director at merge.
 **Last action:** P5 closeout (docs, evidence, bounded QA cleanup): ledger R-015/R-020 RESOLVED + E-15 · map §0 v1.0.2 · journal (Architect, QA Lead verbatim, friction log) · EXECUTION_LOG Closeout · pack README · QA cleanup (18 never-committed helper/harness files removed, archived outside the repo first; inventory rebuilt; citations resolve). Session log: `agent_docs/SESSIONS/session_2026-09-28.md`.
 **Pending (Director):** commit the closeout · `--no-ff` merge `qa/phase-3-rrm002` → `main` · paste `git log --oneline -1` back for the map/ledger on the RRM-003 opening commit · carried from RRM-001: DA-2 Supabase signup OFF (AC-206 NOT YET).

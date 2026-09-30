@@ -11,7 +11,6 @@ const NotFoundPage = () => {
       <Link href="/" className="mt-6 text-primary hover:underline">
         Go back to Home
       </Link>
-      <p>This is coming from /main</p>
     </div>
   );
 };

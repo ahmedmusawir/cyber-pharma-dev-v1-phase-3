@@ -1,0 +1,76 @@
+RRM-003 S3 — greps and preserved-path diffs · baseline 3d2e65565d820ecc8b89bc5813959a4e324b3acd · 2026-09-28T21:38:24+08:00
+
+== AC-301 ==
+$ grep -rn "This is coming from" src/
+(0 hits)
+$ git diff --numstat 3d2e655 -- "src/app/(admin)"
+0	1	src/app/(admin)/not-found.tsx
+
+== AC-302 ==
+$ grep -rn "console\.log" src/ --include=*.ts --include=*.tsx | grep -v src/__tests__/
+src/instrumentation.ts:34:  console.log("✓ Environment validated");
+→ 1 hit = allowed exception A-10 (one-time boot signal, no data)
+
+== AC-303 ==
+Consumers at baseline: git grep -n PaginationControls 3d2e65565d820ecc8b89bc5813959a4e324b3acd -- src/ →
+   3d2e65565d820ecc8b89bc5813959a4e324b3acd:src/components/common/PaginationControls.tsx:8:interface PaginationControlsProps {
+   3d2e65565d820ecc8b89bc5813959a4e324b3acd:src/components/common/PaginationControls.tsx:14:const PaginationControls = ({ page, totalPages, baseUrl }: PaginationControlsProps) => {
+   3d2e65565d820ecc8b89bc5813959a4e324b3acd:src/components/common/PaginationControls.tsx:54:export default PaginationControls;
+   (self-references only → zero consumers)
+$ grep -rn "PaginationControls" src/
+(0 hits after deletion)
+$ git diff 3d2e655 -- src/components/ui/tabs.tsx
+(empty)
+
+== AC-304 ==
+S3 jest --ci: Test Suites: 34 passed, 34 total · Tests: 164 passed, 164 total · 0 skipped
+README.md:8:![Tests](https://img.shields.io/badge/Jest-164%20passed%20%2F%2034%20suites-success?style=flat-square&logo=jest&logoColor=white)
+README.md:134:| `npm test`                  | Jest suite (164 tests / 34 suites)    |
+docs/TESTING.md:10:> **Current inventory: 34 test suites, 164 passing tests** (run `npm test`).
+
+== AC-306 ==
+$ head -1 docs/setup.sql
+-- SUPERSEDED (RRM-003, 2026-09-28): not the installed schema. Canonical chain: supabase/migrations/. Do not run. Trigger correction: see agent_docs/DB_BASELINE.md.
+   numstat vs baseline: 1	0	docs/setup.sql
+   body byte-identical: yes
+$ head -1 supabase/setup.sql
+-- SUPERSEDED (RRM-003, 2026-09-28): not the installed schema. Canonical chain: supabase/migrations/. Do not run. Trigger correction: see agent_docs/DB_BASELINE.md.
+   numstat vs baseline: 1	0	supabase/setup.sql
+   body byte-identical: yes
+$ head -1 docs/migration_add_profiles.sql
+-- SUPERSEDED (RRM-003, 2026-09-28): not the installed schema. Canonical chain: supabase/migrations/. Do not run. Trigger correction: see agent_docs/DB_BASELINE.md.
+   numstat vs baseline: 1	0	docs/migration_add_profiles.sql
+   body byte-identical: yes
+$ git diff 3d2e655 -- supabase/migrations
+(empty)
+
+== AC-307 ==
+DA-2 evidence file present? NOT YET
+DB_BASELINE numstat vs baseline: 12	0	agent_docs/DB_BASELINE.md (append only)
+
+== AC-308 ==
+$ grep -rniE "sign ?up|register" docs/ | grep -v docs/change_logs/
+docs/DATABASE_SETUP.md:14:- `handle_new_user()` trigger — auto-inserts into **both** `user_roles` and `profiles` on every new signup
+docs/AUTHORIZATION.md:177:> just `login`, `logout`, and `confirm` (signup removed in RRM-001). The principle below is retained
+docs/AUTHENTICATION.md:57:### 1. Signup
+Accounted: DATABASE_SETUP.md:14 = allowed exception A-07 (was :15; trigger-event description) · AUTHORIZATION.md:177 = inside the RRM-001 note · AUTHENTICATION.md:57 = heading retained by A-08 directly above the RRM-001 note. docs/change_logs/** allowed by AC-308.
+
+== AC-401 ==
+$ git diff --stat 3d2e655 -- src/services src/types src/mocks src/components/owedbook src/app/api "src/app/(auth)" src/app/profile src/app/owedbook src/proxy.ts src/utils supabase scripts package.json package-lock.json
+ supabase/setup.sql | 1 +
+ 1 file changed, 1 insertion(+)
+NOTE (erratum candidate, not a ruled exception): the only line is the AC-306-mandated banner on supabase/setup.sql (allowed file, RRM_BRIEF.md:34). AC-401's 'supabase' path overlaps AC-306. supabase/migrations/** is empty (above). Everything else in the AC-401 list: empty.
+(admin) diff: see AC-301 — 1 deletion in not-found.tsx only.
+
+== AC-403 ==
+$ git diff 3d2e655 -- src/components/owedbook/OwedBookScreen.tsx src/services/owedbook.ts
+(empty)
+
+== AC-404 ==
+$ git diff 3d2e655 -- src/utils/supabase/actions.ts
+(empty)
+
+== Full board (AC-501, S3) ==
+blank Supabase env (3 keys = ""): rm -rf .next && next build → exit 0, 17 routes
+placeholder env: rm -rf .next && next build → exit 0, 17 routes
+npx tsc --noEmit → exit 0 · npx eslint . → 0 errors, 35 warnings · npx jest --ci → 34/164 passed, 0 skipped

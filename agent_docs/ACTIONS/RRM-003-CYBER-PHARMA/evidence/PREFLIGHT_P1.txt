@@ -1,0 +1,28 @@
+RRM-003-CYBER-PHARMA — ENVIRONMENT_PREFLIGHT, run P1 (report run)
+Engineer · 2026-09-28 20:52–21:05 local · branch phase-3-rrm003 @ a59f069
+<baseline> = 3d2e65565d820ecc8b89bc5813959a4e324b3acd (RRM-002 --no-ff merge on main)
+Placeholder Supabase env only; .env.local never read (PF-08 counts key names); no install; no live call.
+
+| #     | Check                          | Result (verbatim / summary)                                                                 | Verdict |
+|-------|--------------------------------|---------------------------------------------------------------------------------------------|---------|
+| PF-01 | Branch                         | phase-3-rrm003                                                                              | PASS |
+| PF-02 | Baseline identity              | 3d2e655 28sep2026 - merge qa/phase-3-rrm002 - RRM-002 CLOSED (Gate Q PASS @ 34e6fb6) → 3d2e65565d820ecc8b89bc5813959a4e324b3acd | PASS |
+| PF-03 | Baseline is an ancestor        | ok                                                                                          | PASS |
+| PF-04 | Nothing above baseline but docs| (empty)                                                                                     | PASS |
+| PF-05 | Clean tree                     | " M agent_docs/SESSIONS/session_2026-09-28.md" · "?? agent_docs/RESPONSES/response_2026-09-28_205049_session-start-protocol-ack.md" | EXCEPTION — both paths are the Engineer's own root-protocol writes (session resume, 20:50, before this prompt); zero product/pack paths. Ruling requested (plan §f C-1). |
+| PF-06 | Node / npm                     | v22.14.0 · 10.9.2                                                                           | PASS |
+| PF-07 | Dependencies installed         | node_modules present · Next.js v16.2.12 · jest 30.4.1 · tsc Version 5.5.4 · eslint v9.39.5 | PASS |
+| PF-08 | Env key names present          | 4                                                                                           | PASS |
+| PF-09 | Port free                      | 0                                                                                           | PASS |
+| PF-10 | Evidence lane writable         | ok                                                                                          | PASS |
+| PF-11 | Disk headroom                  | /dev/sda2 98G 78G 16G 84% /                                                                 | PASS (16 GB free) |
+| PF-12 | Baseline board green           | build exit 0, 17 routes · tsc exit 0 · jest 31 suites / 144 tests passed, 0 skipped         | PASS |
+| PF-13 | Standalone boots and answers   | GET / → 200 · server stopped · port count 0                                                 | PASS |
+| PF-14 | Baseline header capture        | both lines contain no-store (verbatim in S2_headers_before.txt) — BUT the chunk request returned 404: bare standalone does not serve .next/static; the no-store line is Next's own 404 header, not next.config.js | PASS (literal) · MEASUREMENT INVALID — supplementary capture PF-14b on a served 200 asset, same file. Ruling requested (plan §f C-2). |
+| PF-15 | Governing QA snapshot source   | PROVENANCE.md · QA_PLAYBOOK.md · README.md · SEARCH_RECORD.md · WEB_FACTORY_P1_DOCTRINE_JOURNAL.md | PASS |
+| PF-16 | Legacy SQL files present       | all five listed                                                                             | PASS |
+| PF-17 | No Director checkpoint mid-run | DC-1 pending — by design at P1 (this stop is DC-1)                                          | N/A at P1 (gate at P2) |
+
+Extra (not a PF row, recorded for AC-501 baseline): npx eslint . → 0 errors, 35 warnings, exit 0.
+
+Summary: 14 PASS · 1 EXCEPTION (PF-05, own protocol files) · 1 PASS-literal with invalid measurement (PF-14, superseded by PF-14b) · 1 N/A (PF-17). No environment failure.

@@ -1,0 +1,29 @@
+{
+  "ac_rows": 26,
+  "ac_ids_complete": true,
+  "statuses": {
+    "PASS": 26
+  },
+  "missing_local_evidence_references": [],
+  "head": "1a94277b73c9ee61eab1ed74991f54fcd4771afe",
+  "head_unchanged": true,
+  "git_status_short": [
+    "?? agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/AC_EVIDENCE_MATRIX.md",
+    "?? agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/ARTIFACT_INVENTORY.json",
+    "?? agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/ONE_SHOT_QA_OBSERVATIONS.md",
+    "?? agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/QA_EXECUTION_REPORT.md",
+    "?? agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/QA_TEST_PLAN.md",
+    "?? agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/"
+  ],
+  "date_checked": "2026-09-29T15:49:21+08:00",
+  "external_engineering_reference": [
+    "../evidence/PREFLIGHT_P2.txt"
+  ],
+  "end_time": "2026-09-29T21:22:04+08:00",
+  "final_browser_checks": 249,
+  "final_browser_failed_checks": 0,
+  "final_browser_screenshots": 8,
+  "raw_authenticated_traces_remaining": [],
+  "resumed_active_elapsed": "57m08s",
+  "combined_active_elapsed": "74m55s"
+}

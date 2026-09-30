@@ -1,0 +1,152 @@
+{
+  "role": "ADMIN",
+  "authorizedTarget": "main development Supabase",
+  "credentialValuesRecorded": false,
+  "authStateSaved": false,
+  "checks": [
+    {
+      "name": "role_nav_matches_ADMIN",
+      "passed": true
+    },
+    {
+      "name": "theme_light",
+      "passed": true
+    },
+    {
+      "name": "desktop_light_sortable_header_controls",
+      "passed": true,
+      "buttonCount": 10
+    },
+    {
+      "name": "desktop_light_tab_reaches_owed",
+      "passed": true,
+      "tabSteps": 30
+    },
+    {
+      "name": "desktop_light_enter_ascending",
+      "passed": true,
+      "rowCount": 25,
+      "reorderedFromInitial": true
+    },
+    {
+      "name": "desktop_light_space_descending_no_scroll",
+      "passed": true,
+      "scrollBefore": 400,
+      "scrollAfter": 400,
+      "rowCount": 25
+    },
+    {
+      "name": "desktop_light_mouse_sort",
+      "passed": true
+    },
+    {
+      "name": "desktop_light_nonsortable_no_fake_controls",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_reaches_filter_trigger",
+      "passed": true,
+      "tabSteps": 3
+    },
+    {
+      "name": "mobile_light_focus_moves_inside",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_wrap",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_shift_tab_wrap",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_0",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_1",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_2",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_3",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_4",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_5",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_6",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_7",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_8",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_9",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_10",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_11",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_12",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_13",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_14",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_15",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_16",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_17",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_18",
+      "passed": true
+    },
+    {
+      "name": "mobile_light_tab_containment_19",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "admin_desktop_light_table.png"
+  ],
+  "consoleErrorCount": 0,
+  "pageErrorCount": 0,
+  "hydrationErrorCount": 0,
+  "failedLocalRoutes": [],
+  "errorCategory": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('sidebar-drawer').getByTestId('multiselect-panel') to be visible\u001b[22m\n"
+}

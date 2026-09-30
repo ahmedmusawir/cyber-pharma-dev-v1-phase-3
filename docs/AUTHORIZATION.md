@@ -76,16 +76,16 @@ The enum values map directly to the Postgres enum values.
 
 ## Default member assignment
 
-New public signups are not manually assigned in application code.
+New users are not assigned a role in application code (public self-registration was removed in RRM-001).
 
-Instead, a **Postgres trigger** automatically inserts a `member` role row when a new auth user is created.
+For what the installed trigger actually assigns, see `agent_docs/DB_BASELINE.md` § Installed `handle_new_user`.
 
 This is the factory default behavior.
 
 ### Why this is important
 
 - role assignment is centralized in the database
-- signup route remains simple
+- auth routes stay simple
 - every new user gets a deterministic baseline role
 - no frontend role flags are required
 
@@ -174,7 +174,7 @@ That means every page under that route group inherits the same gate.
 > **Status in Cyber Pharma:** the starter kit's `POST /api/auth/superadmin-add-user`
 > route — which created users with the service-role key — was **removed in Phase 2**
 > along with the superadmin portal. Cyber Pharma's `/api/auth/*` routes are now
-> just `login`, `logout`, `signup`, and `confirm`. The principle below is retained
+> just `login`, `logout`, and `confirm` (signup removed in RRM-001). The principle below is retained
 > as doctrine for **any** future service-role operation.
 
 The pattern for any privileged, service-role-key operation is a **two-stage

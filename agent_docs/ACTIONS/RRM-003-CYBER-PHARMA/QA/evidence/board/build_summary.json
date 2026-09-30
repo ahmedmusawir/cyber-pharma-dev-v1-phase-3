@@ -1,0 +1,56 @@
+[
+  {
+    "mode": "blank",
+    "command": "./node_modules/.bin/next build",
+    "exit": 0,
+    "duration_seconds": 16.62,
+    "route_lines": [
+      "\u250c \u0192 /",
+      "\u251c \u25cb /_not-found",
+      "\u251c \u0192 /access-denied",
+      "\u251c \u0192 /admin-portal",
+      "\u251c \u0192 /admin-portal/audit",
+      "\u251c \u0192 /admin-portal/billing",
+      "\u251c \u0192 /admin-portal/settings",
+      "\u251c \u0192 /admin-portal/stores/[id]",
+      "\u251c \u0192 /admin-portal/stores/[id]/invite",
+      "\u251c \u0192 /api/auth/confirm",
+      "\u251c \u0192 /api/auth/login",
+      "\u251c \u0192 /api/auth/logout",
+      "\u251c \u25cb /auth",
+      "\u251c \u25cb /error",
+      "\u251c \u25cb /icon.png",
+      "\u251c \u0192 /owedbook",
+      "\u2514 \u0192 /profile"
+    ],
+    "route_count": 17,
+    "log": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/board/blank_build.txt"
+  },
+  {
+    "mode": "placeholder",
+    "command": "./node_modules/.bin/next build",
+    "exit": 0,
+    "duration_seconds": 16.54,
+    "route_lines": [
+      "\u250c \u0192 /",
+      "\u251c \u25cb /_not-found",
+      "\u251c \u0192 /access-denied",
+      "\u251c \u0192 /admin-portal",
+      "\u251c \u0192 /admin-portal/audit",
+      "\u251c \u0192 /admin-portal/billing",
+      "\u251c \u0192 /admin-portal/settings",
+      "\u251c \u0192 /admin-portal/stores/[id]",
+      "\u251c \u0192 /admin-portal/stores/[id]/invite",
+      "\u251c \u0192 /api/auth/confirm",
+      "\u251c \u0192 /api/auth/login",
+      "\u251c \u0192 /api/auth/logout",
+      "\u251c \u25cb /auth",
+      "\u251c \u25cb /error",
+      "\u251c \u25cb /icon.png",
+      "\u251c \u0192 /owedbook",
+      "\u2514 \u0192 /profile"
+    ],
+    "route_count": 17,
+    "log": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/board/placeholder_build.txt"
+  }
+]

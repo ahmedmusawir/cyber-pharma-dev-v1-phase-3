@@ -1,0 +1,37 @@
+{
+  "screenshots": [
+    "screenshots/admin_desktop_light_table.png",
+    "screenshots/admin_mobile_light_drawer.png",
+    "screenshots/admin_desktop_dark_table.png",
+    "screenshots/admin_mobile_dark_drawer.png",
+    "screenshots/member_desktop_light_table.png",
+    "screenshots/member_mobile_light_drawer.png",
+    "screenshots/member_desktop_dark_table.png",
+    "screenshots/member_mobile_dark_drawer.png"
+  ],
+  "traces": [
+    "traces/admin_sanitized_trace.zip",
+    "traces/member_sanitized_trace.zip"
+  ],
+  "attempt_traces_retained": [
+    "traces/admin_attempt1_sanitized_trace.zip",
+    "traces/admin_attempt2_enter_sanitized_trace.zip",
+    "traces/member_attempt1_enter_sanitized_trace.zip",
+    "traces/member_probe_attempt1_sanitized_trace.zip"
+  ],
+  "raw_authenticated_traces_remaining": [],
+  "trace_allowlist_pass": true,
+  "diagnostic_traces": [
+    "traces/member_probe_attempt1_sanitized_trace.zip",
+    "traces/member_probe_sanitized_trace.zip"
+  ],
+  "all_sanitized_traces": [
+    "traces/admin_attempt1_sanitized_trace.zip",
+    "traces/admin_attempt2_enter_sanitized_trace.zip",
+    "traces/admin_sanitized_trace.zip",
+    "traces/member_attempt1_enter_sanitized_trace.zip",
+    "traces/member_probe_attempt1_sanitized_trace.zip",
+    "traces/member_probe_sanitized_trace.zip",
+    "traces/member_sanitized_trace.zip"
+  ]
+}

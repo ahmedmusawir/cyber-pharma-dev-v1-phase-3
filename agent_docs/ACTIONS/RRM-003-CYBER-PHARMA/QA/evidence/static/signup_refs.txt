@@ -1,0 +1,18 @@
+$ rg -ni sign ?up|register docs
+exit=0
+docs/AUTHORIZATION.md:177:> just `login`, `logout`, and `confirm` (signup removed in RRM-001). The principle below is retained
+docs/AUTHENTICATION.md:57:### 1. Signup
+docs/change_logs/v0.4.0-2026-04-13.md:23:### 2. Public Signup — Name Not Saved to Database
+docs/change_logs/v0.4.0-2026-04-13.md:24:**Files:** `src/app/api/auth/signup/route.ts`, `src/components/auth/RegisterForm.tsx`
+docs/change_logs/v0.4.0-2026-04-13.md:26:- **Bug:** `supabase.auth.signUp()` was called with `options.data.name` but the DB trigger reads `full_name`. Name was silently dropped.
+docs/change_logs/v0.4.0-2026-04-13.md:28:- **Also fixed 3 copy-paste errors in RegisterForm:**
+docs/change_logs/v0.4.0-2026-04-13.md:166:    api/auth/signup/
+docs/change_logs/v0.4.0-2026-04-13.md:170:      RegisterForm.tsx                                MODIFIED — placeholder/label fixes
+docs/change_logs/v0.4.0-2026-04-13.md:193:- [ ] Sign up new user → check `profiles` table has `full_name` populated
+docs/change_logs/v0.4.1-2026-04-13.md:38:**File:** `src/components/auth/RegisterForm.tsx`
+docs/change_logs/v0.4.1-2026-04-13.md:44:**File:** `src/components/auth/RegisterForm.tsx`
+docs/change_logs/v0.4.1-2026-04-13.md:46:- **Bug:** Clicking "Signup" triggered the auth request with no visual feedback on the button.
+docs/change_logs/v0.4.1-2026-04-13.md:70:  src/components/auth/RegisterForm.tsx                            — error colors + loading state
+docs/change_logs/v0.4.1-2026-04-13.md:90:- [ ] Signup form with empty fields → red error text visible in light mode
+docs/change_logs/v0.4.1-2026-04-13.md:91:- [ ] Signup button → shows spinner while processing, disabled during request
+docs/DATABASE_SETUP.md:14:- `handle_new_user()` trigger — auto-inserts into **both** `user_roles` and `profiles` on every new signup

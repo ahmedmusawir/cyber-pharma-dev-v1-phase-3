@@ -1,0 +1,230 @@
+{
+  "candidate_head_paths": {
+    "command": [
+      "git",
+      "diff",
+      "--name-status",
+      "21ea108bb27b965ddc5edae29dc3b1d6971ae576",
+      "HEAD"
+    ],
+    "exit": 0,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/candidate_head_paths.txt",
+    "bytes": 558
+  },
+  "baseline_candidate_paths": {
+    "command": [
+      "git",
+      "diff",
+      "--name-status",
+      "3d2e65565d820ecc8b89bc5813959a4e324b3acd",
+      "21ea108bb27b965ddc5edae29dc3b1d6971ae576"
+    ],
+    "exit": 0,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/baseline_candidate_paths.txt",
+    "bytes": 4205
+  },
+  "protected_diff": {
+    "command": [
+      "git",
+      "diff",
+      "--stat",
+      "3d2e65565d820ecc8b89bc5813959a4e324b3acd",
+      "21ea108bb27b965ddc5edae29dc3b1d6971ae576",
+      "--",
+      "src/services",
+      "src/types",
+      "src/mocks",
+      "src/components/owedbook",
+      "src/app/api",
+      "src/app/(auth)",
+      "src/app/profile",
+      "src/app/owedbook",
+      "src/proxy.ts",
+      "src/utils",
+      "supabase/migrations",
+      "scripts",
+      "package.json",
+      "package-lock.json",
+      "src/components/ui"
+    ],
+    "exit": 0,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/protected_diff.txt",
+    "bytes": 0
+  },
+  "admin_diff": {
+    "command": [
+      "git",
+      "diff",
+      "3d2e65565d820ecc8b89bc5813959a4e324b3acd",
+      "21ea108bb27b965ddc5edae29dc3b1d6971ae576",
+      "--",
+      "src/app/(admin)"
+    ],
+    "exit": 0,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/admin_diff.txt",
+    "bytes": 395
+  },
+  "source_diff": {
+    "command": [
+      "git",
+      "diff",
+      "3d2e65565d820ecc8b89bc5813959a4e324b3acd",
+      "21ea108bb27b965ddc5edae29dc3b1d6971ae576",
+      "--",
+      "next.config.js",
+      "src/components/common/DataTable.tsx",
+      "src/components/common/MultiSelect.tsx",
+      "src/components/layout/AuthedShell.tsx"
+    ],
+    "exit": 0,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/source_diff.txt",
+    "bytes": 9620
+  },
+  "tests_diff": {
+    "command": [
+      "git",
+      "diff",
+      "--name-status",
+      "3d2e65565d820ecc8b89bc5813959a4e324b3acd",
+      "21ea108bb27b965ddc5edae29dc3b1d6971ae576",
+      "--",
+      "src/__tests__"
+    ],
+    "exit": 0,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/tests_diff.txt",
+    "bytes": 151
+  },
+  "docs_diff": {
+    "command": [
+      "git",
+      "diff",
+      "3d2e65565d820ecc8b89bc5813959a4e324b3acd",
+      "21ea108bb27b965ddc5edae29dc3b1d6971ae576",
+      "--",
+      "README.md",
+      "docs/TESTING.md",
+      "docs/DATABASE_SETUP.md",
+      "docs/ARCHITECTURE.md",
+      "docs/AUTHORIZATION.md",
+      "docs/PROJECT_OVERVIEW.md",
+      "docs/AUTHENTICATION.md",
+      "agent_docs/DB_BASELINE.md"
+    ],
+    "exit": 0,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/docs_diff.txt",
+    "bytes": 11410
+  },
+  "baseline_pagination_refs": {
+    "command": [
+      "git",
+      "grep",
+      "-n",
+      "PaginationControls",
+      "3d2e65565d820ecc8b89bc5813959a4e324b3acd",
+      "--",
+      "src"
+    ],
+    "exit": 0,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/baseline_pagination_refs.txt",
+    "bytes": 426
+  },
+  "current_pagination_refs": {
+    "command": [
+      "rg",
+      "-n",
+      "PaginationControls",
+      "src"
+    ],
+    "exit": 1,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/current_pagination_refs.txt",
+    "bytes": 0
+  },
+  "debug_phrase": {
+    "command": [
+      "rg",
+      "-n",
+      "This is coming from",
+      "src"
+    ],
+    "exit": 1,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/debug_phrase.txt",
+    "bytes": 0
+  },
+  "signup_refs": {
+    "command": [
+      "rg",
+      "-ni",
+      "sign ?up|register",
+      "docs"
+    ],
+    "exit": 0,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/signup_refs.txt",
+    "bytes": 1790
+  },
+  "console_log": {
+    "command": [
+      "rg",
+      "-n",
+      "console\\.log",
+      "src",
+      "-g",
+      "*.ts",
+      "-g",
+      "*.tsx",
+      "-g",
+      "!src/__tests__/**"
+    ],
+    "exit": 0,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/console_log.txt",
+    "bytes": 68
+  },
+  "owedbook_sort_diff": {
+    "command": [
+      "git",
+      "diff",
+      "3d2e65565d820ecc8b89bc5813959a4e324b3acd",
+      "21ea108bb27b965ddc5edae29dc3b1d6971ae576",
+      "--",
+      "src/components/owedbook/OwedBookScreen.tsx",
+      "src/services/owedbook.ts"
+    ],
+    "exit": 0,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/owedbook_sort_diff.txt",
+    "bytes": 0
+  },
+  "actions_diff": {
+    "command": [
+      "git",
+      "diff",
+      "3d2e65565d820ecc8b89bc5813959a4e324b3acd",
+      "21ea108bb27b965ddc5edae29dc3b1d6971ae576",
+      "--",
+      "src/utils/supabase/actions.ts"
+    ],
+    "exit": 0,
+    "output_file": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/static/actions_diff.txt",
+    "bytes": 0
+  },
+  "sql": {
+    "docs/setup.sql": {
+      "banner_exact": true,
+      "body_identical": true,
+      "baseline_bytes": 4660,
+      "candidate_bytes": 4825
+    },
+    "supabase/setup.sql": {
+      "banner_exact": true,
+      "body_identical": true,
+      "baseline_bytes": 4660,
+      "candidate_bytes": 4825
+    },
+    "docs/migration_add_profiles.sql": {
+      "banner_exact": true,
+      "body_identical": true,
+      "baseline_bytes": 4596,
+      "candidate_bytes": 4761
+    }
+  },
+  "db_baseline_append_only": true,
+  "da2_evidence_present": false
+}

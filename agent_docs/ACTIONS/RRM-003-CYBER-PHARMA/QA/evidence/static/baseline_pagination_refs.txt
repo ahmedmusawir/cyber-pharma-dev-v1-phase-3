@@ -1,0 +1,5 @@
+$ git grep -n PaginationControls 3d2e65565d820ecc8b89bc5813959a4e324b3acd -- src
+exit=0
+3d2e65565d820ecc8b89bc5813959a4e324b3acd:src/components/common/PaginationControls.tsx:8:interface PaginationControlsProps {
+3d2e65565d820ecc8b89bc5813959a4e324b3acd:src/components/common/PaginationControls.tsx:14:const PaginationControls = ({ page, totalPages, baseUrl }: PaginationControlsProps) => {
+3d2e65565d820ecc8b89bc5813959a4e324b3acd:src/components/common/PaginationControls.tsx:54:export default PaginationControls;

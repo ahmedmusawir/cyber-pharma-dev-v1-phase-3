@@ -1,0 +1,2 @@
+$ rg -n This is coming from src
+exit=1

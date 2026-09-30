@@ -1,0 +1,19 @@
+RRM-003 S2 — BEFORE capture · baseline 3d2e65565d820ecc8b89bc5813959a4e324b3acd · 2026-09-28 ~20:58 local
+Standalone build, placeholder Supabase env, PORT=36055 HOSTNAME=127.0.0.1. Server stopped after each capture; port count 0.
+
+== PF-14 (literal preflight procedure: node .next/standalone/server.js, nothing copied) ==
+curl -sI http://127.0.0.1:36055/ | grep -i cache-control
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+curl -sI http://127.0.0.1:36055/_next/static/chunks/04sa36x9-705m.js | grep -i cache-control
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+NOTE: that chunk request returned HTTP 404 (standalone output does not include .next/static). The second line is Next's 404 header, not the next.config.js header. Not a served-asset measurement.
+
+== PF-14b (supplementary: .next/static and public/ copied into .next/standalone/ — the standard standalone deploy step; build output only, gitignored) ==
+HEAD /                                   → HTTP/1.1 200 OK            · Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+HEAD /_next/static/chunks/04sa36x9-705m.js → HTTP/1.1 200 OK          · Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0   <-- the defect, measured on a served asset
+HEAD /auth                               → HTTP/1.1 200 OK            · Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+HEAD /owedbook                           → HTTP/1.1 307 → /auth       · Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+HEAD /admin-portal                       → HTTP/1.1 307 → /auth       · Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+HEAD /profile                            → HTTP/1.1 307 → /auth       · Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+HEAD /icon.png                           → HTTP/1.1 200 OK            · Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+POST /api/auth/login (empty body)        → HTTP/1.1 500               · Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0

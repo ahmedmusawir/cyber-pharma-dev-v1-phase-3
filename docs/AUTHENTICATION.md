@@ -21,7 +21,7 @@ That second question belongs to authorization and the database role model.
 The authentication system is built from four parts:
 
 - **Supabase Auth** for user identity and session issuance
-- **Next.js API routes** for login, signup, logout, and confirmation flows
+- **Next.js API routes** for login, logout, and confirmation flows
 - **`proxy.ts`** for request-time session refresh
 - **Supabase SSR clients** for server and browser contexts
 
@@ -56,33 +56,7 @@ This pair refreshes the auth session during requests before protected layouts ru
 
 ### 1. Signup
 
-> **Removed in RRM-001 (2026-09-20):** public self-registration — its API route, form and `/auth` tab — no longer exists; `/auth` is login-only. The description below is historical.
-
-The registration UI posts to:
-
-- `POST /api/auth/signup`
-
-The route calls:
-
-```ts
-supabase.auth.signUp({
-  email,
-  password,
-  options: {
-    data: {
-      name,
-    },
-  },
-})
-```
-
-After a successful signup:
-
-- Supabase creates the auth user
-- user metadata stores a display name only
-- a Postgres trigger assigns the default `member` role in `public.user_roles`
-- Next.js cache is invalidated with `revalidatePath('/', 'layout')`
-- the client calls `router.refresh()` before navigation
+> **Removed in RRM-001 (2026-09-20):** public self-registration — its API route, form and `/auth` tab — no longer exists; `/auth` is login-only.
 
 ### 2. Login
 
@@ -222,7 +196,6 @@ router.refresh()
 
 This ensures users do not need hard refreshes after:
 
-- signup
 - login
 - logout
 - role changes

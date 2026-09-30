@@ -1,0 +1,47 @@
+RRM-003-CYBER-PHARMA — ENVIRONMENT_PREFLIGHT, run P2 (gate)
+Engineer · start 2026-09-28T21:29:23+08:00 · branch phase-3-rrm003 @ 6655f95 (P1b commit)
+<baseline> = 3d2e65565d820ecc8b89bc5813959a4e324b3acd
+Rulings applied: A-01 (PF-05 literal at P2) · A-02 (.next/static + public/ copied into .next/standalone/ before PF-13/14; HTTP status recorded)
+Placeholder Supabase env only; .env.local never read; no install; no live call.
+
+| #     | Check                          | Result                                                                                         | Verdict |
+|-------|--------------------------------|------------------------------------------------------------------------------------------------|---------|
+| PF-01 | Branch                         | phase-3-rrm003                                                                                 | PASS |
+| PF-02 | Baseline identity              | 3d2e655 28sep2026 - merge qa/phase-3-rrm002 - RRM-002 CLOSED (Gate Q PASS @ 34e6fb6) → 3d2e65565d820ecc8b89bc5813959a4e324b3acd | PASS |
+| PF-03 | Baseline is an ancestor        | ok                                                                                             | PASS |
+| PF-04 | Nothing above baseline but docs| (empty)                                                                                        | PASS |
+| PF-05 | Clean tree (literal, A-01)     | (empty)                                                                                        | PASS |
+| PF-06 | Node / npm                     | v22.14.0 · 10.9.2                                                                              | PASS |
+| PF-07 | Dependencies installed         | Next.js v16.2.12 · jest 30.4.1 · tsc 5.5.4 · eslint v9.39.5 · no install                       | PASS |
+| PF-08 | Env key names present          | 4                                                                                              | PASS |
+| PF-09 | Port free                      | 0                                                                                              | PASS |
+| PF-10 | Evidence lane writable         | ok                                                                                             | PASS |
+| PF-11 | Disk headroom                  | /dev/sda2 98G 78G 16G 84% /                                                                    | PASS |
+| PF-12 | Baseline board green           | rm -rf .next · placeholder build exit 0, 17 routes · tsc exit 0 · jest 31/144 passed, 0 skipped | PASS |
+| PF-13 | Standalone boots and answers   | GET / 200 · server stopped · port 0 (A-02 copy step applied)                                   | PASS |
+| PF-14 | Baseline header capture        | / 200 no-store · chunk 200 no-store (the defect) — verbatim below                              | PASS |
+| PF-15 | Governing QA snapshot source   | PROVENANCE.md · QA_PLAYBOOK.md (+ README.md, SEARCH_RECORD.md, WEB_FACTORY_P1_DOCTRINE_JOURNAL.md) | PASS |
+| PF-16 | Legacy SQL files present       | all five present                                                                               | PASS |
+| PF-17 | No checkpoint pending mid-run  | DC-1 satisfied 2026-09-28; DC-2…DC-6 all fall after the staging block                          | PASS |
+
+Result: 17/17 PASS. S1 may begin.
+
+== PF-13/PF-14 capture (verbatim) ==
+GET / status: 200
+$ curl -sI http://127.0.0.1:36055/ | grep -iE '^HTTP|cache-control'
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+$ curl -sI http://127.0.0.1:36055/_next/static/chunks/04sa36x9-705m.js | grep -iE '^HTTP|cache-control'
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+$ curl -sI http://127.0.0.1:36055/auth | grep -iE '^HTTP|cache-control'
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+$ curl -sI http://127.0.0.1:36055/owedbook | grep -iE '^HTTP|cache-control|^location'
+HTTP/1.1 307 Temporary Redirect
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+location: /auth
+$ curl -s -o /dev/null -D - -X POST http://127.0.0.1:36055/api/auth/login | grep -iE '^HTTP|cache-control'
+HTTP/1.1 500 Internal Server Error
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+server stopped (pid 1026345); port count: 0

@@ -1,0 +1,9 @@
+command: ./node_modules/.bin/jest --ci --json --outputFile=agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/board/jest_results.json
+exit: 0
+
+Test Suites: 34 passed, 34 total
+Tests:       164 passed, 164 total
+Snapshots:   0 total
+Time:        4.868 s, estimated 6 s
+Ran all test suites.
+Test results written to: agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/board/jest_results.json

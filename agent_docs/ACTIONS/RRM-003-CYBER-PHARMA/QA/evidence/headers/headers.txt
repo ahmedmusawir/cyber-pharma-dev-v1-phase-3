@@ -1,0 +1,85 @@
+QA fresh placeholder build; static/public copied by cp -r; no credential values
+copies: [{"command": ["cp", "-r", ".next/static", ".next/standalone/.next/static"], "exit": 0, "stderr": ""}, {"command": ["cp", "-r", "public", ".next/standalone/public"], "exit": 0, "stderr": ""}]
+port: 33629
+
+$ HEAD /
+exit: 0
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+Pragma: no-cache
+Expires: 0
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+link: </_next/static/media/7c1e39d02e51fd6d-s.p.161-8jf3b5y85.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2", </brand/logo-lockup.svg>; rel=preload; as="image"
+X-Powered-By: Next.js
+Content-Type: text/html; charset=utf-8
+Date: Tue, 29 Sep 2026 07:40:02 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+$ HEAD /auth
+exit: 18
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+Pragma: no-cache
+Expires: 0
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+ETag: "pm0ioc2in0cvj"
+Content-Type: text/html; charset=utf-8
+Content-Length: 16695
+Date: Tue, 29 Sep 2026 07:40:08 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+$ HEAD /owedbook
+exit: 0
+HTTP/1.1 307 Temporary Redirect
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+Pragma: no-cache
+Expires: 0
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+link: </_next/static/media/7c1e39d02e51fd6d-s.p.161-8jf3b5y85.woff2>; rel=preload; as="font"; crossorigin=""; type="font/woff2"
+location: /auth
+X-Powered-By: Next.js
+Content-Type: text/html; charset=utf-8
+Date: Tue, 29 Sep 2026 07:40:14 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+$ POST /api/auth/login
+exit: 0
+HTTP/1.1 500 Internal Server Error
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+Pragma: no-cache
+Expires: 0
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+Date: Tue, 29 Sep 2026 07:40:20 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+
+$ HEAD /_next/static/chunks/04sa36x9-705m.js
+exit: 18
+HTTP/1.1 200 OK
+Cache-Control: public, max-age=31536000, immutable
+Accept-Ranges: bytes
+Last-Modified: Tue, 29 Sep 2026 07:40:01 GMT
+ETag: W/"821f-1a0ec1b3638"
+Content-Type: application/javascript; charset=UTF-8
+Content-Length: 33311
+Vary: Accept-Encoding
+Date: Tue, 29 Sep 2026 07:40:20 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+server exit: 143
+port closed: True

@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  type KeyboardEvent as ReactKeyboardEvent,
+} from "react";
 import { ChevronDown, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -23,6 +29,8 @@ const MultiSelect = ({
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -34,16 +42,44 @@ const MultiSelect = ({
         setOpen(false);
       }
     };
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
     document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleEscape);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
     };
   }, [open]);
+
+  // Keyboard (R-010). Escape closes the picker only and returns focus to the
+  // trigger; preventDefault + stopPropagation keep an enclosing drawer open
+  // (its handler skips defaultPrevented events, A-06). Tab wraps inside the panel.
+  const onKeyDown = (e: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (!open) return;
+    if (e.key === "Escape") {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(false);
+      triggerRef.current?.focus();
+      return;
+    }
+    if (e.key !== "Tab" || !panelRef.current) return;
+    const items = Array.from(
+      panelRef.current.querySelectorAll<HTMLElement>("input, button"),
+    ).filter((el) => el.tabIndex >= 0 && !el.hasAttribute("disabled"));
+    if (items.length === 0) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    // Always stop here so an enclosing drawer's trap never double-handles.
+    e.stopPropagation();
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    } else if (!panelRef.current.contains(document.activeElement)) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
 
   const filtered = useMemo(() => {
     if (!search) return options;
@@ -62,8 +98,9 @@ const MultiSelect = ({
   };
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className="relative" onKeyDown={onKeyDown}>
       <Button
+        ref={triggerRef}
         type="button"
         variant="outline"
         onClick={() => setOpen((s) => !s)}
@@ -81,6 +118,7 @@ const MultiSelect = ({
 
       {open && (
         <div
+          ref={panelRef}
           data-testid="multiselect-panel"
           role="listbox"
           aria-label={triggerLabel}

@@ -1,0 +1,9 @@
+▲ Next.js 16.2.12
+- Local:         http://127.0.0.1:51499
+- Network:       http://127.0.0.1:51499
+✓ Ready in 0ms
+✓ Environment validated
+⨯ SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at async C (.next/server/chunks/[root-of-the-server]__0kneulb._.js:1:1333)
+    at async l (.next/server/chunks/[root-of-the-server]__0kneulb._.js:1:5326)
