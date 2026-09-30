@@ -20,9 +20,9 @@
 
 **Status at v1.0.2 (2026-09-28).** RRM-002 CLOSED — Gate Q PASS, zero defects, zero repair rounds (QA Lead 2026-09-28) @ `34e6fb6` (evidence `cb9f7b7`); merge SHA recorded by the Director at merge. **RRM-003 pack AUTHORED (one-shot pilot) — NEXT.**
 
-**Status at v1.0.3 (2026-09-29).** RRM-003 CLOSED — Gate Q PASS, 26/26 ACs, zero repair rounds (QA Lead 2026-09-29) @ `21ea108` (QA HEAD `1a94277`); QA-F01 resolved by Director-authorized environment substitution (E-17); QA-F02 non-blocking observation → future accessibility review (E-18). RRM-002 merge recorded: `3d2e655` (closeout `9cb56e9`). Closeout commit and merge SHA recorded by the Director at merge. **RRM-004 pack authoring NEXT (Architect).**
+**Status at v1.0.3 (2026-09-29).** RRM-003 CLOSED — Gate Q PASS, 26/26 ACs, zero repair rounds (QA Lead 2026-09-29) @ `21ea108` (QA HEAD `1a94277`); QA-F01 resolved by Director-authorized environment substitution (E-17); QA-F02 non-blocking observation → future accessibility review (E-18). RRM-002 merge recorded: `3d2e655` (closeout `9cb56e9`). Closeout `7309a2f`; merged to `main` `649c36d` (recorded 2026-09-30). **RRM-004 pack authoring NEXT (Architect).**
 
-Scoreboard (Director fills at each close): RRM-001 `CLOSED — Gate Q PASS 2026-09-22 @ cad164d (evidence 9ab95e5; closeout 2ccf450; merged to main 1cd6e46)` · RRM-002 `CLOSED — Gate Q PASS 2026-09-28 @ 34e6fb6 (evidence cb9f7b7; closeout 9cb56e9; merged to main 3d2e655)` · RRM-003 `CLOSED — Gate Q PASS 2026-09-29 @ 21ea108 (QA HEAD 1a94277); closeout + merge SHA: Director` · RRM-004 `—`.
+Scoreboard (Director fills at each close): RRM-001 `CLOSED — Gate Q PASS 2026-09-22 @ cad164d (evidence 9ab95e5; closeout 2ccf450; merged to main 1cd6e46)` · RRM-002 `CLOSED — Gate Q PASS 2026-09-28 @ 34e6fb6 (evidence cb9f7b7; closeout 9cb56e9; merged to main 3d2e655)` · RRM-003 `CLOSED — Gate Q PASS 2026-09-29 @ 21ea108 (QA HEAD 1a94277; closeout 7309a2f; merged to main 649c36d)` · RRM-004 `—`.
 
 ---
 

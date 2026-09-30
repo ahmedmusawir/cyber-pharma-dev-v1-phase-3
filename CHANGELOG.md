@@ -3,6 +3,12 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-30 04:47 UTC — [CC] Claude Code
+
+- **RRM-003 / RRM-002 — SHA recording** (docs only, on `main` @ `649c36d`).
+- **Updated:** `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` (§0 v1.0.3 + scoreboard: RRM-003 closeout `7309a2f`, merge `649c36d`) · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` (R-006/010/013/014/017/018) · RRM-003 `EXECUTION_LOG.md` Closeout · RRM-002 `EXECUTION_LOG.md` Closeout + `README.md` (closeout `9cb56e9`, merge `3d2e655`) · `RECOVERY.md` · session log.
+- **Reason:** Director merged `qa/phase-3-rrm003` (2026-09-29) and pasted the merge line.
+
 ## 2026-09-29 14:35 UTC — [CC] Claude Code
 
 - **RRM-003-CYBER-PHARMA — P5 closeout** (docs and evidence only; Director-approved plan, Architect unavailable; certified candidate `21ea108bb27b965ddc5edae29dc3b1d6971ae576`, QA HEAD `1a94277`).

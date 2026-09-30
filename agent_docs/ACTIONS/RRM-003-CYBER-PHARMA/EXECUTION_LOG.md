@@ -70,8 +70,8 @@ Engineering evidence, not independent QA certification.
 | Pack commit | `a59f069` |
 | Certified candidate | `21ea108bb27b965ddc5edae29dc3b1d6971ae576` |
 | QA HEAD | `1a94277b73c9ee61eab1ed74991f54fcd4771afe` (docs-only successor; product diff empty) |
-| Closeout commit | _recorded by Director at merge_ |
-| Merge SHA | _recorded by Director at merge_ |
+| Closeout commit | `7309a2f` |
+| Merge SHA | `649c36d` (`--no-ff` merge of `qa/phase-3-rrm003` into `main`, pushed; recorded 2026-09-30) |
 | QA-F01 | RESOLVED — SCRATCH unavailable; Director-authorized main development Supabase for the login-only AC-107 walk; ledger E-17; DC-4 satisfied |
 | QA-F02 | NON-BLOCKING OBSERVATION — PBM trigger Enter does not open (Space does); not an RRM-003 defect; backlog for a future accessibility review; ledger E-18 |
 | QA cleanup (J-19) | Nothing removed. Three browser helpers (`qa_ac107.cjs`, `qa_pbm_probe.cjs`, `sanitize_trace.py`) retained by Director ruling as reproducibility / QAM learning artifacts. Inventory 76/76 resolve and hash-match; secrets scan 0. Detail: `QA/QA_CLEANUP_REPORT.md` |

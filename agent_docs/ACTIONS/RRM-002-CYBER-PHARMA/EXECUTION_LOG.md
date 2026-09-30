@@ -78,8 +78,8 @@ Engineering evidence, not independent QA certification.
 | Pack commit | `91a951e` |
 | Certified candidate | `34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731` |
 | QA evidence HEAD | `cb9f7b7e707f206f019b40c7079487888cc14d03` (docs-only successor; product diff empty) |
-| Closeout commit | _recorded by Director at merge_ |
-| Merge SHA | _recorded by Director at merge_ |
+| Closeout commit | `9cb56e9` |
+| Merge SHA | `3d2e655` (`--no-ff` merge of `qa/phase-3-rrm002` into `main`; recorded 2026-09-30) |
 | QA-F01 | CLOSED — Environment / Setup Issue (paused free replica, drifted identities); AC-304 completed on the Director-authorized base environment; ledger E-15 |
 | QA cleanup (J-19) | 18 files removed: `QA/helpers/` (16 disposable instruments) + `QA/browser_harness/` (2 generated bundle files), cited only by the pre-Gate-Q inventory. They were never committed, so a verified archive was written outside the repo before removal. 7 cited byte-duplicate screenshot pairs retained. `QA/ARTIFACT_INVENTORY.json` rebuilt (58 entries); every certificate/report/matrix/handoff citation resolves; secrets scan clean. Detail: `QA/QA_CLEANUP_REPORT.md` |
 
