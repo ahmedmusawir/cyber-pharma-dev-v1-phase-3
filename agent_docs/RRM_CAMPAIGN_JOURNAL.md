@@ -110,7 +110,16 @@
 
 ### RRM-003-CYBER-PHARMA — closed 2026-09-29 (Architect)
 
-[entry to be supplied by the Architect; not authored by another seat]
+- **Module:** RRM-003-CYBER-PHARMA — Access, Cache, Hygiene, Docs. Controlled one-shot Engineering pilot (QA Lead field note 2026-09-28).
+- **Commits:** pack `a59f069` · P1b rulings `6655f95` · candidate (single P2 commit) `21ea108bb27b965ddc5edae29dc3b1d6971ae576` · QA HEAD `1a94277` · closeout `7309a2f` · merge to `main` `649c36d` (`--no-ff`, 2026-09-29). Baseline `3d2e655` (RRM-002 merge).
+- **Verdict:** Gate Q PASS, 26/26 ACs, zero repair rounds (QA Lead, 2026-09-29).
+- **Engineering pilot metrics:** P2 wall-clock 11m54s (preflight 1m18s · S1 3m21s · S2 0m44s · S3 3m20s · handoff 2m53s) · 67 checks · 3 self-repairs, all in new test code, zero in product code · 0 Director touches between P2 start and the staging block · 0 stop conditions · preflight 17/17 PASS at P2 · 3 new suites / 20 tests (31/144 → 34/164).
+- **Rulings:** A-01…A-14 (PF-05 own-protocol files; standalone static copy; nested-Escape guard; AC-401/AC-306 overlap erratum). Ledger E-16 (OBS-1 `protectPage` → Phase 8), E-17 (QA target substitution), E-18 (QA-F02 Enter on PBM trigger → accessibility backlog).
+- **QA observations for the campaign:** QA active time 74m55s across two segments; 8 Director touches (1 environment ruling + 7 browser sign-ins) because the pack named SCRATCH accounts that did not exist; the Enter-key observation cost diagnostic reruns. Both are pack-authoring failures, not agent failures: the QA target and the test identities must be verified at authoring and declared in the checkpoints, and a known-instrument probe (Enter vs Space on native buttons) belongs in the QA preflight.
+- **Factory lesson — keep:** machine-checkable preflight as a gate; enumerated stop conditions; declared checkpoints with none inside the build; one selective staging block; the Engineer copying the governing QA snapshot with provenance.
+- **Factory lesson — change:** the QA side gets the same treatment in RRM-004 — a QA preflight that queries the accounts and the browser engine, enumerated QA stop conditions, a declared credential checkpoint with a one-sign-in-per-role target, and the plan authored by the QA seat from an Engineer-supplied manifest (the QAM pilot).
+- **Factory lesson — drop:** preflight rows that assert what the environment *should* have (PF-14's bare standalone, RRM-003 A-02) instead of measuring what it does; naming an environment in a checkpoint without verifying it exists.
+- **Closeout:** merged; RRM-004 (dependencies + QAM pilot) authored from this merge.
 
 ### RRM-003-CYBER-PHARMA — QA engagement closed 2026-09-29 (QA-logged (QA Lead))
 
@@ -118,4 +127,14 @@
 
 ### Friction log — RRM-003 (Director-observed, filed by Architect)
 
-[to be filed by the Architect; not authored by another seat]
+- 2026-09-28 — PF-05 at P1 held the Engineer's own root-protocol files; ruled A-01 (P1 exception, P2 literal).
+- 2026-09-28 — Bare `node .next/standalone/server.js` 404s `/_next/static`; the "before" capture measured Next's 404 header. Ruled A-02: copy `.next/static` and `public/` into standalone before boot; every capture records the status line.
+- 2026-09-28 — Nested Escape order held in jsdom but not in production (`document`-level listener); ruled A-06 (`if (e.defaultPrevented) return;` guard).
+- 2026-09-28 — Director's pack commit accidentally deleted `agent_docs/PHASE_2.1` and `PHASE_2.2`; restored with `git checkout 3d2e655 -- …` before P1.
+- 2026-09-28 — AC-401's preserved-path list overlapped AC-306's banner files; erratum via A-13.
+- 2026-09-28 — Staging block not run before the QA branch was cut; recovered with `git add -A` then commit on the engineering branch.
+- 2026-09-29 — QA sandbox (`bwrap`) failed before external commands; reviewed escalation worked.
+- 2026-09-29 — DC-4 named SCRATCH; no SCRATCH accounts existed. Director authorized main development Supabase, login-only (E-17); seven sign-ins across diagnosis and reruns.
+- 2026-09-29 — `curl -X HEAD` exit 18 on the header probe; corrected to `curl -I`.
+- 2026-09-29 — Enter on the focused, closed PBM trigger swallowed; Space works. Non-blocking (E-18); origin check scheduled for RRM-004 Plan Mode.
+- 2026-09-29 — Architect's service unavailable at closeout; the Director handed the QA Lead's certification to the Engineer as the closeout instruction; the Architect's journal entry lands here, in RRM-004 P0.

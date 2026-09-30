@@ -3,6 +3,12 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-30 07:18 UTC — [CC] Claude Code
+
+- **RRM-004 P0 — RRM-003 bookkeeping** (docs only, on `phase-3-rrm004`).
+- **Updated:** `agent_docs/RRM_CAMPAIGN_JOURNAL.md` (RRM-003 Architect entry + friction log, verbatim from P0; QA Lead placeholder untouched) · `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` (§0 v1.0.4 status paragraph) · `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md` (merged to main 649c36d). Scoreboard, ledger R-rows and RRM-003 EXECUTION_LOG SHAs already present since `a93393d` — no change.
+- **Reason:** Director-instructed P0 (`agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md`).
+
 ## 2026-09-30 04:47 UTC — [CC] Claude Code
 
 - **RRM-003 / RRM-002 — SHA recording** (docs only, on `main` @ `649c36d`).
