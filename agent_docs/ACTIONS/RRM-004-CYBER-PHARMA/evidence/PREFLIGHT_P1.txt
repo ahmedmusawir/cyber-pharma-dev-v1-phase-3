@@ -1,0 +1,31 @@
+# RRM-004 ENVIRONMENT_PREFLIGHT — P1 run (report, not gate)
+# Engineer · 2026-09-30 (16:00–16:10 +08:00) · branch phase-3-rrm004 @ 1eb9c04 · <baseline> = 649c36d0409c0b658cff14f779a09aad0c8e92b9
+# Values only; no secret printed. Placeholder env for build/serve.
+
+| #     | Result | Observed |
+|-------|--------|----------|
+| PF-01 | PASS | phase-3-rrm004 |
+| PF-02 | PASS | 649c36d "merge qa/phase-3-rrm003 - RRM-003 CLOSED (Gate Q PASS @ 21ea108)" → <baseline> 649c36d0409c0b658cff14f779a09aad0c8e92b9 |
+| PF-03 | PASS | ok |
+| PF-04 | PASS | empty (src/ supabase/ scripts/ public/ package.json package-lock.json next.config.js) |
+| PF-05 | PASS (P1, A-01 rule) | only ` M agent_docs/SESSIONS/session_2026-09-30.md` (Engineer's own root-protocol file); must be literally empty at P2 |
+| PF-06 | PASS | node v22.14.0 · npm 10.9.2 (≥ 20.9.0) |
+| PF-07 | PASS | Next.js v16.2.12 · jest 30.4.1 · tsc 5.5.4 · eslint v9.39.5; no install |
+| PF-08 | PASS | 4 (names only) |
+| PF-09 | PASS | free (before PF-18 and again after server stop) |
+| PF-10 | PASS | ok |
+| PF-11 | PASS | 12G free (98G disk, 88% used) |
+| PF-12 | PASS | floors: next 16.3.3 · sharp 0.35.4 · eslint-config-next 16.3.3 all print |
+| PF-13 | PASS | 200 |
+| PF-14 | PASS | linux-x64 · glibcVersionRuntime 2.39 → <platform> = linux-x64 |
+| PF-15 | PASS | node_modules/@img: sharp-linux-x64, sharp-libvips-linux-x64 present; `npm ls`: next@16.2.12 → sharp@0.35.3 overridden |
+| PF-16 | PASS (instrument corrected — see C-1) | literal command `require('@img/sharp-libvips-linux-x64/versions.json')` → ERR_PACKAGE_PATH_NOT_EXPORTED (package `exports` exposes `./versions`, not `./versions.json`). Same file via exported subpath `require('@img/sharp-libvips-linux-x64/versions')` → `1.23.1 vips=8.18.3` (package @img/sharp-libvips-linux-x64@1.3.2). Below floor 1.23.2 as expected. Recorded in evidence/S1_versions.txt BASELINE |
+| PF-17 | PASS | placeholder build exit 0, 17 routes (18s) · tsc 0 errors · jest 34 suites / 164 tests passed, 0 skipped, 0 failed |
+| PF-18 | PASS | A-02 static copy then standalone boot → `/` 200; server stopped after PF-19, port free |
+| PF-19 | PASS | evidence/S3_serve_before.txt: `/` 200 no-store · chunk 200 `public, max-age=31536000, immutable` · `/_next/image` PNG 200 `image/webp` (`public, max-age=14400, must-revalidate`) |
+| PF-20 | PASS | RRM-003 QA/GOVERNING/: PROVENANCE.md, QA_PLAYBOOK.md, README.md, SEARCH_RECORD.md, WEB_FACTORY_P1_DOCTRINE_JOURNAL.md |
+| PF-21 | N/A at P1 (by design) | DC-1 pending — it is this plan's approval; satisfied only after DD-1…DD-4 are ruled and P1b rows are on disk. Gate at P2 |
+
+Additional read-only probes at P1 (design verification for S3, not graded):
+- negative host (unlisted `example.invalid`) → `400` body `"url" parameter is not allowed` (optimizer refuses before any fetch)
+- `/_next/image` PNG body first 16 bytes: `5249 4646 2e6c 0000 5745 4250 5650 3820` = `RIFF....WEBPVP8 `

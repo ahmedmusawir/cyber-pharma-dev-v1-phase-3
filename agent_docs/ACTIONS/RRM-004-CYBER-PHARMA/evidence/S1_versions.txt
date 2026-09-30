@@ -1,0 +1,28 @@
+# RRM-004 S1 versions — BASELINE block (P1 PF-16, before any install)
+# baseline 649c36d0409c0b658cff14f779a09aad0c8e92b9 · captured 2026-09-30T16:08:42+08:00 · platform linux-x64 (glibc 2.39) · node v22.14.0 · npm 10.9.2
+## BASELINE
+$ grep -nE '"next"|"eslint-config-next"|"sharp"' package.json
+41:    "next": "^16.2.1",
+63:    "eslint-config-next": "^16.2.9",
+75:    "sharp": "^0.35.3"
+$ npm ls next sharp eslint-config-next
+cyber-pharma@0.1.0 /home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3
+├── eslint-config-next@16.2.12
+└─┬ next@16.2.12
+  └── sharp@0.35.3 overridden
+
+$ ls node_modules/@img/
+colour
+sharp-libvips-linuxmusl-x64
+sharp-libvips-linux-x64
+sharp-linuxmusl-x64
+sharp-linux-x64
+sharp-wasm32
+$ node -p "const v=require('@img/sharp-libvips-linux-x64/versions.json'); v.heif+' vips='+v.vips"   # PF-16 literal command
+Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './versions.json' is not defined by "exports" in /home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/node_modules/@img/sharp-libvips-linux-x64/package.json
+$ node -p "const v=require('@img/sharp-libvips-linux-x64/versions'); v.heif+' vips='+v.vips"   # exported subpath (exports: "./versions": "./versions.json") — proposed A-03
+1.23.1 vips=8.18.3
+$ node -p "require('@img/sharp-libvips-linux-x64/package').version"
+1.3.2
+## AFTER
+(written in P2 S1)

@@ -3,6 +3,13 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-30 08:18 UTC — [CC] Claude Code
+
+- **RRM-004 P1b** (docs only; plan approved in full).
+- **Updated:** `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RULINGS_ADDENDUM.md` (A-01 next/eslint-config-next 16.3.7 · A-02 sharp 0.35.5 · A-03 instrument subpath · A-04 negative-probe body · A-05 DD-1 sweep · A-06 DD-2 remove · A-07 DD-3 main dev login-only · A-08 DD-4 confirmed) · `ACCEPTANCE_SPEC.md` erratum lane (AC-103; AC-204/AC-604) · `DIRECTOR_CHECKPOINTS.md` (DC-1 satisfied) · `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` §9 (CE-5: DD-1 sweep supersedes §7 "not fixed here").
+- **Added (P1 evidence):** `evidence/PREFLIGHT_P1.txt`, `evidence/S1_versions.txt` (BASELINE), `evidence/S1_audit_before.json`, `evidence/S3_serve_before.txt`.
+- **Reason:** Director approval of the P1 plan and rulings DD-1…DD-4.
+
 ## 2026-09-30 07:18 UTC — [CC] Claude Code
 
 - **RRM-004 P0 — RRM-003 bookkeeping** (docs only, on `phase-3-rrm004`).
