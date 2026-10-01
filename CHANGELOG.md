@@ -3,6 +3,13 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-09-30 08:31 UTC — [CC] Claude Code
+
+- **RRM-004-CYBER-PHARMA — P2 one-shot** (Dependencies; R-009): `next` / `eslint-config-next` pinned `16.3.7`, `sharp` override `0.35.5` (A-01/A-02); DD-1 sweep → `npm audit` 0 (A-05); Cloudinary `images.remotePatterns` removed (A-06); board + served proofs green; QA handoff + QAM manifest.
+- **Updated:** `package.json`, `package-lock.json`, `next.config.js` · `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md`, `QA_HANDOFF.md`, `QA/QAM_MANIFEST.md` · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` (R-009 resolution row, awaiting Gate Q).
+- **Added:** `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/GOVERNING/` (copy of RRM-003's + `PROVENANCE.md`) · `evidence/PREFLIGHT_P2.txt`, `S1_audit_after.json`, `S1_lockfile_moves.txt`, `S2_config_diff.txt`, `S3_board.txt`, `S3_serve_after.txt`, `changed_files.txt`, `repair.diff` (`S1_versions.txt` AFTER block, `S3_serve_before.txt` re-captured).
+- **Reason:** Director-approved P1 plan and rulings A-01…A-08; P2 prompt.
+
 ## 2026-09-30 08:18 UTC — [CC] Claude Code
 
 - **RRM-004 P1b** (docs only; plan approved in full).

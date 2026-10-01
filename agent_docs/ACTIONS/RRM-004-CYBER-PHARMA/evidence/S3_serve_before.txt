@@ -1,4 +1,4 @@
-# RRM-004 S3 served proofs — BEFORE (baseline 649c36d0409c0b658cff14f779a09aad0c8e92b9, next 16.2.12, sharp 0.35.3), captured 2026-09-30T16:04:51+08:00 at P1 PF-19
+# RRM-004 S3 served proofs — BEFORE (baseline 649c36d0409c0b658cff14f779a09aad0c8e92b9, next 16.2.12, sharp 0.35.3), re-captured 2026-09-30T16:21:29+08:00 at P2 PF-19 on the untouched tree (P1 capture 2026-09-30T16:04:51+08:00 superseded)
 ## curl -sI http://127.0.0.1:36055/
 HTTP/1.1 200 OK
 Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0

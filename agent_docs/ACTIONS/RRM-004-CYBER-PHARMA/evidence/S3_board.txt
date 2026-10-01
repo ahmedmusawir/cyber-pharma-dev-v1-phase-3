@@ -1,0 +1,78 @@
+# RRM-004 S3 board — final dependency set (next 16.3.7 / sharp 0.35.5 / sweep) + final config (images removed) · captured 2026-09-30T16:28:14+08:00 · v22.14.0 · linux-x64
+
+## AC-301 blank-env build: rm -rf .next && env NEXT_PUBLIC_SUPABASE_URL= NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY= SUPABASE_SECRET_KEY= NEXT_PUBLIC_SITE_URL= npx next build
+blank build exit 0
+▲ Next.js 16.3.7 (Turbopack)
+✓ Compiled successfully in 11.0s
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /access-denied
+├ ƒ /admin-portal
+├ ƒ /admin-portal/audit
+├ ƒ /admin-portal/billing
+├ ƒ /admin-portal/settings
+├ ƒ /admin-portal/stores/[id]
+├ ƒ /admin-portal/stores/[id]/invite
+├ ƒ /api/auth/confirm
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ○ /auth
+├ ○ /error
+├ ○ /icon.png
+├ ƒ /owedbook
+└ ƒ /profile
+ƒ Proxy (Middleware)
+
+## AC-301 placeholder-env build: rm -rf .next && env NEXT_PUBLIC_SUPABASE_URL=https://placeholder.invalid NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=placeholder-publishable SUPABASE_SECRET_KEY=placeholder-secret NEXT_PUBLIC_SITE_URL=http://127.0.0.1:36055 npx next build
+placeholder build exit 0
+route count: 17
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /access-denied
+├ ƒ /admin-portal
+├ ƒ /admin-portal/audit
+├ ƒ /admin-portal/billing
+├ ƒ /admin-portal/settings
+├ ƒ /admin-portal/stores/[id]
+├ ƒ /admin-portal/stores/[id]/invite
+├ ƒ /api/auth/confirm
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ○ /auth
+├ ○ /error
+├ ○ /icon.png
+├ ƒ /owedbook
+└ ƒ /profile
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+## AC-302 npx tsc --noEmit
+tsc exit 0 lines 0
+## AC-302 npx eslint .
+eslint exit 0
+✖ 35 problems (0 errors, 35 warnings)
+## AC-302 npx jest --ci
+jest exit 0
+Test Suites: 34 passed, 34 total
+Tests:       164 passed, 164 total
+Snapshots:   0 total
+skipped: 0
+
+$ git diff --stat 649c36d0409c0b658cff14f779a09aad0c8e92b9 -- src/__tests__
+(end; empty = no output)
+$ git diff --stat 649c36d0409c0b658cff14f779a09aad0c8e92b9 -- src
+(end; empty = no output)
+$ git diff --stat 649c36d0409c0b658cff14f779a09aad0c8e92b9 -- README.md docs/TESTING.md
+(end; empty = no output)
+$ git diff --stat 649c36d0409c0b658cff14f779a09aad0c8e92b9 -- src supabase scripts docs public README.md tsconfig.json jest.config.js eslint.config.mjs tailwind.config.ts postcss.config.js .gitignore   # AC-401
+(end; empty)
+$ grep -nE 'tests|suites' README.md docs/TESTING.md | grep -E '164|34'   # AC-304 counts
+README.md:8:![Tests](https://img.shields.io/badge/Jest-164%20passed%20%2F%2034%20suites-success?style=flat-square&logo=jest&logoColor=white)
+README.md:134:| `npm test`                  | Jest suite (164 tests / 34 suites)    |
+docs/TESTING.md:10:> **Current inventory: 34 test suites, 164 passing tests** (run `npm test`).
