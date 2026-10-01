@@ -27,7 +27,7 @@ This file is what the QA Executor drafts `QAM_TEST_PLAN.md` *from* in Q1, togeth
 5. `npm audit` depends on the registry at run time. An advisory published after the candidate is recorded with its date and classified, not failed.
 6. The negative host probe passes only on `400` **and** the body `"url" parameter is not allowed` (A-04); a `400` for any other reason is not attributable.
 7. Expected images per route come from source (`src/components/global/Navbar*.tsx`, `src/app/(public)/HomePageContent.tsx`), never from the manifest.
-8. One sign-in per role. The env file makes a second one a finding about the driver, not the product.
+8. One sign-in per role per phase — Q1 (QF-16 login/logout) and Q2 (the walk), counted separately (A-13 d). The env file makes an extra one a finding about the driver, not the product.
 9. RRM-003's retained driver (`agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/QA/evidence/browser/qa_ac107.cjs`) is a starting point for `AUTOMATION/`, not a requirement; its Enter/Space probe is now QF-10.
 
 ## §C — QA Lead module-specific requirements (fill or strike at ratification)

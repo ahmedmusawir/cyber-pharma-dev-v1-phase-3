@@ -1,6 +1,6 @@
 # QAM Manifest — RRM-004-CYBER-PHARMA
 
-**Author:** Engineer, at handoff (end of P2) · **Date:** 2026-09-30T16:31:11+08:00 · **Nature:** facts and labeled claims. **This file contains no test plan, no risk ranking, no attack order and no expected value other than the Engineer's own measurements, each marked CLAIM.** The QA Lead's `QA_TEST_PLAN.md` decides what is attacked, in what order, and what "correct" means.
+**Author:** Engineer, at handoff (end of P2) · **Date:** 2026-09-30T16:31:11+08:00 · **Nature:** facts and labeled claims. **This file contains no test plan, no risk ranking, no attack order and no expected value other than the Engineer's own measurements, each marked CLAIM.** `QAM_TEST_PLAN.md` decides what is attacked, in what order, and what "correct" means; it is drafted by the QA Executor in Q1 and approved by the QA Lead (A-11). **P2b update 2026-10-01:** candidate and documentation HEAD recorded in §1; §7 paths moved to `QAM/` (A-09).
 
 ## 1. Identity
 
@@ -9,9 +9,10 @@
 | Module | RRM-004-CYBER-PHARMA — Dependencies |
 | Repo | `cyber-pharma-dev-v1-phase-3` |
 | Code baseline | `649c36d0409c0b658cff14f779a09aad0c8e92b9` (RRM-003 `--no-ff` merge on `main`) |
-| Candidate | the Director's single P2 commit — SHA recorded by the Director at DC-2/DC-3 (not known to the Engineer at handoff) |
+| Candidate | `2fbc72f1f514049255f2b94054bd11cc77cbd158` — the Director's single P2 commit (DC-2, 2026-10-01). Verified at P2b: ancestor of HEAD; candidate→HEAD diff touches only `agent_docs/**` |
+| Documentation HEAD at P2b | `2080c690f1fe9174df8c41520846d5a974d5d81c` (QAM v1.1 overlay, docs only). The P2b errata commit follows it (docs only); the QA branch is cut from that. The Executor pins its own QA HEAD at QF-01 |
 | Engineering branch / QA branch | `phase-3-rrm004` / `qa/phase-3-rrm004` |
-| Provenance chain | RRM-003 merge `649c36d` → SHA-recording `a93393d` → pack commit `d3ea7f7` → P0 `ee4a049` (+ `1eb9c04`, same message; RESPONSES archive move) → P1b `fe74dd9` → candidate |
+| Provenance chain | RRM-003 merge `649c36d` → SHA-recording `a93393d` → pack commit `d3ea7f7` → P0 `ee4a049` (+ `1eb9c04`, same message; RESPONSES archive move) → P1b `fe74dd9` → candidate `2fbc72f` → QAM v1.1 overlay `2080c69` (docs) → P2b errata (docs) |
 | Targets (addendum A-01/A-02) | next `16.3.7` · eslint-config-next `16.3.7` · sharp override `0.35.5` |
 | Director rulings applied | DD-1 `sweep` (A-05) · DD-2 `remove` (A-06) · DD-3 `main development Supabase, login-only, existing ADMIN and MEMBER accounts` (A-07) · DD-4 `confirmed` (A-08) |
 | Engineer platform (PF-14) | `linux-x64` (glibc 2.39); Node `v22.14.0`; npm `10.9.2` |
@@ -28,7 +29,7 @@
 | `package-lock.json` | M | 59 entries moved; families: `next`, `@next/env`, `@next/eslint-plugin-next`, `@next/swc-*`, `eslint-config-next`, `sharp`, `@img/*`, `@emnapi/runtime`, `@swc/helpers` (41) · DD-1: `brace-expansion`, `js-yaml`, `baseline-browser-mapping`, `browserslist`, `caniuse-lite`, `electron-to-chromium`, `node-releases`, `update-browserslist-db`, `postcss-selector-parser` (18); outside-family: none (`../evidence/S1_lockfile_moves.txt`) |
 | `next.config.js` | M | `images` block removed per DD-2 = remove; `headers()` untouched |
 
-Diff command: `git diff 649c36d0409c0b658cff14f779a09aad0c8e92b9..<candidate> -- package.json package-lock.json next.config.js` (= `../evidence/repair.diff`). Everything else: `git diff --name-only 649c36d0409c0b658cff14f779a09aad0c8e92b9..<candidate>` lists only the above plus `agent_docs/**` and root-protocol files (`CHANGELOG.md`).
+Diff command: `git diff 649c36d0409c0b658cff14f779a09aad0c8e92b9..2fbc72f1f514049255f2b94054bd11cc77cbd158 -- package.json package-lock.json next.config.js` (= `../evidence/repair.diff`). Everything else: `git diff --name-only 649c36d0409c0b658cff14f779a09aad0c8e92b9..2fbc72f1f514049255f2b94054bd11cc77cbd158` lists only the above plus `agent_docs/**` and root-protocol files (`CHANGELOG.md`).
 
 ## 4. Reproduction (facts — exact commands, no interpretation)
 
@@ -77,7 +78,7 @@ Placeholder env only; no live Supabase call in any of the above. `.env.local` is
 
 ## 7. Evidence schema the Executor fills
 
-`QA/evidence/QA_PREFLIGHT.txt` · `QA/evidence/deps/` (npm ls, audit json, versions.json read, platform) · `QA/evidence/board/` (both builds, tsc, eslint, jest json + totals, versions) · `QA/evidence/headers/` · `QA/evidence/images/` (probe headers, hex dump, negative host, direct GETs) · `QA/evidence/browser/` (readiness, per-role matrices, cropped screenshots, sanitized traces, server shutdown) · `QA/evidence/privacy_audit.json` · `QA/evidence/entry_gate.json` · `QA/evidence/static/` (diffs vs baseline, changed paths).
+`QAM/evidence/QAM_PREFLIGHT_Q1.txt` · `QAM/evidence/QAM_PREFLIGHT_Q2.txt` · `QAM/evidence/entry_gate.json` · `QAM/evidence/deps/` (npm ls, audit json, versions read per A-03, platform) · `QAM/evidence/board/` (both builds, tsc, eslint, jest json + totals, versions) · `QAM/evidence/headers/` · `QAM/evidence/images/` (probe headers, hex dump, negative host with body per A-04, direct GETs) · `QAM/evidence/browser/` (readiness, per-role matrices, cropped screenshots, sanitized traces, server shutdown) · `QAM/evidence/static/` (diffs vs baseline, changed paths) · `QAM/evidence/privacy_audit.json` · helpers in `QAM/AUTOMATION/`. File names per `QAM/QAM_PROMPTS.md` Q1/Q2/Q5 and A-13 (g).
 
 ## 8. Governing snapshot
 

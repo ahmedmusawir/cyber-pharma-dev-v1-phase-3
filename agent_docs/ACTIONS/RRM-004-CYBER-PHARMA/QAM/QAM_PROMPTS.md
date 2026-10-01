@@ -19,13 +19,13 @@ Then add erratum-lane rows to ACCEPTANCE_SPEC.md for AC-605 (login via env-file 
 
 ## Q1 — Recon + plan draft (one stop)
 
-QA EXECUTOR — RRM-004-CYBER-PHARMA QAM, Q1. Read agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_ENTRY.md, then AGENTS.md. Record `date -Is`. Writes: QAM/evidence/QAM_PREFLIGHT_Q1.txt, QAM/evidence/entry_gate.json, QAM/AUTOMATION/qf16_auth_probe.cjs and privacy_scan.cjs, QAM/QAM_TEST_PLAN.md (draft), your recon report in agent_docs/RESPONSES/ (root CLAUDE.md protocol), your session log.
+QA EXECUTOR — RRM-004-CYBER-PHARMA QAM, Q1. Read agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_ENTRY.md, then AGENTS.md. Record `date -Is`. Work from the repository root (`export QAM=agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM`). Writes: QAM/evidence/QAM_PREFLIGHT_Q1.txt, QAM/evidence/entry_gate.json, QAM/AUTOMATION/qf16_auth_probe.cjs and privacy_scan.cjs, QAM/QAM_TEST_PLAN.md (draft), your recon report in agent_docs/RESPONSES/ (root CLAUDE.md protocol), your session log.
 
-1. Run QAM_PREFLIGHT.md QF-01…QF-18 in order; write the table with results. Any FAIL: stop with its Q-number (QF-13…QF-16 → Q8) — no plan on a failed preflight.
+1. Run QAM_PREFLIGHT.md QF-01…QF-18 in **file order** (repository → evidence lane → approved environment and credentials → toolchain and port → browser → privacy → QF-16 authentication last, with its own `npm ci` and build). Write `privacy_scan.cjs` and `qf16_auth_probe.cjs` before the rows that call them. Write the table with results. Any FAIL: stop with its Q-number (QF-13…QF-16 → Q8). No plan is drafted on a failed preflight.
 2. Read: ../CLAUDE.md, ../ACCEPTANCE_SPEC.md + ../RULINGS_ADDENDUM.md (all rows incl. A-09…A-12 and the erratum lane), QAM_PILOT_CHARTER.md, QAM_RISK_REQUIREMENTS.md, QAM_MANIFEST.md, ../QA_HANDOFF.md, GOVERNING/. Engineer output is claims.
 3. Draft QAM/QAM_TEST_PLAN.md with the header `Drafted by: QA Executor (Q1), <date -Is> · Approved by: <QA Lead, pending>` and these sections: entry and stop gates · risk ranking with the requirement each attack satisfies (§A/§B/§C of QAM_RISK_REQUIREMENTS.md by number) · independent execution per AC group with the derivation rule for every reference value · negative controls · the deliberate instrument attack · the authenticated image walk (roles × viewports × theme per §C; login via env-file identities, one sign-in per role, logout, trace after login) · evidence and status rules · pilot-process rows (AC-700) recorded separately · retest rule.
 4. Contradiction report: anything where the manifest, the spec, the rulings or the disk disagree, with path:line and the ruling you would need. Anything the plan cannot grade without a ruling → ADJUDICATE row now, not in Q2.
-5. Return: preflight summary, the plan draft on screen, the contradiction report, the QF-16 result (role labels only), `git status --short` (only your files dirty; HEAD unchanged). Stop. Await the QA Lead's amendments and approval (Q1b).
+5. Return: preflight summary, the plan draft on screen, the contradiction report, the QF-16 result (role labels only; Q1 sign-ins ADMIN 1 / MEMBER 1), `git status --short` (only your files dirty; HEAD unchanged). Stop. Await the QA Lead's amendments and approval (Q1b). You do not mark the plan approved.
 
 ---
 
@@ -42,10 +42,10 @@ AMENDMENTS: <QA Lead supplies>
 QA EXECUTOR — RRM-004-CYBER-PHARMA QAM, Q2. Tree is clean; plan APPROVED on disk; QC-2 satisfied. One continuous session; stop only on an enumerated Q-stop in AGENTS.md. No Director touch is expected until you return. Record `date -Is`.
 
 1. Entry gate → QAM/evidence/entry_gate.json (branch, HEAD, porcelain, candidate ancestry, docs-only successor diff).
-2. Rerun QAM_PREFLIGHT.md → QAM/evidence/QAM_PREFLIGHT_Q2.txt. Any FAIL → stop.
+2. Rerun QAM_PREFLIGHT.md in file order → QAM/evidence/QAM_PREFLIGHT_Q2.txt, every row except QF-16. Record `QF-16 covered-by-walk (A-13 d)`; step 5 is Q2's authentication evidence. Any FAIL → stop.
 3. `rm -rf node_modules && npm ci`; record `date -Is`, `node -v`, platform → QAM/evidence/deps/. `npm ls next sharp eslint-config-next`, `npm audit --json`, the A-03 instrument read on your platform, `ls node_modules/@img/`.
 4. Execute QAM_TEST_PLAN.md in its approved risk order: blank-env and placeholder-env builds (route table quoted), tsc, eslint, jest --ci with --json totals → QAM/evidence/board/; A-02 static copy, serve on <qa-port>, header pair + negative controls → QAM/evidence/headers/; `/_next/image` probe with hex dump, negative host probe with body (A-04), direct image GETs → QAM/evidence/images/; diffs vs baseline and changed paths → QAM/evidence/static/; the deliberate instrument attack with its recorded non-zero failure.
-5. Authenticated image walk: build with the app's `.env.local` (the A-07 target), serve, then `node --env-file=.env.qa.local QAM/AUTOMATION/<walk driver>.cjs <ROLE>` per role — login through the form, the plan's matrix, per-route `<img>` `complete && naturalWidth > 0`, zero failed image requests, zero console errors, expected inventory from source, logout, session gone. Trace starts after login; sanitized traces and cropped screenshots only → QAM/evidence/browser/. Stop the server; port free.
+5. Authenticated image walk: build with the app's `.env.local` (the A-07 target), serve, then `node --env-file=.env.qa.local QAM/AUTOMATION/<walk driver>.cjs <ROLE>` per role — one sign-in per role (counted as Q2 sign-ins, separate from Q1's QF-16), login through the form, the plan's matrix, per-route `<img>` `complete && naturalWidth > 0`, zero failed image requests, zero console errors, expected inventory from source, logout, session gone. Trace starts after login; sanitized traces and cropped screenshots only → QAM/evidence/browser/. Stop the server; port free.
 6. Write AC_EVIDENCE_MATRIX.md (every AC-100…700 row), QAM_EXECUTION_REPORT.md, ARTIFACT_INVENTORY.json, QAM_PILOT_RESULTS.md §1–§3. Any product FAIL → REPAIR_PROPOSAL.md from the template (a proposal, not a work order).
 7. Recheck HEAD and `git status --short` (HEAD unchanged; only your files dirty; no `.env.qa.local`, no `node_modules`, no `.next` in the list). `date -Is`.
 
@@ -61,12 +61,29 @@ QA EXECUTOR — Q4, retest round <N> on qa/phase-3-rrm004. HEAD has moved by the
 
 ## Q5 — Cleanup and closeout (runs pass or fail; certification is blocked until this is clean)
 
-QA EXECUTOR — Q5. Record `date -Is`. Order matters: the value scan needs the env file; the deletions come after it; the pattern scan proves the deletions.
+QA EXECUTOR — Q5. Record `date -Is`. Work from the repository root (`$QAM` as in QAM_PREFLIGHT.md). The order matters (A-13 f):
+- The value scan needs the env file, so it runs first.
+- The env file and auth state are deleted after it, then the removal is verified.
+- The pattern scan of the retained evidence runs last.
 
-1. **Value scan (env file still present):** `node --env-file=.env.qa.local QAM/AUTOMATION/privacy_scan.cjs --values` — loads the four credential values from `process.env`, keeps only their SHA-256 in memory, scans QAM/**, agent_docs/RESPONSES/<your files> and your session log for each plaintext and its base64. Result → QAM/evidence/privacy_audit.json (hit counts and paths only; never a value or a hash). Any hit → remove the offending content, rerun; a hit you cannot remove without losing evidence → stop Q6 and the QA Lead rules; the certification is blocked until this reads 0.
-2. **Delete the env file:** `rm -f .env.qa.local && test ! -e .env.qa.local && echo env-gone` → `env-gone`; `git status --porcelain -- .env.qa.local` → empty (never tracked). Record in QAM_CLEANUP_REPORT.md with `date -Is`.
-3. **Delete browser auth state:** `find QAM -iname '*storage*state*' -o -iname '*.har' -o -iname 'auth*.json' -o -iname '*cookies*' | grep -v /raw/` → delete each; delete any Playwright user-data directories you created (record their paths); rerun QF-18 → `leftover-exit=1`. Record in QAM_CLEANUP_REPORT.md.
-4. **Pattern scan (env file gone):** `node QAM/AUTOMATION/privacy_scan.cjs --patterns` — `password=`, `storageState`, `sb-.*-auth-token`, JWT-shaped strings, Supabase key prefixes, and any `QA_(ADMIN|MEMBER)_` key name followed by a value. Append to privacy_audit.json. Must read 0.
+A leak is a credential, token or env value, or its encoding. A key name or a word such as "password" in documentation is a **documentation mention**: list it with path:line, but it is not a leak (A-13 e).
+
+1. **Value scan, then sanitize (env file still present):** `node --env-file=.env.qa.local $QAM/AUTOMATION/privacy_scan.cjs --values`. The scanner:
+   - loads the four credential values from `process.env` and keeps only their SHA-256 in memory;
+   - scans `$QAM/**` (raw-artifact directories included), agent_docs/RESPONSES/<your files>, your session log, and every temp path you recorded;
+   - looks for each value in plaintext, base64, base64url and URL-encoded form.
+
+   Result → QAM/evidence/privacy_audit.json (counts and paths only; never a value or a hash). For any hit: record it as a leak, remove or sanitize the offending content, record the resolution, and rerun until it reads 0. A hit you cannot remove without losing evidence → stop Q6, and the QA Lead rules. Certification is blocked until this reads 0 leaks. Any detected leak also triggers QC-5 rotation.
+2. **Delete the env file and verify:** `rm -f .env.qa.local && test ! -e .env.qa.local && echo env-gone` → `env-gone`; `git status --porcelain -- .env.qa.local` → empty (never tracked). Record in QAM_CLEANUP_REPORT.md with `date -Is`.
+3. **Delete all QA-created auth state and browser profiles, then verify:** run the QF-18 `find` (raw-artifact directories included) and delete each result. Also delete every temporary browser profile or user-data directory you created, inside or outside the repo (OS temp included), using the paths you recorded. Rerun QF-18 → `leftover-exit=1`, and `test ! -e` each recorded profile path. Record every deleted path in QAM_CLEANUP_REPORT.md.
+4. **Pattern scan of the retained evidence (env file gone):** `node $QAM/AUTOMATION/privacy_scan.cjs --patterns`. It looks for:
+   - `password=` or any `QA_(ADMIN|MEMBER)_` key followed by a non-placeholder value;
+   - `storageState` content;
+   - `sb-.*-auth-token` cookies;
+   - JWT-shaped strings;
+   - Supabase key prefixes.
+
+   Classify each hit as leak or documentation mention, and append to privacy_audit.json. Leaks must read 0, with any leak and its resolution recorded; documentation mentions are listed with path:line.
 5. J-19 bounded cleanup per GOVERNING/: nothing outside your lane; build output and transient server assets out of the inventory; every retained helper listed with the reason to keep it.
 6. ARTIFACT_INVENTORY.json final (paths, sizes, SHA-256); QAM_PILOT_RESULTS.md §1–§3 final (wall-clock Q1/Q2/Q5, Executor active time, Director touches by class, stops, preflight failures, findings by class, repair rounds, helpers written/promoted/retained, evidence count, privacy hits).
-7. Recheck HEAD and `git status --short`; `date -Is`. Return to the QA Lead with the cleanup report and results. The QA Lead certifies only after reading the matrix, the evidence map and this cleanup report — and only if privacy_audit.json reads 0 in both modes.
+7. Recheck HEAD and `git status --short`; `date -Is`. Return to the QA Lead with the cleanup report and results. The QA Lead certifies only after reading the matrix, the evidence map and this cleanup report — and only if privacy_audit.json reads 0 leaks in both modes (documentation mentions are listed, not counted).

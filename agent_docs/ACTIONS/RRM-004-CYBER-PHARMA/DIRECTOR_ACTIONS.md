@@ -75,7 +75,7 @@ git push -u origin qa/phase-3-rrm004
 ```
 Then hand the QA Lead this letter:
 
-> QA LEAD — RRM-004-CYBER-PHARMA is on `qa/phase-3-rrm004`; candidate `<sha from DC-2>`, baseline the RRM-003 merge `649c36d`. This is the QAM pilot at v1.1 under your rulings of 2026-09-30. The Engineer's factual half is `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_MANIFEST.md` and `QA_HANDOFF.md`; the contract is `ACCEPTANCE_SPEC.md` with `RULINGS_ADDENDUM.md` A-01…A-12 and the erratum lane. Before I start the Executor: (1) fill §C of `QAM/QAM_RISK_REQUIREMENTS.md` (or strike it) and add your ratification line; (2) ratify or amend `QAM/AGENTS.md`, `QAM/QAM_PILOT_CHARTER.md`, `QAM/QAM_PREFLIGHT.md` (the "Ratified by" line in each). Return the four files and I commit them. Cody drafts the plan in Q1 and stops; you amend and approve; then Q2 runs with no touch from me. Gate Q on AC-100…600; pilot verdict on AC-700 in `QAM/QAM_PILOT_RESULTS.md`, separately.
+> QA LEAD — RRM-004-CYBER-PHARMA is on `qa/phase-3-rrm004`; candidate `<sha from DC-2>`, baseline the RRM-003 merge `649c36d`. This is the QAM pilot at v1.1 under your rulings of 2026-09-30. The Engineer's factual half is `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_MANIFEST.md` and `QA_HANDOFF.md`; the contract is `ACCEPTANCE_SPEC.md` with `RULINGS_ADDENDUM.md` A-01…A-13 and the erratum lane. Before I start the Executor: (1) fill §C of `QAM/QAM_RISK_REQUIREMENTS.md` (or strike it) and add your ratification line; (2) ratify or amend `QAM/AGENTS.md`, `QAM/QAM_PILOT_CHARTER.md`, `QAM/QAM_PREFLIGHT.md` (the "Ratified by" line in each). Return the four files and I commit them. Cody drafts the plan in Q1 and stops; you amend and approve; then Q2 runs with no touch from me. Gate Q on AC-100…600; pilot verdict on AC-700 in `QAM/QAM_PILOT_RESULTS.md`, separately.
 
 When the QA Lead returns the four files:
 
@@ -93,6 +93,8 @@ git push
 ```
 
 ## QC-1 — Credentials and the Q1 command
+
+Step 0 — attest the target: confirm the app's `.env.local` points at the main development Supabase project, i.e. `QAM/QAM_PREFLIGHT.md` QF-15's fingerprint `8ca83fc75bdf9fbc` is that project. It must be recorded as `Director attestation:` in QF-15 before the Q1 command (A-13 b).
 
 Step 1 — create `.env.qa.local` at the repo root with exactly these five lines (your values; dedicated QA identities on the main development Supabase per A-07; never a personal login):
 ```
@@ -154,7 +156,7 @@ When Q5 returns:
 ```
 test ! -e .env.qa.local && echo env-gone
 ```
-Must print `env-gone`. Read `QAM/QAM_CLEANUP_REPORT.md` and `QAM/evidence/privacy_audit.json` (both modes must read 0). Then:
+Must print `env-gone`. Read `QAM/QAM_CLEANUP_REPORT.md` and `QAM/evidence/privacy_audit.json` (0 leaks in both modes; any leak recorded with its resolution). Then:
 
 Step 1:
 ```

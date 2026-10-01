@@ -14,7 +14,7 @@ Two verdicts, never mixed:
 
 | Verdict | Criteria | Issued by | Recorded in |
 |---|---|---|---|
-| **Gate Q** (product) | `ACCEPTANCE_SPEC.md` AC-100…AC-600 | QA Lead | `QA_CERTIFICATION.md` |
+| **Gate Q** (product) | `ACCEPTANCE_SPEC.md` AC-100…AC-600 | QA Lead | `QAM_CERTIFICATION.md` |
 | **Pilot verdict** (process) | AC-700 + the metrics below | QA Lead (metrics by the Executor; Director acknowledges at DC-7) | `QAM_PILOT_RESULTS.md` |
 
 A clean product with a messy pilot is a Gate Q PASS with lessons. A perfect pilot on a failing product is a Gate Q FAIL. The pilot never rescues or blocks the product.
@@ -46,11 +46,12 @@ When a product AC fails, the Executor **drafts** `REPAIR_PROPOSAL.md`: finding I
 | Repair rounds | 0 | 0 | |
 | Helpers promoted / retained | 0 | 3 retained by Director ruling | |
 | Evidence files | — | 76 | |
-| Sign-ins per role | — | ADMIN 3, MEMBER 4 (Director at keyboard) | target 1 / 1, automated from `.env.qa.local`; Director types nothing |
+| Sign-ins per role, by phase | — | ADMIN 3, MEMBER 4 (Director at keyboard) | Q1 (QF-16 login/logout) target 1 / 1 · Q2 (walk) target 1 / 1 — automated from `.env.qa.local` (A-13 d) |
+| Director credential entries during execution | — | 7 | target 0 |
 
 ## Pilot success (process)
 
-The pilot **succeeds** if: Q2 ran from one command to the return with zero unenumerated stops and zero Director touches; every preflight row was measured before the body, at Q1 and Q2; the plan was drafted by the Executor and approved by the QA Lead after handoff; one automated sign-in per role; `.env.qa.local` and all auth state deleted with proof; both privacy scans clean; the QA Lead certified from the matrix, the evidence map and the cleanup report. It **partially succeeds** if a Q-stop occurred, was logged with its number, and was resumed without a manual matrix. It **fails** if the Executor edited anything outside its lane, self-certified, or needed an unenumerated Director instruction to proceed — and that failure is written down as the lesson, not hidden.
+The pilot **succeeds** if: Q2 ran from one command to the return with zero unenumerated stops and zero Director touches; every preflight row was measured before the body, at Q1 and Q2; the plan was drafted by the Executor and approved by the QA Lead after handoff; one automated sign-in per role per phase (Q1 QF-16, Q2 walk), zero Director credential entries; the scanner caught its planted secret and passed its clean control; `.env.qa.local`, all auth state and temporary browser profiles deleted with proof; both privacy scans at 0 leaks, any leak recorded with its resolution; the QA Lead certified from the matrix, the evidence map and the cleanup report. It **partially succeeds** if a Q-stop occurred, was logged with its number, and was resumed without a manual matrix. It **fails** if the Executor edited anything outside its lane, self-certified, or needed an unenumerated Director instruction to proceed — and that failure is written down as the lesson, not hidden.
 
 ## Export
 

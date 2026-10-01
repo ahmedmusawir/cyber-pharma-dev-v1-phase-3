@@ -3,6 +3,19 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-10-01 06:29 UTC — [CC] Claude Code
+
+- **RRM-004-CYBER-PHARMA — P2b** (docs only): QAM v1.1 errata A-09…A-12 as prescribed, plus A-13 (QA Lead corrections). Erratum rows added for AC-605/606/702/703/705/708/709/710. DC-2 satisfied (candidate `2fbc72f`); DC-4/DC-5 superseded by QC-1…QC-5. Manifest records the candidate and the docs HEAD separately, with §7 paths moved to `QAM/`.
+- **Updated:** `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/` `RULINGS_ADDENDUM.md`, `ACCEPTANCE_SPEC.md` (erratum lane only), `DIRECTOR_CHECKPOINTS.md` (status cells), `DIRECTOR_ACTIONS.md` (A-13 in the letter, QC-1 Step 0 attestation, QC-4 leak wording) · `QAM/QAM_PREFLIGHT.md`:
+  - reordered: repository → lane → environment → tools → browser → privacy → auth;
+  - repo-root working directory, with `$QAM` for the pack path;
+  - five-key validator;
+  - target fingerprint check;
+  - planted-secret self-test;
+  - QF-16 is Q1-only and runs its own `npm ci`.
+- **Updated (QAM):** `QAM_PROMPTS.md` Q1/Q2/Q5, `AGENTS.md`, `QAM_CHECKPOINTS.md`, `QAM_PILOT_CHARTER.md`, `QAM_PILOT_RESULTS.md`, `QAM_EXECUTION_REPORT.md`, `QAM_RISK_REQUIREMENTS.md` §B-8, `QAM_TEST_PLAN.md` (required-sections list), `README.md`, `QAM_MANIFEST.md`.
+- **Reason:** Director's P2b instruction with the QA Lead's corrections, before DC-3.
+
 ## 2026-09-30 08:31 UTC — [CC] Claude Code
 
 - **RRM-004-CYBER-PHARMA — P2 one-shot** (Dependencies; R-009): `next` / `eslint-config-next` pinned `16.3.7`, `sharp` override `0.35.5` (A-01/A-02); DD-1 sweep → `npm audit` 0 (A-05); Cloudinary `images.remotePatterns` removed (A-06); board + served proofs green; QA handoff + QAM manifest.

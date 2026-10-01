@@ -21,7 +21,9 @@ Executor fills §1–§3 at the end of the run; QA Lead fills §4; Director fill
 |---|---|---|---|
 | Wall-clock | two-part run | 74m55s active, two segments | |
 | Director touches inside Q2 (classified) | credentials only | 8 (1 ruling, 7 sign-ins) | target 0 |
-| Sign-ins per role (automated) | — | ADMIN 3, MEMBER 4 (human) | target 1 / 1 |
+| Sign-ins per role — Q1 (QF-16) | — | — | target 1 / 1 |
+| Sign-ins per role — Q2 (walk) | — | ADMIN 3, MEMBER 4 (human) | target 1 / 1 |
+| Director credential entries during execution | credentials only | 7 | target 0 |
 | Interruptions (Q-stops) | 1 environment | 1 environment | |
 | Preflight failures | no preflight | discovered late | |
 | Unenumerated stops | — | — | |
@@ -29,8 +31,10 @@ Executor fills §1–§3 at the end of the run; QA Lead fills §4; Director fill
 | Repair rounds | 0 | 0 | |
 | Helpers written / promoted / retained | — | 3 retained | |
 | Evidence files | — | 76 | |
-| Privacy scan hits (value mode / pattern mode) | 0 | 0 | |
-| Env file + auth state deleted with proof | n/a | n/a | |
+| Privacy scanner self-test (planted secret detected / clean control) | — | — | |
+| Privacy scan leaks (value mode / pattern mode) · documentation mentions listed | 0 | 0 | |
+| Leaks detected and resolution | — | — | |
+| Env file + auth state + temporary browser profiles deleted with proof | n/a | n/a | |
 
 ## 3. Executor observations (process only)
 

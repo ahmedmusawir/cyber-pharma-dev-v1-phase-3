@@ -11,7 +11,7 @@ Start: `QAM_ENTRY.md`. Law: `AGENTS.md`. Prompts: `QAM_PROMPTS.md`. Director's t
 | `QAM_ENTRY.md` — model-neutral starting point | Architect | pack (v1.1 overlay) |
 | `AGENTS.md` — the Executor's operating law | Architect v1.1 → **QA Lead ratifies** | before QC-1 |
 | `QAM_PILOT_CHARTER.md` — what the pilot measures | Architect → QA Lead ratifies | before QC-1 |
-| `QAM_PREFLIGHT.md` — QF-01…QF-18, a gate | Architect → QA Lead ratifies | before QC-1; Executor runs it first in Q1 and again in Q2 |
+| `QAM_PREFLIGHT.md` — QF-01…QF-18, a gate | Architect → QA Lead ratifies | before QC-1; Executor runs it first in Q1 (all rows) and again in Q2 (all except QF-16) |
 | `QAM_RISK_REQUIREMENTS.md` — the QA Lead's standing and module-specific requirements | Architect carried §A/§B; **QA Lead fills §C and ratifies** | before QC-1 |
 | `QAM_PROMPTS.md` — P2b · Q1 · Q1b · Q2 · Q4 · Q5 | Architect | pack |
 | `QAM_CHECKPOINTS.md` — QC-1…QC-5 and the commands | Architect | pack |
@@ -25,7 +25,7 @@ Whoever built the candidate does not write the plan that tests it. The Engineer'
 
 ## Credentials in one paragraph (Ruling 4, addendum A-10)
 
-Root `.env.qa.local` — five keys, dedicated QA identities, created by the Director at QC-1, proven Git-ignored and key-counted by QF-13/QF-14, loaded only through `node --env-file`, authenticated once per role in QF-16, never printed or retained, value-scanned at Q5 step 1, deleted with proof at Q5 step 2 together with any browser auth state, pattern-scanned at Q5 step 4. Certification is blocked on any hit. Rotation is the Director's (QC-5).
+Root `.env.qa.local` — exactly five unique, nonempty keys, dedicated QA identities on the main development Supabase (target fingerprint attested at QC-1, checked by QF-15), created by the Director at QC-1, proven Git-ignored, untracked and key-validated by QF-13/QF-14, loaded only through `node --env-file`, login/logout proven once per role in Q1 (QF-16) and signed in once per role in the Q2 walk, never printed or retained, value-scanned at Q5 step 1, deleted with proof at Q5 steps 2–3 together with all auth state and temporary browser profiles, pattern-scanned at Q5 step 4. The scanner must catch a planted secret first (QF-17). Certification is blocked on any leak; documentation mentions of key names are listed, not counted (A-13). Rotation is the Director's (QC-5).
 
 ## Architect risk notes
 
