@@ -3,6 +3,12 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-10-01 06:57 UTC — [CC] Claude Code
+
+- **RRM-004-CYBER-PHARMA — QAM ratification amendments** (docs only): A-14 and an AC-703 erratum (install order). The QA-owned `npm ci` now runs before QF-08/09/10 and Q2 has no second install. The privacy scanner holds values in memory only; editor swap/backup files are reported, never read or auto-deleted. Target authority is the Director's existing `.env.local` approval, so the attestation step is removed. Node env-file parsing; explicit build/serve and static copy; `$QAM/AUTOMATION` paths; RESPONSES permission and Q1b ownership; §C C1–C6; QA Lead ratification line in 4 files. The test plan is not approved.
+- **Updated:** `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/` `RULINGS_ADDENDUM.md`, `ACCEPTANCE_SPEC.md` (erratum lane), `DIRECTOR_ACTIONS.md` · `QAM/` `QAM_PREFLIGHT.md`, `AGENTS.md`, `QAM_PROMPTS.md`, `QAM_RISK_REQUIREMENTS.md`, `QAM_PILOT_CHARTER.md`, `QAM_CHECKPOINTS.md`, `QAM_ENTRY.md`, `README.md`.
+- **Reason:** QA Lead review of `RRM004_QAM_RATIFICATION_REVIEW.zip` at `3a2ed29`, relayed by the Director.
+
 ## 2026-10-01 06:29 UTC — [CC] Claude Code
 
 - **RRM-004-CYBER-PHARMA — P2b** (docs only): QAM v1.1 errata A-09…A-12 as prescribed, plus A-13 (QA Lead corrections). Erratum rows added for AC-605/606/702/703/705/708/709/710. DC-2 satisfied (candidate `2fbc72f`); DC-4/DC-5 superseded by QC-1…QC-5. Manifest records the candidate and the docs HEAD separately, with §7 paths moved to `QAM/`.

@@ -1,6 +1,6 @@
 # QAM Pilot Charter — RRM-004-CYBER-PHARMA
 
-**Version:** v1.1, 2026-09-30 — Architect, from the QA Lead's pilot plan v0.1, the Architect's QAM opinion (2026-09-29) and the QA Lead's rulings of 2026-09-30 · **Ratified by the QA Lead:** <date, position> · **Frozen at:** the Director's Q1 command (QC-1).
+**Version:** v1.1, 2026-09-30 — Architect, from the QA Lead's pilot plan v0.1, the Architect's QAM opinion (2026-09-29) and the QA Lead's rulings of 2026-09-30 · **Ratified by: QA Lead, 2026-10-01 — approved for Q1 recon and plan drafting with A-14 applied. Q2 requires separate QA Lead approval of the recon-informed test plan.** · **Frozen at:** the Director's Q1 command (QC-1).
 
 ## What the pilot is
 

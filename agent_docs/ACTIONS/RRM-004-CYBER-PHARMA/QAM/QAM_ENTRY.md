@@ -8,7 +8,7 @@
 | QAM version | v1.1 (2026-09-30; QAM pilot per the QA Lead's rulings of 2026-09-30) |
 | Candidate | `QAM_MANIFEST.md` §1 (filled by the Engineer at handoff) |
 | Branch | `qa/phase-3-rrm004` |
-| Your lane | `QAM/evidence/`, `QAM/AUTOMATION/`, and the output files named in `README.md` — nothing else |
+| Your lane | `QAM/evidence/`, `QAM/AUTOMATION/`, the output files named in `README.md`, your phase reports `agent_docs/RESPONSES/response_<YYYY-MM-DD>_<HHMMSS>_rrm004-qam-<phase>-….md` (Q1: `…-q1-recon.md`) and your own session log — nothing else (AGENTS.md, A-14) |
 | Your entry points | **Q1** recon + plan draft (one stop) → QA Lead approval → **Q1b** apply amendments (docs-only) → **Q2** one-shot QA body → **Q5** cleanup and closeout. **Q4** only on an approved retest after a repair |
 | Credentials | `.env.qa.local` at repo root, created by the Director before Q1; you read it only through `node --env-file`; you never print, copy or retain a value; you delete it at Q5 |
 | Stops | Q1–Q8 in `AGENTS.md`; on any of them, save, log, wait |

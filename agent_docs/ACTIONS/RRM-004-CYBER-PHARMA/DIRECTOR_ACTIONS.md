@@ -94,7 +94,7 @@ git push
 
 ## QC-1 — Credentials and the Q1 command
 
-Step 0 — attest the target: confirm the app's `.env.local` points at the main development Supabase project, i.e. `QAM/QAM_PREFLIGHT.md` QF-15's fingerprint `8ca83fc75bdf9fbc` is that project. It must be recorded as `Director attestation:` in QF-15 before the Q1 command (A-13 b).
+Target: nothing to attest. Your existing approval of the root `.env.local` as main dev is the authority for QF-15's fingerprint `8ca83fc75bdf9fbc` (A-14).
 
 Step 1 — create `.env.qa.local` at the repo root with exactly these five lines (your values; dedicated QA identities on the main development Supabase per A-07; never a personal login):
 ```
@@ -108,7 +108,7 @@ Step 2 — prove Git does not see it:
 ```
 git status --porcelain
 ```
-Must print nothing (`.env*.local` is in `.gitignore`; if this prints the file, stop and tell the Architect).
+Must print nothing (`.env*.local` is in `.gitignore`; if this prints the file, stop and tell the Architect). Close the editor first: a swap/backup file such as `.env.qa.local.swp` or `.env.qa.local~` is **not** ignored. Never `git add -A` / `git add .` while one exists.
 
 Step 3 — note the time:
 ```
