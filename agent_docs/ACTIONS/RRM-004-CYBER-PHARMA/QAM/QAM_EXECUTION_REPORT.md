@@ -6,7 +6,7 @@ Executor: <position> · Start / end (`date -Is`): <…> / <…> · Candidate: `<
 <branch, HEAD, porcelain, ancestry, docs-only successor diff — with commands and exits>
 
 ## Preflight (QF-01…QF-14)
-<PASS count; any exception; `QA/evidence/QA_PREFLIGHT.txt`>
+<PASS count; any exception; `QAM/evidence/QA_PREFLIGHT.txt`>
 
 ## What was executed, in plan order
 <per plan section: commands, exits, derived reference values and their derivation, result>

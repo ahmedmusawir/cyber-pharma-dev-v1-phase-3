@@ -1,6 +1,6 @@
 # QAM Pilot Charter — RRM-004-CYBER-PHARMA
 
-**Version:** v0.1 Architect draft, 2026-09-30, from the QA Lead's pilot plan v0.1 and the Architect's QAM opinion (2026-09-29) · **Ratified by the QA Lead:** <date, position> · **Frozen at:** DC-4.
+**Version:** v1.1, 2026-09-30 — Architect, from the QA Lead's pilot plan v0.1, the Architect's QAM opinion (2026-09-29) and the QA Lead's rulings of 2026-09-30 · **Ratified by the QA Lead:** <date, position> · **Frozen at:** the Director's Q1 command (QC-1).
 
 ## What the pilot is
 
@@ -19,13 +19,13 @@ Two verdicts, never mixed:
 
 A clean product with a messy pilot is a Gate Q PASS with lessons. A perfect pilot on a failing product is a Gate Q FAIL. The pilot never rescues or blocks the product.
 
-## Authorship split (DD-4)
+## Authorship split (DD-4, Rulings 2 and 3)
 
 | Half | Content | Author |
 |---|---|---|
 | **Manifest** (facts) | candidate identity, baseline, branch, provenance; reproduction (install, build, serve, exact probe lines); changed-file inventory and product diff; environment (services, ports, identities and roles required, tools); the Engineer's measurements **labeled as claims**; evidence schema | Engineer, at handoff |
-| **Plan** (judgment) | risk ranking — what to attack first; how to attack it; negative controls — what must still be true; reference values derived independently and the derivation rule; the instrument to corrupt deliberately; finding classification rules | QA Lead (or a QA-seat agent under the QA Lead), after DC-3 |
-| **Law** (static) | `AGENTS.md` seat boundaries, order of work, Q-stops, evidence rules | Architect draft; QA Lead ratifies |
+| **Plan** (judgment) | risk ranking — what to attack first; how to attack it; negative controls — what must still be true; reference values derived independently and the derivation rule; the instrument to corrupt deliberately; finding classification rules | **QA Executor drafts in Q1** from the frozen spec, `QAM_RISK_REQUIREMENTS.md`, the manifest and recon; **QA Lead amends and approves** before Q2 (Ruling 2). The QA Lead's standing requirements travel in the QAM so the Director installs no second QA file |
+| **Law** (static) | `QAM_ENTRY.md` (model-neutral start), `AGENTS.md` (seat boundaries, phases, Q-stops, evidence rules), `QAM_PREFLIGHT.md`, `QAM_CHECKPOINTS.md` | Architect from the rulings; QA Lead ratifies. Cody is a persistent seat with a swappable model, so his law is `AGENTS.md`, never `CLAUDE.md` (Ruling 3) |
 
 The Executor consumes all three and writes only evidence, reports, proposals and metrics.
 
@@ -37,21 +37,21 @@ When a product AC fails, the Executor **drafts** `REPAIR_PROPOSAL.md`: finding I
 
 | Metric | RRM-002 QA | RRM-003 QA | RRM-004 QAM |
 |---|---|---|---|
-| Wall-clock, DC-4 command → Executor return | two-part run (replica pause) | 74m55s active over two segments | |
+| Wall-clock, Q2 command → Executor return (Q1 and Q5 recorded separately) | two-part run (replica pause) | 74m55s active over two segments | |
 | Executor active time | — | 74m55s | |
-| Director active time / touches | credentials only | 8 touches (1 ruling, 7 sign-ins) | target ≤ 3 (2 sign-ins + 0–1) |
-| Interruptions (stops) | 1 environment (QA-F01) | 1 environment (QA-F01, SCRATCH absent) | target 0 |
-| Preflight failures | no preflight | entry gate only; SCRATCH readiness discovered late | target 0 (QF gate) |
+| Director active time / touches | credentials only | 8 touches (1 ruling, 7 sign-ins) | target: QC-1 env file + Q1/Q2/Q5 commands only; **0 inside Q2** |
+| Interruptions (stops) | 1 environment (QA-F01) | 1 environment (QA-F01, SCRATCH absent) | target 0 (Q1 recon is a planned stop, not an interruption) |
+| Preflight failures | no preflight | entry gate only; SCRATCH readiness discovered late | target 0 (QF-01…QF-18 gate incl. credential rows) |
 | Product findings by class | 0 defects | 0 defects; 1 non-blocking observation (QA-F02) | |
 | Repair rounds | 0 | 0 | |
 | Helpers promoted / retained | 0 | 3 retained by Director ruling | |
 | Evidence files | — | 76 | |
-| Sign-ins per role | — | ADMIN 3, MEMBER 4 | target 1 / 1 |
+| Sign-ins per role | — | ADMIN 3, MEMBER 4 (Director at keyboard) | target 1 / 1, automated from `.env.qa.local`; Director types nothing |
 
 ## Pilot success (process)
 
-The pilot **succeeds** if: the Executor ran from one command to the return with zero unenumerated stops; every preflight row was measured before the body; the plan was authored by the QA seat after handoff; Director touches ≤ 3 with ≤ 1 sign-in per role; the privacy scan is clean; the QA Lead certified from the matrix and evidence map. It **partially succeeds** if a Q-stop occurred, was logged with its number, and was resumed without a manual matrix. It **fails** if the Executor edited anything outside its lane, self-certified, or needed an unenumerated Director instruction to proceed — and that failure is written down as the lesson, not hidden.
+The pilot **succeeds** if: Q2 ran from one command to the return with zero unenumerated stops and zero Director touches; every preflight row was measured before the body, at Q1 and Q2; the plan was drafted by the Executor and approved by the QA Lead after handoff; one automated sign-in per role; `.env.qa.local` and all auth state deleted with proof; both privacy scans clean; the QA Lead certified from the matrix, the evidence map and the cleanup report. It **partially succeeds** if a Q-stop occurred, was logged with its number, and was resumed without a manual matrix. It **fails** if the Executor edited anything outside its lane, self-certified, or needed an unenumerated Director instruction to proceed — and that failure is written down as the lesson, not hidden.
 
 ## Export
 
-`QAM_PILOT_RESULTS.md` is the 10X Lab export. The Director rules at DC-7 whether the QAM shape is adopted, amended or dropped for BIM-004 and the next campaign.
+`QAM_PILOT_RESULTS.md` is the 10X Lab export. This is an experimental pilot: nothing in it is promoted into production QA doctrine until it is measured and reviewed. The Director rules at DC-7 whether the QAM shape is adopted, amended or dropped for BIM-004 and the next campaign.
