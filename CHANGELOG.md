@@ -3,6 +3,12 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-10-01 10:41 UTC — [CC] Claude Code
+
+- **RRM-004-CYBER-PHARMA — Q1-C01 / AC-403** (docs only, `qa/phase-3-rrm004`): A-15 records a narrow AC-403 exception for five already-authorized historical hunks (`a93393d`, `ee4a049`) and the 12 byte-identical `_OLD/` moves (`1eb9c04`, J-09). An AC-403 erratum row cites A-15. The frozen criterion, baseline and candidate are unchanged.
+- **Updated:** `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RULINGS_ADDENDUM.md` (+A-15), `ACCEPTANCE_SPEC.md` (erratum lane).
+- **Reason:** QA Lead disposition of the Q1 contradiction Q1-C01, relayed by the Director.
+
 ## 2026-10-01 06:57 UTC — [CC] Claude Code
 
 - **RRM-004-CYBER-PHARMA — QAM ratification amendments** (docs only): A-14 and an AC-703 erratum (install order). The QA-owned `npm ci` now runs before QF-08/09/10 and Q2 has no second install. The privacy scanner holds values in memory only; editor swap/backup files are reported, never read or auto-deleted. Target authority is the Director's existing `.env.local` approval, so the attestation step is removed. Node env-file parsing; explicit build/serve and static copy; `$QAM/AUTOMATION` paths; RESPONSES permission and Q1b ownership; §C C1–C6; QA Lead ratification line in 4 files. The test plan is not approved.

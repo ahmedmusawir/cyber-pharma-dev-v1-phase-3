@@ -1,0 +1,427 @@
+{
+  "history": [
+    {
+      "mode": "values",
+      "files_or_archive_entries": 28,
+      "leaks": 0,
+      "hits": [],
+      "documentation_mentions": []
+    },
+    {
+      "mode": "patterns",
+      "files_or_archive_entries": 29,
+      "leaks": 1,
+      "hits": [
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md",
+          "line": 7,
+          "count": 1
+        }
+      ],
+      "documentation_mentions": [
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md",
+          "line": 16
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 10
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 84
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 86
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 88
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 92
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 93
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+          "line": 24
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+          "line": 25
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+          "line": 27
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md",
+          "line": 11
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_RESULTS.md",
+          "line": 60
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md",
+          "line": 47
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md",
+          "line": 134
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 12
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 75
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 91
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 92
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 93
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 94
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_PREFLIGHT_Q1.txt",
+          "line": 93
+        }
+      ]
+    },
+    {
+      "mode": "patterns",
+      "files_or_archive_entries": 29,
+      "leaks": 0,
+      "hits": [],
+      "documentation_mentions": [
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md",
+          "line": 16
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 10
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 84
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 86
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 88
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 92
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 93
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+          "line": 24
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+          "line": 25
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+          "line": 27
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md",
+          "line": 7
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md",
+          "line": 11
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_RESULTS.md",
+          "line": 60
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md",
+          "line": 47
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md",
+          "line": 134
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 12
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 75
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 91
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 92
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 93
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 94
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_PREFLIGHT_Q1.txt",
+          "line": 93
+        }
+      ]
+    },
+    {
+      "mode": "values",
+      "files_or_archive_entries": 31,
+      "leaks": 0,
+      "hits": [],
+      "documentation_mentions": []
+    },
+    {
+      "mode": "patterns",
+      "files_or_archive_entries": 31,
+      "leaks": 0,
+      "hits": [],
+      "documentation_mentions": [
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md",
+          "line": 16
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 10
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 84
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 86
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 88
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 92
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+          "line": 93
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+          "line": 24
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+          "line": 25
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+          "line": 27
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md",
+          "line": 7
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md",
+          "line": 11
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_RESULTS.md",
+          "line": 60
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md",
+          "line": 47
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md",
+          "line": 134
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 12
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 75
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 91
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 92
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 93
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+          "line": 94
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_TEST_PLAN.md",
+          "line": 71
+        },
+        {
+          "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_PREFLIGHT_Q1.txt",
+          "line": 93
+        }
+      ]
+    }
+  ],
+  "values": {
+    "files_or_archive_entries": 31,
+    "leaks": 0,
+    "hits": [],
+    "documentation_mentions": []
+  },
+  "patterns": {
+    "files_or_archive_entries": 31,
+    "leaks": 0,
+    "hits": [],
+    "documentation_mentions": [
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md",
+        "line": 16
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+        "line": 10
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+        "line": 84
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+        "line": 86
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+        "line": 88
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+        "line": 92
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+        "line": 93
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+        "line": 24
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+        "line": 25
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+        "line": 27
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md",
+        "line": 7
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md",
+        "line": 11
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_RESULTS.md",
+        "line": 60
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md",
+        "line": 47
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md",
+        "line": 134
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+        "line": 12
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+        "line": 75
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+        "line": 91
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+        "line": 92
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+        "line": 93
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+        "line": 94
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_TEST_PLAN.md",
+        "line": 71
+      },
+      {
+        "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_PREFLIGHT_Q1.txt",
+        "line": 93
+      }
+    ]
+  },
+  "resolutions": [
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md",
+      "line": 7,
+      "classification": "documentation mention",
+      "reported_pattern_hits": 1,
+      "actual_credential_leaks": 0,
+      "resolution": "SR-03: all four assignment values were literal ellipsis placeholders; classify as documentation, not a leak (A-13 e). No matched value emitted."
+    }
+  ]
+}

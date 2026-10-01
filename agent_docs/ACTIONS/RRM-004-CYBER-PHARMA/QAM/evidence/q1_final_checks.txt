@@ -1,0 +1,59 @@
+$ git rev-parse HEAD
+exit=0
+5362b79ca724e454011e77aeaf4b11101176d0b5
+
+$ git status --short
+exit=0
+ M agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_EXECUTION_REPORT.md
+ M agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_TEST_PLAN.md
+?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/
+?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/
+?? agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q1.md
+
+$ git diff --stat -- src package.json package-lock.json next.config.js
+exit=0
+
+$ find agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM \( -iname "*storage*state*" -o -iname "*.har" -o -iname "auth*.json" -o -iname "*cookies*" -o -type d \( -iname "*profile*" -o -iname "*user-data*" \) \) -print | grep . ; echo "leftover-exit=$?"
+exit=0
+leftover-exit=1
+
+$ ls -a | grep -E '^\.?\.env\.qa\.local(\.sw[a-p]|~|\.bak|\.orig)$|^#\.env\.qa\.local#$' ; echo "editor-exit=$?"
+exit=0
+editor-exit=1
+
+$ node -e "const fs=require('fs'); const paths=require('./agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/temp_paths.json'); console.log('recorded-temp-paths='+paths.length+' remaining='+paths.filter(p=>fs.existsSync(p)).length)"
+exit=0
+recorded-temp-paths=2 remaining=0
+
+$ date -Is
+exit=0
+2026-10-01T13:47:55+06:00
+
+$ node --env-file=.env.qa.local agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs --values
+exit=0
+values leaks=0 documentation-mentions=0
+
+$ node agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs --patterns
+exit=0
+patterns leaks=0 documentation-mentions=23
+
+$ git diff --check
+exit=0
+
+$ git rev-parse HEAD
+exit=0
+5362b79ca724e454011e77aeaf4b11101176d0b5
+
+$ git status --short
+exit=0
+ M agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_EXECUTION_REPORT.md
+ M agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_TEST_PLAN.md
+?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/
+?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/
+?? agent_docs/RESPONSES/response_2026-10-01_134927_rrm004-qam-q1-recon.md
+?? agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q1.md
+
+$ date -Is
+exit=0
+2026-10-01T13:49:27+06:00
+

@@ -1,0 +1,55 @@
+{
+  "phase": "Q1",
+  "started_at": "2026-10-01T13:30:33+06:00",
+  "branch": "qa/phase-3-rrm004",
+  "head_start": "5362b79ca724e454011e77aeaf4b11101176d0b5",
+  "candidate": "2fbc72f1f514049255f2b94054bd11cc77cbd158",
+  "porcelain_start": "",
+  "candidate_ancestral": true,
+  "successor_docs_only": true,
+  "disk_free_bytes": 10411847680,
+  "records": [
+    {
+      "row": "QF-01",
+      "command": "git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && git status --porcelain",
+      "exit_code": 0,
+      "output": "qa/phase-3-rrm004\n5362b79ca724e454011e77aeaf4b11101176d0b5\n"
+    },
+    {
+      "row": "QF-02",
+      "command": "git merge-base --is-ancestor 2fbc72f1f514049255f2b94054bd11cc77cbd158 HEAD && echo ok",
+      "exit_code": 0,
+      "output": "ok\n"
+    },
+    {
+      "row": "QF-03",
+      "command": "git diff --stat 2fbc72f1f514049255f2b94054bd11cc77cbd158..HEAD -- src/ package.json package-lock.json next.config.js supabase/ scripts/",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "row": "QF-03 supplement",
+      "command": "git diff --name-only 2fbc72f1f514049255f2b94054bd11cc77cbd158..HEAD",
+      "exit_code": 0,
+      "output": "CHANGELOG.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/ACCEPTANCE_SPEC.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/DIRECTOR_ACTIONS.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/DIRECTOR_CHECKPOINTS.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/AGENTS.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QA_ENVIRONMENT_PREFLIGHT.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QA_TEST_PLAN.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/README.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AC_EVIDENCE_MATRIX.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/PROVENANCE.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/QA_PLAYBOOK.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/README.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/SEARCH_RECORD.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/WEB_FACTORY_P1_DOCTRINE_JOURNAL.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_ENTRY.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_EXECUTION_REPORT.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_MANIFEST.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_CHARTER.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_RESULTS.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_RISK_REQUIREMENTS.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_TEST_PLAN.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/README.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/REPAIR_PROPOSAL.md.template\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/README.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RULINGS_ADDENDUM.md\nagent_docs/RESPONSES/response_2026-10-01_123008_rrm004-p2b-errata.md\nagent_docs/RESPONSES/response_2026-10-01_125800_rrm004-qam-ratification.md\nagent_docs/SESSIONS/session_2026-10-01.md\n"
+    },
+    {
+      "row": "QF-04",
+      "command": "ls agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_ENTRY.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_CHARTER.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_RISK_REQUIREMENTS.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_MANIFEST.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/PROVENANCE.md",
+      "exit_code": 0,
+      "output": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/PROVENANCE.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_ENTRY.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_MANIFEST.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_CHARTER.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_RISK_REQUIREMENTS.md\n"
+    },
+    {
+      "row": "QF-04 manifest and ratification",
+      "command": "python3 -c 'from pathlib import Path; import re; q=Path(\"agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM\"); m=(q/\"QAM_MANIFEST.md\").read_text(); sections=[re.search(r\"(?ms)^## \"+str(n)+r\"\\..*?(?=^## |\\Z)\",m).group() for n in [1,3,6]]; placeholders=sum(len(re.findall(r\"<[^>]+>\",s)) for s in sections); files=[\"AGENTS.md\",\"QAM_PREFLIGHT.md\",\"QAM_PILOT_CHARTER.md\",\"QAM_RISK_REQUIREMENTS.md\"]; ratified=sum(\"Ratified by: QA Lead, 2026-10-01\" in (q/f).read_text() for f in files); print(f\"manifest-field-placeholders={placeholders} ratified={ratified}/4\"); raise SystemExit(0 if placeholders==0 and ratified==4 else 1)'",
+      "exit_code": 0,
+      "output": "manifest-field-placeholders=0 ratified=4/4\n"
+    },
+    {
+      "row": "QF-12",
+      "command": "mkdir -p agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION && touch agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/.w && rm agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/.w && echo ok && df -h . | tail -1",
+      "exit_code": 0,
+      "output": "ok\n/dev/sda2        98G   84G  9.7G  90% /\n"
+    }
+  ]
+}

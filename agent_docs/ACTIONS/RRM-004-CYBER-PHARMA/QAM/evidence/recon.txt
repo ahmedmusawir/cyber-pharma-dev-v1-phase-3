@@ -1,0 +1,596 @@
+$ git show -s --format='%H%n%aI%n%cI%n%s' 2fbc72f1f514049255f2b94054bd11cc77cbd158
+exit=0
+2fbc72f1f514049255f2b94054bd11cc77cbd158
+2026-10-01T10:38:13+08:00
+2026-10-01T10:38:13+08:00
+30sep2026 - RRM-004 one-shot: next 16.3.7 / sharp 0.35.5 (R-009), images per   DD-2, board + served proofs, QA handoff + QAM manifest
+
+$ git diff --name-status 649c36d0409c0b658cff14f779a09aad0c8e92b9..HEAD
+exit=0
+M	CHANGELOG.md
+M	RECOVERY.md
+M	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md
+M	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/README.md
+M	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md
+M	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/ACCEPTANCE_SPEC.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/AUTHORITY_POINTER.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDE.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/DIRECTOR_ACTIONS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/DIRECTOR_CHECKPOINTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/ENVIRONMENT_PREFLIGHT.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AC_EVIDENCE_MATRIX.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/PROVENANCE.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/QA_PLAYBOOK.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/README.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/SEARCH_RECORD.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/WEB_FACTORY_P1_DOCTRINE_JOURNAL.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_ENTRY.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_EXECUTION_REPORT.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_MANIFEST.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_CHARTER.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_RESULTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_RISK_REQUIREMENTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_TEST_PLAN.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/README.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/REPAIR_PROPOSAL.md.template
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA_HANDOFF.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/README.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RRM_BRIEF.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RULINGS_ADDENDUM.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P1.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/README.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_audit_after.json
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_audit_before.json
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_lockfile_moves.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S2_config_diff.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S3_board.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S3_serve_after.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S3_serve_before.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/changed_files.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/repair.diff
+R100	agent_docs/RESPONSES/response_2026-09-28_205049_session-start-protocol-ack.md	agent_docs/RESPONSES/_OLD/response_2026-09-28_205049_session-start-protocol-ack.md
+R100	agent_docs/RESPONSES/response_2026-09-28_210200_rrm003-p1-plan.md	agent_docs/RESPONSES/_OLD/response_2026-09-28_210200_rrm003-p1-plan.md
+R100	agent_docs/RESPONSES/response_2026-09-28_212503_rrm003-p1b-rulings.md	agent_docs/RESPONSES/_OLD/response_2026-09-28_212503_rrm003-p1b-rulings.md
+R100	agent_docs/RESPONSES/response_2026-09-28_214117_rrm003-p2-completion.md	agent_docs/RESPONSES/_OLD/response_2026-09-28_214117_rrm003-p2-completion.md
+R100	agent_docs/RESPONSES/response_2026-09-29_141122_rrm003-a13-sha-fill.md	agent_docs/RESPONSES/_OLD/response_2026-09-29_141122_rrm003-a13-sha-fill.md
+R100	agent_docs/RESPONSES/response_2026-09-29_144307_rrm003-qa-entry-sync.md	agent_docs/RESPONSES/_OLD/response_2026-09-29_144307_rrm003-qa-entry-sync.md
+R100	agent_docs/RESPONSES/response_2026-09-29_155058_rrm003-qa-execution.md	agent_docs/RESPONSES/_OLD/response_2026-09-29_155058_rrm003-qa-execution.md
+R100	agent_docs/RESPONSES/response_2026-09-29_212204_rrm003-ac107-final-qa.md	agent_docs/RESPONSES/_OLD/response_2026-09-29_212204_rrm003-ac107-final-qa.md
+R100	agent_docs/RESPONSES/response_2026-09-29_222900_rrm003-p5-closeout-plan.md	agent_docs/RESPONSES/_OLD/response_2026-09-29_222900_rrm003-p5-closeout-plan.md
+R100	agent_docs/RESPONSES/response_2026-09-29_223624_rrm003-p5-closeout.md	agent_docs/RESPONSES/_OLD/response_2026-09-29_223624_rrm003-p5-closeout.md
+A	agent_docs/RESPONSES/_OLD/response_2026-09-30_123954_rrm003-sha-record-plan.md
+A	agent_docs/RESPONSES/_OLD/response_2026-09-30_124723_rrm003-sha-recorded.md
+A	agent_docs/RESPONSES/response_2026-09-30_151832_rrm004-p0-bookkeeping.md
+A	agent_docs/RESPONSES/response_2026-09-30_161037_rrm004-p1-plan.md
+A	agent_docs/RESPONSES/response_2026-09-30_161800_rrm004-p1b.md
+A	agent_docs/RESPONSES/response_2026-09-30_163135_rrm004-p2-oneshot.md
+A	agent_docs/RESPONSES/response_2026-10-01_123008_rrm004-p2b-errata.md
+A	agent_docs/RESPONSES/response_2026-10-01_125800_rrm004-qam-ratification.md
+M	agent_docs/RRM_CAMPAIGN_JOURNAL.md
+M	agent_docs/RRM_CAMPAIGN_MAP_v1_0.md
+M	agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md
+A	agent_docs/SESSIONS/session_2026-09-30.md
+A	agent_docs/SESSIONS/session_2026-10-01.md
+M	next.config.js
+M	package-lock.json
+M	package.json
+
+$ git diff 649c36d0409c0b658cff14f779a09aad0c8e92b9..HEAD -- package.json next.config.js
+exit=0
+diff --git a/next.config.js b/next.config.js
+index 5db114d..cf6b6b1 100644
+--- a/next.config.js
++++ b/next.config.js
+@@ -2,14 +2,6 @@
+ const nextConfig = {
+   output: "standalone",
+   reactStrictMode: true,
+-  images: {
+-    remotePatterns: [
+-      {
+-        protocol: "https",
+-        hostname: "res.cloudinary.com",
+-      },
+-    ],
+-  },
+   async headers() {
+     return [
+       {
+diff --git a/package.json b/package.json
+index 5eea515..98f8bf2 100644
+--- a/package.json
++++ b/package.json
+@@ -38,7 +38,7 @@
+     "clsx": "^2.1.1",
+     "cmdk": "^1.1.1",
+     "lucide-react": "^1.16.0",
+-    "next": "^16.2.1",
++    "next": "16.3.7",
+     "next-themes": "^0.4.6",
+     "react": "^19.2.4",
+     "react-dom": "^19.2.4",
+@@ -60,7 +60,7 @@
+     "autoprefixer": "^10",
+     "dotenv": "^17.4.2",
+     "eslint": "^9.39.4",
+-    "eslint-config-next": "^16.2.9",
++    "eslint-config-next": "16.3.7",
+     "jest": "^30.0.5",
+     "jest-environment-jsdom": "^30.0.5",
+     "pg": "^8.23.0",
+@@ -72,6 +72,6 @@
+   },
+   "overrides": {
+     "postcss": "^8.5.10",
+-    "sharp": "^0.35.3"
++    "sharp": "0.35.5"
+   }
+ }
+
+$ rg -n 'next/image|<Image|<img|src=|Navbar|MobileNav|Logo|Avatar' src/components/global src/components/layout 'src/app/(public)' 'src/app/(auth)' 'src/app/(admin)/layout.tsx' src/app/owedbook src/components/owedbook
+exit=0
+src/components/layout/AuthedShell.tsx:13:import Navbar from "@/components/global/Navbar";
+src/components/layout/AuthedShell.tsx:22:// user/role come from the server layout's protectPage — forwarded to the Navbar
+src/components/layout/AuthedShell.tsx:105:      <Navbar user={user} role={role} />
+src/app/(auth)/layout.tsx:1:import NavbarLoginReg from "@/components/global/NavbarLoginReg";
+src/app/(auth)/layout.tsx:7:      <NavbarLoginReg />
+src/components/global/MobileNav.tsx:17:// Identity is SERVER-RESOLVED and passed as props (Navbar Law — KIP-2 kill):
+src/components/global/MobileNav.tsx:19:// store appears below ONLY as the logout action, mirroring the cured Navbar.
+src/components/global/MobileNav.tsx:20:interface MobileNavProps {
+src/components/global/MobileNav.tsx:25:const MobileNav = ({ user, role }: MobileNavProps) => {
+src/components/global/MobileNav.tsx:30:  const handleLogout = async () => {
+src/components/global/MobileNav.tsx:85:                  onClick={handleLogout}
+src/components/global/MobileNav.tsx:118:export default MobileNav;
+src/components/global/ThemeToggler.tsx:15:// `onSelect` fires after a theme is picked — lets a host (e.g. the Navbar mobile
+src/components/global/NavbarLoginReg.tsx:1:import Image from "next/image";
+src/components/global/NavbarLoginReg.tsx:5:const NavbarLoginReg = () => {
+src/components/global/NavbarLoginReg.tsx:10:          <Image
+src/components/global/NavbarLoginReg.tsx:11:            src="/brand/logo-lockup.svg"
+src/components/global/NavbarLoginReg.tsx:28:        Login/Logout, Registration, Middleware & Email Validation Setup
+src/components/global/NavbarLoginReg.tsx:34:export default NavbarLoginReg;
+src/components/global/NavbarHome.tsx:1:import Image from "next/image";
+src/components/global/NavbarHome.tsx:4:import MobileNav from "./MobileNav";
+src/components/global/NavbarHome.tsx:10:// Identity arrives server-resolved from (public)/layout.tsx (Navbar Law: props,
+src/components/global/NavbarHome.tsx:13:interface NavbarHomeProps {
+src/components/global/NavbarHome.tsx:18:const NavbarHome = ({ user, role }: NavbarHomeProps) => {
+src/components/global/NavbarHome.tsx:22:        <Image
+src/components/global/NavbarHome.tsx:23:          src="/brand/logo-lockup.svg"
+src/components/global/NavbarHome.tsx:56:        <MobileNav user={user} role={role} />
+src/components/global/NavbarHome.tsx:66:export default NavbarHome;
+src/components/global/UserMenu.tsx:4:import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+src/components/global/UserMenu.tsx:13:import Logout from "../auth/Logout";
+src/components/global/UserMenu.tsx:17:// Identity is SERVER-RESOLVED and passed as props (Navbar Law — KIP-2 kill):
+src/components/global/UserMenu.tsx:33:            <Avatar>
+src/components/global/UserMenu.tsx:34:              <AvatarFallback>{user.email?.[0]?.toUpperCase() ?? "U"}</AvatarFallback>
+src/components/global/UserMenu.tsx:35:            </Avatar>
+src/components/global/UserMenu.tsx:50:            <Logout />
+src/components/global/Navbar.tsx:4:import Image from "next/image";
+src/components/global/Navbar.tsx:8:import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+src/components/global/Navbar.tsx:18:import Logout from "../auth/Logout";
+src/components/global/Navbar.tsx:24:// Identity is SERVER-RESOLVED: every layout that mounts this Navbar already ran
+src/components/global/Navbar.tsx:28:interface NavbarProps {
+src/components/global/Navbar.tsx:33:const Navbar = ({ user, role }: NavbarProps) => {
+src/components/global/Navbar.tsx:95:  const handleLogout = async () => {
+src/components/global/Navbar.tsx:124:          <Image src="/brand/logo-color.svg" alt="Cyber Pharma" width={36} height={36} />
+src/components/global/Navbar.tsx:147:              <Avatar>
+src/components/global/Navbar.tsx:148:                <AvatarFallback>{user.email?.[0]?.toUpperCase() ?? "U"}</AvatarFallback>
+src/components/global/Navbar.tsx:149:              </Avatar>
+src/components/global/Navbar.tsx:157:              <Logout />
+src/components/global/Navbar.tsx:203:              onClick={handleLogout}
+src/components/global/Navbar.tsx:215:export default Navbar;
+src/app/(public)/HomePageContent.tsx:1:import Image from "next/image";
+src/app/(public)/HomePageContent.tsx:86:            <Image
+src/app/(public)/HomePageContent.tsx:87:              src="/landing/owedbook-mockup.png"
+src/app/(public)/layout.tsx:2:import NavbarHome from "@/components/global/NavbarHome";
+src/app/(public)/layout.tsx:25:        <NavbarHome user={user} role={role} />
+
+$ rg -n 'res.cloudinary.com|<img|<Image|next/image|url\(' src public docs --glob '!*.map'
+exit=0
+src/__tests__/proxy.test.ts:28:    expect(matcher).toContain('_next/image');
+src/proxy.ts:10:    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+src/components/global/NavbarLoginReg.tsx:1:import Image from "next/image";
+src/components/global/NavbarLoginReg.tsx:10:          <Image
+src/components/global/Navbar.tsx:4:import Image from "next/image";
+src/components/global/Navbar.tsx:124:          <Image src="/brand/logo-color.svg" alt="Cyber Pharma" width={36} height={36} />
+src/app/(public)/HomePageContent.tsx:1:import Image from "next/image";
+src/app/(public)/HomePageContent.tsx:86:            <Image
+src/components/global/NavbarHome.tsx:1:import Image from "next/image";
+src/components/global/NavbarHome.tsx:22:        <Image
+
+$ rg -n 'setTheme|resolvedTheme|ThemeProvider|forcedTheme|defaultTheme' src
+exit=0
+src/components/global/ThemeToggler.tsx:18:  const { setTheme } = useTheme();
+src/components/global/ThemeToggler.tsx:21:    setTheme(theme);
+src/app/providers/ThemeProvider.tsx:4:import { ThemeProvider as NextThemesProvider } from "next-themes";
+src/app/providers/ThemeProvider.tsx:6:type ThemeProviderProps = React.ComponentProps<typeof NextThemesProvider>;
+src/app/providers/ThemeProvider.tsx:8:export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+src/app/layout.tsx:5:import { ThemeProvider } from "./providers/ThemeProvider";
+src/app/layout.tsx:26:        <ThemeProvider
+src/app/layout.tsx:28:          defaultTheme="light"
+src/app/layout.tsx:34:        </ThemeProvider>
+
+$ rg -n 'suites|164|34|tests' README.md docs/TESTING.md
+exit=0
+docs/TESTING.md:10:> **Current inventory: 34 test suites, 164 passing tests** (run `npm test`).
+docs/TESTING.md:12:The goal is not coverage for its own sake. Foundation tests prove unauthorized
+docs/TESTING.md:13:access fails safely; app tests encode the **intent** behind each surface —
+docs/TESTING.md:21:- **@testing-library/react** — component tests.
+docs/TESTING.md:27:- `src/__tests__/jest.setup.ts`
+docs/TESTING.md:36:  testEnvironment: 'node',          // default; UI tests opt into jsdom (below)
+docs/TESTING.md:39:  setupFilesAfterEnv: ['<rootDir>/src/__tests__/jest.setup.ts'],
+docs/TESTING.md:41:  testMatch: ['**/__tests__/**/*.+(ts|tsx|js)', '**/?(*.)+(spec|test).+(ts|tsx|js)'],
+docs/TESTING.md:49:The default environment is `node` (correct for service/server/security tests).
+docs/TESTING.md:50:Component tests that render React opt into jsdom **per file** with a docblock at
+docs/TESTING.md:59:About 19 of the suites use this. `jest-environment-jsdom` is installed.
+docs/TESTING.md:71:### Foundation — auth & RBAC (`src/__tests__/`)
+docs/TESTING.md:85:### OwedBook (`src/__tests__/owedbook/`, `services/owedbook.test.ts`)
+docs/TESTING.md:91:### Admin Portal (`src/__tests__/admin-portal/`, `services/adminDemo.test.ts`, `mocks/adminDemo.seed.test.ts`)
+docs/TESTING.md:123:> **Note:** `npm run test:integration` targets `src/__tests__/api/`, which does
+docs/TESTING.md:124:> **not exist yet** — so it currently matches no tests. It's reserved for future
+docs/TESTING.md:125:> API-route integration tests.
+docs/TESTING.md:136:That's the standard. When the Phase-7 backend swap lands, these tests should stay
+README.md:8:![Tests](https://img.shields.io/badge/Jest-164%20passed%20%2F%2034%20suites-success?style=flat-square&logo=jest&logoColor=white)
+README.md:134:| `npm test`                  | Jest suite (164 tests / 34 suites)    |
+
+$ rg -n 'famil|allowed|18|P0|journal|archive' agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RRM_BRIEF.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md
+exit=0
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md:3:P0 lands RRM-003's bookkeeping (docs-only, before the pilot clock starts). P1 plans (read-only, one stop). P1b applies the Director's rulings (docs-only). P2 is the whole build, the served proofs and the QA handoff — including the factual half of the QAM — in one continuous session, ending in a single selective staging block. P4 is the QA-repair template. P5 is reserved. The Director confirms `git status --porcelain` is empty before P1 and before P2. The Engineer answers with full file paths, YOU / ENGINEER / QA LEAD labels, and one git command per line.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md:7:## P0 — RRM-003 bookkeeping (documentation-only; Director-instructed edits to a closed module's records)
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md:18:- **Engineering pilot metrics:** P2 wall-clock 11m54s (preflight 1m18s · S1 3m21s · S2 0m44s · S3 3m20s · handoff 2m53s) · 67 checks · 3 self-repairs, all in new test code, zero in product code · 0 Director touches between P2 start and the staging block · 0 stop conditions · preflight 17/17 PASS at P2 · 3 new suites / 20 tests (31/144 → 34/164).
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md:19:- **Rulings:** A-01…A-14 (PF-05 own-protocol files; standalone static copy; nested-Escape guard; AC-401/AC-306 overlap erratum). Ledger E-16 (OBS-1 `protectPage` → Phase 8), E-17 (QA target substitution), E-18 (QA-F02 Enter on PBM trigger → accessibility backlog).
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md:36:- 2026-09-29 — `curl -X HEAD` exit 18 on the header probe; corrected to `curl -I`.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md:37:- 2026-09-29 — Enter on the focused, closed PBM trigger swallowed; Space works. Non-blocking (E-18); origin check scheduled for RRM-004 Plan Mode.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md:38:- 2026-09-29 — Architect's service unavailable at closeout; the Director handed the QA Lead's certification to the Engineer as the closeout instruction; the Architect's journal entry lands here, in RRM-004 P0.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md:42:3. `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` — in rows R-006, R-010, R-013, R-014, R-017, R-018 replace `closeout / merge: Director` with `closeout 7309a2f; merge 649c36d`. No other change.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md:46:5. Verify every table you touched is still valid Markdown and every placeholder you replaced is gone (`grep -n "to be supplied by the Architect\|to be filed by the Architect\|closeout / merge: Director\|recorded by Director at merge" agent_docs/` → only the QA Lead's journal placeholder remains). Root `CLAUDE.md` protocol for session log and CHANGELOG. Return modified files and a selective staging/commit block, one git command per line, commit message `30sep2026 - RRM-003 bookkeeping: Architect journal entry, friction log, closeout/merge SHAs`.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md:56:2. Read in order: CLAUDE.md, AUTHORITY_POINTER.md, DIRECTOR_CHECKPOINTS.md, RRM_BRIEF.md, ACCEPTANCE_SPEC.md, QA/README.md, QA/QAM_PILOT_CHARTER.md, QA/QAM_MANIFEST.md (the template you will fill at handoff); then agent_docs/RECON/RRM001_RECON_2026-09-18.md R6 and R3; agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/RULINGS_ADDENDUM.md A-01, A-02; ledger R-009, E-17, E-18.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md:60:   b. **Dry run (S1 consequences).** In a scratch copy (`cp -r` of the tree without node_modules/.next), set the three lines, run `npm install --package-lock-only --ignore-scripts --no-audit`, and produce: the lockfile move inventory (`name: old → new`, count, classified by family per RRM_BRIEF.md), `npm audit --package-lock-only --json` totals and IDs before and after, and the list of anything outside the allowed families (expected: none). Then, on the same copy, `npm audit fix --package-lock-only --ignore-scripts` and report: additional moves, audit totals after, and whether package.json changed (expected: no). This is the evidence for DD-1. Delete the scratch copy. The working tree's lockfile is untouched at P1 (PF-05 at the end proves it).
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md:63:   e. **QA-F02 origin (E-18, read-only).** Compare `git show 3d2e65565d820ecc8b89bc5813959a4e324b3acd:src/components/common/MultiSelect.tsx` (RRM-003's baseline) with the current file: was Enter on the closed trigger prevented before RRM-003 (cmdk / native button behavior) or introduced by RRM-003's container `onKeyDown`? Report with path:line. Flag-only; no change proposed in this module.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md:86:S1 — PIN + INSTALL + PROOF (AC-101–107, AC-401–403). Edit exactly three lines of package.json: `"next": "<target-next>"`, `"eslint-config-next": "<target-next>"`, `"sharp": "<target-sharp>"` under overrides. Record `date -Is`; run `npm install` (plain; no flags beyond `--no-fund`); record `date -Is`. If DD-1 = sweep: `npm audit fix` (no `--force`), then `git diff <baseline> -- package.json` must still be exactly three lines. Proof: `npm ls next sharp eslint-config-next`; `ls node_modules/@img/`; `node -p "const v=require('@img/sharp-libvips-<platform>/versions.json'); v.heif+' vips='+v.vips"` → AFTER block of evidence/S1_versions.txt; `npm audit --json` → evidence/S1_audit_after.json (temp-then-move) and the AC-104/105 grading in EXECUTION_LOG.md; the lockfile move inventory vs `git show <baseline>:package-lock.json` classified by family → evidence/S1_lockfile_moves.txt. Stage exit: `npm ls` at target with `overridden` · zero critical/high touching next/sharp/@img (and total 0 if sweep) · heif ≥ 1.23.2 and baseline value lower · package.json diff = 3 lines · zero moves outside allowed families. Any package.json line beyond three, any move outside the families, or an install failure → the matching stop (5 or 6). Record S1 in the log. Only then proceed.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RRM_BRIEF.md:16:`npm audit` on the baseline lockfile: 1 critical · 4 high · 1 moderate · 1 low (7). Of those, `next` (critical) and `sharp` (high) are this module's targets. The other three highs (`brace-expansion`, `browserslist`, `js-yaml`), the moderate (`baseline-browser-mapping`) and the low (`postcss-selector-parser`) are transitive, sit in the eslint / browserslist / istanbul / postcss build chains, and all have in-range fixes — a `--package-lock-only` dry run at authoring showed `npm audit fix` (no `--force`) resolving all of them with 18 further lockfile entries moved and `package.json` untouched. Whether to take that sweep is **DD-1**, the Director's call, because the map §7 wording said "not fixed here" before anyone knew the fixes were in-range.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RRM_BRIEF.md:18:A dry run of the pins at authoring (scratch copy, `16.3.7` / `0.35.5`): 41 lockfile entries moved, all in the `next`, `@next/*`, `eslint-config-next`, `sharp`, `@img/*`, `@emnapi/runtime`, `@swc/helpers` families; `npm ci` clean; tsc 0; eslint 0 errors / 35 warnings; jest 34 suites / 164 tests; placeholder build 17 routes; standalone served `/` with `no-store`, a chunk with `public, max-age=31536000, immutable`, and `/_next/image` returned a 1080×626 `image/webp` through the new sharp. Zero critical after the pins; the three transitive highs remain until DD-1. **This is authoring evidence that the module is feasible, not the Engineer's proof** — the Engineer measures everything again on the real tree with the targets the Director rules.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RRM_BRIEF.md:28:| RRM-003 QA-F02 (E-18) | `src/components/common/MultiSelect.tsx` | origin check only: Plan Mode reports whether Enter on the closed trigger was prevented at RRM-003's baseline or introduced there; flag-only, no change |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RRM_BRIEF.md:33:- **S1 Pin + install + proof (AC-101–107, AC-401–403):** `package.json` — `dependencies.next` and `devDependencies.eslint-config-next` set to the same exact `16.3.x` target; `overrides.sharp` set to the exact `0.35.x` target (≥ 0.35.4). Targets = the highest stable patch on each line as read from the registry at P1 (`npm view next versions`, no canary, no rc), recorded in the addendum at P1b. `npm install` (plain). If DD-1 = sweep: `npm audit fix` (no `--force`) immediately after, then prove `package.json` is unchanged by it. Proof: `npm ls next sharp eslint-config-next`; `npm audit --json`; `@img/sharp-libvips-<platform>/versions.json` `heif` read; lockfile move inventory against `<baseline>` classified by family.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RRM_BRIEF.md:40:**Allowed files:** `package.json` (exactly three lines) · `package-lock.json` (moves in the allowed families only) · `next.config.js` (`images` block only) · this pack's `EXECUTION_LOG.md`, `QA_HANDOFF.md`, `RULINGS_ADDENDUM.md` (rows under instruction), `evidence/**`, `QA/QAM_MANIFEST.md`, `QA/GOVERNING/**` (copy) · root-protocol files per root `CLAUDE.md` · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` resolution rows and `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` §0/§9 when instructed.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RRM_BRIEF.md:42:**Allowed lockfile move families:** `next`, `@next/env`, `@next/eslint-plugin-next`, `@next/swc-*`, `eslint-config-next`, `sharp`, `@img/*`, `@emnapi/runtime`, `@swc/helpers`. **If DD-1 = sweep, additionally:** `brace-expansion` (all nested copies), `js-yaml` (all copies), `baseline-browser-mapping`, `browserslist`, `caniuse-lite`, `electron-to-chromium`, `node-releases`, `update-browserslist-db`, `postcss-selector-parser`. Any other move → stop condition 6, unless Plan Mode's dry run predicted it and the Director ruled it at P1b.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RRM_BRIEF.md:52:| **S1 Pin + install + proof** | AC-101–107, AC-401–403 | `npm ls` at target with `sharp … overridden` · audit zero critical/high touching next/sharp/@img (and zero total if DD-1 = sweep) · `versions.json` heif ≥ 1.23.2 · `package.json` diff = 3 lines · moves classified, none outside allowed families | `evidence/S1_versions.txt` (BASELINE and AFTER blocks), `evidence/S1_audit_before.json`, `evidence/S1_audit_after.json`, `evidence/S1_lockfile_moves.txt` |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RRM_BRIEF.md:61:Engineer delivers candidate (the Director's single commit), repair diff, execution log with metrics, unchanged acceptance spec, evidence, and the factual half of the QAM. Director cuts `qa/phase-3-rrm004`. QA Lead authors the plan and ratifies the QA operating law; Director commits the QA planning docs and starts the QA Executor with one command; the Executor runs its own preflight, builds the candidate itself from the lockfile, reproduces every proof independently, runs the authenticated image walk (Director enters credentials, DC-5), grades the product ACs, and — separately — records the pilot-process ACs and metrics. QA Lead issues Gate Q on the product ACs and a pilot verdict on the process ACs. Bounded cleanup, Architect closeout, Engineer closeout, Director `--no-ff` merge + push, journal entries (Architect's and QA Lead's, each their own). RRM campaign closes with this merge. Deployment / Gate D: outside this module.
+
+$ ls node_modules/@img/
+exit=0
+colour
+sharp-libvips-linux-x64
+sharp-libvips-linuxmusl-x64
+sharp-linux-x64
+sharp-linuxmusl-x64
+sharp-wasm32
+
+$ nl -ba agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md | sed -n '1,49p'
+exit=0
+     1	# RRM-004-CYBER-PHARMA — Engineering Prompts (one-shot + QAM handoff)
+     2	
+     3	P0 lands RRM-003's bookkeeping (docs-only, before the pilot clock starts). P1 plans (read-only, one stop). P1b applies the Director's rulings (docs-only). P2 is the whole build, the served proofs and the QA handoff — including the factual half of the QAM — in one continuous session, ending in a single selective staging block. P4 is the QA-repair template. P5 is reserved. The Director confirms `git status --porcelain` is empty before P1 and before P2. The Engineer answers with full file paths, YOU / ENGINEER / QA LEAD labels, and one git command per line.
+     4	
+     5	---
+     6	
+     7	## P0 — RRM-003 bookkeeping (documentation-only; Director-instructed edits to a closed module's records)
+     8	
+     9	ENGINEER — documentation-only step on `phase-3-rrm004`. No product changes, no builds, no installs, no Git mutations. The Director instructs these edits to RRM-003's closeout records now that its merge SHA exists; closed-module protection is lifted for exactly these fields and nothing else.
+    10	
+    11	1. `agent_docs/RRM_CAMPAIGN_JOURNAL.md` — replace the three placeholder lines under `### RRM-003-CYBER-PHARMA — closed 2026-09-29 (Architect)` and `### Friction log — RRM-003 (Director-observed, filed by Architect)` with the two blocks below, verbatim. Leave the QA Lead's placeholder untouched (that seat appends its own).
+    12	
+    13	ARCHITECT ENTRY:
+    14	
+    15	- **Module:** RRM-003-CYBER-PHARMA — Access, Cache, Hygiene, Docs. Controlled one-shot Engineering pilot (QA Lead field note 2026-09-28).
+    16	- **Commits:** pack `a59f069` · P1b rulings `6655f95` · candidate (single P2 commit) `21ea108bb27b965ddc5edae29dc3b1d6971ae576` · QA HEAD `1a94277` · closeout `7309a2f` · merge to `main` `649c36d` (`--no-ff`, 2026-09-29). Baseline `3d2e655` (RRM-002 merge).
+    17	- **Verdict:** Gate Q PASS, 26/26 ACs, zero repair rounds (QA Lead, 2026-09-29).
+    18	- **Engineering pilot metrics:** P2 wall-clock 11m54s (preflight 1m18s · S1 3m21s · S2 0m44s · S3 3m20s · handoff 2m53s) · 67 checks · 3 self-repairs, all in new test code, zero in product code · 0 Director touches between P2 start and the staging block · 0 stop conditions · preflight 17/17 PASS at P2 · 3 new suites / 20 tests (31/144 → 34/164).
+    19	- **Rulings:** A-01…A-14 (PF-05 own-protocol files; standalone static copy; nested-Escape guard; AC-401/AC-306 overlap erratum). Ledger E-16 (OBS-1 `protectPage` → Phase 8), E-17 (QA target substitution), E-18 (QA-F02 Enter on PBM trigger → accessibility backlog).
+    20	- **QA observations for the campaign:** QA active time 74m55s across two segments; 8 Director touches (1 environment ruling + 7 browser sign-ins) because the pack named SCRATCH accounts that did not exist; the Enter-key observation cost diagnostic reruns. Both are pack-authoring failures, not agent failures: the QA target and the test identities must be verified at authoring and declared in the checkpoints, and a known-instrument probe (Enter vs Space on native buttons) belongs in the QA preflight.
+    21	- **Factory lesson — keep:** machine-checkable preflight as a gate; enumerated stop conditions; declared checkpoints with none inside the build; one selective staging block; the Engineer copying the governing QA snapshot with provenance.
+    22	- **Factory lesson — change:** the QA side gets the same treatment in RRM-004 — a QA preflight that queries the accounts and the browser engine, enumerated QA stop conditions, a declared credential checkpoint with a one-sign-in-per-role target, and the plan authored by the QA seat from an Engineer-supplied manifest (the QAM pilot).
+    23	- **Factory lesson — drop:** preflight rows that assert what the environment *should* have (PF-14's bare standalone, RRM-003 A-02) instead of measuring what it does; naming an environment in a checkpoint without verifying it exists.
+    24	- **Closeout:** merged; RRM-004 (dependencies + QAM pilot) authored from this merge.
+    25	
+    26	FRICTION LOG:
+    27	
+    28	- 2026-09-28 — PF-05 at P1 held the Engineer's own root-protocol files; ruled A-01 (P1 exception, P2 literal).
+    29	- 2026-09-28 — Bare `node .next/standalone/server.js` 404s `/_next/static`; the "before" capture measured Next's 404 header. Ruled A-02: copy `.next/static` and `public/` into standalone before boot; every capture records the status line.
+    30	- 2026-09-28 — Nested Escape order held in jsdom but not in production (`document`-level listener); ruled A-06 (`if (e.defaultPrevented) return;` guard).
+    31	- 2026-09-28 — Director's pack commit accidentally deleted `agent_docs/PHASE_2.1` and `PHASE_2.2`; restored with `git checkout 3d2e655 -- …` before P1.
+    32	- 2026-09-28 — AC-401's preserved-path list overlapped AC-306's banner files; erratum via A-13.
+    33	- 2026-09-28 — Staging block not run before the QA branch was cut; recovered with `git add -A` then commit on the engineering branch.
+    34	- 2026-09-29 — QA sandbox (`bwrap`) failed before external commands; reviewed escalation worked.
+    35	- 2026-09-29 — DC-4 named SCRATCH; no SCRATCH accounts existed. Director authorized main development Supabase, login-only (E-17); seven sign-ins across diagnosis and reruns.
+    36	- 2026-09-29 — `curl -X HEAD` exit 18 on the header probe; corrected to `curl -I`.
+    37	- 2026-09-29 — Enter on the focused, closed PBM trigger swallowed; Space works. Non-blocking (E-18); origin check scheduled for RRM-004 Plan Mode.
+    38	- 2026-09-29 — Architect's service unavailable at closeout; the Director handed the QA Lead's certification to the Engineer as the closeout instruction; the Architect's journal entry lands here, in RRM-004 P0.
+    39	
+    40	2. `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` §0 — in the scoreboard line replace RRM-003's `closeout + merge SHA: Director` with `closeout 7309a2f; merged to main 649c36d`; append a status paragraph: `**Status at v1.0.4 (2026-09-30).** RRM-003 merge recorded: 649c36d (closeout 7309a2f). **RRM-004 pack AUTHORED (dependencies; first QAM pilot on the QA side) — NEXT.** RRM-004 is the last module; its merge closes the RRM campaign and hands the backend campaign BIM-004.`
+    41	
+    42	3. `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` — in rows R-006, R-010, R-013, R-014, R-017, R-018 replace `closeout / merge: Director` with `closeout 7309a2f; merge 649c36d`. No other change.
+    43	
+    44	4. `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md` § Closeout — `Closeout commit` → `7309a2f`; `Merge SHA` → `649c36d`. `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md` — append `; merged to main 649c36d (2026-09-29)` to the CLOSED sentence.
+    45	
+    46	5. Verify every table you touched is still valid Markdown and every placeholder you replaced is gone (`grep -n "to be supplied by the Architect\|to be filed by the Architect\|closeout / merge: Director\|recorded by Director at merge" agent_docs/` → only the QA Lead's journal placeholder remains). Root `CLAUDE.md` protocol for session log and CHANGELOG. Return modified files and a selective staging/commit block, one git command per line, commit message `30sep2026 - RRM-003 bookkeeping: Architect journal entry, friction log, closeout/merge SHAs`.
+    47	
+    48	---
+    49	
+
+$ nl -ba agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/ACCEPTANCE_SPEC.md | sed -n '40,51p'
+exit=0
+    40	
+    41	## AC-400 — Preserved
+    42	
+    43	| AC | Required observable behavior | Boundary | Evidence |
+    44	|---|---|---|---|
+    45	| AC-401 | `git diff --stat <baseline> -- src supabase scripts docs public README.md tsconfig.json jest.config.js eslint.config.mjs tailwind.config.ts postcss.config.js .gitignore` → empty. | repo | diff transcript |
+    46	| AC-402 | `git diff <baseline> -- package.json` is exactly three changed lines: `"next"`, `"eslint-config-next"`, `"sharp"` (inside `overrides`). Nothing added, nothing removed. | repo | diff |
+    47	| AC-403 | `git diff --name-only <baseline>` lists only: `package.json`, `package-lock.json`, `next.config.js`, files under `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/`, the ledger/map lines instructed at handoff, and root-protocol files. `node_modules/` never appears in `git status`. | repo | `evidence/changed_files.txt` |
+    48	| AC-404 | No product-code change. If the upgrade forced one, the module stopped (stop 2) and this AC records the stop; it is not satisfied by a change. | repo | log |
+    49	| AC-405 | `git diff <baseline> -- next.config.js` shows no hunk inside `headers()` (AC-202 restated as the preserved side). | repo | diff |
+    50	
+    51	## AC-500 — Engineering board, metrics, hygiene
+
+$ git diff --stat 649c36d0409c0b658cff14f779a09aad0c8e92b9..HEAD -- agent_docs/ACTIONS/RRM-002-CYBER-PHARMA agent_docs/ACTIONS/RRM-003-CYBER-PHARMA agent_docs/RRM_CAMPAIGN_JOURNAL.md
+exit=0
+ .../ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md  |  4 ++--
+ agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/README.md  |  2 +-
+ .../ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md  |  4 ++--
+ agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md  |  2 +-
+ agent_docs/RRM_CAMPAIGN_JOURNAL.md                 | 23 ++++++++++++++++++++--
+ 5 files changed, 27 insertions(+), 8 deletions(-)
+
+$ git log --format='%h %s' 649c36d0409c0b658cff14f779a09aad0c8e92b9..HEAD -- agent_docs/ACTIONS/RRM-002-CYBER-PHARMA agent_docs/ACTIONS/RRM-003-CYBER-PHARMA agent_docs/RRM_CAMPAIGN_JOURNAL.md
+exit=0
+ee4a049 30sep2026 - RRM-003 bookkeeping: Architect journal entry, friction log,   closeout/merge SHAs
+a93393d 30sep2026 - RRM-003/RRM-002 closeout and merge SHAs recorded
+
+$ nl -ba src/components/global/NavbarHome.tsx | sed -n '18,66p'
+exit=0
+    18	const NavbarHome = ({ user, role }: NavbarHomeProps) => {
+    19	  return (
+    20	    <header className="relative flex items-center h-[84px] border-b-2 border-border px-7">
+    21	      <Link href="/" className="flex items-center" aria-label="Cyber Pharma — Home">
+    22	        <Image
+    23	          src="/brand/logo-lockup.svg"
+    24	          alt="Cyber Pharma"
+    25	          width={180}
+    26	          height={34}
+    27	          priority
+    28	        />
+    29	      </Link>
+    30	
+    31	      <nav className="ml-auto hidden lg:flex items-center h-full text-xs font-semibold tracking-wide">
+    32	        <Link
+    33	          href="#features"
+    34	          className="uppercase px-5 h-full flex items-center text-muted-foreground hover:bg-accent/10 hover:text-foreground transition-colors"
+    35	        >
+    36	          Features
+    37	        </Link>
+    38	        <Link
+    39	          href="#how-it-works"
+    40	          className="uppercase px-5 h-full flex items-center text-muted-foreground hover:bg-accent/10 hover:text-foreground transition-colors"
+    41	        >
+    42	          How it works
+    43	        </Link>
+    44	        <Link
+    45	          href="#pricing"
+    46	          className="uppercase px-5 h-full flex items-center text-muted-foreground hover:bg-accent/10 hover:text-foreground transition-colors"
+    47	        >
+    48	          Pricing
+    49	        </Link>
+    50	        <ThemeToggler />
+    51	        <UserMenu user={user} role={role} />
+    52	      </nav>
+    53	
+    54	      <div className="ml-auto flex items-center lg:hidden">
+    55	        <ThemeToggler />
+    56	        <MobileNav user={user} role={role} />
+    57	      </div>
+    58	
+    59	      {/* Single cross-tab listener — both nav variants are always mounted
+    60	          (CSS-hidden), so the listener lives once up here, not per component. */}
+    61	      <NavAuthRefresh />
+    62	    </header>
+    63	  );
+    64	};
+    65	
+    66	export default NavbarHome;
+
+$ cat 'src/app/(public)/page.tsx' 'src/app/(public)/layout.tsx' src/components/global/ThemeToggler.tsx
+exit=0
+import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
+import HomePageContent from "./HomePageContent";
+
+// Auth-only redirect (UI_SPEC v1.3 §A): authenticated users hitting / are sent
+// to their post-login landing; guests keep the public marketing page untouched.
+const Home = async () => {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) redirect("/owedbook");
+
+  return <HomePageContent />;
+};
+
+export default Home;
+import { ReactNode } from "react";
+import NavbarHome from "@/components/global/NavbarHome";
+import Main from "@/components/common/Main";
+import { createClient } from "@/utils/supabase/server";
+import { getUserRole } from "@/utils/get-user-role";
+
+// Identity is SERVER-RESOLVED here, redirect-free (logged-out visitors are
+// legitimate on the public group — protectPage would bounce them, so we resolve
+// by hand): user may be null, and role comes from user_roles (DB is role truth),
+// never from client-persisted state. Passed as props so the public nav can't
+// render stale role-gated UI (KIP-2).
+export default async function PublicLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getUser();
+  const user = data?.user ?? null;
+  const role = user ? await getUserRole(user.id) : null;
+
+  return (
+    <>
+      <div className="flex flex-col min-h-screen">
+        <NavbarHome user={user} role={role} />
+        <Main className="flex flex-col">
+          {children
+            ? children
+            : "This is a Layout container. Must have children"}
+        </Main>
+      </div>
+    </>
+  );
+}
+"use client";
+
+import * as React from "react";
+import { useTheme } from "next-themes";
+
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { MoonIcon, SunIcon } from "lucide-react";
+
+// `onSelect` fires after a theme is picked — lets a host (e.g. the Navbar mobile
+// menu) close itself once the choice is made. Optional; desktop usages omit it.
+const ThemeToggler = ({ onSelect }: { onSelect?: () => void } = {}) => {
+  const { setTheme } = useTheme();
+
+  const pick = (theme: string) => {
+    setTheme(theme);
+    onSelect?.();
+  };
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          size={null}
+          className="mr-5 p-2"
+        >
+          <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => pick("light")}>
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => pick("dark")}>
+          Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => pick("system")}>
+          System
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
+export default ThemeToggler;
+
+$ rg -n 'BASELINE|AFTER|1.23|PF-16|PF-19|start|end|snapshot|sha|commit|unchanged|scratch' agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md
+exit=0
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:3:Engineer · Approved scope/plan: `RRM_BRIEF.md` v1.0 + the P1 plan in `agent_docs/RESPONSES/response_2026-09-30_161037_rrm004-p1-plan.md` (Director-approved 2026-09-30) + rulings A-01…A-08 · Code baseline `649c36d0409c0b658cff14f779a09aad0c8e92b9` (RRM-003 merge commit; recorded at P1) · Targets: next `16.3.7` · sharp `0.35.5` · Branch: `phase-3-rrm004` (P2 started at `fe74dd9b4a9ecf6de4fd9b5aedd68cf342d39324`, P1b) · Run shape: one-shot (P2 single session) · Platform: `linux-x64` (glibc 2.39), Node v22.14.0, npm 10.9.2
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:7:P1: `evidence/PREFLIGHT_P1.txt` — 20/21 PASS; PF-21 N/A at P1 by design (DC-1 was the P1 approval); PF-16's literal command threw `ERR_PACKAGE_PATH_NOT_EXPORTED` → ruled A-03 (exported subpath) · P2: `evidence/PREFLIGHT_P2.txt` — 21/21 PASS (PF-05 literally empty; PF-16 per A-03 = `1.23.1 vips=8.18.3`; PF-19 re-captured into `evidence/S3_serve_before.txt`)
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:11:Start: 2026-09-30T16:21:55+08:00 · Install start / end: 2026-09-30T16:22:02+08:00 / 2026-09-30T16:24:39+08:00 · `npm audit fix` start / end: 2026-09-30T16:24:39+08:00 / 2026-09-30T16:25:54+08:00 · End: 2026-09-30T16:26:32+08:00
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:15:| package.json lines changed | 3 (`next` `^16.2.1` → `16.3.7`, `eslint-config-next` `^16.2.9` → `16.3.7`, `overrides.sharp` `^0.35.3` → `0.35.5`); byte-identical across `npm audit fix` (cmp exit 0) | AC-101, AC-102, AC-402 | `evidence/S1_versions.txt` |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:16:| `npm ls next sharp eslint-config-next` | `├── eslint-config-next@16.3.7` · `└─┬ next@16.3.7` · `  └── sharp@0.35.5 overridden` (exit 0; no invalid/missing/extraneous) · `node_modules/@img/`: `sharp-linux-x64` 0.35.5, `sharp-libvips-linux-x64` 1.3.4 (= sharp@0.35.5 `optionalDependencies`) | AC-107 | `evidence/S1_versions.txt` |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:17:| `@img/sharp-libvips-linux-x64` versions (A-03 read) heif — BASELINE / AFTER | `1.23.1` (vips 8.18.3, package 1.3.2) / `1.23.5` (vips 8.18.7, package 1.3.4) · method: installed package metadata (`versions.json` shipped inside the `@img/sharp-libvips-*` package, read via its exported `./versions` subpath), cross-checked against the advisory's fixed-version statement (sharp 0.35.4 → libvips 1.3.3 → libheif 1.23.2); second read `require('sharp').versions.heif` = `1.23.5` | AC-103 | `evidence/S1_versions.txt` |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:20:| Lockfile moves: count / families / outside-family entries | 59 (41 pin: `next`, `@next/env`, `@next/eslint-plugin-next`, `@next/swc-*` ×8, `eslint-config-next`, `sharp`, `@img/*` ×25, `@emnapi/runtime`, `@swc/helpers` · 18 DD-1: `brace-expansion` ×9, `js-yaml` ×2, `baseline-browser-mapping`, `browserslist`, `caniuse-lite`, `electron-to-chromium`, `node-releases`, `update-browserslist-db`, `postcss-selector-parser`) / 0 outside / 0 entries added or removed — identical to the P1 dry run | AC-106, AC-403 | `evidence/S1_lockfile_moves.txt` |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:22:Allowed exceptions: none · Self-repairs: none · Deviations: none. `npm install` printed `npm warn ERESOLVE overriding peer dependency` for `react-remove-scroll@2.5.7` ↔ `@types/react`; warning only, exit 0, not in a pinned family's dependency path.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:42:| `/_next/image` PNG probe (status, content-type, first 16 bytes, Cache-Control) | 200 · `image/webp` · `5249 4646 2e6c 0000 5745 4250 5650 3820` (`RIFF….WEBPVP8 `) · `public, max-age=14400, must-revalidate` · 27702 bytes, sharp-decoded webp 1080×626; body deleted after read | AC-204 | `evidence/S3_serve_after.txt` |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:51:| P2 start / end (`date -Is`) | 2026-09-30T16:20:41+08:00 / 2026-09-30T16:31:56+08:00 |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:52:| Wall-clock P2 | 11m15s (start → staging block) |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:55:| Checks executed (count) | 80 = preflight 22 (21 rows + PF-09 after stop) · S1 18 (3-line diff, install, audit fix, cmp, npm ls, `@img` listing, A-03 read, 2 package versions, `next --version`, `sharp.versions`, audit json, 3 target-ID absences, 3 target-ID presences before, move inventory) · S2 7 (diff, headers identity diff, AC-203 grep, AC-201 grep, control grep, README grep, config load) · S3 26 (2 builds + 2 route counts, tsc, eslint, jest, 3 stat diffs, AC-401 diff, AC-304 grep; boot, 5 header probes, image probe, hex dump, decode, negative status, negative body, 3 direct GETs, port) · handoff 7 (4 governing SHA-256 pairs as 1, ledger column check, changed-file inventory, repair diff, secrets scan, node_modules/.next absent from status, final status) |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:57:| Director touches between P2 start and staging block | 0 |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:59:| Preflight failures (P1 / P2) | P1: 0 FAIL (PF-16 instrument path ruled A-03; PF-21 N/A by design) / P2: 0 |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:64:Candidate: the Director's single P2 commit, SHA recorded at cut · Repair diff: `evidence/repair.diff` · Changed files: `evidence/changed_files.txt` · AC coverage claims: AC-101–107 → `evidence/S1_*` · AC-201–203 → `evidence/S2_config_diff.txt` · AC-204–205, AC-303 → `evidence/S3_serve_after.txt` (+ `S3_serve_before.txt`) · AC-301–302, AC-304 → `evidence/S3_board.txt` · AC-401–405 → `evidence/changed_files.txt`, `evidence/S3_board.txt`, `evidence/S2_config_diff.txt` · AC-501 → `evidence/PREFLIGHT_P2.txt` · AC-502 → §Metrics · AC-503 → Director's commit (`.env.local` not edited by the Engineer — only its key names were counted by PF-08; no local server left running; P1 scratch copy deleted) · AC-504 → `QA/QAM_MANIFEST.md`
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md:68:Engineering evidence, not independent QA certification.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt:2:# Engineer · P2 start 2026-09-30T16:20:41+08:00 · branch phase-3-rrm004 @ fe74dd9b4a9ecf6de4fd9b5aedd68cf342d39324 (P1b) · <baseline> = 649c36d0409c0b658cff14f779a09aad0c8e92b9
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt:3:# Targets per A-01/A-02: next 16.3.7 · eslint-config-next 16.3.7 · sharp 0.35.5. Instrument per A-03. Values only; no secret printed.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt:18:| PF-12 | PASS | next 16.3.7 · sharp 0.35.5 · eslint-config-next 16.3.7 print; newest stable now: 16.3.x = 16.3.7, 0.35.x = 0.35.5 (unchanged since P1) |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt:21:| PF-15 | PASS | @img/sharp-linux-x64 + @img/sharp-libvips-linux-x64 present; next@16.2.12 → sharp@0.35.3 overridden |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt:22:| PF-16 | PASS (A-03 command) | `require('@img/sharp-libvips-linux-x64/versions')` → 1.23.1 vips=8.18.3 (package 1.3.2); below floor 1.23.2 |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt:25:| PF-19 | PASS | re-captured to evidence/S3_serve_before.txt: `/` 200 no-store · chunk 200 immutable · image 200 image/webp |
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt:29:Result: 21/21 PASS → S1 may begin. Preflight end 2026-09-30T16:21:47+08:00.
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:1:# RRM-004 S1 versions — BASELINE block (P1 PF-16, before any install)
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:3:## BASELINE
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:4:$ grep -nE '"next"|"eslint-config-next"|"sharp"' package.json
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:7:75:    "sharp": "^0.35.3"
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:8:$ npm ls next sharp eslint-config-next
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:12:  └── sharp@0.35.3 overridden
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:16:sharp-libvips-linuxmusl-x64
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:17:sharp-libvips-linux-x64
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:18:sharp-linuxmusl-x64
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:19:sharp-linux-x64
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:20:sharp-wasm32
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:21:$ node -p "const v=require('@img/sharp-libvips-linux-x64/versions.json'); v.heif+' vips='+v.vips"   # PF-16 literal command
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:22:Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './versions.json' is not defined by "exports" in /home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/node_modules/@img/sharp-libvips-linux-x64/package.json
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:23:$ node -p "const v=require('@img/sharp-libvips-linux-x64/versions'); v.heif+' vips='+v.vips"   # exported subpath (exports: "./versions": "./versions.json") — proposed A-03
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:24:1.23.1 vips=8.18.3
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:25:$ node -p "require('@img/sharp-libvips-linux-x64/package').version"
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:27:# P2 PF-16 re-capture (untouched tree, A-03 command) 2026-09-30T16:21 +08:00: 1.23.1 vips=8.18.3 (package 1.3.2) — identical to P1
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:28:## AFTER
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:35:-    "sharp": "^0.35.3"
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:36:+    "sharp": "0.35.5"
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:39:$ npm ls next sharp eslint-config-next
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:43:  └── sharp@0.35.5 overridden
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:48:sharp-libvips-linuxmusl-x64
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:49:sharp-libvips-linux-x64
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:50:sharp-linuxmusl-x64
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:51:sharp-linux-x64
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:52:sharp-wasm32
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:53:$ node -p "const v=require('@img/sharp-libvips-linux-x64/versions'); v.heif+' vips='+v.vips"   # A-03
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:54:1.23.5 vips=8.18.7
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:55:$ node -p "require('@img/sharp-libvips-linux-x64/package').version" ; node -p "require('@img/sharp-linux-x64/package').version"
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:60:$ node -p "require('sharp').versions"
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:61:{"aom":"3.15.1","archive":"3.8.9","cairo":"1.18.6","cgif":"0.5.4","exif":"0.6.26","expat":"2.8.5","ffi":"3.8.0","fontconfig":"2.18.3","freetype":"2.14.3","fribidi":"1.0.17","glib":"2.90.0","harfbuzz":"14.5.0","heif":"1.23.5","highway":"1.4.0","imagequant":"2.4.1","lcms":"2.19.1","mozjpeg":"0826579","pango":"1.58.2","pixman":"0.46.4","png":"1.6.58","proxy-libintl":"0.5","rsvg":"2.63.2","tiff":"4.7.2","uhdr":"2.0.2","vips":"8.18.7","webp":"1.6.0","xml2":"2.15.4","zlib-ng":"2.3.3","sharp":"0.35.5"}
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt:62:BASELINE 1.23.1 → AFTER (above) ; floor 1.23.2 ; instrument moved: see value
+
+$ nl -ba agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md | sed -n '40,62p'
+exit=0
+    40	- **Q2** — A credential is needed that `.env.qa.local` does not carry, or an identity in it cannot authenticate, or an authenticated action outside the plan's login-only walk would be needed.
+    41	- **Q3** — A destructive or mutating action would be needed: database write, Supabase setting, user creation or promotion, any edit outside your lane, any Git mutation.
+    42	- **Q4** — The contract contradicts itself or the disk on a point no addendum/erratum row covers, and an AC's grade depends on it.
+    43	- **Q5** — An instrument cannot be trusted: a helper reports green on a corrupted input, the registry is unreachable mid-run, a build is not reproducible twice, or your platform has no `@img/sharp-libvips-*` package after `npm ci`.
+    44	- **Q6** — The evidence lane cannot be written, or the privacy scan cannot run or reports a hit you cannot remove without losing the evidence.
+    45	- **Q7** — HEAD moved, or the candidate→HEAD diff touches `src/`, tests, `package.json`, `package-lock.json` or `next.config.js`.
+    46	- **Q8** — `.env.qa.local` is absent, not Git-ignored, tracked, or holds other than exactly five unique, nonempty expected keys (missing, duplicate, empty, malformed or unexpected); or the resolved app target does not match the approved fingerprint (QF-15); or an identity cannot log in or out at QF-16.
+    47	
+    48	On a stop: save everything, write the stop's number, `date -Is`, the exact path:line or command, and what would resolve it into `QAM_EXECUTION_REPORT.md` §Stops, and wait for the QA Lead or Director. A resolved stop is resumed with a short instruction; the clock keeps running and the interruption is counted.
+    49	
+    50	## Evidence, not narration
+    51	
+    52	Every PASS cites a file under `QAM/evidence/` with the command, exit code and unfiltered output (or a cropped screenshot / sanitized trace). "Verified" without a path is NOT RUN. Build output, `node_modules/`, `.next/`, raw traces, image bodies and anything read from an env file stay out of the durable inventory.
+    53	
+    54	## What you never do
+    55	
+    56	Edit product, tests, contracts, dependencies or the manifest · change or reinterpret a frozen AC (raise ADJUDICATE instead) · mark your own plan approved · certify · commit · reuse the Engineer's `node_modules/` or `.next/` · print, copy, log or retain any env value · keep auth state past a phase · widen scope to "while I'm here" findings (record as unranked observations) · ask the Director a question the checkpoints already answered.
+
