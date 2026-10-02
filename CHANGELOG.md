@@ -3,6 +3,11 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-10-02 05:16 UTC — [CC] Claude Code
+
+- **RRM-004-CYBER-PHARMA — merge SHAs recorded** (docs only, `main`): closeout `2e3eac9` and merge `a474a19` written to the map scoreboard and a v1.0.6 status line (RRM campaign COMPLETE), ledger R-009, RRM-004 `EXECUTION_LOG.md`, `README.md` and DC-7 (adopt/amend/drop still pending). `RECOVERY.md` points to BIM-004.
+- **Reason:** the Director's `--no-ff` merge of `qa/phase-3-rrm004`.
+
 ## 2026-10-02 04:59 UTC — [CC] Claude Code
 
 - **RRM-004-CYBER-PHARMA — P5 closeout** (docs only, `qa/phase-3-rrm004`): QA Lead certification transcribed into a new `QAM/QAM_CERTIFICATION.md` (Gate Q PASS @ `2fbc72f`; the Engineer certifies nothing). `QAM_PILOT_RESULTS.md` §4 records the pilot as PARTIAL SUCCESS with Q2 one-shot succeeded; §5 is left blank for the Director. AC-710 → PASS, with the Executor history preserved. Journal: Architect entry, QA-logged entry and friction log. Map v1.0.5 and scoreboard; ledger R-009 RESOLVED; EXECUTION_LOG Closeout; README status. DC-7: certification received, Director items pending. QC-4 satisfied. RECOVERY.md updated (P5 permission).

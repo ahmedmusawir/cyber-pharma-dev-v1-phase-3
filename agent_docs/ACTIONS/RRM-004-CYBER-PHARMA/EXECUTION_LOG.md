@@ -79,8 +79,8 @@ Engineering evidence, not independent QA certification.
 | QA HEAD | `6b6cad642f69314904938e9df1ec8fdfbe08f15a` (QA execution HEAD) |
 | Evidence commit | `0463086c5fb125b6a69518778a83207f56e85662` (Q2 evidence + Q5 cleanup; documentation-only successor, not runtime-tested). `git diff --stat 2fbc72f..HEAD -- src package.json package-lock.json next.config.js supabase scripts` → empty at P5 |
 | Review packages | `QAM/HANDOFFS/RRM004_QAM_Q2_REVIEW.zip` SHA-256 `89ed2b6697379a370c3fca2dcd4cd43467c24671f0551603611dd4c85e4c84d6` · `QAM/HANDOFFS/RRM004_QAM_Q5_REVIEW.zip` SHA-256 `9cffdbf1691b8fed4981343ee128185c6ca3d0512cc7b96df814064e47917d13` (verified at P5) |
-| Closeout commit | recorded by Director at merge |
-| Merge SHA | recorded by Director at merge |
+| Closeout commit | `2e3eac9b7f0c3adf4e6eca7e3bbf60f9691d6a02` |
+| Merge SHA | `a474a195e4388b6d999669041a206aed4339e9b1` (`--no-ff` merge of `qa/phase-3-rrm004` into `main`, pushed; recorded 2026-10-02) |
 | QAM pilot verdict | **PARTIAL SUCCESS** under the charter's recorded-Q-stop rule (Q1 contract/scope stop resolved by A-15 and Q1b). Q2 one-shot execution SUCCEEDED: 0 Director interventions, 1 automated sign-in per role, 0 Q2 stops, 1 QA helper correction (Q2-SR01). Body 10m08s; release elapsed 17m21s. AC-701–710 PASS (`QAM/QAM_PILOT_RESULTS.md` §4) |
 | QA cleanup (Q5) | Value scan before deletion, 0 leaks; `.env.qa.local` deleted with proof; no editor recovery files; post-deletion pattern scan 0 leaks; 8 helpers retained with reasons; inventory `QAM/ARTIFACT_INVENTORY.json`. Detail: `QAM/QAM_CLEANUP_REPORT.md` |
 | Rulings | A-01…A-15 (`RULINGS_ADDENDUM.md`) and the erratum lane (`ACCEPTANCE_SPEC.md`) |

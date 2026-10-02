@@ -4,28 +4,23 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-10-02 — **RRM-004-CYBER-PHARMA · CLOSED — GATE Q PASS (QA Lead JARVIS, 2026-10-02, 31/31 product ACs, zero repair rounds) · MERGE PENDING (Director)**
-**Branch:** `qa/phase-3-rrm004` @ `0463086` (evidence commit) + uncommitted P5 closeout. **Certified candidate:** `2fbc72f1f514049255f2b94054bd11cc77cbd158` · QA HEAD `6b6cad6` · evidence `0463086` · baseline `649c36d` · pack `d3ea7f7`. Product diff `2fbc72f..HEAD` empty.
-**Last action:** P5 closeout (docs only):
-- `QAM/QAM_CERTIFICATION.md` (QA Lead letter transcribed);
-- `QAM_PILOT_RESULTS.md` §4 (pilot **PARTIAL SUCCESS**; Q2 one-shot succeeded);
-- AC-710 PASS;
-- journal (Architect, QA-logged, friction log);
-- map v1.0.5;
-- ledger R-009 RESOLVED;
-- EXECUTION_LOG Closeout;
-- README;
-- DC-7 / QC-4.
-
-Session log: `agent_docs/SESSIONS/session_2026-10-02.md`.
+**Last updated:** 2026-10-02 11:16 — **RRM-004-CYBER-PHARMA · CLOSED — GATE Q PASS (QA Lead JARVIS, 2026-10-02, 31/31 product ACs, zero repair rounds) · MERGED TO `main` · RRM CAMPAIGN COMPLETE**
+**Branch:** `main` @ `a474a19` (`--no-ff` merge of `qa/phase-3-rrm004`, pushed). **Certified candidate:** `2fbc72f1f514049255f2b94054bd11cc77cbd158` · QA HEAD `6b6cad6` · evidence `0463086` · closeout `2e3eac9` · merge `a474a19` · baseline `649c36d` · pack `d3ea7f7`. Product diff `2fbc72f..a474a19` empty.
+**Last action:** SHA-recording touch on `main` (docs only): closeout/merge SHAs written to map scoreboard + v1.0.6 status, ledger R-009, RRM-004 `EXECUTION_LOG.md` Closeout, README, DC-7. Session log: `agent_docs/SESSIONS/session_2026-10-02.md`.
+**Pilot:** QAM **PARTIAL SUCCESS** (Q1 recorded Q-stop → A-15); Q2 one-shot succeeded (10m08s body, 0 Director touches). Certificate `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CERTIFICATION.md`.
+**⚠️ UNCOMMITTED on `main`:** this SHA-recording touch (map, ledger, EXECUTION_LOG, README, DIRECTOR_CHECKPOINTS, RECOVERY, CHANGELOG, session log, one RESPONSES record).
 **Pending (Director):**
-1. Commit the P5 closeout.
-2. `--no-ff` merge `qa/phase-3-rrm004` → `main`, then push.
-3. Record the closeout/merge SHAs (map scoreboard, ledger R-009, EXECUTION_LOG).
-4. DC-7: adopt/amend/drop.
-5. QC-5: QA password rotation date.
-6. DA-2: still NOT YET.
-**Next step:** **RRM campaign complete with the Director's merge → backend campaign resumes at BIM-004.**
+1. Commit this touch.
+2. **DC-7 adopt/amend/drop** of the QAM shape (`QAM_PILOT_RESULTS.md` §5).
+3. **QC-5** rotate the two QA passwords and record the date (§5).
+4. **DA-2** Supabase signup OFF — still NOT YET.
+5. Retire `phase-3-rrm004` / `qa/phase-3-rrm004` — your call; per the QA Lead, the QA branch is the forward certification line.
+
+**Pending (seats):**
+- RRM-003 QA-logged journal entry is still a placeholder (QA Lead).
+- QC-1 / QC-2 / DC-3 status cells still read "pending" although done (cosmetic).
+
+**Next step:** **Backend campaign resumes at BIM-004** (seed factory). The Architect authors the pack. Per the RRM-004 lessons, `QAM/` ships in the pack from day one and scope exceptions are resolved before Q1.
 
 **Prior state (2026-09-30):** **RRM-003-CYBER-PHARMA · CLOSED — GATE Q PASS (QA Lead SOL, 2026-09-29, 26/26 ACs, zero repair rounds) · MERGED TO `main`**
 **Branch:** `main` @ `649c36d` (`--no-ff` merge of `qa/phase-3-rrm003`, pushed). **Certified candidate:** `21ea108bb27b965ddc5edae29dc3b1d6971ae576` · QA HEAD `1a94277` · closeout `7309a2f` · merge `649c36d` · code baseline `3d2e655` · pack `a59f069`.
