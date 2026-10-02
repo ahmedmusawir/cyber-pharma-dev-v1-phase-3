@@ -1,0 +1,26 @@
+{
+  "phase": "Q1",
+  "roles": [
+    {
+      "role": "ADMIN",
+      "sign_ins": 1,
+      "auth": "ok",
+      "logout": "ok",
+      "console_errors": 0,
+      "page_errors": 0,
+      "protected_status": 200,
+      "protected_after_logout_status": 307
+    },
+    {
+      "role": "MEMBER",
+      "sign_ins": 1,
+      "auth": "ok",
+      "logout": "ok",
+      "console_errors": 0,
+      "page_errors": 0,
+      "protected_status": 200,
+      "protected_after_logout_status": 307
+    }
+  ],
+  "profiles_removed": true
+}

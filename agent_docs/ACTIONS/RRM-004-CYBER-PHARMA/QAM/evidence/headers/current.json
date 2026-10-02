@@ -1,0 +1,143 @@
+{
+  "chunk_from_qa_build": "/_next/static/chunks/0-kytd3fizlqe.js",
+  "captures": [
+    {
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "60",
+        "-I",
+        "http://127.0.0.1:36155/"
+      ],
+      "exit_code": 0,
+      "stdout": "HTTP/1.1 200 OK\nCache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0\nPragma: no-cache\nExpires: 0\nVary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding\nLink: </_next/static/media/7c1e39d02e51fd6d-s.p.161-8jf3b5y85.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </brand/logo-lockup.svg>; rel=preload; as=\"image\"\nX-Powered-By: Next.js\nContent-Type: text/html; charset=utf-8\nDate: Thu, 01 Oct 2026 11:12:05 GMT\nConnection: keep-alive\nKeep-Alive: timeout=5\n\n",
+      "stderr": "",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+        "pragma": "no-cache",
+        "expires": "0",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "link": "</_next/static/media/7c1e39d02e51fd6d-s.p.161-8jf3b5y85.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </brand/logo-lockup.svg>; rel=preload; as=\"image\"",
+        "x-powered-by": "Next.js",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Thu, 01 Oct 2026 11:12:05 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      }
+    },
+    {
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "60",
+        "-I",
+        "http://127.0.0.1:36155/_next/static/chunks/0-kytd3fizlqe.js"
+      ],
+      "exit_code": 0,
+      "stdout": "HTTP/1.1 200 OK\nCache-Control: public, max-age=31536000, immutable\nAccept-Ranges: bytes\nLast-Modified: Thu, 01 Oct 2026 11:12:04 GMT\nETag: W/\"8cb-1a0f72a110a\"\nContent-Type: application/javascript; charset=UTF-8\nContent-Length: 2251\nVary: Accept-Encoding\nDate: Thu, 01 Oct 2026 11:12:05 GMT\nConnection: keep-alive\nKeep-Alive: timeout=5\n\n",
+      "stderr": "",
+      "status": 200,
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable",
+        "accept-ranges": "bytes",
+        "last-modified": "Thu, 01 Oct 2026 11:12:04 GMT",
+        "etag": "W/\"8cb-1a0f72a110a\"",
+        "content-type": "application/javascript; charset=UTF-8",
+        "content-length": "2251",
+        "vary": "Accept-Encoding",
+        "date": "Thu, 01 Oct 2026 11:12:05 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      }
+    },
+    {
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "60",
+        "-I",
+        "http://127.0.0.1:36155/auth"
+      ],
+      "exit_code": 0,
+      "stdout": "HTTP/1.1 200 OK\nCache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0\nPragma: no-cache\nExpires: 0\nVary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding\nx-nextjs-cache: HIT\nx-nextjs-prerender: 1\nx-nextjs-prerender: 1\nx-nextjs-stale-time: 300\nX-Powered-By: Next.js\nETag: \"1159t6rimqzcte\"\nContent-Type: text/html; charset=utf-8\nContent-Length: 16618\nDate: Thu, 01 Oct 2026 11:12:05 GMT\nConnection: keep-alive\nKeep-Alive: timeout=5\n\n",
+      "stderr": "",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+        "pragma": "no-cache",
+        "expires": "0",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": "HIT",
+        "x-nextjs-prerender": "1",
+        "x-nextjs-stale-time": "300",
+        "x-powered-by": "Next.js",
+        "etag": "\"1159t6rimqzcte\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "16618",
+        "date": "Thu, 01 Oct 2026 11:12:05 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      }
+    },
+    {
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "60",
+        "-I",
+        "http://127.0.0.1:36155/owedbook"
+      ],
+      "exit_code": 0,
+      "stdout": "HTTP/1.1 307 Temporary Redirect\nCache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0\nPragma: no-cache\nExpires: 0\nVary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding\nlocation: /auth\nLink: </_next/static/media/7c1e39d02e51fd6d-s.p.161-8jf3b5y85.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/chunks/3h158c8o2q11u.css>; rel=preload; as=\"style\"\nX-Powered-By: Next.js\nContent-Type: text/html; charset=utf-8\nDate: Thu, 01 Oct 2026 11:12:05 GMT\nConnection: keep-alive\nKeep-Alive: timeout=5\n\n",
+      "stderr": "",
+      "status": 307,
+      "headers": {
+        "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+        "pragma": "no-cache",
+        "expires": "0",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "location": "/auth",
+        "link": "</_next/static/media/7c1e39d02e51fd6d-s.p.161-8jf3b5y85.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/chunks/3h158c8o2q11u.css>; rel=preload; as=\"style\"",
+        "x-powered-by": "Next.js",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Thu, 01 Oct 2026 11:12:05 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      }
+    },
+    {
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "60",
+        "-X",
+        "POST",
+        "-D",
+        "-",
+        "-o",
+        "/dev/null",
+        "http://127.0.0.1:36155/api/auth/login"
+      ],
+      "exit_code": 0,
+      "stdout": "HTTP/1.1 500 Internal Server Error\nCache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0\nPragma: no-cache\nExpires: 0\nvary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch\nDate: Thu, 01 Oct 2026 11:12:05 GMT\nConnection: keep-alive\nKeep-Alive: timeout=5\nTransfer-Encoding: chunked\n\n",
+      "stderr": "",
+      "status": 500,
+      "headers": {
+        "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+        "pragma": "no-cache",
+        "expires": "0",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+        "date": "Thu, 01 Oct 2026 11:12:05 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked"
+      }
+    }
+  ]
+}

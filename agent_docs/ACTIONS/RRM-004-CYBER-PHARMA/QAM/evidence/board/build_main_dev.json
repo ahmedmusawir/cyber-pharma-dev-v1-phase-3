@@ -1,0 +1,7 @@
+{
+  "command": "rm -rf .next && npx next build; approved .env.local, no placeholder overrides",
+  "start": "2026-10-01T17:14:09+06:00",
+  "end": "2026-10-01T17:14:31+06:00",
+  "exit_code": 0,
+  "target_fingerprint_preflight": "8ca83fc75bdf9fbc"
+}

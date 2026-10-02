@@ -1,0 +1,328 @@
+Q2 ATTEMPT 1 — 2026-10-01T17:06:28+06:00
+QF-01 PASS; QF-02 PASS; QF-03 PASS (complete successor paths inspected); QF-04 PASS; QF-12 PASS
+
+$ git --no-optional-locks rev-parse --abbrev-ref HEAD && git --no-optional-locks rev-parse HEAD && git --no-optional-locks status --porcelain
+qa/phase-3-rrm004
+6b6cad642f69314904938e9df1ec8fdfbe08f15a
+exit=0
+
+$ git --no-optional-locks merge-base --is-ancestor 2fbc72f1f514049255f2b94054bd11cc77cbd158 HEAD && echo ok
+ok
+exit=0
+
+$ git --no-optional-locks diff --name-status 2fbc72f1f514049255f2b94054bd11cc77cbd158..HEAD
+M	CHANGELOG.md
+M	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/ACCEPTANCE_SPEC.md
+M	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/DIRECTOR_ACTIONS.md
+M	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/DIRECTOR_CHECKPOINTS.md
+D	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/AGENTS.md
+D	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QA_ENVIRONMENT_PREFLIGHT.md
+D	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QA_EXECUTION_REPORT.md
+D	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QA_TEST_PLAN.md
+D	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/README.md
+R100	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/AC_EVIDENCE_MATRIX.md	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AC_EVIDENCE_MATRIX.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs
+R100	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/GOVERNING/PROVENANCE.md	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/PROVENANCE.md
+R100	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/GOVERNING/QA_PLAYBOOK.md	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/QA_PLAYBOOK.md
+R100	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/GOVERNING/README.md	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/README.md
+R100	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/GOVERNING/SEARCH_RECORD.md	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/SEARCH_RECORD.md
+R100	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/GOVERNING/WEB_FACTORY_P1_DOCTRINE_JOURNAL.md	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/WEB_FACTORY_P1_DOCTRINE_JOURNAL.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/HANDOFFS/RRM004_QAM_Q1_REVIEW.verification.json
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/HANDOFFS/RRM004_QAM_Q1_REVIEW.zip
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_ENTRY.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_EXECUTION_REPORT.md
+R081	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QAM_MANIFEST.md	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_MANIFEST.md
+R057	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QAM_PILOT_CHARTER.md	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_CHARTER.md
+R057	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QAM_PILOT_RESULTS.md	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_RESULTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_RISK_REQUIREMENTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_TEST_PLAN.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/README.md
+R100	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/REPAIR_PROPOSAL.md.template	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/REPAIR_PROPOSAL.md.template
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_PREFLIGHT_Q1.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_Q1B_DOCUMENT_CHECKS.json
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/entry_gate.json
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/privacy_audit.json
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/q1_final_checks.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/qf16_result.json
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/qf16_server.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/recon.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/temp_paths.json
+M	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/README.md
+M	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RULINGS_ADDENDUM.md
+A	agent_docs/RESPONSES/response_2026-10-01_123008_rrm004-p2b-errata.md
+A	agent_docs/RESPONSES/response_2026-10-01_125800_rrm004-qam-ratification.md
+A	agent_docs/RESPONSES/response_2026-10-01_134927_rrm004-qam-q1-recon.md
+A	agent_docs/RESPONSES/response_2026-10-01_143840_rrm004-qam-q1-recon.md
+A	agent_docs/RESPONSES/response_2026-10-01_152228_rrm004-qam-q1-recon.md
+A	agent_docs/RESPONSES/response_2026-10-01_160146_rrm004-qam-q1-recon.md
+A	agent_docs/RESPONSES/response_2026-10-01_164136_rrm004-a15-ac403.md
+A	agent_docs/RESPONSES/response_2026-10-01_165250_rrm004-qam-q1b-resolution.md
+A	agent_docs/RESPONSES/response_2026-10-01_165954_rrm004-qam-q1b-commit-review.md
+M	agent_docs/SESSIONS/session_2026-10-01.md
+A	agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q1-export.md
+A	agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q1.md
+A	agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q1b.md
+exit=0
+
+$ git --no-optional-locks diff --name-only 2fbc72f1f514049255f2b94054bd11cc77cbd158..HEAD
+CHANGELOG.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/ACCEPTANCE_SPEC.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/DIRECTOR_ACTIONS.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/DIRECTOR_CHECKPOINTS.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/AGENTS.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QA_ENVIRONMENT_PREFLIGHT.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QA_EXECUTION_REPORT.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QA_TEST_PLAN.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/README.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AC_EVIDENCE_MATRIX.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/PROVENANCE.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/QA_PLAYBOOK.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/README.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/SEARCH_RECORD.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/WEB_FACTORY_P1_DOCTRINE_JOURNAL.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/HANDOFFS/RRM004_QAM_Q1_REVIEW.verification.json
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/HANDOFFS/RRM004_QAM_Q1_REVIEW.zip
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_ENTRY.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_EXECUTION_REPORT.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_MANIFEST.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_CHARTER.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_RESULTS.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_RISK_REQUIREMENTS.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_TEST_PLAN.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/README.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/REPAIR_PROPOSAL.md.template
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_PREFLIGHT_Q1.txt
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_Q1B_DOCUMENT_CHECKS.json
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/entry_gate.json
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/privacy_audit.json
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/q1_final_checks.txt
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/qf16_result.json
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/qf16_server.txt
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/recon.txt
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/temp_paths.json
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/README.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RULINGS_ADDENDUM.md
+agent_docs/RESPONSES/response_2026-10-01_123008_rrm004-p2b-errata.md
+agent_docs/RESPONSES/response_2026-10-01_125800_rrm004-qam-ratification.md
+agent_docs/RESPONSES/response_2026-10-01_134927_rrm004-qam-q1-recon.md
+agent_docs/RESPONSES/response_2026-10-01_143840_rrm004-qam-q1-recon.md
+agent_docs/RESPONSES/response_2026-10-01_152228_rrm004-qam-q1-recon.md
+agent_docs/RESPONSES/response_2026-10-01_160146_rrm004-qam-q1-recon.md
+agent_docs/RESPONSES/response_2026-10-01_164136_rrm004-a15-ac403.md
+agent_docs/RESPONSES/response_2026-10-01_165250_rrm004-qam-q1b-resolution.md
+agent_docs/RESPONSES/response_2026-10-01_165954_rrm004-qam-q1b-commit-review.md
+agent_docs/SESSIONS/session_2026-10-01.md
+agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q1-export.md
+agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q1.md
+agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q1b.md
+exit=0
+
+$ git --no-optional-locks diff --stat 2fbc72f1f514049255f2b94054bd11cc77cbd158..HEAD -- src/ package.json package-lock.json next.config.js supabase/ scripts/
+exit=0
+
+$ ls agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_ENTRY.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_CHARTER.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_RISK_REQUIREMENTS.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_MANIFEST.md agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/PROVENANCE.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/PROVENANCE.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_ENTRY.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_MANIFEST.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_CHARTER.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md
+agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_RISK_REQUIREMENTS.md
+exit=0
+
+$ mkdir -p agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION && touch agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/.w && rm agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/.w && echo ok && df -h . | tail -1
+ok
+/dev/sda2        98G   84G  9.3G  91% /
+exit=0
+
+Committed QA Lead approval and A-15/AC-403 erratum verified; original Q1 gate/privacy/temp-path records preserved under evidence/Q1_preserved/.
+
+QF-13 2026-10-01T17:07:05+06:00
+$ test -f .env.qa.local && git check-ignore -q .env.qa.local && echo ignored && git ls-files --error-unmatch .env.qa.local 2>/dev/null; echo "tracked-exit=$?"
+ignored
+tracked-exit=1
+exit=0
+RESULT PASS
+
+QF-14 2026-10-01T17:07:05+06:00
+$ node -e 'const W=["QA_TARGET_LABEL","QA_ADMIN_EMAIL","QA_ADMIN_PASSWORD","QA_MEMBER_EMAIL","QA_MEMBER_PASSWORD"];const L=require("fs").readFileSync(".env.qa.local","utf8").split(/\r?\n/).filter(l=>l.trim()&&!/^\s*#/.test(l));const P=L.map(l=>{const i=l.indexOf("=");return i<1?null:[l.slice(0,i).trim(),l.slice(i+1).trim().replace(/^(["\x27])(.*)\1$/,"$2")]});const K=P.filter(Boolean).map(p=>p[0]);console.log("lines="+L.length+" malformed="+P.filter(p=>!p).length+" unique="+new Set(K).size+" dup="+K.filter((k,i)=>K.indexOf(k)!==i).length+" missing="+W.filter(w=>!K.includes(w)).length+" unexpected="+K.filter(k=>!W.includes(k)).length+" empty="+P.filter(p=>p&&!p[1]).length)'
+lines=5 malformed=0 unique=5 dup=0 missing=0 unexpected=0 empty=0
+exit=0
+RESULT PASS
+
+QF-15.1 2026-10-01T17:07:05+06:00
+$ node --env-file=.env.qa.local -e "console.log('label='+process.env.QA_TARGET_LABEL)"
+label=main-dev
+exit=0
+RESULT PASS
+
+QF-15.2 2026-10-01T17:07:05+06:00
+$ grep -lE '^NEXT_PUBLIC_SUPABASE_URL=' .env.production.local .env.local .env.production .env 2>/dev/null; node -e "console.log('shell-override='+('NEXT_PUBLIC_SUPABASE_URL' in process.env))"
+.env.local
+shell-override=false
+exit=0
+RESULT PASS
+
+QF-15.3 2026-10-01T17:07:05+06:00
+$ node --env-file=.env.local -e 'try{const u=new URL(process.env.NEXT_PUBLIC_SUPABASE_URL);console.log("target-fp="+require("crypto").createHash("sha256").update(u.hostname.split(".")[0]).digest("hex").slice(0,16))}catch{console.log("target-fp=unresolved")}'
+target-fp=8ca83fc75bdf9fbc
+exit=0
+RESULT PASS
+
+QF-15.4 2026-10-01T17:07:05+06:00
+$ node --env-file=.env.local -e '(async()=>{try{const r=await fetch(new URL("/auth/v1/health",process.env.NEXT_PUBLIC_SUPABASE_URL));console.log("health="+r.status)}catch{console.log("health=unreachable")}})()'
+health=401
+exit=0
+RESULT PASS
+
+QF-05 2026-10-01T17:07:05+06:00
+$ node -v && npm -v
+v22.14.0
+10.9.2
+exit=0
+RESULT PASS
+
+QF-06 2026-10-01T17:07:06+06:00
+$ npm view next@16.3.7 version && npm view sharp@0.35.5 version
+16.3.7
+0.35.5
+exit=0
+RESULT PASS
+
+QF-07 2026-10-01T17:07:07+06:00
+$ curl -s -o /dev/null -w '%{http_code}\n' 'https://fonts.googleapis.com/css2?family=Saira:wght@400&display=swap'
+200
+exit=0
+RESULT PASS
+
+QF-11 2026-10-01T17:07:09+06:00
+$ node -e "require('net').createServer().listen(36155,'127.0.0.1').on('listening',function(){this.close();console.log('free')}).on('error',()=>console.log('busy'))"
+free
+exit=0
+RESULT PASS
+
+install setup start=2026-10-01T17:07:40+06:00
+v22.14.0 platform=linux-x64 glibc=2.39
+10.9.2
+$ rm -rf node_modules .next && npm ci
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: react-remove-scroll@2.5.7
+npm warn Found: @types/react@19.2.14
+npm warn node_modules/@types/react
+npm warn   dev @types/react@"^19.2.2" from the root project
+npm warn   78 more (@radix-ui/react-arrow, @radix-ui/react-avatar, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peerOptional @types/react@"^16.8.0 || ^17.0.0 || ^18.0.0" from react-remove-scroll@2.5.7
+npm warn node_modules/@radix-ui/react-menu/node_modules/react-remove-scroll
+npm warn   react-remove-scroll@"2.5.7" from @radix-ui/react-menu@2.1.1
+npm warn   node_modules/@radix-ui/react-menu
+npm warn
+npm warn Conflicting peer dependency: @types/react@18.3.31
+npm warn node_modules/@types/react
+npm warn   peerOptional @types/react@"^16.8.0 || ^17.0.0 || ^18.0.0" from react-remove-scroll@2.5.7
+npm warn   node_modules/@radix-ui/react-menu/node_modules/react-remove-scroll
+npm warn     react-remove-scroll@"2.5.7" from @radix-ui/react-menu@2.1.1
+npm warn     node_modules/@radix-ui/react-menu
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: react-remove-scroll@2.5.7
+npm warn Found: react@19.2.4
+npm warn node_modules/react
+npm warn   react@"^19.2.4" from the root project
+npm warn   86 more (@floating-ui/react-dom, @heroicons/react, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from react-remove-scroll@2.5.7
+npm warn node_modules/@radix-ui/react-menu/node_modules/react-remove-scroll
+npm warn   react-remove-scroll@"2.5.7" from @radix-ui/react-menu@2.1.1
+npm warn   node_modules/@radix-ui/react-menu
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from react-remove-scroll@2.5.7
+npm warn   node_modules/@radix-ui/react-menu/node_modules/react-remove-scroll
+npm warn     react-remove-scroll@"2.5.7" from @radix-ui/react-menu@2.1.1
+npm warn     node_modules/@radix-ui/react-menu
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: use-sync-external-store@1.2.0
+npm warn Found: react@19.2.4
+npm warn node_modules/react
+npm warn   react@"^19.2.4" from the root project
+npm warn   86 more (@floating-ui/react-dom, @heroicons/react, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from use-sync-external-store@1.2.0
+npm warn node_modules/zustand/node_modules/use-sync-external-store
+npm warn   use-sync-external-store@"1.2.0" from zustand@4.5.4
+npm warn   node_modules/zustand
+npm warn
+npm warn Conflicting peer dependency: react@18.3.1
+npm warn node_modules/react
+npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from use-sync-external-store@1.2.0
+npm warn   node_modules/zustand/node_modules/use-sync-external-store
+npm warn     use-sync-external-store@"1.2.0" from zustand@4.5.4
+npm warn     node_modules/zustand
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+
+added 854 packages, and audited 855 packages in 20s
+
+203 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+exit=0
+install setup end=2026-10-01T17:08:02+06:00
+
+QF-08 2026-10-01T17:08:03+06:00
+$ npx playwright --version && node -e "const p=require('playwright').chromium.executablePath(); require('fs').accessSync(p, require('fs').constants.X_OK); console.log('chromium ok')"
+Version 1.59.1
+chromium ok
+exit=0
+QF-08 RESULT PASS
+
+QF-09 2026-10-01T17:08:03+06:00
+$ node -e "(async()=>{const {chromium}=require('playwright');const b=await chromium.launch();const p=await b.newPage();await p.goto('about:blank');await b.close();console.log('launch ok')})()"
+launch ok
+exit=0
+QF-09 RESULT PASS
+
+QF-10 2026-10-01T17:08:04+06:00
+$ node -e "(async()=>{const {chromium}=require('playwright');const b=await chromium.launch();const p=await b.newPage();await p.setContent('<button id=b>x</button>');await p.evaluate(()=>{window.n=0;document.getElementById('b').addEventListener('click',()=>window.n++)});await p.focus('#b');await p.keyboard.press('Enter');await p.keyboard.press('Space');console.log('clicks='+await p.evaluate(()=>window.n));await b.close()})()"
+clicks=2
+exit=0
+QF-10 RESULT PASS
+
+QF-18 2026-10-01T17:08:04+06:00
+$ find $QAM \( -iname '*storage*state*' -o -iname '*.har' -o -iname 'auth*.json' -o -iname '*cookies*' -o -type d \( -iname '*profile*' -o -iname '*user-data*' \) \) -print | grep . ; echo "leftover-exit=$?"
+leftover-exit=1
+exit=0
+
+QF-18 2026-10-01T17:08:04+06:00
+$ ls -a | grep -E '^\.?\.env\.qa\.local(\.sw[a-p]|~|\.bak|\.orig)$|^#\.env\.qa\.local#$' ; echo "editor-exit=$?"
+editor-exit=1
+exit=0
+QF-18 RESULT PASS
+
+QF-17 2026-10-01T17:08:04+06:00
+$ node --env-file=.env.qa.local $QAM/AUTOMATION/privacy_scan.cjs --self-test
+planted=detected control=clean forbidden-values=4
+exit=0
+QF-17 RESULT PASS
+
+QF-16 covered-by-walk (A-13 d); NOT RUN as a separate preflight sign-in.
+Q2 preflight PASS: 17 rows measured; QF-16 deferred to approved Q2 walk. 2026-10-01T17:08:04+06:00

@@ -1,0 +1,9 @@
+{
+  "id": "Q2-SR01",
+  "timestamp": "2026-10-01T17:09:38+06:00",
+  "class": "QA helper self-repair",
+  "reason": "sharp does not export ./package.json; read installed package JSON with fs instead",
+  "failed_attempt": "evidence/deps/attempts/metadata_01/",
+  "product_changed": false,
+  "interpretation": "Generic wrapper failure marker was provisional; no false-green attack, registry failure, missing native package or other enumerated Q-stop established. Operating law permits QA helper self-repair. Prior successful measurements retained, not rerun."
+}

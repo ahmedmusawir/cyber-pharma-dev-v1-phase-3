@@ -1,0 +1,13 @@
+{
+  "command": [
+    "npm",
+    "ls",
+    "next",
+    "sharp",
+    "eslint-config-next"
+  ],
+  "cwd": "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3",
+  "timestamp": "2026-10-01T17:08:52+06:00",
+  "exit_code": 0,
+  "stderr": ""
+}

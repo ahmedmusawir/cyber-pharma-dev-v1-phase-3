@@ -1,0 +1,62 @@
+# RRM-004 S1 versions — BASELINE block (P1 PF-16, before any install)
+# baseline 649c36d0409c0b658cff14f779a09aad0c8e92b9 · captured 2026-09-30T16:08:42+08:00 · platform linux-x64 (glibc 2.39) · node v22.14.0 · npm 10.9.2
+## BASELINE
+$ grep -nE '"next"|"eslint-config-next"|"sharp"' package.json
+41:    "next": "^16.2.1",
+63:    "eslint-config-next": "^16.2.9",
+75:    "sharp": "^0.35.3"
+$ npm ls next sharp eslint-config-next
+cyber-pharma@0.1.0 /home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3
+├── eslint-config-next@16.2.12
+└─┬ next@16.2.12
+  └── sharp@0.35.3 overridden
+
+$ ls node_modules/@img/
+colour
+sharp-libvips-linuxmusl-x64
+sharp-libvips-linux-x64
+sharp-linuxmusl-x64
+sharp-linux-x64
+sharp-wasm32
+$ node -p "const v=require('@img/sharp-libvips-linux-x64/versions.json'); v.heif+' vips='+v.vips"   # PF-16 literal command
+Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './versions.json' is not defined by "exports" in /home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/node_modules/@img/sharp-libvips-linux-x64/package.json
+$ node -p "const v=require('@img/sharp-libvips-linux-x64/versions'); v.heif+' vips='+v.vips"   # exported subpath (exports: "./versions": "./versions.json") — proposed A-03
+1.23.1 vips=8.18.3
+$ node -p "require('@img/sharp-libvips-linux-x64/package').version"
+1.3.2
+# P2 PF-16 re-capture (untouched tree, A-03 command) 2026-09-30T16:21 +08:00: 1.23.1 vips=8.18.3 (package 1.3.2) — identical to P1
+## AFTER
+# captured 2026-09-30T16:26:16+08:00 after npm install (16:22:02→16:24:39) + npm audit fix (16:24:39→16:25:54)
+$ git diff -U0 649c36d0409c0b658cff14f779a09aad0c8e92b9 -- package.json | grep '^[-+] '
+-    "next": "^16.2.1",
++    "next": "16.3.7",
+-    "eslint-config-next": "^16.2.9",
++    "eslint-config-next": "16.3.7",
+-    "sharp": "^0.35.3"
++    "sharp": "0.35.5"
+$ cmp package.json <copy taken before npm audit fix>
+identical (exit 0)
+$ npm ls next sharp eslint-config-next
+cyber-pharma@0.1.0 /home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3
+├── eslint-config-next@16.3.7
+└─┬ next@16.3.7
+  └── sharp@0.35.5 overridden
+
+(exit 0)
+$ ls node_modules/@img/
+colour
+sharp-libvips-linuxmusl-x64
+sharp-libvips-linux-x64
+sharp-linuxmusl-x64
+sharp-linux-x64
+sharp-wasm32
+$ node -p "const v=require('@img/sharp-libvips-linux-x64/versions'); v.heif+' vips='+v.vips"   # A-03
+1.23.5 vips=8.18.7
+$ node -p "require('@img/sharp-libvips-linux-x64/package').version" ; node -p "require('@img/sharp-linux-x64/package').version"
+1.3.4
+0.35.5
+$ npx next --version
+Next.js v16.3.7
+$ node -p "require('sharp').versions"
+{"aom":"3.15.1","archive":"3.8.9","cairo":"1.18.6","cgif":"0.5.4","exif":"0.6.26","expat":"2.8.5","ffi":"3.8.0","fontconfig":"2.18.3","freetype":"2.14.3","fribidi":"1.0.17","glib":"2.90.0","harfbuzz":"14.5.0","heif":"1.23.5","highway":"1.4.0","imagequant":"2.4.1","lcms":"2.19.1","mozjpeg":"0826579","pango":"1.58.2","pixman":"0.46.4","png":"1.6.58","proxy-libintl":"0.5","rsvg":"2.63.2","tiff":"4.7.2","uhdr":"2.0.2","vips":"8.18.7","webp":"1.6.0","xml2":"2.15.4","zlib-ng":"2.3.3","sharp":"0.35.5"}
+BASELINE 1.23.1 → AFTER (above) ; floor 1.23.2 ; instrument moved: see value

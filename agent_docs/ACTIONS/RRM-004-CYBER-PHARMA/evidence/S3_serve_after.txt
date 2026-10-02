@@ -1,0 +1,57 @@
+# RRM-004 S3 served proofs — AFTER (candidate working tree: next 16.3.7, sharp 0.35.5, sweep, images removed) · captured 2026-09-30T16:28:32+08:00
+# Build: placeholder-env (S3_board.txt) · RRM-003 A-02: cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public, then env <placeholders> PORT=36055 HOSTNAME=127.0.0.1 node .next/standalone/server.js · boot probe / → 200
+
+## AC-303 header pair + negative controls
+$ curl -sI http://127.0.0.1:36055/ | grep -iE '^HTTP|cache-control'
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+$ curl -sI http://127.0.0.1:36055/_next/static/chunks/00diu1pfw5ykn.js | grep -iE '^HTTP|cache-control'
+HTTP/1.1 200 OK
+Cache-Control: public, max-age=31536000, immutable
+$ curl -sI http://127.0.0.1:36055/auth | grep -iE '^HTTP|cache-control'
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+$ curl -sI http://127.0.0.1:36055/owedbook | grep -iE '^HTTP|cache-control|location'
+HTTP/1.1 307 Temporary Redirect
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+location: /auth
+$ curl -s -o /dev/null -D - -X POST http://127.0.0.1:36055/api/auth/login | grep -iE '^HTTP|cache-control'
+HTTP/1.1 500 Internal Server Error
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+
+## AC-204 image optimizer probe (sharp in the loop)
+$ curl -s -o /tmp/claude-1000/-home-moose-nextjs-CYBER-PHARMA-cyber-pharma-dev-v1-phase-3/aa5d10d0-f1e1-4cf8-9d7e-8ec6e73c9303/scratchpad/p2/S3_image_probe.bin -D - -H 'Accept: image/webp' 'http://127.0.0.1:36055/_next/image?url=%2Flanding%2Fowedbook-mockup.png&w=1080&q=75' | grep -iE '^HTTP|content-type|cache-control'
+HTTP/1.1 200 OK
+Cache-Control: public, max-age=14400, must-revalidate
+Content-Type: image/webp
+$ xxd -l 16 <body>   (body saved to a temp file outside the tree, then deleted)
+00000000: 5249 4646 2e6c 0000 5745 4250 5650 3820  RIFF.l..WEBPVP8 
+body bytes: 27702
+decoded (sharp metadata): format=webp 1080x626
+
+## AC-204 negative host probe (A-04: status AND body)
+$ curl -s -o /tmp/claude-1000/-home-moose-nextjs-CYBER-PHARMA-cyber-pharma-dev-v1-phase-3/aa5d10d0-f1e1-4cf8-9d7e-8ec6e73c9303/scratchpad/p2/neg.body -w '%{http_code}\n' 'http://127.0.0.1:36055/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdyb0qa58h%2Fimage%2Fupload%2Fx.png&w=64&q=75'
+400
+$ cat <body>
+"url" parameter is not allowed
+
+## AC-205 direct GETs
+$ curl -s -o /dev/null -D - http://127.0.0.1:36055/brand/logo-color.svg | grep -iE '^HTTP|content-type'
+HTTP/1.1 200 OK
+Content-Type: image/svg+xml
+$ curl -s -o /dev/null -D - http://127.0.0.1:36055/brand/logo-lockup.svg | grep -iE '^HTTP|content-type'
+HTTP/1.1 200 OK
+Content-Type: image/svg+xml
+$ curl -s -o /dev/null -D - http://127.0.0.1:36055/landing/owedbook-mockup.png | grep -iE '^HTTP|content-type'
+HTTP/1.1 200 OK
+Content-Type: image/png
+
+## shutdown
+server pid 1736132 stopped at 2026-09-30T16:28:33+08:00
+$ node -e "require('net').createServer().listen(36055,'127.0.0.1')…"   # PF-09
+free
+
+## Notes
+- POST /api/auth/login (empty body) → 500 is pre-existing, not a regression: identical status in RRM-003's engineering after-capture (`agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/evidence/S2_headers_after.txt:21`, "pre-existing A-12 R3") and in RRM-003 QA's capture (`…/RRM-003-CYBER-PHARMA/QA/evidence/headers/headers_validated.txt:57`). Server log: `SyntaxError: Unexpected end of JSON input` (JSON.parse on the empty body). AC-303 grades Cache-Control only: carries no-store.
+- Probe body and negative-probe body were written outside the tree and deleted after the read; `S3_image_probe.bin` is not committed (AC-204).
+- Chunk file differs from the before-capture (`04sa36x9-705m.js` → `00diu1pfw5ykn.js`): new build hashes under next 16.3.7; any chunk is acceptable per AC-303.

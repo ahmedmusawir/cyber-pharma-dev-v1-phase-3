@@ -1,0 +1,15 @@
+{
+  "command": [
+    "curl",
+    "-sS",
+    "--max-time",
+    "60",
+    "-D",
+    "-",
+    "http://127.0.0.1:36155/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdyb0qa58h%2Fimage%2Fupload%2Fx.png&w=64&q=75"
+  ],
+  "exit_code": 0,
+  "stdout": "HTTP/1.1 400 Bad Request\nCache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0\nPragma: no-cache\nExpires: 0\nDate: Thu, 01 Oct 2026 11:12:05 GMT\nConnection: keep-alive\nKeep-Alive: timeout=5\nTransfer-Encoding: chunked\n\n\"url\" parameter is not allowed",
+  "stderr": "",
+  "pass": true
+}

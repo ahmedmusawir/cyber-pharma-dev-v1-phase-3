@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-10-02T07:01:26+06:00",
+  "initial_discovery_stdout": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/authority_values_command.json\nagent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/authority_values.json\n",
+  "classification": "Two newly generated authority scan records matched broad auth*.json filename discovery; they are scan receipts, not authentication state. Initial wrapper exited 1 before any auth deletion.",
+  "resolution": "Renamed receipts with selected_ prefix, preserving bytes. No credential leak, scanner modification, product change, or enumerated Q-stop.",
+  "renames": [
+    {
+      "old": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/authority_values_command.json",
+      "new": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/selected_authority_values_command.json",
+      "sha256_unchanged": "df8e7242c038a11d9afaa6fb16e611bb56dad1cb969546c844ab0a8e3e25a1cb"
+    },
+    {
+      "old": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/authority_values.json",
+      "new": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/selected_authority_values.json",
+      "sha256_unchanged": "aa08bdbb6c96fb344f8cae68443b970ae1aa377864926e859ca410b8a000cd12"
+    }
+  ]
+}

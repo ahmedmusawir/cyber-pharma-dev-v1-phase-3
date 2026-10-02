@@ -1,0 +1,11 @@
+# RRM-004-CYBER-PHARMA — Repair Proposal (QA Executor draft)
+
+**Create this file as `REPAIR_PROPOSAL.md` only when at least one product AC is FAIL.** It is a proposal for the QA Lead → Architect → Director chain, not a work order. No QA seat edits `src/`, `package.json`, `package-lock.json`, `next.config.js` or tests.
+
+Executor: <position> · `date -Is`: <…> · Candidate: `<sha>`
+
+| Finding | AC(s) | Evidence path(s) | Reproduction (exact) | Suggested class | Suggested allowed files | Suggested retest scope |
+|---|---|---|---|---|---|---|
+
+Notes for the QA Lead's classification: <…>
+Contract questions, if any (cite spec row and ruling gap): <…>

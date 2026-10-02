@@ -1,0 +1,38 @@
+# RRM-004 S2 — captured 2026-09-30T16:26:46+08:00 · A-06 (DD-2 = remove)
+$ git diff 649c36d0409c0b658cff14f779a09aad0c8e92b9 -- next.config.js
+diff --git a/next.config.js b/next.config.js
+index 5db114d..cf6b6b1 100644
+--- a/next.config.js
++++ b/next.config.js
+@@ -2,14 +2,6 @@
+ const nextConfig = {
+   output: "standalone",
+   reactStrictMode: true,
+-  images: {
+-    remotePatterns: [
+-      {
+-        protocol: "https",
+-        hostname: "res.cloudinary.com",
+-      },
+-    ],
+-  },
+   async headers() {
+     return [
+       {
+$ sed -n 1,6p next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: "standalone",
+  reactStrictMode: true,
+  async headers() {
+    return [
+$ grep -nE "unoptimized|dangerouslyAllowSVG|loader:" next.config.js | wc -l   # AC-203
+0
+$ grep -nE "remotePatterns|res.cloudinary.com|images" next.config.js | wc -l   # AC-201
+0
+$ grep -rn "res.cloudinary.com" src public src/mocks docs | wc -l   # AC-201 control (README.md Markdown hits are the listed exception)
+0
+$ grep -c "res.cloudinary.com" README.md
+4
+$ headers()/output/reactStrictMode byte-identity: diff of the file minus lines 5-12 of baseline vs candidate
+identical (exit 0) — only the images block (baseline lines 5-12) removed; no hunk inside headers() (AC-202/AC-405)

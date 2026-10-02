@@ -3,6 +3,58 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-10-02 04:59 UTC — [CC] Claude Code
+
+- **RRM-004-CYBER-PHARMA — P5 closeout** (docs only, `qa/phase-3-rrm004`): QA Lead certification transcribed into a new `QAM/QAM_CERTIFICATION.md` (Gate Q PASS @ `2fbc72f`; the Engineer certifies nothing). `QAM_PILOT_RESULTS.md` §4 records the pilot as PARTIAL SUCCESS with Q2 one-shot succeeded; §5 is left blank for the Director. AC-710 → PASS, with the Executor history preserved. Journal: Architect entry, QA-logged entry and friction log. Map v1.0.5 and scoreboard; ledger R-009 RESOLVED; EXECUTION_LOG Closeout; README status. DC-7: certification received, Director items pending. QC-4 satisfied. RECOVERY.md updated (P5 permission).
+- **Updated:** `RECOVERY.md` · `agent_docs/RRM_CAMPAIGN_JOURNAL.md` · `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` · `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/` `EXECUTION_LOG.md`, `README.md`, `DIRECTOR_CHECKPOINTS.md`, `QAM/AC_EVIDENCE_MATRIX.md`, `QAM/QAM_PILOT_RESULTS.md`, `QAM/QAM_CHECKPOINTS.md`.
+- **Added:** `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CERTIFICATION.md`.
+- **Reason:** the QA Lead's certification letter of 2026-10-02 and the Director's P5 instruction.
+
+## 2026-10-01 10:41 UTC — [CC] Claude Code
+
+- **RRM-004-CYBER-PHARMA — Q1-C01 / AC-403** (docs only, `qa/phase-3-rrm004`): A-15 records a narrow AC-403 exception for five already-authorized historical hunks (`a93393d`, `ee4a049`) and the 12 byte-identical `_OLD/` moves (`1eb9c04`, J-09). An AC-403 erratum row cites A-15. The frozen criterion, baseline and candidate are unchanged.
+- **Updated:** `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RULINGS_ADDENDUM.md` (+A-15), `ACCEPTANCE_SPEC.md` (erratum lane).
+- **Reason:** QA Lead disposition of the Q1 contradiction Q1-C01, relayed by the Director.
+
+## 2026-10-01 06:57 UTC — [CC] Claude Code
+
+- **RRM-004-CYBER-PHARMA — QAM ratification amendments** (docs only): A-14 and an AC-703 erratum (install order). The QA-owned `npm ci` now runs before QF-08/09/10 and Q2 has no second install. The privacy scanner holds values in memory only; editor swap/backup files are reported, never read or auto-deleted. Target authority is the Director's existing `.env.local` approval, so the attestation step is removed. Node env-file parsing; explicit build/serve and static copy; `$QAM/AUTOMATION` paths; RESPONSES permission and Q1b ownership; §C C1–C6; QA Lead ratification line in 4 files. The test plan is not approved.
+- **Updated:** `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/` `RULINGS_ADDENDUM.md`, `ACCEPTANCE_SPEC.md` (erratum lane), `DIRECTOR_ACTIONS.md` · `QAM/` `QAM_PREFLIGHT.md`, `AGENTS.md`, `QAM_PROMPTS.md`, `QAM_RISK_REQUIREMENTS.md`, `QAM_PILOT_CHARTER.md`, `QAM_CHECKPOINTS.md`, `QAM_ENTRY.md`, `README.md`.
+- **Reason:** QA Lead review of `RRM004_QAM_RATIFICATION_REVIEW.zip` at `3a2ed29`, relayed by the Director.
+
+## 2026-10-01 06:29 UTC — [CC] Claude Code
+
+- **RRM-004-CYBER-PHARMA — P2b** (docs only): QAM v1.1 errata A-09…A-12 as prescribed, plus A-13 (QA Lead corrections). Erratum rows added for AC-605/606/702/703/705/708/709/710. DC-2 satisfied (candidate `2fbc72f`); DC-4/DC-5 superseded by QC-1…QC-5. Manifest records the candidate and the docs HEAD separately, with §7 paths moved to `QAM/`.
+- **Updated:** `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/` `RULINGS_ADDENDUM.md`, `ACCEPTANCE_SPEC.md` (erratum lane only), `DIRECTOR_CHECKPOINTS.md` (status cells), `DIRECTOR_ACTIONS.md` (A-13 in the letter, QC-1 Step 0 attestation, QC-4 leak wording) · `QAM/QAM_PREFLIGHT.md`:
+  - reordered: repository → lane → environment → tools → browser → privacy → auth;
+  - repo-root working directory, with `$QAM` for the pack path;
+  - five-key validator;
+  - target fingerprint check;
+  - planted-secret self-test;
+  - QF-16 is Q1-only and runs its own `npm ci`.
+- **Updated (QAM):** `QAM_PROMPTS.md` Q1/Q2/Q5, `AGENTS.md`, `QAM_CHECKPOINTS.md`, `QAM_PILOT_CHARTER.md`, `QAM_PILOT_RESULTS.md`, `QAM_EXECUTION_REPORT.md`, `QAM_RISK_REQUIREMENTS.md` §B-8, `QAM_TEST_PLAN.md` (required-sections list), `README.md`, `QAM_MANIFEST.md`.
+- **Reason:** Director's P2b instruction with the QA Lead's corrections, before DC-3.
+
+## 2026-09-30 08:31 UTC — [CC] Claude Code
+
+- **RRM-004-CYBER-PHARMA — P2 one-shot** (Dependencies; R-009): `next` / `eslint-config-next` pinned `16.3.7`, `sharp` override `0.35.5` (A-01/A-02); DD-1 sweep → `npm audit` 0 (A-05); Cloudinary `images.remotePatterns` removed (A-06); board + served proofs green; QA handoff + QAM manifest.
+- **Updated:** `package.json`, `package-lock.json`, `next.config.js` · `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md`, `QA_HANDOFF.md`, `QA/QAM_MANIFEST.md` · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` (R-009 resolution row, awaiting Gate Q).
+- **Added:** `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/GOVERNING/` (copy of RRM-003's + `PROVENANCE.md`) · `evidence/PREFLIGHT_P2.txt`, `S1_audit_after.json`, `S1_lockfile_moves.txt`, `S2_config_diff.txt`, `S3_board.txt`, `S3_serve_after.txt`, `changed_files.txt`, `repair.diff` (`S1_versions.txt` AFTER block, `S3_serve_before.txt` re-captured).
+- **Reason:** Director-approved P1 plan and rulings A-01…A-08; P2 prompt.
+
+## 2026-09-30 08:18 UTC — [CC] Claude Code
+
+- **RRM-004 P1b** (docs only; plan approved in full).
+- **Updated:** `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RULINGS_ADDENDUM.md` (A-01 next/eslint-config-next 16.3.7 · A-02 sharp 0.35.5 · A-03 instrument subpath · A-04 negative-probe body · A-05 DD-1 sweep · A-06 DD-2 remove · A-07 DD-3 main dev login-only · A-08 DD-4 confirmed) · `ACCEPTANCE_SPEC.md` erratum lane (AC-103; AC-204/AC-604) · `DIRECTOR_CHECKPOINTS.md` (DC-1 satisfied) · `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` §9 (CE-5: DD-1 sweep supersedes §7 "not fixed here").
+- **Added (P1 evidence):** `evidence/PREFLIGHT_P1.txt`, `evidence/S1_versions.txt` (BASELINE), `evidence/S1_audit_before.json`, `evidence/S3_serve_before.txt`.
+- **Reason:** Director approval of the P1 plan and rulings DD-1…DD-4.
+
+## 2026-09-30 07:18 UTC — [CC] Claude Code
+
+- **RRM-004 P0 — RRM-003 bookkeeping** (docs only, on `phase-3-rrm004`).
+- **Updated:** `agent_docs/RRM_CAMPAIGN_JOURNAL.md` (RRM-003 Architect entry + friction log, verbatim from P0; QA Lead placeholder untouched) · `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` (§0 v1.0.4 status paragraph) · `agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md` (merged to main 649c36d). Scoreboard, ledger R-rows and RRM-003 EXECUTION_LOG SHAs already present since `a93393d` — no change.
+- **Reason:** Director-instructed P0 (`agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md`).
+
 ## 2026-09-30 04:47 UTC — [CC] Claude Code
 
 - **RRM-003 / RRM-002 — SHA recording** (docs only, on `main` @ `649c36d`).

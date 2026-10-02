@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-10-02T07:01:27+06:00",
+  "method": "Inspect /proc cwd/cmdline in memory for repository Next standalone/server processes, without environments or raw command-line output; bind/close loopback QA port; query listeners.",
+  "matching_processes": [
+    {
+      "pid": 2460462,
+      "kind": "repository Next standalone/server process"
+    }
+  ],
+  "qa_port": 36155,
+  "loopback_bind_succeeded": true,
+  "listener_query": {
+    "command": [
+      "bash",
+      "-c",
+      "ss -ltnp 'sport = :36155'"
+    ],
+    "exit_code": 0,
+    "stdout": "State Recv-Q Send-Q Local Address:Port Peer Address:PortProcess\n",
+    "stderr": ""
+  },
+  "processes_stopped_by_q5": []
+}

@@ -22,7 +22,11 @@
 
 **Status at v1.0.3 (2026-09-29).** RRM-003 CLOSED — Gate Q PASS, 26/26 ACs, zero repair rounds (QA Lead 2026-09-29) @ `21ea108` (QA HEAD `1a94277`); QA-F01 resolved by Director-authorized environment substitution (E-17); QA-F02 non-blocking observation → future accessibility review (E-18). RRM-002 merge recorded: `3d2e655` (closeout `9cb56e9`). Closeout `7309a2f`; merged to `main` `649c36d` (recorded 2026-09-30). **RRM-004 pack authoring NEXT (Architect).**
 
-Scoreboard (Director fills at each close): RRM-001 `CLOSED — Gate Q PASS 2026-09-22 @ cad164d (evidence 9ab95e5; closeout 2ccf450; merged to main 1cd6e46)` · RRM-002 `CLOSED — Gate Q PASS 2026-09-28 @ 34e6fb6 (evidence cb9f7b7; closeout 9cb56e9; merged to main 3d2e655)` · RRM-003 `CLOSED — Gate Q PASS 2026-09-29 @ 21ea108 (QA HEAD 1a94277; closeout 7309a2f; merged to main 649c36d)` · RRM-004 `—`.
+**Status at v1.0.4 (2026-09-30).** RRM-003 merge recorded: 649c36d (closeout 7309a2f). **RRM-004 pack AUTHORED (dependencies; first QAM pilot on the QA side) — NEXT.** RRM-004 is the last module; its merge closes the RRM campaign and hands the backend campaign BIM-004.
+
+**Status at v1.0.5 (2026-10-02).** RRM-004 CLOSED — Gate Q PASS, 31/31 product ACs, zero repair rounds (QA Lead 2026-10-02). QAM pilot: PARTIAL SUCCESS (recorded Q-stop), Q2 one-shot succeeded. **RRM campaign complete pending the Director's merge; backend campaign resumes at BIM-004.**
+
+Scoreboard (Director fills at each close): RRM-001 `CLOSED — Gate Q PASS 2026-09-22 @ cad164d (evidence 9ab95e5; closeout 2ccf450; merged to main 1cd6e46)` · RRM-002 `CLOSED — Gate Q PASS 2026-09-28 @ 34e6fb6 (evidence cb9f7b7; closeout 9cb56e9; merged to main 3d2e655)` · RRM-003 `CLOSED — Gate Q PASS 2026-09-29 @ 21ea108 (QA HEAD 1a94277; closeout 7309a2f; merged to main 649c36d)` · RRM-004 `CLOSED — Gate Q PASS 2026-10-02 @ 2fbc72f (QA HEAD 6b6cad6; evidence 0463086); closeout + merge SHA: Director`.
 
 ---
 
@@ -143,6 +147,7 @@ Deferred by Director ruling (not modules here): R-003 Owed KPI aggregate → Pha
 - **CE-2 — BIM-004 pre-flight ruling 8, trigger correction:** installed `handle_new_user()` confirmed (Director, `pg_get_functiondef`, 2026-09-20) to assign role from signup metadata and read `full_name`; 0001–0047 do not replace it. BIM-004 authors a migration (next free number, verified on disk at authoring) redefining it with fixed `member` + `full_name`, SECURITY DEFINER, pinned `search_path`; applied and verified at APPLY SESSION (`pg_get_functiondef` + negative test: signup with `{"role":"admin"}` yields member). Legacy setup SQL files are quarantined by RRM-003 and are not inputs.
 - **CE-3 — BIM-005 §7 AC2/AC5:** AC2 baseline = post-RRM-campaign `main`; AC5 = adminDemo byte-identical to post-RRM `main` **and** `/moose-portal` absent (route table + 404). Parity notes for the swap: Summary tiebreak, empty-string PBM, JS vs SQL rounding (recon R5 D3–D5). Carry R-016 (A-006): BIM-005 brief rules component invalidation and error states before real reads.
 - **CE-4 — status line + carry-forward:** RRM campaign (RRM-001…004) inserted after BIM-003 CLOSED, before BIM-004 NEXT by Director priority; 8-phase plan §2 carried-forward "/moose-portal seeding tool" → removed (RRM-001); "KIP-2 stale-persist" → closed by FIX-001, regression-protected.
+- **CE-5 — RRM-004 §7 remaining advisories:** the §7 wording "remaining advisories listed by ID and not fixed here" is superseded by the RRM-004 DD-1 sweep — after the three pins, `npm audit fix` (no `--force`) to `found 0 vulnerabilities` with `package.json` byte-identical; all transitive fixes were in-range and non-breaking at P1 (Plan Mode dry run: 18 moves, all in the DD-1 families). Authority: Director 2026-09-30, `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RULINGS_ADDENDUM.md` A-05.
 
 ---
 

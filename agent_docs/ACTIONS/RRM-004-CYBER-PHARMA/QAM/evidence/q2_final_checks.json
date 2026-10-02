@@ -1,0 +1,122 @@
+{
+  "phase": "Q2",
+  "attempt": 1,
+  "report_export_cutoff": "2026-10-01T17:20:16+06:00",
+  "entry_timestamp": "2026-10-01T17:06:28+06:00",
+  "measurement_body_end": "2026-10-01T17:16:36+06:00",
+  "elapsed_seconds_to_cutoff": 828,
+  "elapsed_is_upper_bound_not_instrumented_active_time": true,
+  "baseline_sha": "649c36d0409c0b658cff14f779a09aad0c8e92b9",
+  "candidate_sha": "2fbc72f1f514049255f2b94054bd11cc77cbd158",
+  "qa_head_sha": "6b6cad642f69314904938e9df1ec8fdfbe08f15a",
+  "head_unchanged": true,
+  "product_diff_empty": true,
+  "index_unchanged_empty": true,
+  "dirty_paths_all_authorized": true,
+  "commands": [
+    {
+      "command": [
+        "git",
+        "--no-optional-locks",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "6b6cad642f69314904938e9df1ec8fdfbe08f15a\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "--no-optional-locks",
+        "status",
+        "--short",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": " M agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AC_EVIDENCE_MATRIX.md\n M agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_EXECUTION_REPORT.md\n M agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_RESULTS.md\n M agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/entry_gate.json\n M agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/privacy_audit.json\n M agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/temp_paths.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_dependencies.py\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_image_walk.cjs\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_served_probes.py\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_static_review.py\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_version_floor.cjs\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/scan_selected_export.cjs\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q1_preserved/entry_gate.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q1_preserved/privacy_audit.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q1_preserved/temp_paths.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_PREFLIGHT_Q2.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/baseline_test_inventory.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/board_summary.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/build_blank.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/build_blank.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/build_main_dev.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/build_main_dev.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/build_placeholder.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/build_placeholder.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/eslint.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/eslint.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/jest.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/jest.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/jest_results.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/tsc.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/tsc.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_admin-portal_1280_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_admin-portal_1280_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_admin-portal_375_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_admin-portal_375_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_home_1280_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_home_1280_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_home_375_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_home_375_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_owedbook_1280_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_owedbook_1280_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_owedbook_375_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_owedbook_375_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_home_1280_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_home_1280_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_home_375_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_home_375_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_owedbook_1280_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_owedbook_1280_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_owedbook_375_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_owedbook_375_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/server_shutdown.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_auth_1280_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_auth_1280_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_auth_375_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_auth_375_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_1280_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_1280_dark_1.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_1280_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_1280_light_1.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_375_dark_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_375_dark_1.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_375_light_0.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_375_light_1.png\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/walk.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/walk_command.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/attempts/metadata_01/installed_metadata.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/attempts/metadata_01/installed_metadata.json.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/audit_baseline.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/audit_baseline.json.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/audit_current.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/audit_current.json.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/baseline_metadata.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/helper_repair_01.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/install.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/installed_metadata.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/installed_metadata.json.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/instrument_attack.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/native_packages.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/native_packages.txt.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/npm_ls.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/npm_ls.txt.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/reference_provenance.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_eslint-config-next_version.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_eslint-config-next_version.json.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_next_time.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_next_time.json.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_next_version.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_next_version.json.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_sharp_time.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_sharp_time.json.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_sharp_version.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_sharp_version.json.command.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/summary.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/headers/current.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/headers/historical_engineer_before.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/images/direct_gets.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/images/local_png.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/images/negative_host.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/images/placeholder_server.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/images/served_summary.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/privacy_Q2_commands.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/A_baseline_candidate.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/B_candidate_head.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/C_uncommitted_during_static.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/byte_identity.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/commands.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/engineering_artifacts.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/engineering_artifacts.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/ledger_map_hunks.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/lockfile_moves.json\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/source_image_derivation.txt\n?? agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/summary.json\n?? agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q2.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "--no-optional-locks",
+        "diff",
+        "--name-only",
+        "HEAD",
+        "--",
+        "src",
+        "supabase",
+        "scripts",
+        "docs",
+        "public",
+        "README.md",
+        "package.json",
+        "package-lock.json",
+        "next.config.js",
+        "tsconfig.json",
+        "jest.config.js",
+        "eslint.config.mjs",
+        "tailwind.config.ts",
+        "postcss.config.js",
+        ".gitignore"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "--no-optional-locks",
+        "diff",
+        "--cached",
+        "--raw"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "temp_paths_all_absent": true,
+  "credential_file_retained": true,
+  "no_active_repair_proposal": true,
+  "q2_stops": [],
+  "helper_repairs": [
+    {
+      "id": "Q2-SR01",
+      "timestamp": "2026-10-01T17:09:38+06:00",
+      "class": "QA helper self-repair",
+      "reason": "sharp does not export ./package.json; read installed package JSON with fs instead",
+      "failed_attempt": "evidence/deps/attempts/metadata_01/",
+      "product_changed": false,
+      "interpretation": "Generic wrapper failure marker was provisional; no false-green attack, registry failure, missing native package or other enumerated Q-stop established. Operating law permits QA helper self-repair. Prior successful measurements retained, not rerun."
+    }
+  ],
+  "product_counts": {
+    "PASS": 30,
+    "FAIL": 0,
+    "BLOCKED": 1,
+    "NOT RUN": 0,
+    "ADJUDICATE": 0
+  },
+  "process_counts": {
+    "PASS": 9,
+    "NOT RUN": 1
+  },
+  "privacy_at_cutoff": {
+    "values": {
+      "leaks": 0,
+      "files_or_archive_entries": 233,
+      "documentation_mentions": 0
+    },
+    "patterns": {
+      "leaks": 0,
+      "files_or_archive_entries": 233,
+      "documentation_mentions": 67
+    }
+  },
+  "q5": "NOT RUN; credential deletion and post-deletion pattern scan pending Director command",
+  "certification": "NOT RUN; QA Lead-owned",
+  "prior_q1_zip_sha256": "34787660dd6c43c821e9ccf3689ebd7bd4762aec3f9c7b3f2128fe7c2161bc02"
+}

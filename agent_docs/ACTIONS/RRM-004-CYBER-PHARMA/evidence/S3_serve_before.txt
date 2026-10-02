@@ -1,0 +1,11 @@
+# RRM-004 S3 served proofs — BEFORE (baseline 649c36d0409c0b658cff14f779a09aad0c8e92b9, next 16.2.12, sharp 0.35.3), re-captured 2026-09-30T16:21:29+08:00 at P2 PF-19 on the untouched tree (P1 capture 2026-09-30T16:04:51+08:00 superseded)
+## curl -sI http://127.0.0.1:36055/
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+## curl -sI http://127.0.0.1:36055/_next/static/chunks/04sa36x9-705m.js
+HTTP/1.1 200 OK
+Cache-Control: public, max-age=31536000, immutable
+## curl -s -o /dev/null -D - -H 'Accept: image/webp' 'http://127.0.0.1:36055/_next/image?url=%2Flanding%2Fowedbook-mockup.png&w=1080&q=75'
+HTTP/1.1 200 OK
+Cache-Control: public, max-age=14400, must-revalidate
+Content-Type: image/webp

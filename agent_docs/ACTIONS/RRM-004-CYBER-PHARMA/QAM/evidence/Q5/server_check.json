@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-10-02T07:02:04+06:00",
+  "method": "Inspect exact standalone script argv element or next-server process title for repository cwd; exclude wrapper command text. Do not read environments or emit command lines. Bind/close QA loopback port and query listeners.",
+  "matching_processes": [],
+  "qa_port": 36155,
+  "loopback_bind_succeeded": true,
+  "listener_query": {
+    "command": [
+      "ss",
+      "-ltnp",
+      "sport = :36155"
+    ],
+    "exit_code": 0,
+    "stdout": "State Recv-Q Send-Q Local Address:Port Peer Address:PortProcess\n",
+    "stderr": ""
+  },
+  "processes_stopped_by_q5": [],
+  "correction": "Initial substring search matched its own invoking shell command text; first record preserved in server_check_01.json. Exact argv matching removes that false positive; no process killed, no product test rerun."
+}

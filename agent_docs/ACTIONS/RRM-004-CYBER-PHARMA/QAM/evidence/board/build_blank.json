@@ -1,0 +1,27 @@
+{
+  "mode": "blank",
+  "command": "rm -rf .next then process-only blank Supabase/site overrides: npx next build",
+  "start": "2026-10-01T17:10:17+06:00",
+  "end": "2026-10-01T17:10:42+06:00",
+  "exit_code": 0,
+  "routes": [
+    "\u250c \u0192 /",
+    "\u251c \u25cb /_not-found",
+    "\u251c \u0192 /access-denied",
+    "\u251c \u0192 /admin-portal",
+    "\u251c \u0192 /admin-portal/audit",
+    "\u251c \u0192 /admin-portal/billing",
+    "\u251c \u0192 /admin-portal/settings",
+    "\u251c \u0192 /admin-portal/stores/[id]",
+    "\u251c \u0192 /admin-portal/stores/[id]/invite",
+    "\u251c \u0192 /api/auth/confirm",
+    "\u251c \u0192 /api/auth/login",
+    "\u251c \u0192 /api/auth/logout",
+    "\u251c \u25cb /auth",
+    "\u251c \u25cb /error",
+    "\u251c \u25cb /icon.png",
+    "\u251c \u0192 /owedbook",
+    "\u2514 \u0192 /profile"
+  ],
+  "route_count": 17
+}

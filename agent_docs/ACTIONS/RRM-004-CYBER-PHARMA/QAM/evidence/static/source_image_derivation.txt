@@ -1,0 +1,7 @@
+6b6cad642f69314904938e9df1ec8fdfbe08f15a:src/app/(public)/HomePageContent.tsx:87:              src="/landing/owedbook-mockup.png"
+6b6cad642f69314904938e9df1ec8fdfbe08f15a:src/app/(public)/page.tsx:13:  if (user) redirect("/owedbook");
+6b6cad642f69314904938e9df1ec8fdfbe08f15a:src/components/global/Navbar.tsx:124:          <Image src="/brand/logo-color.svg" alt="Cyber Pharma" width={36} height={36} />
+6b6cad642f69314904938e9df1ec8fdfbe08f15a:src/components/global/NavbarHome.tsx:23:          src="/brand/logo-lockup.svg"
+6b6cad642f69314904938e9df1ec8fdfbe08f15a:src/components/global/NavbarLoginReg.tsx:11:            src="/brand/logo-lockup.svg"
+
+Theme controls: src/components/global/ThemeToggler.tsx; mobile authenticated control reached through Open menu. No manifest inventory used.

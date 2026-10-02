@@ -1,0 +1,77 @@
+# RRM-004 changed files — working tree vs <baseline> 649c36d0409c0b658cff14f779a09aad0c8e92b9 · captured 2026-09-30T16:31:43+08:00
+# The candidate SHA is assigned by the Director's single P2 commit (DC-2); this inventory is the working tree at handoff.
+# Tracked: git diff --name-status 649c36d0409c0b658cff14f779a09aad0c8e92b9 (includes P0/P1b commits already on the branch)
+M	CHANGELOG.md
+M	RECOVERY.md
+M	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md
+M	agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/README.md
+M	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md
+M	agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/ACCEPTANCE_SPEC.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/AUTHORITY_POINTER.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDE.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/DIRECTOR_ACTIONS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/DIRECTOR_CHECKPOINTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/ENVIRONMENT_PREFLIGHT.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/AC_EVIDENCE_MATRIX.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/AGENTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QAM_MANIFEST.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QAM_PILOT_CHARTER.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QAM_PILOT_RESULTS.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QA_ENVIRONMENT_PREFLIGHT.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QA_EXECUTION_REPORT.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/QA_TEST_PLAN.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/README.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/REPAIR_PROPOSAL.md.template
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA_HANDOFF.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/README.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RRM_BRIEF.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RULINGS_ADDENDUM.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P1.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/README.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_audit_before.json
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S3_serve_before.txt
+R100	agent_docs/RESPONSES/response_2026-09-28_205049_session-start-protocol-ack.md	agent_docs/RESPONSES/_OLD/response_2026-09-28_205049_session-start-protocol-ack.md
+R100	agent_docs/RESPONSES/response_2026-09-28_210200_rrm003-p1-plan.md	agent_docs/RESPONSES/_OLD/response_2026-09-28_210200_rrm003-p1-plan.md
+R100	agent_docs/RESPONSES/response_2026-09-28_212503_rrm003-p1b-rulings.md	agent_docs/RESPONSES/_OLD/response_2026-09-28_212503_rrm003-p1b-rulings.md
+R100	agent_docs/RESPONSES/response_2026-09-28_214117_rrm003-p2-completion.md	agent_docs/RESPONSES/_OLD/response_2026-09-28_214117_rrm003-p2-completion.md
+R100	agent_docs/RESPONSES/response_2026-09-29_141122_rrm003-a13-sha-fill.md	agent_docs/RESPONSES/_OLD/response_2026-09-29_141122_rrm003-a13-sha-fill.md
+R100	agent_docs/RESPONSES/response_2026-09-29_144307_rrm003-qa-entry-sync.md	agent_docs/RESPONSES/_OLD/response_2026-09-29_144307_rrm003-qa-entry-sync.md
+R100	agent_docs/RESPONSES/response_2026-09-29_155058_rrm003-qa-execution.md	agent_docs/RESPONSES/_OLD/response_2026-09-29_155058_rrm003-qa-execution.md
+R100	agent_docs/RESPONSES/response_2026-09-29_212204_rrm003-ac107-final-qa.md	agent_docs/RESPONSES/_OLD/response_2026-09-29_212204_rrm003-ac107-final-qa.md
+R100	agent_docs/RESPONSES/response_2026-09-29_222900_rrm003-p5-closeout-plan.md	agent_docs/RESPONSES/_OLD/response_2026-09-29_222900_rrm003-p5-closeout-plan.md
+R100	agent_docs/RESPONSES/response_2026-09-29_223624_rrm003-p5-closeout.md	agent_docs/RESPONSES/_OLD/response_2026-09-29_223624_rrm003-p5-closeout.md
+A	agent_docs/RESPONSES/_OLD/response_2026-09-30_123954_rrm003-sha-record-plan.md
+A	agent_docs/RESPONSES/_OLD/response_2026-09-30_124723_rrm003-sha-recorded.md
+A	agent_docs/RESPONSES/response_2026-09-30_151832_rrm004-p0-bookkeeping.md
+A	agent_docs/RESPONSES/response_2026-09-30_161037_rrm004-p1-plan.md
+A	agent_docs/RESPONSES/response_2026-09-30_161800_rrm004-p1b.md
+M	agent_docs/RRM_CAMPAIGN_JOURNAL.md
+M	agent_docs/RRM_CAMPAIGN_MAP_v1_0.md
+M	agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md
+A	agent_docs/SESSIONS/session_2026-09-30.md
+M	next.config.js
+M	package-lock.json
+M	package.json
+# Untracked at handoff: git ls-files --others --exclude-standard
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/GOVERNING/PROVENANCE.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/GOVERNING/QA_PLAYBOOK.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/GOVERNING/README.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/GOVERNING/SEARCH_RECORD.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA/GOVERNING/WEB_FACTORY_P1_DOCTRINE_JOURNAL.md
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_audit_after.json
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_lockfile_moves.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S2_config_diff.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S3_board.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S3_serve_after.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/changed_files.txt
+A	agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/repair.diff
+A	agent_docs/RESPONSES/response_2026-09-30_163135_rrm004-p2-oneshot.md
+# Product paths: git diff --name-status 649c36d0409c0b658cff14f779a09aad0c8e92b9 -- package.json package-lock.json next.config.js src supabase scripts docs public README.md
+M	next.config.js
+M	package-lock.json
+M	package.json

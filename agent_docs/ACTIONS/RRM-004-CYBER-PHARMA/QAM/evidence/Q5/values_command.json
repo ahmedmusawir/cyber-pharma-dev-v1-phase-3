@@ -1,0 +1,14 @@
+{
+  "start": "2026-10-02T06:59:57+06:00",
+  "end": "2026-10-02T06:59:58+06:00",
+  "env_file_present": true,
+  "command": [
+    "node",
+    "--env-file=.env.qa.local",
+    "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+    "--values"
+  ],
+  "exit_code": 0,
+  "stdout": "values leaks=0 documentation-mentions=0\n",
+  "stderr": ""
+}

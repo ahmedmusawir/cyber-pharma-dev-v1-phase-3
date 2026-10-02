@@ -1,0 +1,2 @@
+P1 cutoff: 2026-09-30T16:10:37+08:00 from timestamped P1 response and evidence/PREFLIGHT_P1.txt line 2 (16:00–16:10 +08:00), corroborated by session_2026-09-30.md P1 16:03 / plan 16:10. Registry publications determine highest stable at that cutoff; Next 16.3.8 was published afterwards and is an observation, not a pin failure.
+Baseline heif is independently rederived from the locked registry tarball with verified SRI, not an observed historical installation. Engineer baseline reads are historical artifact content.

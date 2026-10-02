@@ -1,0 +1,146 @@
+{
+  "timestamp": "2026-10-01T17:09:48+06:00",
+  "pins": {
+    "next": "16.3.7",
+    "eslint-config-next": "16.3.7",
+    "sharp": "0.35.5"
+  },
+  "registry": {
+    "next": {
+      "stable_line_publications": [
+        [
+          "16.3.0",
+          "2026-08-03T20:34:17.082Z"
+        ],
+        [
+          "16.3.1",
+          "2026-08-13T22:45:02.025Z"
+        ],
+        [
+          "16.3.2",
+          "2026-08-21T09:54:02.099Z"
+        ],
+        [
+          "16.3.3",
+          "2026-08-25T15:32:19.558Z"
+        ],
+        [
+          "16.3.4",
+          "2026-08-31T20:00:51.381Z"
+        ],
+        [
+          "16.3.5",
+          "2026-09-11T17:26:46.049Z"
+        ],
+        [
+          "16.3.6",
+          "2026-09-22T16:19:00.458Z"
+        ],
+        [
+          "16.3.7",
+          "2026-09-29T09:04:19.157Z"
+        ],
+        [
+          "16.3.8",
+          "2026-09-30T16:07:21.198Z"
+        ]
+      ],
+      "highest_at_p1": "16.3.7",
+      "p1_cutoff": "2026-09-30T16:10:37+08:00"
+    },
+    "sharp": {
+      "stable_line_publications": [
+        [
+          "0.35.0",
+          "2026-06-10T17:07:14.319Z"
+        ],
+        [
+          "0.35.1",
+          "2026-06-11T17:10:33.369Z"
+        ],
+        [
+          "0.35.2",
+          "2026-06-19T13:47:27.073Z"
+        ],
+        [
+          "0.35.3",
+          "2026-07-01T11:28:34.077Z"
+        ],
+        [
+          "0.35.4",
+          "2026-08-26T09:42:27.903Z"
+        ],
+        [
+          "0.35.5",
+          "2026-09-27T13:46:24.509Z"
+        ]
+      ],
+      "highest_at_p1": "0.35.5",
+      "p1_cutoff": "2026-09-30T16:10:37+08:00"
+    }
+  },
+  "heif_baseline": "1.23.1",
+  "heif_after": "1.23.5",
+  "sharp_crosscheck": "1.23.5",
+  "instrument_attack_passed": true,
+  "audit_current_totals": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "audit_baseline_totals": {
+    "info": 0,
+    "low": 1,
+    "moderate": 1,
+    "high": 4,
+    "critical": 1,
+    "total": 7
+  },
+  "target_ids_current_absent": {
+    "GHSA-p293-qw3h-jr36": true,
+    "GHSA-2xp9-vwfh-vxw4": true,
+    "GHSA-rgj7-g3m4-5g8c": true
+  },
+  "target_ids_baseline_present": {
+    "GHSA-p293-qw3h-jr36": true,
+    "GHSA-2xp9-vwfh-vxw4": true,
+    "GHSA-rgj7-g3m4-5g8c": true
+  },
+  "records": [
+    {
+      "file": "installed_metadata.json",
+      "exit": 0
+    },
+    {
+      "file": "registry_next_version.json",
+      "exit": 0
+    },
+    {
+      "file": "registry_sharp_version.json",
+      "exit": 0
+    },
+    {
+      "file": "registry_eslint-config-next_version.json",
+      "exit": 0
+    },
+    {
+      "file": "registry_next_time.json",
+      "exit": 0
+    },
+    {
+      "file": "registry_sharp_time.json",
+      "exit": 0
+    },
+    {
+      "file": "audit_current.json",
+      "exit": 0
+    },
+    {
+      "file": "audit_baseline.json",
+      "exit": 1
+    }
+  ]
+}

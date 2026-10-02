@@ -1,0 +1,4 @@
+Q2 one sign-in per role, approved main-dev, no raw authenticated tracing
+$ node --env-file=.env.qa.local agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_image_walk.cjs
+{"roles":[{"role":"ADMIN","sign_ins":1,"auth":"PASS","logout":"PASS"},{"role":"MEMBER","sign_ins":1,"auth":"PASS","logout":"PASS"}],"cells":28,"failed_cells":0,"profiles_removed":true,"stop":null}
+exit=0

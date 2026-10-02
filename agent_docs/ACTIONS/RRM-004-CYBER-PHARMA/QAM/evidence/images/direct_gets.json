@@ -1,0 +1,94 @@
+[
+  {
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "60",
+      "-D",
+      "-",
+      "-o",
+      "/dev/null",
+      "http://127.0.0.1:36155/brand/logo-color.svg"
+    ],
+    "exit_code": 0,
+    "stdout": "HTTP/1.1 200 OK\nCache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0\nPragma: no-cache\nExpires: 0\nAccept-Ranges: bytes\nLast-Modified: Thu, 01 Oct 2026 11:12:04 GMT\nETag: W/\"110-1a0f72a110e\"\nContent-Type: image/svg+xml\nContent-Length: 272\nVary: Accept-Encoding\nDate: Thu, 01 Oct 2026 11:12:05 GMT\nConnection: keep-alive\nKeep-Alive: timeout=5\n\n",
+    "stderr": "",
+    "status": 200,
+    "headers": {
+      "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+      "pragma": "no-cache",
+      "expires": "0",
+      "accept-ranges": "bytes",
+      "last-modified": "Thu, 01 Oct 2026 11:12:04 GMT",
+      "etag": "W/\"110-1a0f72a110e\"",
+      "content-type": "image/svg+xml",
+      "content-length": "272",
+      "vary": "Accept-Encoding",
+      "date": "Thu, 01 Oct 2026 11:12:05 GMT",
+      "connection": "keep-alive",
+      "keep-alive": "timeout=5"
+    }
+  },
+  {
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "60",
+      "-D",
+      "-",
+      "-o",
+      "/dev/null",
+      "http://127.0.0.1:36155/brand/logo-lockup.svg"
+    ],
+    "exit_code": 0,
+    "stdout": "HTTP/1.1 200 OK\nCache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0\nPragma: no-cache\nExpires: 0\nAccept-Ranges: bytes\nLast-Modified: Thu, 01 Oct 2026 11:12:04 GMT\nETag: W/\"19c-1a0f72a110e\"\nContent-Type: image/svg+xml\nContent-Length: 412\nVary: Accept-Encoding\nDate: Thu, 01 Oct 2026 11:12:05 GMT\nConnection: keep-alive\nKeep-Alive: timeout=5\n\n",
+    "stderr": "",
+    "status": 200,
+    "headers": {
+      "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+      "pragma": "no-cache",
+      "expires": "0",
+      "accept-ranges": "bytes",
+      "last-modified": "Thu, 01 Oct 2026 11:12:04 GMT",
+      "etag": "W/\"19c-1a0f72a110e\"",
+      "content-type": "image/svg+xml",
+      "content-length": "412",
+      "vary": "Accept-Encoding",
+      "date": "Thu, 01 Oct 2026 11:12:05 GMT",
+      "connection": "keep-alive",
+      "keep-alive": "timeout=5"
+    }
+  },
+  {
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "60",
+      "-D",
+      "-",
+      "-o",
+      "/dev/null",
+      "http://127.0.0.1:36155/landing/owedbook-mockup.png"
+    ],
+    "exit_code": 0,
+    "stdout": "HTTP/1.1 200 OK\nCache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0\nPragma: no-cache\nExpires: 0\nAccept-Ranges: bytes\nLast-Modified: Thu, 01 Oct 2026 11:12:04 GMT\nETag: W/\"4d516-1a0f72a110e\"\nContent-Type: image/png\nContent-Length: 316694\nDate: Thu, 01 Oct 2026 11:12:05 GMT\nConnection: keep-alive\nKeep-Alive: timeout=5\n\n",
+    "stderr": "",
+    "status": 200,
+    "headers": {
+      "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+      "pragma": "no-cache",
+      "expires": "0",
+      "accept-ranges": "bytes",
+      "last-modified": "Thu, 01 Oct 2026 11:12:04 GMT",
+      "etag": "W/\"4d516-1a0f72a110e\"",
+      "content-type": "image/png",
+      "content-length": "316694",
+      "date": "Thu, 01 Oct 2026 11:12:05 GMT",
+      "connection": "keep-alive",
+      "keep-alive": "timeout=5"
+    }
+  }
+]
