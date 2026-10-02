@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "-e",
+    "const fs=require('fs');const p=process.platform+'-'+process.arch;const sharp=require('sharp');const sp=require('sharp/package.json');const packages={};for(const n of ['sharp-'+p,'sharp-libvips-'+p])packages[n]=JSON.parse(fs.readFileSync('node_modules/@img/'+n+'/package.json')); console.log(JSON.stringify({platform:p,versions:require('@img/sharp-libvips-'+p+'/versions'),sharpVersions:sharp.versions,sharpVersion:sp.version,optionalDependencies:sp.optionalDependencies,packages},null,2))"
+  ],
+  "cwd": "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3",
+  "timestamp": "2026-10-01T17:08:52+06:00",
+  "exit_code": 1,
+  "stderr": "node:internal/modules/cjs/loader:646\n      throw e;\n      ^\n\nError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './package.json' is not defined by \"exports\" in /home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/node_modules/sharp/package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:314:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:661:9)\n    at resolveExports (node:internal/modules/cjs/loader:639:36)\n    at Function._findPath (node:internal/modules/cjs/loader:728:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1211:27)\n    at Function._load (node:internal/modules/cjs/loader:1055:27)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n    at Module.require (node:internal/modules/cjs/loader:1311:12)\n    at require (node:internal/modules/helpers:136:16) {\n  code: 'ERR_PACKAGE_PATH_NOT_EXPORTED'\n}\n\nNode.js v22.14.0\n"
+}

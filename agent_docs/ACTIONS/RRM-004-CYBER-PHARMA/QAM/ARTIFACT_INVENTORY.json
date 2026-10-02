@@ -1,0 +1,1039 @@
+{
+  "module": "RRM-004-CYBER-PHARMA",
+  "phase": "Q5",
+  "attempt": 1,
+  "timestamp": "2026-10-02T07:05:13+06:00",
+  "qa_head": "6b6cad642f69314904938e9df1ec8fdfbe08f15a",
+  "scope": "Durable QAM records plus previously inventoried phase provenance and Q2 return. Snapshot at cutoff; excludes self, HANDOFFS archives/receipts/staging instructions and final Q5 session/response written after release. Prior archive identity is in Q5 proof and release receipt.",
+  "self_hash_excluded": true,
+  "file_count": 171,
+  "evidence_file_count": 134,
+  "files": [
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AC_EVIDENCE_MATRIX.md",
+      "bytes": 9865,
+      "sha256": "674f3a6529994adfb776265d4a63b47fbba82e12aef85a7a335b55e6623eb916",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md",
+      "bytes": 8883,
+      "sha256": "83c53818fac7ecc9fe3bdaa1d7f9c03206ecbe5b39015a0a8e4fceefe3e5db24",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+      "bytes": 6697,
+      "sha256": "be3cd7b6882e132e273992bf1b35cd26239a6bed7c865a587184921d35e81d8d",
+      "purpose": "Retained measurement/privacy instrument; individual rationale in evidence/Q5/retention_decisions.json"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_dependencies.py",
+      "bytes": 5911,
+      "sha256": "7ec352cdfff2492a218343cae848bbff324cf8bad35b74bbbe18221d5d68b870",
+      "purpose": "Retained measurement/privacy instrument; individual rationale in evidence/Q5/retention_decisions.json"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_image_walk.cjs",
+      "bytes": 8638,
+      "sha256": "a4f6cff87d974c55f5803eee1a879a1cf7f111b345d63f3b989439dc8d189bd8",
+      "purpose": "Retained measurement/privacy instrument; individual rationale in evidence/Q5/retention_decisions.json"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_served_probes.py",
+      "bytes": 5125,
+      "sha256": "b9063617d7cc1b32621db879bbeecbaff9d2932dc7b8f3aa48c595bfc193cfdc",
+      "purpose": "Retained measurement/privacy instrument; individual rationale in evidence/Q5/retention_decisions.json"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_static_review.py",
+      "bytes": 6196,
+      "sha256": "7570fc48d2f90774786b660e015fd7ea3c2a75f4805ba636bfce1bd1be74e242",
+      "purpose": "Retained measurement/privacy instrument; individual rationale in evidence/Q5/retention_decisions.json"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_version_floor.cjs",
+      "bytes": 635,
+      "sha256": "86869f1249770aa1e8b682fb8a945d7bcba41ba6b2e277559d583ae7dcb9f31d",
+      "purpose": "Retained measurement/privacy instrument; individual rationale in evidence/Q5/retention_decisions.json"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+      "bytes": 4676,
+      "sha256": "bc398fd700f9b49312a595b8686a0d5fd5b4b29afa4ce212209172b1b42971cb",
+      "purpose": "Retained measurement/privacy instrument; individual rationale in evidence/Q5/retention_decisions.json"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/scan_selected_export.cjs",
+      "bytes": 1233,
+      "sha256": "ba4b89d06d4fde9fdae035ab5e020ad898227168e90fb7854d433a02ed48e187",
+      "purpose": "Retained measurement/privacy instrument; individual rationale in evidence/Q5/retention_decisions.json"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/PROVENANCE.md",
+      "bytes": 1283,
+      "sha256": "77e5e56b223d2f77d39b1a6e8725663244fcbd13c120451bb672e70829b045ab",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/QA_PLAYBOOK.md",
+      "bytes": 40940,
+      "sha256": "b6c70f14af18bb187ca7980954317af486e43b682821245d9911f2160d5198a5",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/README.md",
+      "bytes": 2522,
+      "sha256": "21a3e2c4dcc313904d5c51f7587246d5527421f82f5ea5aed0e8b0e4a8caa2ce",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/SEARCH_RECORD.md",
+      "bytes": 3745,
+      "sha256": "ae5bb762f897a7bfb959ad1e61ba462a04ba59a8877176360eb6191ab9f9c03a",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/WEB_FACTORY_P1_DOCTRINE_JOURNAL.md",
+      "bytes": 36552,
+      "sha256": "53d41dc4aefde9c849a6faea321cd1d3cf245336e75cfedbd248c2d17f84d301",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md",
+      "bytes": 3823,
+      "sha256": "4b1beca62a41b90c40bab3385cf9121e98215017e140e8be8e04ae15d8a42987",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CLEANUP_REPORT.md",
+      "bytes": 7549,
+      "sha256": "3ddb2a02a7c95e2f1a5f6c5a274bbfb153f84dff506539a0b47240aa5b69242d",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_ENTRY.md",
+      "bytes": 2011,
+      "sha256": "3f577b085a388acffa65c2f2d036f90743ccaab3db339b093f956149a2dcc016",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_EXECUTION_REPORT.md",
+      "bytes": 16456,
+      "sha256": "2c391585212a632536ae24d971e78ad9f86c67ed684ec4f1f150875715b05576",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_MANIFEST.md",
+      "bytes": 9948,
+      "sha256": "c0c041c1c292adfc81551647dfe2805520d5817c589b2e71279d0bb6a82ff26b",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_CHARTER.md",
+      "bytes": 6359,
+      "sha256": "94a78ab6c3417c9f3980f49bfdd177f21814d9dc7435332bd45af6196932d9bd",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_RESULTS.md",
+      "bytes": 7045,
+      "sha256": "1ef609a6169459e3507fdb522478344517ef3a4342d6861b071e453ed1bba463",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md",
+      "bytes": 13732,
+      "sha256": "9a24853c0025b259aa9d596abd8ca8861c252ecb1ca2c867d7c09df3a808cabe",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+      "bytes": 15831,
+      "sha256": "7c1e29dc773a2620893500843781653f9d68475521e36ecdd7b77038bb559fe5",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_RISK_REQUIREMENTS.md",
+      "bytes": 6424,
+      "sha256": "6a9f92314e306bb97c335b92431835ce66fbc943a6ae923702780561fadf8a9f",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_TEST_PLAN.md",
+      "bytes": 26636,
+      "sha256": "1026193e64e6411e8a49a6b87bbe5b379620f62de2a83d87c1301219d7e2a9de",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/README.md",
+      "bytes": 3867,
+      "sha256": "fe0a3d54e36613af6db3aeb091753dddf51ec22b44af6ea425cdc0751d2a37b6",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/REPAIR_PROPOSAL.md.template",
+      "bytes": 665,
+      "sha256": "49943f04ff46cfe8de8d557b038c12a97512cd9c5dcbcfd3ce77c0747b222224",
+      "purpose": "Unfilled scaffold; no product repair requested"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q1_preserved/entry_gate.json",
+      "bytes": 5495,
+      "sha256": "fff0221f3747e984895831e5c0917d412812fe4b0f502a877d3f8973889f88ea",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q1_preserved/privacy_audit.json",
+      "bytes": 12884,
+      "sha256": "9406e76a391cc540d659579166db7fa94d2467b5d690650d6a107a99d66f06be",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q1_preserved/temp_paths.json",
+      "bytes": 289,
+      "sha256": "3eb1386257416b2ccf2d0c512a8566e7cca6546477dc95ad29ddd85579ca2b15",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q2_preserved/AC_EVIDENCE_MATRIX.md",
+      "bytes": 9700,
+      "sha256": "9fa46165690ddfcaf81cf51ded3a2dd67e2d92b6a500788ee62147014279a1ae",
+      "purpose": "Unchanged snapshot of Q2 report/inventory/privacy state before Q5 updates"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q2_preserved/ARTIFACT_INVENTORY.json",
+      "bytes": 44258,
+      "sha256": "4ec7cc925374eaeac898aaeb3c1a654bc0ab9ba8dec7a4a651b6d5306d01e3a2",
+      "purpose": "Unchanged snapshot of Q2 report/inventory/privacy state before Q5 updates"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q2_preserved/QAM_EXECUTION_REPORT.md",
+      "bytes": 14219,
+      "sha256": "543e9a092bde3ec650c9ebc125c1524d7c9819c76f55ed66c6af5f4bcb52e2c0",
+      "purpose": "Unchanged snapshot of Q2 report/inventory/privacy state before Q5 updates"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q2_preserved/QAM_PILOT_RESULTS.md",
+      "bytes": 5632,
+      "sha256": "49ce23805f95a8f58b2b70788c299b475aba8f94f3306b3ccda065778d6a18da",
+      "purpose": "Unchanged snapshot of Q2 report/inventory/privacy state before Q5 updates"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q2_preserved/privacy_audit.json",
+      "bytes": 44400,
+      "sha256": "63f0da64665cd5c683c1867aa3ed28c68d061bb1456a8373f0709e3cb024568b",
+      "purpose": "Unchanged snapshot of Q2 report/inventory/privacy state before Q5 updates"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/director_authorization.md",
+      "bytes": 3290,
+      "sha256": "bd50a37cf899907e2f8d6121748c1517efb43a36290101e3be60c393afc45f4e",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/discovery_naming_note.json",
+      "bytes": 1257,
+      "sha256": "c6dab2fbffe91a38b859337803f7717ce4bcfc6bea9f59c2d1dd8d66727f832d",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/env_removal.json",
+      "bytes": 646,
+      "sha256": "af76abcd88305b3cdcb834e881f39f75fcae1b4a6bb2690f32f5ed7e703e7a30",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/final_repository_checks.json",
+      "bytes": 29169,
+      "sha256": "6e944f7a2c05a6a1d68fa58e2f7b12dfe5cbcbdb84be1baba2dbb2ee7f818931",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/identity_before.json",
+      "bytes": 16675,
+      "sha256": "f3fe98d66086f490b86ae10b1648c59a4ba7a5fb28328534b57a02eacacd79fe",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/patterns_command.json",
+      "bytes": 326,
+      "sha256": "1a0f339cf26429a603d20d0b58d05f95a39541faa330e524f214b07072819b87",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/prevalue_source_hashes.json",
+      "bytes": 35530,
+      "sha256": "b5570f752e25e88ffb7d546145446868c9fba9c29ce197f71457b78fbf4d94ef",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/privacy_after_deletion.json",
+      "bytes": 74190,
+      "sha256": "1ba99da9348b214a9c6c074888b9fb1ea58da50830fe7d0c36de6fc982882220",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/privacy_after_values.json",
+      "bytes": 44547,
+      "sha256": "4af172abc4504704948d17bc4583244e2fc8fec8c034c52ba59fb7157940d0f4",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/privacy_at_report_cutoff.json",
+      "bytes": 95223,
+      "sha256": "cf0aab1de6a90abb691cd168ee618822216e5d20c66e2036452ade96b19f05a4",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/removal_proof.json",
+      "bytes": 2918,
+      "sha256": "b5d02bef37fe8b4325d992591f8b070f97cf6f3e9687865671a843fea910f4b9",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/retained_contents_pattern_command.json",
+      "bytes": 292,
+      "sha256": "5066c8384336e7287c17d87f8e291dd1bedff26ead8cdceeeb3b052801c246bd",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/retention_decisions.json",
+      "bytes": 2851,
+      "sha256": "015748f47da7a62b3a681826412c25be4d5ab2d380153ab765c3116415256470",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/selected_authority_values.json",
+      "bytes": 286,
+      "sha256": "aa08bdbb6c96fb344f8cae68443b970ae1aa377864926e859ca410b8a000cd12",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/selected_authority_values_command.json",
+      "bytes": 1883,
+      "sha256": "df8e7242c038a11d9afaa6fb16e611bb56dad1cb969546c844ab0a8e3e25a1cb",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/server_check.json",
+      "bytes": 848,
+      "sha256": "89907567ff5a3b80c69f4aa657359823230640845cba4b1cb0fa221f98b4865a",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/server_check_01.json",
+      "bytes": 684,
+      "sha256": "1bdefa7fa34e1433807c9fa900bb64a032e0b15c69aab0e875b2ef68b6060b09",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/Q5/values_command.json",
+      "bytes": 358,
+      "sha256": "cb22f54293dc877445dfe7271b94e4d03223554235da9089ffa8be0d3dc78e5c",
+      "purpose": "Q5 identity, privacy, removal, retention or preservation proof"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_PREFLIGHT_Q1.txt",
+      "bytes": 16340,
+      "sha256": "4a9313a2da580183c0529c2fb94962ef8ee2df11f78848d9ad0aefc50d869d62",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_PREFLIGHT_Q2.txt",
+      "bytes": 18964,
+      "sha256": "6c8e723740bb43faf5827bcfd8aa624714f889ffa7ffddf420171b269ded2d3d",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_Q1B_DOCUMENT_CHECKS.json",
+      "bytes": 77084,
+      "sha256": "a0378026999090eadd4dcd4888e94c91ad3c59d6c7e440ddeb418d843bff68f2",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/baseline_test_inventory.json",
+      "bytes": 3982,
+      "sha256": "1050fc0215f09a8f8e9b1aeceda98f800a7c5457a54d0896864102bd843229b0",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/board_summary.json",
+      "bytes": 253,
+      "sha256": "92a9f86ecf16538dd57dacca07a7458d7ca997f766d1a682bd7fc2e11d8be77c",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/build_blank.json",
+      "bytes": 867,
+      "sha256": "598f39f69f497de7b0e7a9a2246a6cbb952e8b430d14784bd743659a87f792bb",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/build_blank.txt",
+      "bytes": 1091,
+      "sha256": "3b9f632df5dde84032c11e11e19706a0cf40debf3aa3597ce10e996abc9f44d8",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/build_main_dev.json",
+      "bytes": 247,
+      "sha256": "39bd35c3684905894256ea14fd8a5997b63439d201016a90c351783523939ef7",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/build_main_dev.txt",
+      "bytes": 1090,
+      "sha256": "09f096aebf94b86ae5753c20a619be3dfde947d2ca4e15e943376eafc8d8e867",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/build_placeholder.json",
+      "bytes": 879,
+      "sha256": "a4b93ac33d637ae3b3f1f3ec4235a238752e9bb4075fbf8c8a924c27759aca3b",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/build_placeholder.txt",
+      "bytes": 1090,
+      "sha256": "1438b7aafcdd85a6b69b4bdfe5943d01fbc032f19978421346f55b37ba879b5b",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/eslint.command.json",
+      "bytes": 152,
+      "sha256": "2da5a7b2f8d6376fb86857657a1c6b6a9359b1aadc3a6108dc6e05089a2bb132",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/eslint.txt",
+      "bytes": 14410,
+      "sha256": "5c572bf6d1cf272aeefda682e305d159014c62fc361a73780eac6a50fcb1f788",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/jest.command.json",
+      "bytes": 264,
+      "sha256": "5f6080250de544c4105a8aa62199d473ae2e097d3f19cf469cf44861e1a61c9b",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/jest.txt",
+      "bytes": 234,
+      "sha256": "5e547e6ec0fd9d01ef3cfc2fca4a4000aca83c999c12c8b69a31b64aaa4d4e58",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/jest_results.json",
+      "bytes": 74941,
+      "sha256": "5f84cbee0eec0cbd966665844d3ce90b247fadcb42e5a654b5e448d370948160",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/tsc.command.json",
+      "bytes": 156,
+      "sha256": "a032c3181a58d3917004872453923f9a2c20152a506ed4ce69ee429deccc4b99",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/board/tsc.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_admin-portal_1280_dark_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_admin-portal_1280_light_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_admin-portal_375_dark_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_admin-portal_375_light_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_home_1280_dark_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_home_1280_light_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_home_375_dark_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_home_375_light_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_owedbook_1280_dark_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_owedbook_1280_light_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_owedbook_375_dark_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/admin_owedbook_375_light_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_home_1280_dark_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_home_1280_light_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_home_375_dark_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_home_375_light_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_owedbook_1280_dark_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_owedbook_1280_light_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_owedbook_375_dark_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/member_owedbook_375_light_0.png",
+      "bytes": 517,
+      "sha256": "bb92e405a7b11da6ee884748fd309e88ef2d0017c75730a828b5e8049411d23e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/server_shutdown.json",
+      "bytes": 376,
+      "sha256": "ed96b066f7d7bd2599fcf39c9833097d6898cfdf43d90ca08e858c9cbc878097",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_auth_1280_dark_0.png",
+      "bytes": 2110,
+      "sha256": "01dbb74202bde731db4c9f2854f4f93c55a2860f466f16826701e2fc3aa5e9b0",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_auth_1280_light_0.png",
+      "bytes": 2283,
+      "sha256": "4f72f82277b16bfc0b30669a225f7e543657e0b45c4035e057675031a8a4294b",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_auth_375_dark_0.png",
+      "bytes": 2110,
+      "sha256": "01dbb74202bde731db4c9f2854f4f93c55a2860f466f16826701e2fc3aa5e9b0",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_auth_375_light_0.png",
+      "bytes": 2283,
+      "sha256": "4f72f82277b16bfc0b30669a225f7e543657e0b45c4035e057675031a8a4294b",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_1280_dark_0.png",
+      "bytes": 1314,
+      "sha256": "70979358ff84cba68ee918ffdd4970189ceb24504a939c4bc0d8a508aa8a65f4",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_1280_dark_1.png",
+      "bytes": 64037,
+      "sha256": "972159f6b0983b42a06c9dcd24bc91fcc7f075a02ecba220ae239517ad42130e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_1280_light_0.png",
+      "bytes": 2267,
+      "sha256": "2bd0d486b857a4f3837138a1e97b6fc7df46f3b4ec32dfde625866288ce872ba",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_1280_light_1.png",
+      "bytes": 64103,
+      "sha256": "1b0dc602569eded9290800f9af18fea963c8318bdf9c0bda49593aa6d2e47565",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_375_dark_0.png",
+      "bytes": 1314,
+      "sha256": "70979358ff84cba68ee918ffdd4970189ceb24504a939c4bc0d8a508aa8a65f4",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_375_dark_1.png",
+      "bytes": 25532,
+      "sha256": "dadfa6a0565c66447bb44d42f0e1e9ed383b7813f0bde0e358266a1d88bcdced",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_375_light_0.png",
+      "bytes": 2267,
+      "sha256": "2bd0d486b857a4f3837138a1e97b6fc7df46f3b4ec32dfde625866288ce872ba",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/signed_out_home_375_light_1.png",
+      "bytes": 25703,
+      "sha256": "dbb8ba7c00ba6321a3dab24e71e4f6d1f1843cb567acec0ce2a51589c4a4f4ad",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/walk.json",
+      "bytes": 29481,
+      "sha256": "43deff2949a673bb7f7a3ffd3ccaba532bd67bfff17189f116c0ebd5be7833dd",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/walk_command.txt",
+      "bytes": 382,
+      "sha256": "0ad75ae3f2ba3e5eeeedd79930ca71d5850d689a273fc4c6d484590c76db0952",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/attempts/metadata_01/installed_metadata.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/attempts/metadata_01/installed_metadata.json.command.json",
+      "bytes": 1688,
+      "sha256": "02b892da7916072f45abba86621059c806c170dccd39b600fb5da6a33e877a05",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/audit_baseline.json",
+      "bytes": 13852,
+      "sha256": "d6ce2bf6bd701e52bc251f7ab252fa8d4835db759384accebc1a3e280f851632",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/audit_baseline.json.command.json",
+      "bytes": 216,
+      "sha256": "72e8a865871714bb125b0db8ae68959d27e587c1a1ef91ccad1d48c417426601",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/audit_current.json",
+      "bytes": 366,
+      "sha256": "c3defc64a68dc10fa6b97bc86ef4fe1cba4450ce6ea9a5d44c57f62bc2dd15c8",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/audit_current.json.command.json",
+      "bytes": 210,
+      "sha256": "3be97dc4c3df3f7aa0ed59eee747ce67b21dbef082b47e2c3940361821f1743f",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/baseline_metadata.json",
+      "bytes": 1477,
+      "sha256": "acbc80b262a9b245c1db2ca155fd52f97d4d377f3f3a78e3618ffde9bc980a13",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/helper_repair_01.json",
+      "bytes": 557,
+      "sha256": "b6db3541f76de7051aa824a517517ea06c81abb6cae0840f88b569a0f90b7ab7",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/install.txt",
+      "bytes": 3968,
+      "sha256": "8aeb6894cd306dac50e9174b8af17078b4c8cc4fe72896fcb87200acd59ea3d3",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/installed_metadata.json",
+      "bytes": 4852,
+      "sha256": "e7b10c0de1431c97f5962988e2cd33ef767dc40c05c45bf3dc5240fb7434ac25",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/installed_metadata.json.command.json",
+      "bytes": 723,
+      "sha256": "346b4379d729944decee1b5a5f146663bbcbb6335f134adfee19204dda3b0336",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/instrument_attack.txt",
+      "bytes": 1381,
+      "sha256": "f3b684622f1487e35291c665d93c686e79be058e19ec618a46d55421b3d94a38",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/native_packages.txt",
+      "bytes": 108,
+      "sha256": "5fb43beb152e7ef1415ed3f6d3c4171437b6197fb00d5eb6ada1df86f99387dc",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/native_packages.txt.command.json",
+      "bytes": 208,
+      "sha256": "8c1f04943062fa1fc7dc0bb6926db4bccfe2565f1c06af57f2e86a0522a50a93",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/npm_ls.txt",
+      "bytes": 174,
+      "sha256": "e337beed29493c4a74d05ffa2be04881f9895255bbb1d84ed5fa8212ab548a20",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/npm_ls.txt.command.json",
+      "bytes": 244,
+      "sha256": "58af909d712cbf36fa61be973576194dc4892cd2620a4455c3bb6b852e291ec9",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/reference_provenance.txt",
+      "bytes": 521,
+      "sha256": "11ed319a0d18e20e0690ae97d433ed24b8daeef3b1de4599f345a9b1bb53bfba",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_eslint-config-next_version.json",
+      "bytes": 9,
+      "sha256": "2bfeadea6cbafa6d544a852242448030f959a8ee2e73cca275c3ff7f6d943438",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_eslint-config-next_version.json.command.json",
+      "bytes": 257,
+      "sha256": "1c4bc808a23d0353eb36a2bdc4e8e93d0bebf4cada691ddde366e32be74a394d",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_next_time.json",
+      "bytes": 192275,
+      "sha256": "6af65ff36bb34172d47f53234ab00a28e9d0256c959f2ed3320d4a2508cb1a88",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_next_time.json.command.json",
+      "bytes": 233,
+      "sha256": "81d8f2af6b8b37521524bbf056d73a6ac7c6b0a4fdcce91092dfd4de14042b31",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_next_version.json",
+      "bytes": 9,
+      "sha256": "2bfeadea6cbafa6d544a852242448030f959a8ee2e73cca275c3ff7f6d943438",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_next_version.json.command.json",
+      "bytes": 243,
+      "sha256": "ff596c2e337f45e46ddf0185a155bb2faafb7a70941cf6088ad42e662f99c13a",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_sharp_time.json",
+      "bytes": 8051,
+      "sha256": "4c8e2a5e582db92278b494e29048b2d236bd12c4e8325e2e5c9f0ace8fc029a1",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_sharp_time.json.command.json",
+      "bytes": 234,
+      "sha256": "51273542e9a3b6133179889fa1843bc76e3d1741bbd5be8256620c2becf33583",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_sharp_version.json",
+      "bytes": 9,
+      "sha256": "15aace338221a108b19ac0923ba374abb8a78ea314608686ab7902a1f5d71585",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/registry_sharp_version.json.command.json",
+      "bytes": 244,
+      "sha256": "84a47ecea15e8ea579940cfbc12640b917f14e6ef2f884742fc803b219d7e08e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/deps/summary.json",
+      "bytes": 2878,
+      "sha256": "e41f49ba044af27215cc850e73b848941f76e26bae51dce4146b760c9e5e1aa8",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/entry_gate.json",
+      "bytes": 15923,
+      "sha256": "2f752ed01eae7ff3545222577ff0a6dc9e1d0e53cb9899f8778d14fc79c89dda",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/headers/current.json",
+      "bytes": 6853,
+      "sha256": "be7b387410f98b2d45e46f1a3ca4199ca1cef14764d4bdaf4c55060812081ad2",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/headers/historical_engineer_before.txt",
+      "bytes": 746,
+      "sha256": "f2bb1353b1d32cc4d221dd8163e74025ce0b0de447fe4f0b06caaf90b75daf8e",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/images/direct_gets.json",
+      "bytes": 3449,
+      "sha256": "8d0643a6355526ec9d28510ea07f37474755848c0e279a7f8394c23e830d95a8",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/images/local_png.json",
+      "bytes": 886,
+      "sha256": "cadbb7a8ed866ee47cf428202504c8774705b202010904bd16223a79dc1f4f1b",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/images/negative_host.json",
+      "bytes": 567,
+      "sha256": "ca572933d5ae12923a17bf9bf94e3d7b8cb1ac7d8bcde7fd433279c747c4ef66",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/images/placeholder_server.txt",
+      "bytes": 411,
+      "sha256": "bb2a22c00d4ee569965635c73203120976529cd46d73c11c84654aa78c755d63",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/images/served_summary.json",
+      "bytes": 435,
+      "sha256": "9dd4d197b6c19c5a1acf97ca1ee168096eaf04a7a1e356052fdf39fe85ae4dca",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/privacy_Q2_commands.json",
+      "bytes": 1229,
+      "sha256": "99f0e55eb8471c6549e73cf5df54a7cb876beb5fd25af8c7ce69fa7e940be0e7",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/privacy_audit.json",
+      "bytes": 95223,
+      "sha256": "cf0aab1de6a90abb691cd168ee618822216e5d20c66e2036452ade96b19f05a4",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/q1_final_checks.txt",
+      "bytes": 2073,
+      "sha256": "6572242bfb2a7a5afa81ffa88e40b03e374b3f2842467245c6206ac427eac999",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/q2_final_checks.json",
+      "bytes": 13270,
+      "sha256": "36a3c00f8178b4ca1e453a7685fae3e1c01a65686f6cfbd321524463eecead56",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/qf16_result.json",
+      "bytes": 514,
+      "sha256": "cc95a4bb223cfb4bb81b8210580671eb859db9b28cf19bbf15a44baa26dccb95",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/qf16_server.txt",
+      "bytes": 486,
+      "sha256": "2f414d8bd6ca0891dfd0a216d6d35187c8949adf3c7fa6c4ef243cd226bdb280",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/recon.txt",
+      "bytes": 57609,
+      "sha256": "178f906e842c94642adb1fbc5d4c6402ff521c85b0afdcb6123072d2407d9eae",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/A_baseline_candidate.txt",
+      "bytes": 5100,
+      "sha256": "0902b31df63d68f18e5ae3615afd477e4c236d35d82f81fce36edcb00b34f426",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/B_candidate_head.txt",
+      "bytes": 4493,
+      "sha256": "367179e046f98db9c260f12c77f6fc84c1b4df83e2ed290da990c13db472fe44",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/C_uncommitted_during_static.txt",
+      "bytes": 5068,
+      "sha256": "832a8254f06f8bb58a16e84eb20cf5d1abc95bebcb2aecef557357a941c02481",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/byte_identity.json",
+      "bytes": 11531,
+      "sha256": "23db98b6ab0a6c2d2caed8e2e770ddcf30c60bcd834df75cdfed394079900bcf",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/commands.json",
+      "bytes": 596665,
+      "sha256": "e3d2db1c59a1b6c20031d2d7de3918cb1f99589827d24a625da368686a77ebba",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/engineering_artifacts.json",
+      "bytes": 2252,
+      "sha256": "deefb6fd86370e77273170c2c4f5b099b8ef473152370d35a2d6033bb82d3074",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/engineering_artifacts.txt",
+      "bytes": 14793,
+      "sha256": "40d11a82b3333575331d20aec7424b286b825475d2ad59f584334e0a4784e7b8",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/ledger_map_hunks.txt",
+      "bytes": 16529,
+      "sha256": "44caee81c6ec57a71e8d486d64ec15c3957da9b2149a13428c0021ef017e34f7",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/lockfile_moves.json",
+      "bytes": 11092,
+      "sha256": "468ecee5678d0335427f16117e994810e25dc6ca50a0ac33752840264e15118d",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/source_image_derivation.txt",
+      "bytes": 790,
+      "sha256": "826e5c63b9ee4c5f22a1201f404d49652dc614f184a431a77706367fc9196754",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/static/summary.json",
+      "bytes": 34893,
+      "sha256": "d46aef310fe55315778955000506b2effb4ed0bedf1caefce5f54a9d16ef8a06",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/temp_paths.json",
+      "bytes": 581,
+      "sha256": "bcdfc8487a663eb2e6370acd65873142b79610af52a567929ac0a0244f2ee8b8",
+      "purpose": "Original Q1/Q2 measurement or preserved attempt; no rerun in Q5"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_125800_rrm004-qam-ratification.md",
+      "bytes": 6241,
+      "sha256": "878400a0490dd87158690fe98500fcd56420b7100e0cb986105fda5dd6a732ef",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_134927_rrm004-qam-q1-recon.md",
+      "bytes": 3543,
+      "sha256": "065797eee312d528cc1b06188509f47a44a333d5c0e53eb1f17cbedcfc6b6444",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_143840_rrm004-qam-q1-recon.md",
+      "bytes": 2537,
+      "sha256": "c2005700b5e201bf6df29cd55e0f094b46aa27f8952535d08a743e89c810cf96",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_165250_rrm004-qam-q1b-resolution.md",
+      "bytes": 4084,
+      "sha256": "7ee8fc6d0c0183033dcbcca3c79daec47be1f69995cfa459e9545113af216425",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_165954_rrm004-qam-q1b-commit-review.md",
+      "bytes": 1100,
+      "sha256": "9b1b2e5c303b3194d60b8e7f817598a5c2b2497e7be3a4ad4673b017cc1c4019",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_172445_rrm004-qam-q2-execution.md",
+      "bytes": 977,
+      "sha256": "26f3826b89e7495ba39d0aab9883a8fed11e453ade31c9fe5839fe90ba69566c",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q1.md",
+      "bytes": 3294,
+      "sha256": "74db5e233caa84c20bfa67f94f4bb19352ce1ad8b3dba48023ac70a079ec8339",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q1b.md",
+      "bytes": 6602,
+      "sha256": "5b4e39816b386457b4419c8df9468dd595810ce45be51824f5fa57310a732f8a",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    },
+    {
+      "path": "agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q2.md",
+      "bytes": 4837,
+      "sha256": "51e83e60a8aa8fac53284ebf228fc4d11126b3f9c44322648caa592a655fe3f1",
+      "purpose": "Current QA report, authority or historical phase provenance"
+    }
+  ]
+}

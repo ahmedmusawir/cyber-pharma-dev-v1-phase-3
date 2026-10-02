@@ -1,0 +1,198 @@
+{
+  "method": "SHA-256 of raw Git blob bytes and working files; no newline normalization",
+  "checks": [
+    {
+      "path": "agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md",
+      "hashes": {
+        "649c36d0409c0b658cff14f779a09aad0c8e92b9": "668e1db08e2784bb9ccc5c2715b44c0978c0b60621491c1cec72fe1369592c05",
+        "a93393d0f960bd04d5b9898536699852a0d715b1^": "668e1db08e2784bb9ccc5c2715b44c0978c0b60621491c1cec72fe1369592c05",
+        "a93393d0f960bd04d5b9898536699852a0d715b1": "3d3cdd69df8b764345a76a7835ffeb4a8acf915653d04a9ae37a66f1fd3972fd",
+        "2fbc72f1f514049255f2b94054bd11cc77cbd158": "3d3cdd69df8b764345a76a7835ffeb4a8acf915653d04a9ae37a66f1fd3972fd",
+        "6b6cad642f69314904938e9df1ec8fdfbe08f15a": "3d3cdd69df8b764345a76a7835ffeb4a8acf915653d04a9ae37a66f1fd3972fd",
+        "working": "3d3cdd69df8b764345a76a7835ffeb4a8acf915653d04a9ae37a66f1fd3972fd"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/README.md",
+      "hashes": {
+        "649c36d0409c0b658cff14f779a09aad0c8e92b9": "5de173f4bbb346ce336c9fe5e452999a2e29f1d22ba7bb5cdba6a485605f2b00",
+        "a93393d0f960bd04d5b9898536699852a0d715b1^": "5de173f4bbb346ce336c9fe5e452999a2e29f1d22ba7bb5cdba6a485605f2b00",
+        "a93393d0f960bd04d5b9898536699852a0d715b1": "6baf1b6db123e2bbaa4ba92266dfd636a69fe3e8a71f4ff4bee9492ba942ebeb",
+        "2fbc72f1f514049255f2b94054bd11cc77cbd158": "6baf1b6db123e2bbaa4ba92266dfd636a69fe3e8a71f4ff4bee9492ba942ebeb",
+        "6b6cad642f69314904938e9df1ec8fdfbe08f15a": "6baf1b6db123e2bbaa4ba92266dfd636a69fe3e8a71f4ff4bee9492ba942ebeb",
+        "working": "6baf1b6db123e2bbaa4ba92266dfd636a69fe3e8a71f4ff4bee9492ba942ebeb"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md",
+      "hashes": {
+        "649c36d0409c0b658cff14f779a09aad0c8e92b9": "0aa930cfd59053ef88e64c3222a1c55663d8bdfaa434652ac1c0f2e24eec2a9c",
+        "a93393d0f960bd04d5b9898536699852a0d715b1^": "0aa930cfd59053ef88e64c3222a1c55663d8bdfaa434652ac1c0f2e24eec2a9c",
+        "a93393d0f960bd04d5b9898536699852a0d715b1": "fd7a36a49f2d6f5855bb7165ec52cbf3de79333d77b23c11c5de22db502e6a05",
+        "2fbc72f1f514049255f2b94054bd11cc77cbd158": "fd7a36a49f2d6f5855bb7165ec52cbf3de79333d77b23c11c5de22db502e6a05",
+        "6b6cad642f69314904938e9df1ec8fdfbe08f15a": "fd7a36a49f2d6f5855bb7165ec52cbf3de79333d77b23c11c5de22db502e6a05",
+        "working": "fd7a36a49f2d6f5855bb7165ec52cbf3de79333d77b23c11c5de22db502e6a05"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md",
+      "hashes": {
+        "649c36d0409c0b658cff14f779a09aad0c8e92b9": "052c6b84f54e3ec0d55c12b6138f0adef9bc23fd6fa7e8f7b8e386ff33d97468",
+        "ee4a049db7b7a44aacff929193b35f68a1b36fe0^": "052c6b84f54e3ec0d55c12b6138f0adef9bc23fd6fa7e8f7b8e386ff33d97468",
+        "ee4a049db7b7a44aacff929193b35f68a1b36fe0": "f38eacc01a06b6ec791aac2a095d991ea36b88d19283da75a3a4937116b3c7a1",
+        "2fbc72f1f514049255f2b94054bd11cc77cbd158": "f38eacc01a06b6ec791aac2a095d991ea36b88d19283da75a3a4937116b3c7a1",
+        "6b6cad642f69314904938e9df1ec8fdfbe08f15a": "f38eacc01a06b6ec791aac2a095d991ea36b88d19283da75a3a4937116b3c7a1",
+        "working": "f38eacc01a06b6ec791aac2a095d991ea36b88d19283da75a3a4937116b3c7a1"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/RRM_CAMPAIGN_JOURNAL.md",
+      "hashes": {
+        "649c36d0409c0b658cff14f779a09aad0c8e92b9": "c7ca94c268829e4853b6d3f365996f71d0a96e4a56ca004674ff93ceb58bba5b",
+        "ee4a049db7b7a44aacff929193b35f68a1b36fe0^": "c7ca94c268829e4853b6d3f365996f71d0a96e4a56ca004674ff93ceb58bba5b",
+        "ee4a049db7b7a44aacff929193b35f68a1b36fe0": "61fbc1481c532dbade2f850541766730e1e256154df4fcffffcae86e2ef35f82",
+        "2fbc72f1f514049255f2b94054bd11cc77cbd158": "61fbc1481c532dbade2f850541766730e1e256154df4fcffffcae86e2ef35f82",
+        "6b6cad642f69314904938e9df1ec8fdfbe08f15a": "61fbc1481c532dbade2f850541766730e1e256154df4fcffffcae86e2ef35f82",
+        "working": "61fbc1481c532dbade2f850541766730e1e256154df4fcffffcae86e2ef35f82"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-28_205049_session-start-protocol-ack.md",
+      "hashes": {
+        "before_move": "a813cb9aaf6dca52f75ca9989e8209cea0221a0620339f3a87c905db308fd96a",
+        "after_move": "a813cb9aaf6dca52f75ca9989e8209cea0221a0620339f3a87c905db308fd96a",
+        "candidate": "a813cb9aaf6dca52f75ca9989e8209cea0221a0620339f3a87c905db308fd96a",
+        "head": "a813cb9aaf6dca52f75ca9989e8209cea0221a0620339f3a87c905db308fd96a",
+        "working": "a813cb9aaf6dca52f75ca9989e8209cea0221a0620339f3a87c905db308fd96a"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-28_210200_rrm003-p1-plan.md",
+      "hashes": {
+        "before_move": "c25044bbead8ef425677d86e9e5bb0d1d2cec89709cc13187988781d0793ef0a",
+        "after_move": "c25044bbead8ef425677d86e9e5bb0d1d2cec89709cc13187988781d0793ef0a",
+        "candidate": "c25044bbead8ef425677d86e9e5bb0d1d2cec89709cc13187988781d0793ef0a",
+        "head": "c25044bbead8ef425677d86e9e5bb0d1d2cec89709cc13187988781d0793ef0a",
+        "working": "c25044bbead8ef425677d86e9e5bb0d1d2cec89709cc13187988781d0793ef0a"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-28_212503_rrm003-p1b-rulings.md",
+      "hashes": {
+        "before_move": "46c3932e19abb4b67d6b8da731f179ebd1ff30ce1fa0318d1c93fc185978c3b1",
+        "after_move": "46c3932e19abb4b67d6b8da731f179ebd1ff30ce1fa0318d1c93fc185978c3b1",
+        "candidate": "46c3932e19abb4b67d6b8da731f179ebd1ff30ce1fa0318d1c93fc185978c3b1",
+        "head": "46c3932e19abb4b67d6b8da731f179ebd1ff30ce1fa0318d1c93fc185978c3b1",
+        "working": "46c3932e19abb4b67d6b8da731f179ebd1ff30ce1fa0318d1c93fc185978c3b1"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-28_214117_rrm003-p2-completion.md",
+      "hashes": {
+        "before_move": "0bc3f7a6827178d2e76eee5e055d19bd188f0654a0af26ac5eb646e656ed0c2e",
+        "after_move": "0bc3f7a6827178d2e76eee5e055d19bd188f0654a0af26ac5eb646e656ed0c2e",
+        "candidate": "0bc3f7a6827178d2e76eee5e055d19bd188f0654a0af26ac5eb646e656ed0c2e",
+        "head": "0bc3f7a6827178d2e76eee5e055d19bd188f0654a0af26ac5eb646e656ed0c2e",
+        "working": "0bc3f7a6827178d2e76eee5e055d19bd188f0654a0af26ac5eb646e656ed0c2e"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-29_141122_rrm003-a13-sha-fill.md",
+      "hashes": {
+        "before_move": "8cae6e300bd095f076654abb4e49d97e08fd785b333622355f7c10117487c87e",
+        "after_move": "8cae6e300bd095f076654abb4e49d97e08fd785b333622355f7c10117487c87e",
+        "candidate": "8cae6e300bd095f076654abb4e49d97e08fd785b333622355f7c10117487c87e",
+        "head": "8cae6e300bd095f076654abb4e49d97e08fd785b333622355f7c10117487c87e",
+        "working": "8cae6e300bd095f076654abb4e49d97e08fd785b333622355f7c10117487c87e"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-29_144307_rrm003-qa-entry-sync.md",
+      "hashes": {
+        "before_move": "357311bef9983d66203484b4d92ca04550c4d368a512eead6e9f34785f625366",
+        "after_move": "357311bef9983d66203484b4d92ca04550c4d368a512eead6e9f34785f625366",
+        "candidate": "357311bef9983d66203484b4d92ca04550c4d368a512eead6e9f34785f625366",
+        "head": "357311bef9983d66203484b4d92ca04550c4d368a512eead6e9f34785f625366",
+        "working": "357311bef9983d66203484b4d92ca04550c4d368a512eead6e9f34785f625366"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-29_155058_rrm003-qa-execution.md",
+      "hashes": {
+        "before_move": "a988c1f10a4f818e5685406318399a768ed0cb2a2d2bcee197d4e50f7b1090c6",
+        "after_move": "a988c1f10a4f818e5685406318399a768ed0cb2a2d2bcee197d4e50f7b1090c6",
+        "candidate": "a988c1f10a4f818e5685406318399a768ed0cb2a2d2bcee197d4e50f7b1090c6",
+        "head": "a988c1f10a4f818e5685406318399a768ed0cb2a2d2bcee197d4e50f7b1090c6",
+        "working": "a988c1f10a4f818e5685406318399a768ed0cb2a2d2bcee197d4e50f7b1090c6"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-29_212204_rrm003-ac107-final-qa.md",
+      "hashes": {
+        "before_move": "0d774c5e9b923840ff928ae6bdb057180d9fd94d5aca2bd69c65eb05656facd0",
+        "after_move": "0d774c5e9b923840ff928ae6bdb057180d9fd94d5aca2bd69c65eb05656facd0",
+        "candidate": "0d774c5e9b923840ff928ae6bdb057180d9fd94d5aca2bd69c65eb05656facd0",
+        "head": "0d774c5e9b923840ff928ae6bdb057180d9fd94d5aca2bd69c65eb05656facd0",
+        "working": "0d774c5e9b923840ff928ae6bdb057180d9fd94d5aca2bd69c65eb05656facd0"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-29_222900_rrm003-p5-closeout-plan.md",
+      "hashes": {
+        "before_move": "fa6b7fbfef02d45f04c5276dc70d6fc865c0ec8131a182c6a653a51bd64ca3ef",
+        "after_move": "fa6b7fbfef02d45f04c5276dc70d6fc865c0ec8131a182c6a653a51bd64ca3ef",
+        "candidate": "fa6b7fbfef02d45f04c5276dc70d6fc865c0ec8131a182c6a653a51bd64ca3ef",
+        "head": "fa6b7fbfef02d45f04c5276dc70d6fc865c0ec8131a182c6a653a51bd64ca3ef",
+        "working": "fa6b7fbfef02d45f04c5276dc70d6fc865c0ec8131a182c6a653a51bd64ca3ef"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-29_223624_rrm003-p5-closeout.md",
+      "hashes": {
+        "before_move": "ea87b884fa33d12b9bf79128b2da579b85c9048f48db12c26d69a856471c8d89",
+        "after_move": "ea87b884fa33d12b9bf79128b2da579b85c9048f48db12c26d69a856471c8d89",
+        "candidate": "ea87b884fa33d12b9bf79128b2da579b85c9048f48db12c26d69a856471c8d89",
+        "head": "ea87b884fa33d12b9bf79128b2da579b85c9048f48db12c26d69a856471c8d89",
+        "working": "ea87b884fa33d12b9bf79128b2da579b85c9048f48db12c26d69a856471c8d89"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-30_123954_rrm003-sha-record-plan.md",
+      "hashes": {
+        "before_move": "21cc3cbee806d1f116b0677bc5abbd0ce7abb3105f86e0ff958ba63d29b8b1ac",
+        "after_move": "21cc3cbee806d1f116b0677bc5abbd0ce7abb3105f86e0ff958ba63d29b8b1ac",
+        "candidate": "21cc3cbee806d1f116b0677bc5abbd0ce7abb3105f86e0ff958ba63d29b8b1ac",
+        "head": "21cc3cbee806d1f116b0677bc5abbd0ce7abb3105f86e0ff958ba63d29b8b1ac",
+        "working": "21cc3cbee806d1f116b0677bc5abbd0ce7abb3105f86e0ff958ba63d29b8b1ac"
+      },
+      "exact_bytes_match": true
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-30_124723_rrm003-sha-recorded.md",
+      "hashes": {
+        "before_move": "db4169e69b1fd8ea15550699de2035696f2233be0b824d9fd326b1a454ec6442",
+        "after_move": "db4169e69b1fd8ea15550699de2035696f2233be0b824d9fd326b1a454ec6442",
+        "candidate": "db4169e69b1fd8ea15550699de2035696f2233be0b824d9fd326b1a454ec6442",
+        "head": "db4169e69b1fd8ea15550699de2035696f2233be0b824d9fd326b1a454ec6442",
+        "working": "db4169e69b1fd8ea15550699de2035696f2233be0b824d9fd326b1a454ec6442"
+      },
+      "exact_bytes_match": true
+    }
+  ],
+  "all_match": true
+}

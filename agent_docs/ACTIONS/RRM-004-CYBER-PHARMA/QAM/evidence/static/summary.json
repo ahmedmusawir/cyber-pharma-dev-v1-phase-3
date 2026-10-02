@@ -1,0 +1,610 @@
+{
+  "timestamp": "2026-10-01T17:13:34+06:00",
+  "baseline": "649c36d0409c0b658cff14f779a09aad0c8e92b9",
+  "candidate": "2fbc72f1f514049255f2b94054bd11cc77cbd158",
+  "qa_head": "6b6cad642f69314904938e9df1ec8fdfbe08f15a",
+  "preserved_paths": {
+    "2fbc72f1f514049255f2b94054bd11cc77cbd158": true,
+    "6b6cad642f69314904938e9df1ec8fdfbe08f15a": true,
+    "working_tree": true
+  },
+  "package_changes": [
+    {
+      "path": "/dependencies/next",
+      "before": "^16.2.1",
+      "after": "16.3.7"
+    },
+    {
+      "path": "/devDependencies/eslint-config-next",
+      "before": "^16.2.9",
+      "after": "16.3.7"
+    },
+    {
+      "path": "/overrides/sharp",
+      "before": "^0.35.3",
+      "after": "0.35.5"
+    }
+  ],
+  "config": {
+    "baseline_minus_images_equals_current": true,
+    "forbidden_config_hits": []
+  },
+  "cloudinary_consumers": {
+    "649c36d0409c0b658cff14f779a09aad0c8e92b9": "",
+    "2fbc72f1f514049255f2b94054bd11cc77cbd158": ""
+  },
+  "readme_markdown_exceptions": "2fbc72f1f514049255f2b94054bd11cc77cbd158:README.md:76:![OwedBook \u2014 dark theme, Updated Payments tab](https://res.cloudinary.com/dyb0qa58h/image/upload/v1785123057/image_6_ruqybg.png)\n2fbc72f1f514049255f2b94054bd11cc77cbd158:README.md:85:![OwedBook \u2014 light theme, same view](https://res.cloudinary.com/dyb0qa58h/image/upload/v1785123057/image_5_ptxpku.png)\n2fbc72f1f514049255f2b94054bd11cc77cbd158:README.md:92:![Admin Portal \u2014 My Stores](https://res.cloudinary.com/dyb0qa58h/image/upload/v1785123057/admin_stores_slate_yuo1na.png)\n2fbc72f1f514049255f2b94054bd11cc77cbd158:README.md:103:| ![OwedBook on mobile, dark theme](https://res.cloudinary.com/dyb0qa58h/image/upload/v1785123056/image_1_titigj.png) | ![OwedBook on mobile, light theme](https://res.cloudinary.com/dyb0qa58h/image/upload/v1785123056/image_2_y11qey.png) |\n",
+  "a15_hunks": [
+    {
+      "path": "agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md",
+      "historical_commit": "a93393d0f960bd04d5b9898536699852a0d715b1",
+      "baseline_equals_historical_parent": true,
+      "candidate_equals_historical_result": true,
+      "head_equals_historical_result": true,
+      "working_equals_historical_result": true,
+      "historical_diff": "diff --git a/agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md b/agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md\nindex b19cf48..bed4fa6 100755\n--- a/agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md\n+++ b/agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md\n@@ -78,8 +78,8 @@ Engineering evidence, not independent QA certification.\n | Pack commit | `91a951e` |\n | Certified candidate | `34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731` |\n | QA evidence HEAD | `cb9f7b7e707f206f019b40c7079487888cc14d03` (docs-only successor; product diff empty) |\n-| Closeout commit | _recorded by Director at merge_ |\n-| Merge SHA | _recorded by Director at merge_ |\n+| Closeout commit | `9cb56e9` |\n+| Merge SHA | `3d2e655` (`--no-ff` merge of `qa/phase-3-rrm002` into `main`; recorded 2026-09-30) |\n | QA-F01 | CLOSED \u2014 Environment / Setup Issue (paused free replica, drifted identities); AC-304 completed on the Director-authorized base environment; ledger E-15 |\n | QA cleanup (J-19) | 18 files removed: `QA/helpers/` (16 disposable instruments) + `QA/browser_harness/` (2 generated bundle files), cited only by the pre-Gate-Q inventory. They were never committed, so a verified archive was written outside the repo before removal. 7 cited byte-duplicate screenshot pairs retained. `QA/ARTIFACT_INVENTORY.json` rebuilt (58 entries); every certificate/report/matrix/handoff citation resolves; secrets scan clean. Detail: `QA/QA_CLEANUP_REPORT.md` |\n \n"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/README.md",
+      "historical_commit": "a93393d0f960bd04d5b9898536699852a0d715b1",
+      "baseline_equals_historical_parent": true,
+      "candidate_equals_historical_result": true,
+      "head_equals_historical_result": true,
+      "working_equals_historical_result": true,
+      "historical_diff": "diff --git a/agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/README.md b/agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/README.md\nindex 356db16..c9bd238 100644\n--- a/agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/README.md\n+++ b/agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/README.md\n@@ -1,5 +1,5 @@\n # RRM-002-CYBER-PHARMA \u2014 Ledger Truth\n \n-**Status: CLOSED** \u2014 Gate Q PASS 2026-09-28 (QA Lead, zero defects, zero repair rounds) \u00b7 certified candidate `34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731` \u00b7 QA evidence HEAD `cb9f7b7` \u00b7 closeout commit and merge SHA recorded by Director at merge.\n+**Status: CLOSED** \u2014 Gate Q PASS 2026-09-28 (QA Lead, zero defects, zero repair rounds) \u00b7 certified candidate `34e6fb6fd8c4e5c6610f4b0f49177abcb6cc0731` \u00b7 QA evidence HEAD `cb9f7b7` \u00b7 closeout commit `9cb56e9` \u00b7 merged to `main` `3d2e655`.\n \n Module 2 of the RRM campaign (`agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` \u00a75). Start at `CLAUDE.md`. Director runway in `DIRECTOR_ACTIONS.md`. Engineering record in `EXECUTION_LOG.md`; QA record and certificate in `QA/`.\n"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md",
+      "historical_commit": "a93393d0f960bd04d5b9898536699852a0d715b1",
+      "baseline_equals_historical_parent": true,
+      "candidate_equals_historical_result": true,
+      "head_equals_historical_result": true,
+      "working_equals_historical_result": true,
+      "historical_diff": "diff --git a/agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md b/agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md\nindex 39a163b..455ea53 100755\n--- a/agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md\n+++ b/agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md\n@@ -70,8 +70,8 @@ Engineering evidence, not independent QA certification.\n | Pack commit | `a59f069` |\n | Certified candidate | `21ea108bb27b965ddc5edae29dc3b1d6971ae576` |\n | QA HEAD | `1a94277b73c9ee61eab1ed74991f54fcd4771afe` (docs-only successor; product diff empty) |\n-| Closeout commit | _recorded by Director at merge_ |\n-| Merge SHA | _recorded by Director at merge_ |\n+| Closeout commit | `7309a2f` |\n+| Merge SHA | `649c36d` (`--no-ff` merge of `qa/phase-3-rrm003` into `main`, pushed; recorded 2026-09-30) |\n | QA-F01 | RESOLVED \u2014 SCRATCH unavailable; Director-authorized main development Supabase for the login-only AC-107 walk; ledger E-17; DC-4 satisfied |\n | QA-F02 | NON-BLOCKING OBSERVATION \u2014 PBM trigger Enter does not open (Space does); not an RRM-003 defect; backlog for a future accessibility review; ledger E-18 |\n | QA cleanup (J-19) | Nothing removed. Three browser helpers (`qa_ac107.cjs`, `qa_pbm_probe.cjs`, `sanitize_trace.py`) retained by Director ruling as reproducibility / QAM learning artifacts. Inventory 76/76 resolve and hash-match; secrets scan 0. Detail: `QA/QA_CLEANUP_REPORT.md` |\n"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md",
+      "historical_commit": "ee4a049db7b7a44aacff929193b35f68a1b36fe0",
+      "baseline_equals_historical_parent": true,
+      "candidate_equals_historical_result": true,
+      "head_equals_historical_result": true,
+      "working_equals_historical_result": true,
+      "historical_diff": "diff --git a/agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md b/agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md\nindex 75802c6..d9da273 100755\n--- a/agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md\n+++ b/agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md\n@@ -1,6 +1,6 @@\n # RRM-003-CYBER-PHARMA \u2014 Access, Cache, Hygiene, Docs\n \n-Module 3 of the RRM campaign (`agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` \u00a76). **Controlled one-shot Engineering pilot** (QA Lead field note, 2026-09-28). Start at `CLAUDE.md`. Director runway in `DIRECTOR_ACTIONS.md`. Status: AUTHORED 2026-09-28. **CLOSED 2026-09-29 \u2014 Gate Q PASS** (QA Lead, 26/26 ACs, zero repair rounds) @ `21ea108bb27b965ddc5edae29dc3b1d6971ae576`; certificate `QA/QA_CERTIFICATION.md`; closeout record `EXECUTION_LOG.md` \u00a7 Closeout.\n+Module 3 of the RRM campaign (`agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` \u00a76). **Controlled one-shot Engineering pilot** (QA Lead field note, 2026-09-28). Start at `CLAUDE.md`. Director runway in `DIRECTOR_ACTIONS.md`. Status: AUTHORED 2026-09-28. **CLOSED 2026-09-29 \u2014 Gate Q PASS** (QA Lead, 26/26 ACs, zero repair rounds) @ `21ea108bb27b965ddc5edae29dc3b1d6971ae576`; certificate `QA/QA_CERTIFICATION.md`; closeout record `EXECUTION_LOG.md` \u00a7 Closeout; merged to main 649c36d (2026-09-29).\n \n | File | Owner |\n |---|---|\n"
+    },
+    {
+      "path": "agent_docs/RRM_CAMPAIGN_JOURNAL.md",
+      "historical_commit": "ee4a049db7b7a44aacff929193b35f68a1b36fe0",
+      "baseline_equals_historical_parent": true,
+      "candidate_equals_historical_result": true,
+      "head_equals_historical_result": true,
+      "working_equals_historical_result": true,
+      "historical_diff": "diff --git a/agent_docs/RRM_CAMPAIGN_JOURNAL.md b/agent_docs/RRM_CAMPAIGN_JOURNAL.md\nindex c44229d..ed7cefa 100644\n--- a/agent_docs/RRM_CAMPAIGN_JOURNAL.md\n+++ b/agent_docs/RRM_CAMPAIGN_JOURNAL.md\n@@ -110,7 +110,16 @@\n \n ### RRM-003-CYBER-PHARMA \u2014 closed 2026-09-29 (Architect)\n \n-[entry to be supplied by the Architect; not authored by another seat]\n+- **Module:** RRM-003-CYBER-PHARMA \u2014 Access, Cache, Hygiene, Docs. Controlled one-shot Engineering pilot (QA Lead field note 2026-09-28).\n+- **Commits:** pack `a59f069` \u00b7 P1b rulings `6655f95` \u00b7 candidate (single P2 commit) `21ea108bb27b965ddc5edae29dc3b1d6971ae576` \u00b7 QA HEAD `1a94277` \u00b7 closeout `7309a2f` \u00b7 merge to `main` `649c36d` (`--no-ff`, 2026-09-29). Baseline `3d2e655` (RRM-002 merge).\n+- **Verdict:** Gate Q PASS, 26/26 ACs, zero repair rounds (QA Lead, 2026-09-29).\n+- **Engineering pilot metrics:** P2 wall-clock 11m54s (preflight 1m18s \u00b7 S1 3m21s \u00b7 S2 0m44s \u00b7 S3 3m20s \u00b7 handoff 2m53s) \u00b7 67 checks \u00b7 3 self-repairs, all in new test code, zero in product code \u00b7 0 Director touches between P2 start and the staging block \u00b7 0 stop conditions \u00b7 preflight 17/17 PASS at P2 \u00b7 3 new suites / 20 tests (31/144 \u2192 34/164).\n+- **Rulings:** A-01\u2026A-14 (PF-05 own-protocol files; standalone static copy; nested-Escape guard; AC-401/AC-306 overlap erratum). Ledger E-16 (OBS-1 `protectPage` \u2192 Phase 8), E-17 (QA target substitution), E-18 (QA-F02 Enter on PBM trigger \u2192 accessibility backlog).\n+- **QA observations for the campaign:** QA active time 74m55s across two segments; 8 Director touches (1 environment ruling + 7 browser sign-ins) because the pack named SCRATCH accounts that did not exist; the Enter-key observation cost diagnostic reruns. Both are pack-authoring failures, not agent failures: the QA target and the test identities must be verified at authoring and declared in the checkpoints, and a known-instrument probe (Enter vs Space on native buttons) belongs in the QA preflight.\n+- **Factory lesson \u2014 keep:** machine-checkable preflight as a gate; enumerated stop conditions; declared checkpoints with none inside the build; one selective staging block; the Engineer copying the governing QA snapshot with provenance.\n+- **Factory lesson \u2014 change:** the QA side gets the same treatment in RRM-004 \u2014 a QA preflight that queries the accounts and the browser engine, enumerated QA stop conditions, a declared credential checkpoint with a one-sign-in-per-role target, and the plan authored by the QA seat from an Engineer-supplied manifest (the QAM pilot).\n+- **Factory lesson \u2014 drop:** preflight rows that assert what the environment *should* have (PF-14's bare standalone, RRM-003 A-02) instead of measuring what it does; naming an environment in a checkpoint without verifying it exists.\n+- **Closeout:** merged; RRM-004 (dependencies + QAM pilot) authored from this merge.\n \n ### RRM-003-CYBER-PHARMA \u2014 QA engagement closed 2026-09-29 (QA-logged (QA Lead))\n \n@@ -118,4 +127,14 @@\n \n ### Friction log \u2014 RRM-003 (Director-observed, filed by Architect)\n \n-[to be filed by the Architect; not authored by another seat]\n+- 2026-09-28 \u2014 PF-05 at P1 held the Engineer's own root-protocol files; ruled A-01 (P1 exception, P2 literal).\n+- 2026-09-28 \u2014 Bare `node .next/standalone/server.js` 404s `/_next/static`; the \"before\" capture measured Next's 404 header. Ruled A-02: copy `.next/static` and `public/` into standalone before boot; every capture records the status line.\n+- 2026-09-28 \u2014 Nested Escape order held in jsdom but not in production (`document`-level listener); ruled A-06 (`if (e.defaultPrevented) return;` guard).\n+- 2026-09-28 \u2014 Director's pack commit accidentally deleted `agent_docs/PHASE_2.1` and `PHASE_2.2`; restored with `git checkout 3d2e655 -- \u2026` before P1.\n+- 2026-09-28 \u2014 AC-401's preserved-path list overlapped AC-306's banner files; erratum via A-13.\n+- 2026-09-28 \u2014 Staging block not run before the QA branch was cut; recovered with `git add -A` then commit on the engineering branch.\n+- 2026-09-29 \u2014 QA sandbox (`bwrap`) failed before external commands; reviewed escalation worked.\n+- 2026-09-29 \u2014 DC-4 named SCRATCH; no SCRATCH accounts existed. Director authorized main development Supabase, login-only (E-17); seven sign-ins across diagnosis and reruns.\n+- 2026-09-29 \u2014 `curl -X HEAD` exit 18 on the header probe; corrected to `curl -I`.\n+- 2026-09-29 \u2014 Enter on the focused, closed PBM trigger swallowed; Space works. Non-blocking (E-18); origin check scheduled for RRM-004 Plan Mode.\n+- 2026-09-29 \u2014 Architect's service unavailable at closeout; the Director handed the QA Lead's certification to the Engineer as the closeout instruction; the Architect's journal entry lands here, in RRM-004 P0.\n"
+    }
+  ],
+  "a15_archive_moves": [
+    {
+      "status": "R100",
+      "old": "agent_docs/RESPONSES/response_2026-09-28_205049_session-start-protocol-ack.md",
+      "new": "agent_docs/RESPONSES/_OLD/response_2026-09-28_205049_session-start-protocol-ack.md",
+      "historical_bytes_equal": true,
+      "candidate_equals_move": true,
+      "head_equals_move": true,
+      "working_equals_move": true,
+      "sha256": "a813cb9aaf6dca52f75ca9989e8209cea0221a0620339f3a87c905db308fd96a"
+    },
+    {
+      "status": "R100",
+      "old": "agent_docs/RESPONSES/response_2026-09-28_210200_rrm003-p1-plan.md",
+      "new": "agent_docs/RESPONSES/_OLD/response_2026-09-28_210200_rrm003-p1-plan.md",
+      "historical_bytes_equal": true,
+      "candidate_equals_move": true,
+      "head_equals_move": true,
+      "working_equals_move": true,
+      "sha256": "c25044bbead8ef425677d86e9e5bb0d1d2cec89709cc13187988781d0793ef0a"
+    },
+    {
+      "status": "R100",
+      "old": "agent_docs/RESPONSES/response_2026-09-28_212503_rrm003-p1b-rulings.md",
+      "new": "agent_docs/RESPONSES/_OLD/response_2026-09-28_212503_rrm003-p1b-rulings.md",
+      "historical_bytes_equal": true,
+      "candidate_equals_move": true,
+      "head_equals_move": true,
+      "working_equals_move": true,
+      "sha256": "46c3932e19abb4b67d6b8da731f179ebd1ff30ce1fa0318d1c93fc185978c3b1"
+    },
+    {
+      "status": "R100",
+      "old": "agent_docs/RESPONSES/response_2026-09-28_214117_rrm003-p2-completion.md",
+      "new": "agent_docs/RESPONSES/_OLD/response_2026-09-28_214117_rrm003-p2-completion.md",
+      "historical_bytes_equal": true,
+      "candidate_equals_move": true,
+      "head_equals_move": true,
+      "working_equals_move": true,
+      "sha256": "0bc3f7a6827178d2e76eee5e055d19bd188f0654a0af26ac5eb646e656ed0c2e"
+    },
+    {
+      "status": "R100",
+      "old": "agent_docs/RESPONSES/response_2026-09-29_141122_rrm003-a13-sha-fill.md",
+      "new": "agent_docs/RESPONSES/_OLD/response_2026-09-29_141122_rrm003-a13-sha-fill.md",
+      "historical_bytes_equal": true,
+      "candidate_equals_move": true,
+      "head_equals_move": true,
+      "working_equals_move": true,
+      "sha256": "8cae6e300bd095f076654abb4e49d97e08fd785b333622355f7c10117487c87e"
+    },
+    {
+      "status": "R100",
+      "old": "agent_docs/RESPONSES/response_2026-09-29_144307_rrm003-qa-entry-sync.md",
+      "new": "agent_docs/RESPONSES/_OLD/response_2026-09-29_144307_rrm003-qa-entry-sync.md",
+      "historical_bytes_equal": true,
+      "candidate_equals_move": true,
+      "head_equals_move": true,
+      "working_equals_move": true,
+      "sha256": "357311bef9983d66203484b4d92ca04550c4d368a512eead6e9f34785f625366"
+    },
+    {
+      "status": "R100",
+      "old": "agent_docs/RESPONSES/response_2026-09-29_155058_rrm003-qa-execution.md",
+      "new": "agent_docs/RESPONSES/_OLD/response_2026-09-29_155058_rrm003-qa-execution.md",
+      "historical_bytes_equal": true,
+      "candidate_equals_move": true,
+      "head_equals_move": true,
+      "working_equals_move": true,
+      "sha256": "a988c1f10a4f818e5685406318399a768ed0cb2a2d2bcee197d4e50f7b1090c6"
+    },
+    {
+      "status": "R100",
+      "old": "agent_docs/RESPONSES/response_2026-09-29_212204_rrm003-ac107-final-qa.md",
+      "new": "agent_docs/RESPONSES/_OLD/response_2026-09-29_212204_rrm003-ac107-final-qa.md",
+      "historical_bytes_equal": true,
+      "candidate_equals_move": true,
+      "head_equals_move": true,
+      "working_equals_move": true,
+      "sha256": "0d774c5e9b923840ff928ae6bdb057180d9fd94d5aca2bd69c65eb05656facd0"
+    },
+    {
+      "status": "R100",
+      "old": "agent_docs/RESPONSES/response_2026-09-29_222900_rrm003-p5-closeout-plan.md",
+      "new": "agent_docs/RESPONSES/_OLD/response_2026-09-29_222900_rrm003-p5-closeout-plan.md",
+      "historical_bytes_equal": true,
+      "candidate_equals_move": true,
+      "head_equals_move": true,
+      "working_equals_move": true,
+      "sha256": "fa6b7fbfef02d45f04c5276dc70d6fc865c0ec8131a182c6a653a51bd64ca3ef"
+    },
+    {
+      "status": "R100",
+      "old": "agent_docs/RESPONSES/response_2026-09-29_223624_rrm003-p5-closeout.md",
+      "new": "agent_docs/RESPONSES/_OLD/response_2026-09-29_223624_rrm003-p5-closeout.md",
+      "historical_bytes_equal": true,
+      "candidate_equals_move": true,
+      "head_equals_move": true,
+      "working_equals_move": true,
+      "sha256": "ea87b884fa33d12b9bf79128b2da579b85c9048f48db12c26d69a856471c8d89"
+    },
+    {
+      "status": "R100",
+      "old": "agent_docs/RESPONSES/response_2026-09-30_123954_rrm003-sha-record-plan.md",
+      "new": "agent_docs/RESPONSES/_OLD/response_2026-09-30_123954_rrm003-sha-record-plan.md",
+      "historical_bytes_equal": true,
+      "candidate_equals_move": true,
+      "head_equals_move": true,
+      "working_equals_move": true,
+      "sha256": "21cc3cbee806d1f116b0677bc5abbd0ce7abb3105f86e0ff958ba63d29b8b1ac"
+    },
+    {
+      "status": "R100",
+      "old": "agent_docs/RESPONSES/response_2026-09-30_124723_rrm003-sha-recorded.md",
+      "new": "agent_docs/RESPONSES/_OLD/response_2026-09-30_124723_rrm003-sha-recorded.md",
+      "historical_bytes_equal": true,
+      "candidate_equals_move": true,
+      "head_equals_move": true,
+      "working_equals_move": true,
+      "sha256": "db4169e69b1fd8ea15550699de2035696f2233be0b824d9fd326b1a454ec6442"
+    }
+  ],
+  "path_classification": [
+    {
+      "path": "CHANGELOG.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "RECOVERY.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/EXECUTION_LOG.md",
+      "authority": "A-15 historical hunk only"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-002-CYBER-PHARMA/README.md",
+      "authority": "A-15 historical hunk only"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/EXECUTION_LOG.md",
+      "authority": "A-15 historical hunk only"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-003-CYBER-PHARMA/README.md",
+      "authority": "A-15 historical hunk only"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/ACCEPTANCE_SPEC.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/AUTHORITY_POINTER.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDE.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/DIRECTOR_ACTIONS.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/DIRECTOR_CHECKPOINTS.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/ENVIRONMENT_PREFLIGHT.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AC_EVIDENCE_MATRIX.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AGENTS.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/PROVENANCE.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/QA_PLAYBOOK.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/README.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/SEARCH_RECORD.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/GOVERNING/WEB_FACTORY_P1_DOCTRINE_JOURNAL.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/HANDOFFS/RRM004_QAM_Q1_REVIEW.verification.json",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/HANDOFFS/RRM004_QAM_Q1_REVIEW.zip",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CHECKPOINTS.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_ENTRY.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_EXECUTION_REPORT.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_MANIFEST.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_CHARTER.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PILOT_RESULTS.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PREFLIGHT.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_PROMPTS.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_RISK_REQUIREMENTS.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_TEST_PLAN.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/README.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/REPAIR_PROPOSAL.md.template",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_PREFLIGHT_Q1.txt",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/QAM_Q1B_DOCUMENT_CHECKS.json",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/entry_gate.json",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/privacy_audit.json",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/q1_final_checks.txt",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/qf16_result.json",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/qf16_server.txt",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/recon.txt",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/temp_paths.json",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA_HANDOFF.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/README.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RRM_BRIEF.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RULINGS_ADDENDUM.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P1.txt",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/README.md",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_audit_after.json",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_audit_before.json",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_lockfile_moves.txt",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S2_config_diff.txt",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S3_board.txt",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S3_serve_after.txt",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S3_serve_before.txt",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/changed_files.txt",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/repair.diff",
+      "authority": "original AC-403 module lane"
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-28_205049_session-start-protocol-ack.md",
+      "authority": "A-15 byte-identical historical archive move"
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-28_210200_rrm003-p1-plan.md",
+      "authority": "A-15 byte-identical historical archive move"
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-28_212503_rrm003-p1b-rulings.md",
+      "authority": "A-15 byte-identical historical archive move"
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-28_214117_rrm003-p2-completion.md",
+      "authority": "A-15 byte-identical historical archive move"
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-29_141122_rrm003-a13-sha-fill.md",
+      "authority": "A-15 byte-identical historical archive move"
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-29_144307_rrm003-qa-entry-sync.md",
+      "authority": "A-15 byte-identical historical archive move"
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-29_155058_rrm003-qa-execution.md",
+      "authority": "A-15 byte-identical historical archive move"
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-29_212204_rrm003-ac107-final-qa.md",
+      "authority": "A-15 byte-identical historical archive move"
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-29_222900_rrm003-p5-closeout-plan.md",
+      "authority": "A-15 byte-identical historical archive move"
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-29_223624_rrm003-p5-closeout.md",
+      "authority": "A-15 byte-identical historical archive move"
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-30_123954_rrm003-sha-record-plan.md",
+      "authority": "A-15 byte-identical historical archive move"
+    },
+    {
+      "path": "agent_docs/RESPONSES/_OLD/response_2026-09-30_124723_rrm003-sha-recorded.md",
+      "authority": "A-15 byte-identical historical archive move"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-09-30_151832_rrm004-p0-bookkeeping.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-09-30_161037_rrm004-p1-plan.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-09-30_161800_rrm004-p1b.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-09-30_163135_rrm004-p2-oneshot.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_123008_rrm004-p2b-errata.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_125800_rrm004-qam-ratification.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_134927_rrm004-qam-q1-recon.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_143840_rrm004-qam-q1-recon.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_152228_rrm004-qam-q1-recon.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_160146_rrm004-qam-q1-recon.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_164136_rrm004-a15-ac403.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_165250_rrm004-qam-q1b-resolution.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/RESPONSES/response_2026-10-01_165954_rrm004-qam-q1b-commit-review.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/RRM_CAMPAIGN_JOURNAL.md",
+      "authority": "A-15 historical hunk only"
+    },
+    {
+      "path": "agent_docs/RRM_CAMPAIGN_MAP_v1_0.md",
+      "authority": "original ledger/map lane; SHA-recording plan, P0 and engineering handoff"
+    },
+    {
+      "path": "agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md",
+      "authority": "original ledger/map lane; SHA-recording plan, P0 and engineering handoff"
+    },
+    {
+      "path": "agent_docs/SESSIONS/session_2026-09-30.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/SESSIONS/session_2026-10-01.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q1-export.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q1.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "agent_docs/SESSIONS/session_2026-10-01_rrm004-qam-q1b.md",
+      "authority": "root CLAUDE.md protocol records; phase/author-specific provenance"
+    },
+    {
+      "path": "next.config.js",
+      "authority": "original AC-403 product allowlist"
+    },
+    {
+      "path": "package-lock.json",
+      "authority": "original AC-403 product allowlist"
+    },
+    {
+      "path": "package.json",
+      "authority": "original AC-403 product allowlist"
+    }
+  ],
+  "unresolved_paths": [],
+  "notes": [
+    "A-15 comparisons are independent Q2 measurements; Q1b approval was not a product PASS.",
+    "Root protocol records classified under CLAUDE.md response/session/recovery/changelog protocols, not a blanket agent_docs exemption.",
+    "Original ledger/map hunks retained for review against archived SHA-recording plan, CLAUDY_PROMPTS P0 and engineering handoff."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "-e",
+    "const fs=require('fs');const p=process.platform+'-'+process.arch;const sharp=require('sharp');const sp=JSON.parse(fs.readFileSync('node_modules/sharp/package.json'));const packages={};for(const n of ['sharp-'+p,'sharp-libvips-'+p])packages[n]=JSON.parse(fs.readFileSync('node_modules/@img/'+n+'/package.json')); console.log(JSON.stringify({platform:p,versions:require('@img/sharp-libvips-'+p+'/versions'),sharpVersions:sharp.versions,sharpVersion:sp.version,optionalDependencies:sp.optionalDependencies,packages},null,2))"
+  ],
+  "cwd": "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3",
+  "timestamp": "2026-10-01T17:09:38+06:00",
+  "exit_code": 0,
+  "stderr": ""
+}

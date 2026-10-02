@@ -1,0 +1,185 @@
+{
+  "platform": "linux-x64",
+  "versions": {
+    "aom": "3.15.1",
+    "archive": "3.8.9",
+    "cairo": "1.18.6",
+    "cgif": "0.5.4",
+    "exif": "0.6.26",
+    "expat": "2.8.5",
+    "ffi": "3.8.0",
+    "fontconfig": "2.18.3",
+    "freetype": "2.14.3",
+    "fribidi": "1.0.17",
+    "glib": "2.90.0",
+    "harfbuzz": "14.5.0",
+    "heif": "1.23.5",
+    "highway": "1.4.0",
+    "imagequant": "2.4.1",
+    "lcms": "2.19.1",
+    "mozjpeg": "0826579",
+    "pango": "1.58.2",
+    "pixman": "0.46.4",
+    "png": "1.6.58",
+    "proxy-libintl": "0.5",
+    "rsvg": "2.63.2",
+    "tiff": "4.7.2",
+    "uhdr": "2.0.2",
+    "vips": "8.18.7",
+    "webp": "1.6.0",
+    "xml2": "2.15.4",
+    "zlib-ng": "2.3.3",
+    "sharp": "0.35.5"
+  },
+  "sharpVersions": {
+    "aom": "3.15.1",
+    "archive": "3.8.9",
+    "cairo": "1.18.6",
+    "cgif": "0.5.4",
+    "exif": "0.6.26",
+    "expat": "2.8.5",
+    "ffi": "3.8.0",
+    "fontconfig": "2.18.3",
+    "freetype": "2.14.3",
+    "fribidi": "1.0.17",
+    "glib": "2.90.0",
+    "harfbuzz": "14.5.0",
+    "heif": "1.23.5",
+    "highway": "1.4.0",
+    "imagequant": "2.4.1",
+    "lcms": "2.19.1",
+    "mozjpeg": "0826579",
+    "pango": "1.58.2",
+    "pixman": "0.46.4",
+    "png": "1.6.58",
+    "proxy-libintl": "0.5",
+    "rsvg": "2.63.2",
+    "tiff": "4.7.2",
+    "uhdr": "2.0.2",
+    "vips": "8.18.7",
+    "webp": "1.6.0",
+    "xml2": "2.15.4",
+    "zlib-ng": "2.3.3",
+    "sharp": "0.35.5"
+  },
+  "sharpVersion": "0.35.5",
+  "optionalDependencies": {
+    "@img/sharp-darwin-arm64": "0.35.5",
+    "@img/sharp-darwin-x64": "0.35.5",
+    "@img/sharp-freebsd-wasm32": "0.35.5",
+    "@img/sharp-libvips-darwin-arm64": "1.3.4",
+    "@img/sharp-libvips-darwin-x64": "1.3.4",
+    "@img/sharp-libvips-linux-arm": "1.3.4",
+    "@img/sharp-libvips-linux-arm64": "1.3.4",
+    "@img/sharp-libvips-linux-ppc64": "1.3.4",
+    "@img/sharp-libvips-linux-riscv64": "1.3.4",
+    "@img/sharp-libvips-linux-s390x": "1.3.4",
+    "@img/sharp-libvips-linux-x64": "1.3.4",
+    "@img/sharp-libvips-linuxmusl-arm64": "1.3.4",
+    "@img/sharp-libvips-linuxmusl-x64": "1.3.4",
+    "@img/sharp-linux-arm": "0.35.5",
+    "@img/sharp-linux-arm64": "0.35.5",
+    "@img/sharp-linux-ppc64": "0.35.5",
+    "@img/sharp-linux-riscv64": "0.35.5",
+    "@img/sharp-linux-s390x": "0.35.5",
+    "@img/sharp-linux-x64": "0.35.5",
+    "@img/sharp-linuxmusl-arm64": "0.35.5",
+    "@img/sharp-linuxmusl-x64": "0.35.5",
+    "@img/sharp-webcontainers-wasm32": "0.35.5",
+    "@img/sharp-win32-arm64": "0.35.5",
+    "@img/sharp-win32-ia32": "0.35.5",
+    "@img/sharp-win32-x64": "0.35.5"
+  },
+  "packages": {
+    "sharp-linux-x64": {
+      "name": "@img/sharp-linux-x64",
+      "version": "0.35.5",
+      "description": "Prebuilt sharp for use with Linux (glibc) x64",
+      "author": "Lovell Fuller <npm@lovell.info>",
+      "homepage": "https://sharp.pixelplumbing.com",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lovell/sharp.git",
+        "directory": "npm/linux-x64"
+      },
+      "license": "Apache-2.0",
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "preferUnplugged": true,
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-x64": "1.3.4"
+      },
+      "files": [
+        "index.cjs",
+        "lib"
+      ],
+      "publishConfig": {
+        "access": "public"
+      },
+      "type": "commonjs",
+      "exports": {
+        "./sharp.node": "./index.cjs",
+        "./package": "./package.json"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      },
+      "config": {
+        "glibc": ">=2.28"
+      },
+      "os": [
+        "linux"
+      ],
+      "libc": [
+        "glibc"
+      ],
+      "cpu": [
+        "x64"
+      ]
+    },
+    "sharp-libvips-linux-x64": {
+      "name": "@img/sharp-libvips-linux-x64",
+      "version": "1.3.4",
+      "description": "Prebuilt libvips and dependencies for use with sharp on Linux (glibc) x64",
+      "author": "Lovell Fuller <npm@lovell.info>",
+      "homepage": "https://sharp.pixelplumbing.com",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lovell/sharp-libvips.git",
+        "directory": "npm/linux-x64"
+      },
+      "license": "LGPL-3.0-or-later",
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "preferUnplugged": true,
+      "publishConfig": {
+        "access": "public"
+      },
+      "files": [
+        "lib",
+        "versions.json"
+      ],
+      "type": "commonjs",
+      "exports": {
+        "./lib": "./lib/index.js",
+        "./package": "./package.json",
+        "./versions": "./versions.json",
+        "./binary": "./lib/libvips-cpp.so.8.18.7"
+      },
+      "config": {
+        "glibc": ">=2.28"
+      },
+      "os": [
+        "linux"
+      ],
+      "libc": [
+        "glibc"
+      ],
+      "cpu": [
+        "x64"
+      ]
+    }
+  }
+}

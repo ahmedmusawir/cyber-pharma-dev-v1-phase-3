@@ -1,0 +1,93 @@
+{
+  "timestamp": "2026-10-02T07:01:26+06:00",
+  "commands": [
+    {
+      "command": [
+        "find",
+        "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM",
+        "(",
+        "-iname",
+        "*storage*state*",
+        "-o",
+        "-iname",
+        "*.har",
+        "-o",
+        "-iname",
+        "auth*.json",
+        "-o",
+        "-iname",
+        "*cookies*",
+        "-o",
+        "-type",
+        "d",
+        "(",
+        "-iname",
+        "*profile*",
+        "-o",
+        "-iname",
+        "*user-data*",
+        ")",
+        ")",
+        "-print"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "find agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM \\( -iname '*storage*state*' -o -iname '*.har' -o -iname 'auth*.json' -o -iname '*cookies*' -o -type d \\( -iname '*profile*' -o -iname '*user-data*' \\) \\) -print | grep .; echo \"leftover-exit=$?\""
+      ],
+      "exit_code": 0,
+      "stdout": "leftover-exit=1\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "ls -a | grep -E '^\\.?\\.env\\.qa\\.local(\\.sw[a-p]|~|\\.bak|\\.orig)$|^#\\.env\\.qa\\.local#$'; echo \"editor-exit=$?\""
+      ],
+      "exit_code": 0,
+      "stdout": "editor-exit=1\n",
+      "stderr": ""
+    }
+  ],
+  "deleted_auth_paths_q5": [],
+  "recorded_temp_paths": [
+    {
+      "path": "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/privacy-self-test-uhmA3i",
+      "existed_at_q5": false,
+      "removed_in_q5": false,
+      "verified_absent": true,
+      "reason": "Previously removed during Q1/Q2; no deletion repeated"
+    },
+    {
+      "path": "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/qf16-browser-temp-JqlNx8",
+      "existed_at_q5": false,
+      "removed_in_q5": false,
+      "verified_absent": true,
+      "reason": "Previously removed during Q1/Q2; no deletion repeated"
+    },
+    {
+      "path": "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/privacy-self-test-1B7aE8",
+      "existed_at_q5": false,
+      "removed_in_q5": false,
+      "verified_absent": true,
+      "reason": "Previously removed during Q1/Q2; no deletion repeated"
+    },
+    {
+      "path": "/home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3/agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/evidence/browser/q2-browser-temp-xvcE70",
+      "existed_at_q5": false,
+      "removed_in_q5": false,
+      "verified_absent": true,
+      "reason": "Previously removed during Q1/Q2; no deletion repeated"
+    }
+  ],
+  "prevalue_export_mirror_removed": "/tmp/rrm004-q5-prevalue-wdn35bf7",
+  "credential_editor_files_name_only": [],
+  "editor_files_opened_or_deleted": false,
+  "unknown_auth_artifacts": []
+}

@@ -1,0 +1,151 @@
+{
+  "method": "Baseline Git tree plus jest.config.js roots/testMatch/ignore; TypeScript AST counts direct it/test declarations; source has no test.each/it.each or skip/todo declarations",
+  "baseline": "649c36d0409c0b658cff14f779a09aad0c8e92b9",
+  "inventory": [
+    {
+      "path": "src/__tests__/actions.test.ts",
+      "test_declarations": 7
+    },
+    {
+      "path": "src/__tests__/admin-portal/AddStoreButton.test.tsx",
+      "test_declarations": 3
+    },
+    {
+      "path": "src/__tests__/admin-portal/InviteMemberForm.test.tsx",
+      "test_declarations": 3
+    },
+    {
+      "path": "src/__tests__/admin-portal/MemberRow.test.tsx",
+      "test_declarations": 2
+    },
+    {
+      "path": "src/__tests__/admin-portal/MyStoresScreen.test.tsx",
+      "test_declarations": 2
+    },
+    {
+      "path": "src/__tests__/admin-portal/SettingsForm.test.tsx",
+      "test_declarations": 1
+    },
+    {
+      "path": "src/__tests__/auth/AuthPage.test.tsx",
+      "test_declarations": 2
+    },
+    {
+      "path": "src/__tests__/common/DataTable.keyboard.test.tsx",
+      "test_declarations": 6
+    },
+    {
+      "path": "src/__tests__/common/DataTable.render.test.tsx",
+      "test_declarations": 1
+    },
+    {
+      "path": "src/__tests__/common/DataTable.test.tsx",
+      "test_declarations": 8
+    },
+    {
+      "path": "src/__tests__/common/EmptyState.test.tsx",
+      "test_declarations": 3
+    },
+    {
+      "path": "src/__tests__/common/MultiSelect.focus.test.tsx",
+      "test_declarations": 6
+    },
+    {
+      "path": "src/__tests__/common/MultiSelect.test.tsx",
+      "test_declarations": 9
+    },
+    {
+      "path": "src/__tests__/get-user-role.test.ts",
+      "test_declarations": 6
+    },
+    {
+      "path": "src/__tests__/global/MobileNav.test.tsx",
+      "test_declarations": 4
+    },
+    {
+      "path": "src/__tests__/global/Navbar.invariant.test.tsx",
+      "test_declarations": 2
+    },
+    {
+      "path": "src/__tests__/global/Navbar.mobile.test.tsx",
+      "test_declarations": 7
+    },
+    {
+      "path": "src/__tests__/global/Navbar.switcher.test.tsx",
+      "test_declarations": 2
+    },
+    {
+      "path": "src/__tests__/global/UserMenu.test.tsx",
+      "test_declarations": 4
+    },
+    {
+      "path": "src/__tests__/layout/AdminSidebar.test.tsx",
+      "test_declarations": 3
+    },
+    {
+      "path": "src/__tests__/layout/AuthedShell.focus.test.tsx",
+      "test_declarations": 8
+    },
+    {
+      "path": "src/__tests__/layout/AuthedShell.test.tsx",
+      "test_declarations": 5
+    },
+    {
+      "path": "src/__tests__/member/ProfileForm.test.tsx",
+      "test_declarations": 11
+    },
+    {
+      "path": "src/__tests__/mocks/adminDemo.seed.test.ts",
+      "test_declarations": 9
+    },
+    {
+      "path": "src/__tests__/owedbook/FilterRail.test.tsx",
+      "test_declarations": 4
+    },
+    {
+      "path": "src/__tests__/owedbook/KpiTiles.test.tsx",
+      "test_declarations": 1
+    },
+    {
+      "path": "src/__tests__/owedbook/OwedBookScreen.disclosure.test.tsx",
+      "test_declarations": 8
+    },
+    {
+      "path": "src/__tests__/owedbook/OwedBookScreen.test.tsx",
+      "test_declarations": 1
+    },
+    {
+      "path": "src/__tests__/owedbook/StatusChip.test.tsx",
+      "test_declarations": 4
+    },
+    {
+      "path": "src/__tests__/owedbook/SummaryUnattributedNote.test.tsx",
+      "test_declarations": 6
+    },
+    {
+      "path": "src/__tests__/owedbook/drawer-apply.integration.test.tsx",
+      "test_declarations": 1
+    },
+    {
+      "path": "src/__tests__/proxy.test.ts",
+      "test_declarations": 2
+    },
+    {
+      "path": "src/__tests__/services/adminDemo.test.ts",
+      "test_declarations": 14
+    },
+    {
+      "path": "src/__tests__/services/owedbook.test.ts",
+      "test_declarations": 9
+    }
+  ],
+  "suites": 34,
+  "tests": 164,
+  "measured_files_match": true,
+  "measured_suites": 34,
+  "measured_tests": 164,
+  "README_and_TESTING_literal_reference": {
+    "suites": 34,
+    "tests": 164
+  }
+}

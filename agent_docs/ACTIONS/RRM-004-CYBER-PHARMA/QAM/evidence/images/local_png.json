@@ -1,0 +1,21 @@
+{
+  "command": [
+    "curl",
+    "-sS",
+    "--max-time",
+    "60",
+    "-o",
+    "/tmp/rrm004-q2-images-w8hw2ghs/image.bin",
+    "-D",
+    "-",
+    "-H",
+    "Accept: image/webp",
+    "http://127.0.0.1:36155/_next/image?url=%2Flanding%2Fowedbook-mockup.png&w=1080&q=75"
+  ],
+  "exit_code": 0,
+  "headers": "HTTP/1.1 200 OK\nCache-Control: public, max-age=14400, must-revalidate\nPragma: no-cache\nExpires: 0\nVary: Accept\nETag: Sp4TXIXhkPHAVn2FMXZ3nTPE4H7hyroBp6lQZNe8toI\nContent-Type: image/webp\nContent-Disposition: attachment; filename=\"owedbook-mockup.webp\"\nContent-Security-Policy: script-src 'none'; frame-src 'none'; sandbox;\nX-Nextjs-Cache: MISS\nContent-Length: 27702\nDate: Thu, 01 Oct 2026 11:12:05 GMT\nConnection: keep-alive\nKeep-Alive: timeout=5\n\n",
+  "stderr": "",
+  "first_16_bytes_hex": "524946462e6c00005745425056503820",
+  "bytes": 27702,
+  "pass": true
+}

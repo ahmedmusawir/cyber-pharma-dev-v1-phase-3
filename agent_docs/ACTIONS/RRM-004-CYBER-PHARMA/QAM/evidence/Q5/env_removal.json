@@ -1,0 +1,32 @@
+{
+  "start": "2026-10-02T07:00:38+06:00",
+  "end": "2026-10-02T07:00:38+06:00",
+  "commands": [
+    {
+      "command": [
+        "bash",
+        "-c",
+        "rm -f .env.qa.local && test ! -e .env.qa.local && echo env-gone"
+      ],
+      "exit_code": 0,
+      "stdout": "env-gone\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "--no-optional-locks",
+        "status",
+        "--porcelain",
+        "--",
+        ".env.qa.local"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "present_after": false,
+  "symlink_after": false,
+  "content_read_printed_copied_or_hashed": false
+}

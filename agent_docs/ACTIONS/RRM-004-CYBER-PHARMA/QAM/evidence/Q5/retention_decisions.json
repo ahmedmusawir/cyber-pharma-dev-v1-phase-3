@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-10-02T07:03:45+06:00",
+  "retained_helpers": [
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/privacy_scan.cjs",
+      "reason": "Validated privacy value/pattern scanner; required to interpret Q1/Q2/Q5 and reproduce credential-free pattern checks."
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/scan_selected_export.cjs",
+      "reason": "Reuses the unchanged validated scanner against explicit review contents; required export provenance."
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/qf16_auth_probe.cjs",
+      "reason": "Explains Q1 login/logout, safe capture and temporary-profile removal measurements; retained for audit, not rerun."
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_dependencies.py",
+      "reason": "Explains independently derived dependency, registry, baseline audit and metadata measurements including recorded self-repair."
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_version_floor.cjs",
+      "reason": "Actual semver/floor instrument and deliberate negative-control interpretation."
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_static_review.py",
+      "reason": "Explains A-15 hunk/move scope classification, protected-file and lockfile measurements."
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_served_probes.py",
+      "reason": "Explains required image bytes/status/MIME and header controls."
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/q2_image_walk.cjs",
+      "reason": "Explains role/route/theme/viewport measurements, safe crops, logout and profile removal."
+    }
+  ],
+  "promoted_helpers": 0,
+  "new_q5_helpers": 0,
+  "deleted_credential_paths": [
+    ".env.qa.local"
+  ],
+  "auth_state_deleted_q5": [],
+  "temporary_export_mirror": "Pre-value authority mirror removed, later export mirrors removed and recorded in external release receipt.",
+  "retained_evidence": "All Q1/Q2 original measurements, attempts, cropped screenshots and ZIPs unchanged. Pre-Q5 current report/matrix/pilot/inventory/audit snapshots in evidence/Q2_preserved/.",
+  "excluded_from_inventory": [
+    ".env* and credential editor backups",
+    "authentication state and raw authenticated traces",
+    "node_modules",
+    ".next and compiled/generated output",
+    "Git internals",
+    "temporary export staging",
+    "inventory itself and release-time receipt/response to avoid circular hashes"
+  ],
+  "bounded_scope": "Ignored node_modules/.next left in place, excluded from durable inventory; no dependency/build cleanup or product edits authorized by this Q5. No disposable auth/profile paths remained."
+}

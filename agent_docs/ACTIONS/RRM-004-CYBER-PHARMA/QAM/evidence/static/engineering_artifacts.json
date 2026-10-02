@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-01T17:15:24+06:00",
+  "classification": "Verified historical artifact content; prior execution, tree cleanliness, env handling and cleanup not independently witnessed. Current Q2 entry/build/server measurements are separate evidence.",
+  "checks": {
+    "preflight_rows_01_to_21_recorded_pass": true,
+    "baseline_metadata_captured_before_install": true,
+    "p2_preflight_before_install": true,
+    "before_served_capture_present": true,
+    "package_unchanged_during_sweep_recorded": true,
+    "metrics_fields_present": true,
+    "env_untouched_statement": true,
+    "server_shutdown_statement": true,
+    "scratch_removed_statement": true,
+    "manifest_claims_labeled": true,
+    "manifest_fields_sections_1_3_6_complete": true
+  },
+  "sources": [
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P2.txt",
+      "sha256": "1625527b22e770809da15aaab5fc2c6b6ba2337e3d427331770a2903f3041751"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S1_versions.txt",
+      "sha256": "203293488f5824fc772f45ffe0492c25ad9c02130a403ccdad9c7c2414ca63ff"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/S3_serve_before.txt",
+      "sha256": "f2bb1353b1d32cc4d221dd8163e74025ce0b0de447fe4f0b06caaf90b75daf8e"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md",
+      "sha256": "3d29c8c315f9412b0ce2623b341016fe049fca5d24761311374cabddf94ca032"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA_HANDOFF.md",
+      "sha256": "09aaa7d863ab408efca65b1f745ce226a5c4bb0171b2d6445e049d17d7635508"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_MANIFEST.md",
+      "sha256": "c0c041c1c292adfc81551647dfe2805520d5817c589b2e71279d0bb6a82ff26b"
+    }
+  ],
+  "p1_time_provenance": {
+    "file": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/evidence/PREFLIGHT_P1.txt",
+    "record": "2026-09-30 (16:00\u201316:10 +08:00)",
+    "plan_response": "agent_docs/RESPONSES/response_2026-09-30_161037_rrm004-p1-plan.md"
+  },
+  "current_qa_independent_references": [
+    "evidence/entry_gate.json",
+    "evidence/deps/baseline_metadata.json",
+    "evidence/images/served_summary.json"
+  ]
+}

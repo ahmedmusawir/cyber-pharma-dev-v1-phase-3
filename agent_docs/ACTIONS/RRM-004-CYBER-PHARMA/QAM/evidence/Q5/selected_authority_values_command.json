@@ -1,0 +1,52 @@
+{
+  "start": "2026-10-02T06:59:57+06:00",
+  "end": "2026-10-02T06:59:57+06:00",
+  "command": [
+    "node",
+    "--env-file=.env.qa.local",
+    "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/AUTOMATION/scan_selected_export.cjs",
+    "/tmp/rrm004-q5-prevalue-wdn35bf7",
+    "--values"
+  ],
+  "exit_code": 0,
+  "stdout": "values leaks=0 documentation-mentions=0\n",
+  "stderr": "",
+  "selected_files": [
+    {
+      "path": "CLAUDE.md",
+      "sha256": "1211204f76ca183e74f86a6b77a25f2c68d357d91e5d5f930c982dc7980cc4c1"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/ACCEPTANCE_SPEC.md",
+      "sha256": "15a54d1d00782cd6921431e6240d75a03cd30c3821ed41ae5327386838c01dfc"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RULINGS_ADDENDUM.md",
+      "sha256": "24de9180624b354805c57cf6734f88a9b45212aa8023657f864e11ac377172ae"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDY_PROMPTS.md",
+      "sha256": "3b26d2229072d84eba6d99948daccacfcf196bbc22fb6160f3f52cb595177901"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/RRM_BRIEF.md",
+      "sha256": "c628fcdadebb87c0653821af37f9610b22e0da46c4f7a31691baf3388f6ccc43"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/CLAUDE.md",
+      "sha256": "4dd420a098efbc4d76421b09bf886872a0e6c499d4ead76f5e233169b75ae128"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/AUTHORITY_POINTER.md",
+      "sha256": "43b51a647382f4433f6d9871d6046b77bb82b31b73a0ca0d906de72a2d3f635a"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QA_HANDOFF.md",
+      "sha256": "09aaa7d863ab408efca65b1f745ce226a5c4bb0171b2d6445e049d17d7635508"
+    },
+    {
+      "path": "agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/EXECUTION_LOG.md",
+      "sha256": "3d29c8c315f9412b0ce2623b341016fe049fca5d24761311374cabddf94ca032"
+    }
+  ]
+}

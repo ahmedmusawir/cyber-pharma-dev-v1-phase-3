@@ -1,0 +1,6 @@
+colour
+sharp-libvips-linux-x64
+sharp-libvips-linuxmusl-x64
+sharp-linux-x64
+sharp-linuxmusl-x64
+sharp-wasm32

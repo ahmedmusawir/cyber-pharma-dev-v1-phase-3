@@ -1,0 +1,16 @@
+{
+  "start": "2026-10-01T17:15:00+06:00",
+  "server_command": [
+    "node",
+    "--env-file=.env.local",
+    ".next/standalone/server.js"
+  ],
+  "static_public_copy_exit": 0,
+  "server_output_lines": 26,
+  "server_nonstartup_lines": 22,
+  "walk_exit": 0,
+  "server_exit": 143,
+  "port_free": true,
+  "end": "2026-10-01T17:16:36+06:00",
+  "raw_server_output_retained": false
+}

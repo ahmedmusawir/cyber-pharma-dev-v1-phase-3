@@ -2,7 +2,7 @@
 
 Executor: QA Executor · Q2 attempt 1 · 2026-10-01T17:19:15+06:00 · Candidate: `2fbc72f1f514049255f2b94054bd11cc77cbd158` · QA HEAD: `6b6cad642f69314904938e9df1ec8fdfbe08f15a` · linux-x64/glibc 2.39; Node 22.14.0/npm 10.9.2.
 
-Measured results below are QA inputs, not certification. PASS for historical process rows means verified artifact content, explicitly not witnessed execution. AC-606 updated from actual Q5 cleanup evidence on 2026-10-02; all other Q2 grades are carried unchanged. Original Q1/Q1b history is preserved in the execution report.
+Measured results below are QA inputs, not certification. PASS for historical process rows means verified artifact content, explicitly not witnessed execution. AC-606 awaits Q5. Original Q1/Q1b history is preserved in the execution report.
 
 ## Product (Gate Q input)
 
@@ -38,7 +38,7 @@ Measured results below are QA inputs, not certification. PASS for historical pro
 | AC-603 | PASS | `evidence/headers/current.json`; `evidence/images/served_summary.json` | Independent served header pair and controls passed. |
 | AC-604 | PASS | `evidence/images/local_png.json`; `evidence/images/negative_host.json`; `evidence/images/direct_gets.json` | Independent local PNG encoding, attributable remote denial and direct image GETs passed. |
 | AC-605 | PASS | `evidence/browser/walk.json`; `evidence/browser/walk_command.txt`; `evidence/browser/server_shutdown.json`; `evidence/static/source_image_derivation.txt` | 24 contracted cells plus 4 public-home controls, both themes and widths; ADMIN 1/MEMBER 1 sign-ins and logouts; zero image/console/page errors; profiles removed. |
-| AC-606 | PASS | `evidence/Q5/privacy_after_values.json`; `evidence/Q5/privacy_after_deletion.json`; `evidence/Q5/env_removal.json`; `evidence/Q5/removal_proof.json`; `QAM_CLEANUP_REPORT.md` | Q5 value scan 0 leaks before env deletion; deletion verified; all recorded auth/profile paths absent; post-deletion pattern scan 0 leaks. No retained auth state/raw authenticated trace. Executor result, not certification. |
+| AC-606 | BLOCKED | `evidence/privacy_audit.json`; `evidence/privacy_Q2_commands.json`; `evidence/browser/walk.json` | Current value/pattern scans zero leaks; no retained auth state/raw authenticated trace. A-13/Q5 credential deletion and post-deletion pattern scan NOT RUN, so final AC-606 awaits Q5. |
 
 ## Pilot process (separate from Gate Q)
 
@@ -55,4 +55,4 @@ Measured results below are QA inputs, not certification. PASS for historical pro
 | AC-709 | PASS | `evidence/entry_gate.json`; `evidence/q2_final_checks.json` | Exact Director Q2 command retained in results; no further Director instruction during Q2. |
 | AC-710 | NOT RUN | `evidence/q2_final_checks.json` | Reserved for QA Lead after Q5 and review of matrix, evidence map and cleanup report; no self-certification. |
 
-Totals — product: **31 PASS / 0 FAIL / 0 BLOCKED / 0 NOT RUN / 0 ADJUDICATE**. Process: **9 PASS / 0 FAIL / 0 BLOCKED / 1 NOT RUN / 0 ADJUDICATE**. AC-606 has Q5 cleanup evidence; AC-710 remains QA Lead-owned.
+Totals — product: **30 PASS / 0 FAIL / 1 BLOCKED / 0 NOT RUN / 0 ADJUDICATE**. Process: **9 PASS / 0 FAIL / 0 BLOCKED / 1 NOT RUN / 0 ADJUDICATE**. AC-606 is blocked only on the separately commanded Q5 privacy sequence; AC-710 is QA Lead-owned.

@@ -1,0 +1,5 @@
+cyber-pharma@0.1.0 /home/moose/nextjs/CYBER_PHARMA/cyber-pharma-dev-v1-phase-3
+├── eslint-config-next@16.3.7
+└─┬ next@16.3.7
+  └── sharp@0.35.5 overridden
+
