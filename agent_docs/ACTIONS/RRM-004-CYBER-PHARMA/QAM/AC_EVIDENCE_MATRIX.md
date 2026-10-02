@@ -53,6 +53,8 @@ Measured results below are QA inputs, not certification. PASS for historical pro
 | AC-707 | PASS | `evidence/q2_final_checks.json` | No product FAIL, no REPAIR_PROPOSAL.md (template only); no QA product edits. |
 | AC-708 | PASS | `evidence/q2_final_checks.json` | Pilot metrics recorded with provenance and explicit limits: Director active time not instrumented; continuous elapsed is an upper bound on Executor active time. |
 | AC-709 | PASS | `evidence/entry_gate.json`; `evidence/q2_final_checks.json` | Exact Director Q2 command retained in results; no further Director instruction during Q2. |
-| AC-710 | NOT RUN | `evidence/q2_final_checks.json` | Reserved for QA Lead after Q5 and review of matrix, evidence map and cleanup report; no self-certification. |
+| AC-710 | PASS | `QAM/QAM_CERTIFICATION.md` | QA Lead, 2026-10-02: "AC-710: PASS through this QA Lead review and certification." Recorded by the Engineer at P5 (transcription, not certification). Executor's Q2 entry was NOT RUN, `evidence/q2_final_checks.json`: reserved for the QA Lead after Q5 and review of the matrix, evidence map and cleanup report; no self-certification. |
 
 Totals — product: **31 PASS / 0 FAIL / 0 BLOCKED / 0 NOT RUN / 0 ADJUDICATE**. Process: **9 PASS / 0 FAIL / 0 BLOCKED / 1 NOT RUN / 0 ADJUDICATE**. AC-606 has Q5 cleanup evidence; AC-710 remains QA Lead-owned.
+
+P5 update (Engineer, 2026-10-02, from the QA Lead's certification): AC-710 → PASS, so process totals are now **10 PASS / 0 FAIL / 0 BLOCKED / 0 NOT RUN / 0 ADJUDICATE**. The Executor's line above is kept as recorded at Q2/Q5.

@@ -69,9 +69,9 @@ Comparison provenance: `GOVERNING/WEB_FACTORY_P1_DOCTRINE_JOURNAL.md`, `QAM_PILO
 
 | Field | Value |
 |---|---|
-| AC-701…AC-710 grades | |
-| Pilot verdict (success / partial / fail per charter) | |
-| Keep / change / drop | |
+| AC-701…AC-710 grades | AC-701–709: accepted PASS. AC-710: PASS through this QA Lead review and certification. (QA Lead, 2026-10-02 — `QAM_CERTIFICATION.md`; transcribed by the Engineer at P5) |
+| Pilot verdict (success / partial / fail per charter) | **PARTIAL SUCCESS** under the charter's recorded-Q-stop rule. Reason: Q1 raised a contract/scope stop, resolved through A-15 and Q1b; that history is preserved. Q2 one-shot execution itself SUCCEEDED: zero Director interventions during Q2; one automated sign-in per role; zero Q2 enumerated or unenumerated stops; one QA helper correction handled and documented independently (Q2-SR01). Measurement body 10m08s; reported release elapsed 17m21s. These figures exclude earlier preparation and Q1 resolution, so this is not an end-to-end 10-minute QA process. |
+| Keep / change / drop | KEEP: recon before execution, independently approved plan, automated role coverage, indexed handoff ZIPs and bounded cleanup. CHANGE: resolve scope exceptions before Q1; make both CLAUDE.md and AGENTS.md reliable, model-neutral entry points in future module designs; standardize exports directly under QAM/HANDOFFS/. DROP: manual file hunting and repetitive Director browser matrices. These are 10X Lab findings, not automatic changes to production QA doctrine. |
 
 ## 5. Director — DC-7
 

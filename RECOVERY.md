@@ -4,7 +4,30 @@
 > Updated after every plan completion. If this file is stale, the session log in
 > `agent_docs/SESSIONS/` is the fallback source of truth.
 
-**Last updated:** 2026-09-30 — **RRM-003-CYBER-PHARMA · CLOSED — GATE Q PASS (QA Lead SOL, 2026-09-29, 26/26 ACs, zero repair rounds) · MERGED TO `main`**
+**Last updated:** 2026-10-02 — **RRM-004-CYBER-PHARMA · CLOSED — GATE Q PASS (QA Lead JARVIS, 2026-10-02, 31/31 product ACs, zero repair rounds) · MERGE PENDING (Director)**
+**Branch:** `qa/phase-3-rrm004` @ `0463086` (evidence commit) + uncommitted P5 closeout. **Certified candidate:** `2fbc72f1f514049255f2b94054bd11cc77cbd158` · QA HEAD `6b6cad6` · evidence `0463086` · baseline `649c36d` · pack `d3ea7f7`. Product diff `2fbc72f..HEAD` empty.
+**Last action:** P5 closeout (docs only):
+- `QAM/QAM_CERTIFICATION.md` (QA Lead letter transcribed);
+- `QAM_PILOT_RESULTS.md` §4 (pilot **PARTIAL SUCCESS**; Q2 one-shot succeeded);
+- AC-710 PASS;
+- journal (Architect, QA-logged, friction log);
+- map v1.0.5;
+- ledger R-009 RESOLVED;
+- EXECUTION_LOG Closeout;
+- README;
+- DC-7 / QC-4.
+
+Session log: `agent_docs/SESSIONS/session_2026-10-02.md`.
+**Pending (Director):**
+1. Commit the P5 closeout.
+2. `--no-ff` merge `qa/phase-3-rrm004` → `main`, then push.
+3. Record the closeout/merge SHAs (map scoreboard, ledger R-009, EXECUTION_LOG).
+4. DC-7: adopt/amend/drop.
+5. QC-5: QA password rotation date.
+6. DA-2: still NOT YET.
+**Next step:** **RRM campaign complete with the Director's merge → backend campaign resumes at BIM-004.**
+
+**Prior state (2026-09-30):** **RRM-003-CYBER-PHARMA · CLOSED — GATE Q PASS (QA Lead SOL, 2026-09-29, 26/26 ACs, zero repair rounds) · MERGED TO `main`**
 **Branch:** `main` @ `649c36d` (`--no-ff` merge of `qa/phase-3-rrm003`, pushed). **Certified candidate:** `21ea108bb27b965ddc5edae29dc3b1d6971ae576` · QA HEAD `1a94277` · closeout `7309a2f` · merge `649c36d` · code baseline `3d2e655` · pack `a59f069`.
 **Last action:** SHA-recording touch (2026-09-30, docs only): RRM-003 closeout/merge SHAs in map §0 + scoreboard, ledger R-006/010/013/014/017/018, RRM-003 `EXECUTION_LOG.md` Closeout; RRM-002 leftovers (`9cb56e9` / `3d2e655`) in its `EXECUTION_LOG.md` + `README.md`. Session log: `agent_docs/SESSIONS/session_2026-09-30.md`.
 **⚠️ UNCOMMITTED on `main`:** only this SHA-recording touch — commit it with the RRM-004 opening commit.

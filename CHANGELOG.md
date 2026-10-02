@@ -3,6 +3,13 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-10-02 04:59 UTC — [CC] Claude Code
+
+- **RRM-004-CYBER-PHARMA — P5 closeout** (docs only, `qa/phase-3-rrm004`): QA Lead certification transcribed into a new `QAM/QAM_CERTIFICATION.md` (Gate Q PASS @ `2fbc72f`; the Engineer certifies nothing). `QAM_PILOT_RESULTS.md` §4 records the pilot as PARTIAL SUCCESS with Q2 one-shot succeeded; §5 is left blank for the Director. AC-710 → PASS, with the Executor history preserved. Journal: Architect entry, QA-logged entry and friction log. Map v1.0.5 and scoreboard; ledger R-009 RESOLVED; EXECUTION_LOG Closeout; README status. DC-7: certification received, Director items pending. QC-4 satisfied. RECOVERY.md updated (P5 permission).
+- **Updated:** `RECOVERY.md` · `agent_docs/RRM_CAMPAIGN_JOURNAL.md` · `agent_docs/RRM_CAMPAIGN_MAP_v1_0.md` · `agent_docs/RRM_FINDINGS_DISPOSITION_LEDGER.md` · `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/` `EXECUTION_LOG.md`, `README.md`, `DIRECTOR_CHECKPOINTS.md`, `QAM/AC_EVIDENCE_MATRIX.md`, `QAM/QAM_PILOT_RESULTS.md`, `QAM/QAM_CHECKPOINTS.md`.
+- **Added:** `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CERTIFICATION.md`.
+- **Reason:** the QA Lead's certification letter of 2026-10-02 and the Director's P5 instruction.
+
 ## 2026-10-01 10:41 UTC — [CC] Claude Code
 
 - **RRM-004-CYBER-PHARMA — Q1-C01 / AC-403** (docs only, `qa/phase-3-rrm004`): A-15 records a narrow AC-403 exception for five already-authorized historical hunks (`a93393d`, `ee4a049`) and the 12 byte-identical `_OLD/` moves (`1eb9c04`, J-09). An AC-403 erratum row cites A-15. The frozen criterion, baseline and candidate are unchanged.

@@ -66,3 +66,33 @@ Limitations / not run: authenticated image walk (QA, AC-605); QA's own install/b
 QA handoff: `QA_HANDOFF.md` · QAM manifest: `QA/QAM_MANIFEST.md`
 
 Engineering evidence, not independent QA certification.
+
+## Closeout (P5, 2026-10-02 — docs only; transcribed from the QA Lead's certification, the Engineer certifies nothing)
+
+| Field | Value |
+|---|---|
+| Verdict | **Gate Q PASS** for the tested product candidate. 31 product ACs PASS, zero unresolved product failures or blockers. QA Cleanup ACCEPTED; product repair NONE REQUIRED; zero repair rounds. QA Lead (JARVIS), 2026-10-02 (`QAM/QAM_CERTIFICATION.md`). AC-501–504 include verification of historical engineering records, not independently witnessed actions |
+| Repo | `cyber-pharma-dev-v1-phase-3` |
+| Code baseline | `649c36d0409c0b658cff14f779a09aad0c8e92b9` (RRM-003 merge) |
+| Pack commit | `d3ea7f7` |
+| Certified candidate | `2fbc72f1f514049255f2b94054bd11cc77cbd158` |
+| QA HEAD | `6b6cad642f69314904938e9df1ec8fdfbe08f15a` (QA execution HEAD) |
+| Evidence commit | `0463086c5fb125b6a69518778a83207f56e85662` (Q2 evidence + Q5 cleanup; documentation-only successor, not runtime-tested). `git diff --stat 2fbc72f..HEAD -- src package.json package-lock.json next.config.js supabase scripts` → empty at P5 |
+| Review packages | `QAM/HANDOFFS/RRM004_QAM_Q2_REVIEW.zip` SHA-256 `89ed2b6697379a370c3fca2dcd4cd43467c24671f0551603611dd4c85e4c84d6` · `QAM/HANDOFFS/RRM004_QAM_Q5_REVIEW.zip` SHA-256 `9cffdbf1691b8fed4981343ee128185c6ca3d0512cc7b96df814064e47917d13` (verified at P5) |
+| Closeout commit | recorded by Director at merge |
+| Merge SHA | recorded by Director at merge |
+| QAM pilot verdict | **PARTIAL SUCCESS** under the charter's recorded-Q-stop rule (Q1 contract/scope stop resolved by A-15 and Q1b). Q2 one-shot execution SUCCEEDED: 0 Director interventions, 1 automated sign-in per role, 0 Q2 stops, 1 QA helper correction (Q2-SR01). Body 10m08s; release elapsed 17m21s. AC-701–710 PASS (`QAM/QAM_PILOT_RESULTS.md` §4) |
+| QA cleanup (Q5) | Value scan before deletion, 0 leaks; `.env.qa.local` deleted with proof; no editor recovery files; post-deletion pattern scan 0 leaks; 8 helpers retained with reasons; inventory `QAM/ARTIFACT_INVENTORY.json`. Detail: `QAM/QAM_CLEANUP_REPORT.md` |
+| Rulings | A-01…A-15 (`RULINGS_ADDENDUM.md`) and the erratum lane (`ACCEPTANCE_SPEC.md`) |
+
+**Deferred, with owners:**
+
+| Item | Owner | Gate |
+|---|---|---|
+| DA-2 Supabase signup OFF — **NOT YET** (`agent_docs/ACTIONS/RRM-001-CYBER-PHARMA/evidence/DA-2_SUPABASE_SIGNUP_DISABLED.md` absent at P5) | Director | carried from RRM-001 |
+| QC-5 rotate the two dedicated QA passwords and record the actual date (`QAM/QAM_PILOT_RESULTS.md` §5) | Director | after certification |
+| DC-7 merge, SHAs, scoreboard; acknowledge the pilot and decide adopt/amend/drop (`QAM/QAM_PILOT_RESULTS.md` §5) | Director | after this closeout |
+| E-18 PBM trigger Enter behavior | Architect | future accessibility review (backlog) |
+| Later Next patch published after the P1 cutoff | — | informational only under the approved targets (A-01) |
+
+No product, configuration, contract or test byte changed at P5. No build or test was rerun.

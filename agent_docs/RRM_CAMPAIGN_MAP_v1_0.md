@@ -24,7 +24,9 @@
 
 **Status at v1.0.4 (2026-09-30).** RRM-003 merge recorded: 649c36d (closeout 7309a2f). **RRM-004 pack AUTHORED (dependencies; first QAM pilot on the QA side) — NEXT.** RRM-004 is the last module; its merge closes the RRM campaign and hands the backend campaign BIM-004.
 
-Scoreboard (Director fills at each close): RRM-001 `CLOSED — Gate Q PASS 2026-09-22 @ cad164d (evidence 9ab95e5; closeout 2ccf450; merged to main 1cd6e46)` · RRM-002 `CLOSED — Gate Q PASS 2026-09-28 @ 34e6fb6 (evidence cb9f7b7; closeout 9cb56e9; merged to main 3d2e655)` · RRM-003 `CLOSED — Gate Q PASS 2026-09-29 @ 21ea108 (QA HEAD 1a94277; closeout 7309a2f; merged to main 649c36d)` · RRM-004 `—`.
+**Status at v1.0.5 (2026-10-02).** RRM-004 CLOSED — Gate Q PASS, 31/31 product ACs, zero repair rounds (QA Lead 2026-10-02). QAM pilot: PARTIAL SUCCESS (recorded Q-stop), Q2 one-shot succeeded. **RRM campaign complete pending the Director's merge; backend campaign resumes at BIM-004.**
+
+Scoreboard (Director fills at each close): RRM-001 `CLOSED — Gate Q PASS 2026-09-22 @ cad164d (evidence 9ab95e5; closeout 2ccf450; merged to main 1cd6e46)` · RRM-002 `CLOSED — Gate Q PASS 2026-09-28 @ 34e6fb6 (evidence cb9f7b7; closeout 9cb56e9; merged to main 3d2e655)` · RRM-003 `CLOSED — Gate Q PASS 2026-09-29 @ 21ea108 (QA HEAD 1a94277; closeout 7309a2f; merged to main 649c36d)` · RRM-004 `CLOSED — Gate Q PASS 2026-10-02 @ 2fbc72f (QA HEAD 6b6cad6; evidence 0463086); closeout + merge SHA: Director`.
 
 ---
 

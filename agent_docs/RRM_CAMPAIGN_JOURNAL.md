@@ -138,3 +138,73 @@
 - 2026-09-29 — `curl -X HEAD` exit 18 on the header probe; corrected to `curl -I`.
 - 2026-09-29 — Enter on the focused, closed PBM trigger swallowed; Space works. Non-blocking (E-18); origin check scheduled for RRM-004 Plan Mode.
 - 2026-09-29 — Architect's service unavailable at closeout; the Director handed the QA Lead's certification to the Engineer as the closeout instruction; the Architect's journal entry lands here, in RRM-004 P0.
+
+### RRM-004-CYBER-PHARMA — closed 2026-10-02 (Architect)
+
+- **Module:** RRM-004-CYBER-PHARMA — Dependencies. One-shot Engineering (second consecutive) + first QAM pilot on the QA side.
+- **Commits:** pack d3ea7f7 · P1b fe74dd9 · candidate 2fbc72f1f514049255f2b94054bd11cc77cbd158 · QAM v1.1 overlay + P2b errata (A-09…A-12) on the engineering branch before the QA cut · QA HEAD 6b6cad6 · evidence 0463086 · closeout and merge: Director. Baseline 649c36d (RRM-003 merge).
+- **Product:** next 16.2.12 → 16.3.7, eslint-config-next in lockstep, sharp 0.35.3 → 0.35.5 (libvips package 1.3.2 → 1.3.4, libheif 1.23.1 → 1.23.5 read from installed metadata — the instrument shown to move); npm audit 7 → 0 under DD-1 sweep; 59 lockfile moves, zero outside the allowed families; Cloudinary remotePatterns removed (DD-2), optimizer refuses the host with the attributable body; RRM-003's cache header survived byte-identical and re-measured; 17 routes, 34/164, 0/35.
+- **Verdict:** Gate Q PASS, 31 product ACs, zero repair rounds (QA Lead 2026-10-02). Pilot: PARTIAL SUCCESS under the charter's recorded-Q-stop rule — Q1 raised a contract/scope stop, resolved by A-15 and Q1b, exactly the kind of catch the recon stop exists for.
+- **Engineering metrics:** P2 11m15s, 80 checks, 0 stops, 0 self-repairs, 0 Director touches; every number equal to the P1 dry run and the authoring-time run.
+- **QA metrics:** Q2 body 10m08s (release elapsed 17m21s, excluding Q1 and its resolution); 0 Director interventions in Q2; 1 automated sign-in per role from .env.qa.local; 28 browser cells; Q5 value-scan before deletion, env file and auth state deleted with proof, post-deletion scan 0. RRM-003 comparison: 74m55s active, 8 Director touches, 7 human sign-ins.
+- **Factory lesson — keep:** recon before execution; plan drafted by the QA seat and approved by the QA Lead; credentials by env file, never by keyboard; indexed handoff zips under QAM/HANDOFFS/; two verdicts never mixed.
+- **Factory lesson — change:** resolve scope exceptions before Q1 (the A-15 stop was authoring debt, not Executor failure); make both CLAUDE.md and AGENTS.md reliable model-neutral entry points by design; the mid-flight QA/→QAM/ overlay cost one git mv and one docs-only prompt and must never be needed again — the QAM/ folder ships in the pack from BIM-004 on.
+- **Factory lesson — drop:** manual file hunting; Director browser matrices.
+- **Campaign:** RRM-004 is the last module. With the Director's merge the RRM campaign closes (four modules, four Gate Q passes, zero repair rounds) and the backend campaign resumes at BIM-004. DA-2 (Supabase signup OFF) status at campaign close: NOT YET.
+- **Closeout:** merge pending (Director). 10X Lab export: QAM/QAM_PILOT_RESULTS.md plus the Architect's QAM pilot journal.
+
+### RRM-004-CYBER-PHARMA — QA engagement closed 2026-10-02 (QA-logged (QA Lead))
+
+Transcribed by the Engineer at P5 from the QA Lead's letter of 2026-10-02
+
+QA LEAD DECISION
+Gate Q: PASS for the tested product candidate.
+QA Cleanup: ACCEPTED.
+Product repair: NONE REQUIRED.
+Released to Architect closeout.
+
+PRODUCT VERDICT
+Accept the final matrix: 31 product ACs PASS, zero unresolved product failures or blockers.
+
+Supporting results:
+- 34 Jest suites / 164 tests passed; zero skipped.
+- TypeScript: zero errors.
+- ESLint: zero errors, 35 warnings.
+- Independent builds, dependency/advisory checks, image optimization, remote-image rejection, cache checks and protected-path comparisons passed.
+- 28 browser coverage cells passed, including automated ADMIN/MEMBER authentication.
+- Q5 scanned credential values before deletion, verified .env.qa.local removal, confirmed absence of authentication state and QA servers, and completed post-deletion scanning with zero leaks.
+
+Qualifications:
+- AC-501–504 include verification of historical engineering records; do not relabel those historical actions as independently witnessed.
+- Certification covers the contracted local QA scope. It is not deployment certification, every-platform validation or proof of untested image formats.
+- The later Next release remains informational under the approved P1 cutoff.
+- No product repair/retest cycle occurred; the pilot does not demonstrate that capability.
+
+SEPARATE QAM PILOT VERDICT
+AC-701–709: accepted PASS.
+AC-710: PASS through this QA Lead review and certification.
+
+Pilot classification: PARTIAL SUCCESS under the charter’s recorded-Q-stop rule.
+Reason: Q1 raised a contract/scope stop, resolved through A-15 and Q1b. Preserve that history.
+
+Q2 one-shot execution itself SUCCEEDED:
+- Zero Director interventions during Q2.
+- One automated sign-in per role.
+- Zero Q2 enumerated or unenumerated stops.
+- A QA helper correction was handled and documented independently.
+- Measurement body: 10m08s; reported release elapsed: 17m21s.
+These figures exclude earlier preparation and Q1 resolution. Do not claim an end-to-end 10-minute QA process.
+
+KEEP: recon before execution, independently approved plan, automated role coverage, indexed handoff ZIPs and bounded cleanup.
+CHANGE: resolve scope exceptions before Q1; make both CLAUDE.md and AGENTS.md reliable, model-neutral entry points in future module designs; standardize exports directly under QAM/HANDOFFS/.
+DROP: manual file hunting and repetitive Director browser matrices.
+These are 10X Lab findings, not automatic changes to production QA doctrine. Do not retrofit new architecture during this closeout.
+
+### Friction log — RRM-004 (Director-observed, filed by Architect)
+
+- 2026-09-30 — P1 found the instrument's export-path bug (require('…/versions.json') throws; '…/versions' reads the same file); ruled A-03.
+- 2026-09-30 — The QA Lead's QAM rulings arrived while P2 was running; the pack's QA/ lane became QAM/ by a tracked git mv plus a docs-only errata prompt (P2b, A-09…A-12). Frozen files were not rewritten.
+- 2026-09-30 — A Markdown table-cell pipe (\|) was misread as a shell escape; v1.1 writes every piped command as a plain line.
+- 2026-10-01 — Q1 raised a contract/scope stop; resolved by A-15 and Q1b before Q2: AC-403's literal allowed-file list omitted five already-authorized predecessor closeout/journal hunks (`a93393d`, `ee4a049`) and the twelve `_OLD/` archive moves (`1eb9c04`).
+- 2026-10-01 — One QA helper self-correction during Q2, documented by the Executor: Q2-SR01, the AC-103/107 metadata read used the non-exported `sharp/package.json` (exit 1); the helper was corrected to read the installed JSON from disk, failure preserved under `evidence/deps/attempts/metadata_01/`.
+- 2026-10-02 — A later Next patch was published after the P1 cutoff; informational only under the approved targets.
