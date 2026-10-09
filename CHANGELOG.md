@@ -3,6 +3,11 @@
 > Documentation/playbook change log per CLAUDE.md Changelog Protocol.
 > `[CC]` = Claude Code · `[TS]` = Tony Stark manual edits.
 
+## 2026-10-09 13:25 UTC — [CC] Claude Code
+
+- **Updated:** `RECOVERY.md` — stale "UNCOMMITTED on `main`" line now says the SHA-recording touch is committed as `5234abe`; Pending item 1 (commit) marked done.
+- **Reason:** Director asked to fix the stale line after the 2026-10-09 session start.
+
 ## 2026-10-02 05:16 UTC — [CC] Claude Code
 
 - **RRM-004-CYBER-PHARMA — merge SHAs recorded** (docs only, `main`): closeout `2e3eac9` and merge `a474a19` written to the map scoreboard and a v1.0.6 status line (RRM campaign COMPLETE), ledger R-009, RRM-004 `EXECUTION_LOG.md`, `README.md` and DC-7 (adopt/amend/drop still pending). `RECOVERY.md` points to BIM-004.

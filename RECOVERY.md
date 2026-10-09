@@ -8,9 +8,9 @@
 **Branch:** `main` @ `a474a19` (`--no-ff` merge of `qa/phase-3-rrm004`, pushed). **Certified candidate:** `2fbc72f1f514049255f2b94054bd11cc77cbd158` · QA HEAD `6b6cad6` · evidence `0463086` · closeout `2e3eac9` · merge `a474a19` · baseline `649c36d` · pack `d3ea7f7`. Product diff `2fbc72f..a474a19` empty.
 **Last action:** SHA-recording touch on `main` (docs only): closeout/merge SHAs written to map scoreboard + v1.0.6 status, ledger R-009, RRM-004 `EXECUTION_LOG.md` Closeout, README, DC-7. Session log: `agent_docs/SESSIONS/session_2026-10-02.md`.
 **Pilot:** QAM **PARTIAL SUCCESS** (Q1 recorded Q-stop → A-15); Q2 one-shot succeeded (10m08s body, 0 Director touches). Certificate `agent_docs/ACTIONS/RRM-004-CYBER-PHARMA/QAM/QAM_CERTIFICATION.md`.
-**⚠️ UNCOMMITTED on `main`:** this SHA-recording touch (map, ledger, EXECUTION_LOG, README, DIRECTOR_CHECKPOINTS, RECOVERY, CHANGELOG, session log, one RESPONSES record).
+**✅ COMMITTED:** this SHA-recording touch is on `main` as `5234abe` (verified 2026-10-09).
 **Pending (Director):**
-1. Commit this touch.
+1. ~~Commit this touch.~~ Done: `5234abe`.
 2. **DC-7 adopt/amend/drop** of the QAM shape (`QAM_PILOT_RESULTS.md` §5).
 3. **QC-5** rotate the two QA passwords and record the date (§5).
 4. **DA-2** Supabase signup OFF — still NOT YET.
